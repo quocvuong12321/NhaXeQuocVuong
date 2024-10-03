@@ -1,0 +1,69 @@
+﻿
+
+.menu > a {
+    color: white;
+    transition: font-size 0.3s ease;
+    padding-right:25px;
+    padding-left:35px;
+    font-size:1.2rem;
+}
+.menu >a:hover{
+    color:white;
+
+    font-size:1.5rem;
+}
+
+.dn {
+    font-size: 1.1rem;
+    border: 0px solid black;
+    border-radius: 10px;
+    color: white;
+    padding: 6px;
+    text-align: center;
+    width: 200px;
+}
+
+.dn:hover{
+    background:white;
+    color:black;
+    transition:0.3s;
+}
+
+
+.foooter {
+    padding-top: 30px;
+    background-color: #e5e7eb;
+    padding-bottom: 30px;
+}
+
+.ulfooter0 > li > a {
+    text-decoration: none;
+    color:black;
+}
+
+.ulfooter0>li>a:hover{
+    color:orange
+}
+
+.ulfooter0>li{
+    list-style-type:circle;
+}
+
+.back-to-top {
+    position: fixed; /* Đặt vị trí cố định */
+    bottom: 20px; /* Cách đáy 20px */
+    right: 20px; /* Cách phải 20px */
+    background-color: #007bff; /* Màu nền */
+    color: white; /* Màu chữ */
+    padding: 10px 15px; /* Khoảng cách bên trong */
+    border-radius: 5px; /* Bo tròn góc */
+    text-decoration: none; /* Bỏ gạch chân */
+    font-size: 16px; /* Kích thước chữ */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Hiệu ứng bóng */
+    transition: background-color 0.3s, transform 0.3s; /* Hiệu ứng chuyển tiếp */
+}
+
+    .back-to-top:hover {
+        background-color: #0056b3; /* Màu nền khi hover */
+        transform: translateY(-3px); /* Nâng nút lên khi hover */
+    }

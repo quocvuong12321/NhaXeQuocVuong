@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+    <link href="~/Content/fontawesome-free-6.6.0-web/css/all.min.css" rel="stylesheet" />
+</head>
+<body>
+    @*--------------------------------------------header-----------------------------------------------------*@
+    <div class="container-fluid">
+        <div class="row" style="height: 250px; background: linear-gradient(#ffd800,#ff6a00,#ff0000) ">
+            <div class="col-md-5">
+                <img src="~/img/logo3.png" style="width:600px" />
+            </div>
+            <div class="col-md-5" style="margin:150px 0 0 0">
+
+                <div class="nav menu">
+                    <a class="nav-link nav-item " href="#">Trang chủ</a>
+                    <a class="nav-link nav-item " href="#">Lịch trình</a>
+                    <a class="nav-link nav-item " href="#">Liên hệ</a>
+                    <a class="nav-link nav-item " href="#">Về chúng tôi</a>
+                </div>
+            </div>
+            <div class="col-md-2" style="margin:50px 0 0 0">
+                <div class="dn"><a class="nav-link" href="#"><i class="fa-solid fa-user"></i> Đăng nhập / Đăng ký</a></div>
+            </div>
+        </div>
+
+    </div>
+
+    @*--------------------------------------------end-header-----------------------------------------------------*@
+
+
+    @*--------------------------------------------body-----------------------------------------------------*@
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    @*--------------------------------------------end-body-----------------------------------------------------*@
+
+
+
+
+
+    @*--------------------------------------------footer-----------------------------------------------------*@
+
+    <div class="foooter">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 ">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>TRUNG TÂM TỔNG ĐÀI & CSKH</p>
+                            <H2 style="color:orangered">0123456789</H2>
+                        </div>
+                        <div class="col-md-6">
+                            <img src="~/img/logo3.png" style="width: 200px; filter: grayscale(100%) brightness(100%) sepia(100%) hue-rotate(30deg); " />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h5 style="color:forestgreen">
+                            Công ty cổ phần xe khách Quốc Vương
+                        </h5>
+                        <p><span style="color:lightslategray">Địa chỉ: </span>Số 01 Tô Hiến Thành, Phường 3, Thành phố Đà Lạt, Tỉnh Lâm Đồng, Việt Nam.</p>
+                        <p>
+                            <span style="color:lightslategray">Email: </span>hotro@futa.vn
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><span style="color:lightslategray">Điện thoại: </span>02838386852</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><span style="color:lightslategray">Fax: </span>02838386853</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <ul class="ulfooter0">
+                        <li><a href="#">Liên hệ</a></li>
+                        <li><a href="#">Về chúng tôi</a></li>
+                        <li><a href="#">Tin tức</a></li>
+                        <li><a href="#">Sự kiện</a></li>
+                    </ul>
+                    <h3>Kết nối với chúng tôi</h3>
+                    <div>
+                        <a href="#" style="padding-right:10px"><i class="fa-brands fa-facebook fa-xl"></i></a>
+                        <a href="#" style="padding-right:10px"><i class="fa-brands fa-youtube fa-xl " style="color:red"></i></a>
+                        <a href="#" style="padding-right:10px"><i class="fa-regular fa-envelope fa-xl" style="color: #ec0909;"></i></a>
+                        <a href="#" style="padding-right:10px"><i class="fa-brands fa-facebook-messenger fa-xl" style="color: #74C0FC;"></i></a>
+                        <a href="#"><i class="fa-brands fa-square-instagram fa-xl "></i></a>
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.062458818284!2d106.62637497407049!3d10.80652835863974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752be2804c5ea3%3A0x299b8ad71d268338!2zMTQwIMSQLiBMw6ogVHLhu41uZyBU4bqlbiwgVMOieSBUaOG6oW5oLCBUw6JuIFBow7osIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1727935838027!5m2!1svi!2s" width="350" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div>
+        <a href="#" class="back-to-top " style="background-color:orange" id="backToTop">
+            <i class="fa-solid fa-play fa-rotate-270"></i>
+        </a>
+    </div>
+
+    @*--------------------------------------------end-footer-----------------------------------------------------*@
+
+
+    <script src="~/Content/js/bootstrap.bundle.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jsBackToTop.js"></script>
+    @RenderSection("scripts", required: false)
+
+
+
+
+
+</body>
+</html>
