@@ -122,6 +122,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Area_Admin\Area_AdminAreaRegistration.cs" />
+    <Compile Include="Controllers\DangKyController.cs" />
+    <Compile Include="Controllers\DangNhapController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LichTrinhController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2245,6 +2247,10 @@
     <Content Include="Content\js\bootstrap.esm.min.js" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\Login_NguoiDung\Login_NguoiDung.css" />
+    <Content Include="Content\Login_NguoiDung\Login_NguoiDung.js" />
+    <Content Include="Content\Login_NguoiDung\XacNhanRole.css" />
+    <Content Include="Content\Login_NguoiDung\XeKhach.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -2368,6 +2374,9 @@
     </None>
     <None Include="packages.config" />
     <Content Include="Views\LichTrinh\Index.cshtml" />
+    <Content Include="Views\DangNhap\XacNhanRole.cshtml" />
+    <Content Include="Views\DangNhap\Login_NguoiDung.cshtml" />
+    <Content Include="Views\DangKy\DangKy_NguoiDung.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

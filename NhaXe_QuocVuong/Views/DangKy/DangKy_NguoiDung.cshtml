@@ -1,0 +1,62 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.Title = "DangKy_NguoiDung";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+
+    <link rel="icon" href="~/imgs/LOGO-removebg-preview.png" type="images/x-icon">
+    <link href="~/Content/Login_NguoiDung/Login_NguoiDung.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+    <div class="hero">
+        <div class="form-box">
+
+            <div style="padding-top:20px;text-align:center">
+                <p  style="font-size:35px;font-weight:600">ĐĂNG KÝ</p>
+            </div>
+
+            <div class="social-icon">
+                <i class="fa-brands fa-google fa-xl" style="cursor: pointer;"></i>
+                <i class="fa-brands fa-facebook fa-xl" style="cursor: pointer;"></i>
+                <i class="fa-brands fa-github fa-xl" style="cursor: pointer;"></i>
+            </div>
+
+
+            <form action="@Url.Action("DangKy_NguoiDung", "DangKy")" class="input-group" method="post">
+                <div style="padding-left:70px">
+                    <input type="text" name="tenkhachhang" class="input-field" placeholder="Họ và Tên" required />
+                    <input type="number" name="sodienthoai" class="input-field" placeholder="Số điện thoại" required />
+                    <input type="email" id="register_email" name="register_email" class="input-field" placeholder="Email" required />
+                    <input type="text" name="username" class="input-field" placeholder="User id" required />
+                    <input type="password" id="register-password" name="password" class="input-field" placeholder="Nhập mật khẩu" required />
+                    <div style="display:flex;align-items:center"><input type="checkbox" class="check-box"><p>Tôi đồng ý với các điều khoản & điều kiện</p></div>
+                    <button type="submit" class="submit-btn">Đăng ký</button>
+                    @if (ViewBag.RegisterErrorMessage != null)
+                    {
+                        <p style="color:red">@ViewBag.RegisterErrorMessage</p>
+                    }
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+
+    <script src="~/Content/Login_NguoiDung/Login_NguoiDung.js"></script>
+</body>
+
+</html>
+
+
+

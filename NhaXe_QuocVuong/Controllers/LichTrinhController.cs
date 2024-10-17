@@ -12,7 +12,6 @@ namespace NhaXe_QuocVuong.Controllers
         NhaXeDataContext db = new NhaXeDataContext();
         public ActionResult Index()
         {
-            
             return View(db.LichTrinhs.ToList());
         }
     }

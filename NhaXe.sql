@@ -50,6 +50,8 @@ CREATE TABLE [userAccount] (
 )
 GO
 
+
+
 CREATE TABLE NHANVIEN(
 	[USERNAME] varchar(128) PRIMARY KEY,
 	[TEN_NHANVIEN] nvarchar(255) NOT NULL,
@@ -80,7 +82,6 @@ CREATE TABLE [KhachHang] (
   [EMAIL] varchar(128) NOT NULL
 )
 GO
-
 
 
 

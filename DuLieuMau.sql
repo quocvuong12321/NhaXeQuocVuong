@@ -105,6 +105,8 @@ INSERT INTO [userAccount] ([username], [password], [role]) VALUES
 ('nha_xe02', 'pass456', 'nha_xe'),
 ('admin01', 'adminpass', 'khach');
 
+select * from [userAccount]
+
 -- Thêm dữ liệu vào bảng NHANVIEN
 INSERT INTO [NHANVIEN] ([USERNAME], [TEN_NHANVIEN], [SDT], [EMAIL], [LOAI_NV]) VALUES 
 ('nha_xe01', N'Nguyễn Văn A', '0123456789', 'a@example.com', 'QUAN_LY'),
@@ -112,11 +114,11 @@ INSERT INTO [NHANVIEN] ([USERNAME], [TEN_NHANVIEN], [SDT], [EMAIL], [LOAI_NV]) V
 
 -- Thêm dữ liệu vào bảng LichTrinh
 INSERT INTO [LichTrinh] ([MA_LICH_TRINH], [ID_TUYEN_DUONG], [KHOI_HANH], [KET_THUC], [GIA_VE], [ID_XE], [CHI_PHI_PHAT_SINH], [TAIXE], [NGUOI_TAO_LICH_TRINH]) VALUES 
-('LT001', 1, '2024-10-20 08:00:00', '2024-10-20 10:00:00', 200000, 1, 0, 'nha_xe02', 'nha_xe01'),
+('LT001', 1, '2024-10-20 08:00:00', '2024-10-20 10:00:00', 200000, 1, 0, 'nha_xe02', 'nha_xe01');
 INSERT INTO [LichTrinh] ([MA_LICH_TRINH], [ID_TUYEN_DUONG], [KHOI_HANH], [KET_THUC], [GIA_VE], [ID_XE], [CHI_PHI_PHAT_SINH], [TAIXE], [NGUOI_TAO_LICH_TRINH]) VALUES 
-('LT002', 2, '2024-10-21 06:00:00', '2024-10-21 22:00:00', 1200000, 2, 50000, 'nha_xe02', 'nha_xe01')
+('LT002', 2, '2024-10-21 06:00:00', '2024-10-21 22:00:00', 1200000, 2, 50000, 'nha_xe02', 'nha_xe01');
 INSERT INTO [LichTrinh] ([MA_LICH_TRINH], [ID_TUYEN_DUONG], [KHOI_HANH], [KET_THUC], [GIA_VE], [ID_XE], [CHI_PHI_PHAT_SINH], [TAIXE], [NGUOI_TAO_LICH_TRINH]) VALUES 
-('LT003', 3, '2024-10-22 07:00:00', '2024-10-22 21:00:00', 800000, 3, 30000, 'nha_xe02', 'nha_xe01')
+('LT003', 3, '2024-10-22 07:00:00', '2024-10-22 21:00:00', 800000, 3, 30000, 'nha_xe02', 'nha_xe01'),
 ('LT004', 4, '2024-10-23 09:00:00', '2024-10-23 13:00:00', 150000, 4, 0, 'nha_xe02', 'nha_xe01'),
 ('LT005', 5, '2024-10-24 05:00:00', '2024-10-25 11:00:00', 1700000, 5, 100000, 'nha_xe02', 'nha_xe01');
 
@@ -127,19 +129,29 @@ INSERT INTO [KhachHang] ([USERNAME], [TEN_KHACH_HANG], [SO_DIEN_THOAI], [EMAIL])
 
 -- Thêm dữ liệu vào bảng Ve
 INSERT INTO [Ve] ([ID_VE], [ID_KHACH_HANG], [ID_LICH_TRINH], [NGAY_DAT_VE], [TONG_TIEN]) VALUES 
-('VE001', 'khach01', 'LT001', '2024-10-18 09:00:00', 200000),
-('VE002', 'khach02', 'LT002', '2024-10-18 10:00:00', 1200000),
-('VE003', 'khach02', 'LT003', '2024-10-18 11:00:00', 800000),
-('VE004', 'khach02', 'LT004', '2024-10-18 12:00:00', 150000),
+('VE001', 'khach01', 'LT001', '2024-10-18 09:00:00', 200000);
+INSERT INTO [Ve] ([ID_VE], [ID_KHACH_HANG], [ID_LICH_TRINH], [NGAY_DAT_VE], [TONG_TIEN]) VALUES 
+('VE002', 'khach02', 'LT002', '2024-10-18 10:00:00', 1200000);
+INSERT INTO [Ve] ([ID_VE], [ID_KHACH_HANG], [ID_LICH_TRINH], [NGAY_DAT_VE], [TONG_TIEN]) VALUES 
+('VE003', 'khach02', 'LT003', '2024-10-18 11:00:00', 800000);
+INSERT INTO [Ve] ([ID_VE], [ID_KHACH_HANG], [ID_LICH_TRINH], [NGAY_DAT_VE], [TONG_TIEN]) VALUES 
+('VE004', 'khach02', 'LT004', '2024-10-18 12:00:00', 150000);
+INSERT INTO [Ve] ([ID_VE], [ID_KHACH_HANG], [ID_LICH_TRINH], [NGAY_DAT_VE], [TONG_TIEN]) VALUES 
 ('VE005', 'khach01', 'LT005', '2024-10-18 13:00:00', 1700000);
+
 
 -- Thêm dữ liệu vào bảng ChiTietVe
 INSERT INTO [ChiTietVe] ([ID_VE], [VI_TRI_NGOI], [QR_CODE], [TRANG_THAI]) VALUES 
-('VE001', '1A', 'QR1A', 'da_thanh_toan'),
-('VE002', '2A', 'QR2A', 'da_thanh_toan'),
-('VE003', '3A', 'QR3A', 'da_xac_nhan'),
-('VE004', '4A', 'QR4A', 'huy_ve'),
+('VE001', '1A', 'QR1A', 'da_thanh_toan');
+INSERT INTO [ChiTietVe] ([ID_VE], [VI_TRI_NGOI], [QR_CODE], [TRANG_THAI]) VALUES 
+('VE002', '2A', 'QR2A', 'da_thanh_toan');
+INSERT INTO [ChiTietVe] ([ID_VE], [VI_TRI_NGOI], [QR_CODE], [TRANG_THAI]) VALUES 
+('VE003', '3A', 'QR3A', 'da_xac_nhan');
+INSERT INTO [ChiTietVe] ([ID_VE], [VI_TRI_NGOI], [QR_CODE], [TRANG_THAI]) VALUES 
+('VE004', '4A', 'QR4A', 'huy_ve');
+INSERT INTO [ChiTietVe] ([ID_VE], [VI_TRI_NGOI], [QR_CODE], [TRANG_THAI]) VALUES 
 ('VE005', '5A', 'QR5A', 'da_thanh_toan');
+
 
 -- Thêm dữ liệu vào bảng DoanhThu
 INSERT INTO [DoanhThu] ([ID_DOANHTHU], [MA_LICH_TRINH], [SO_VE_DA_DAT], [TONGTIEN]) VALUES 
@@ -164,3 +176,4 @@ INSERT INTO [ThemTramDungChan] ([ID_TRAMDUNGCHAN], [MA_LICH_TRINH], [THOIGIANDEN
 ('TDC003', 'LT002', '2024-10-21 10:30:00'),
 ('TDC004', 'LT004', '2024-10-23 12:00:00'),
 ('TDC005', 'LT005', '2024-10-24 07:00:00');
+
