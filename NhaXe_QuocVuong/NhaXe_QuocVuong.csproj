@@ -122,6 +122,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Area_Admin\Area_AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Area_Admin\Controllers\HomeController.cs" />
     <Compile Include="Controllers\DangKyController.cs" />
     <Compile Include="Controllers\DangNhapController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -137,6 +138,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Area_Admin\assets\css\bootstrap.css" />
+    <Content Include="Areas\Area_Admin\assets\css\custom.css" />
+    <Content Include="Areas\Area_Admin\assets\css\font-awesome.css" />
+    <Content Include="Areas\Area_Admin\assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="Areas\Area_Admin\assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Areas\Area_Admin\assets\img\logo.png" />
+    <Content Include="Areas\Area_Admin\assets\js\bootstrap.min.js" />
+    <Content Include="Areas\Area_Admin\assets\js\custom.js" />
+    <Content Include="Areas\Area_Admin\assets\js\jquery-1.10.2.js" />
     <Content Include="Content\AboutUs\XemThem.css" />
     <Content Include="Content\AboutUs\XemThem.js" />
     <Content Include="Content\css\bootstrap-grid.css" />
@@ -2354,9 +2364,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Area_Admin\Controllers\" />
     <Folder Include="Areas\Area_Admin\Data\" />
-    <Folder Include="Areas\Area_Admin\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -2369,6 +2377,16 @@
       <LastGenOutput>NhaXe.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Areas\Area_Admin\Views\Shared\LayoutAdmin.cshtml" />
+    <Content Include="Areas\Area_Admin\assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\Area_Admin\assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Areas\Area_Admin\assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="Areas\Area_Admin\assets\fonts\FontAwesome.otf" />
+    <Content Include="Areas\Area_Admin\assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Area_Admin\assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Areas\Area_Admin\assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Area_Admin\assets\fonts\glyphicons-halflings-regulard41d.eot" />
+    <Content Include="Areas\Area_Admin\Views\Home\Index.cshtml" />
     <None Include="Models\NhaXe.dbml.layout">
       <DependentUpon>NhaXe.dbml</DependentUpon>
     </None>
