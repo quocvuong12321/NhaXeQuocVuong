@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="NHAXE_QUOCVUONG" Class="NhaXeDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-86N3SME\SQL_KING;Initial Catalog=NHAXE_QUOCVUONG;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="NHAXE_QUOCVUONGConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-I22SAC7\TKHANGDI;Initial Catalog=NHAXE_QUOCVUONG;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="NHAXE_QUOCVUONGConnectionString2" Provider="System.Data.SqlClient" />
   <Table Name="dbo.ChiTietVe" Member="ChiTietVes">
     <Type Name="ChiTietVe">
       <Column Name="ID_VE" Type="System.String" DbType="VarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -24,9 +24,9 @@
     <Type Name="DiaDiem">
       <Column Name="ID_DIADIEM" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TEN_TINH_THANH" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="DiaDiem_TramDungChan" Member="TramDungChans" ThisKey="ID_DIADIEM" OtherKey="ID_DIADIEM" Type="TramDungChan" />
       <Association Name="DiaDiem_TuyenDuong" Member="TuyenDuongs" ThisKey="ID_DIADIEM" OtherKey="DIEM_DAU" Type="TuyenDuong" />
       <Association Name="DiaDiem_TuyenDuong1" Member="TuyenDuongs1" ThisKey="ID_DIADIEM" OtherKey="DIEM_CUOI" Type="TuyenDuong" />
-      <Association Name="DiaDiem_TramDungChan" Member="TramDungChans" ThisKey="ID_DIADIEM" OtherKey="ID_DIADIEM" Type="TramDungChan" />
     </Type>
   </Table>
   <Table Name="dbo.DoanhThu" Member="DoanhThus">
@@ -92,20 +92,6 @@
       <Association Name="userAccount_NHANVIEN" Member="userAccount" ThisKey="USERNAME" OtherKey="username" Type="userAccount" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.TuyenDuong" Member="TuyenDuongs">
-    <Type Name="TuyenDuong">
-      <Column Name="ID_TUYEN" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TEN_TUYEN" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="DIEM_DAU" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="DIEM_CUOI" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="KHOANG_CACH" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="THOI_GIAN_DUY_CHUYEN" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="TINH_TRANG" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
-      <Association Name="TuyenDuong_LichTrinh" Member="LichTrinhs" ThisKey="ID_TUYEN" OtherKey="ID_TUYEN_DUONG" Type="LichTrinh" />
-      <Association Name="DiaDiem_TuyenDuong" Member="DiaDiem" ThisKey="DIEM_DAU" OtherKey="ID_DIADIEM" Type="DiaDiem" IsForeignKey="true" />
-      <Association Name="DiaDiem_TuyenDuong1" Member="DiaDiem1" ThisKey="DIEM_CUOI" OtherKey="ID_DIADIEM" Type="DiaDiem" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.ThemTramDungChan" Member="ThemTramDungChans">
     <Type Name="ThemTramDungChan">
       <Column Name="ID_TRAMDUNGCHAN" Type="System.String" DbType="VarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -123,6 +109,20 @@
       <Column Name="DIA_CHI" Type="System.String" DbType="NVarChar(258) NOT NULL" CanBeNull="false" />
       <Association Name="TramDungChan_ThemTramDungChan" Member="ThemTramDungChans" ThisKey="ID_TRAMDUNGCHAN" OtherKey="ID_TRAMDUNGCHAN" Type="ThemTramDungChan" />
       <Association Name="DiaDiem_TramDungChan" Member="DiaDiem" ThisKey="ID_DIADIEM" OtherKey="ID_DIADIEM" Type="DiaDiem" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TuyenDuong" Member="TuyenDuongs">
+    <Type Name="TuyenDuong">
+      <Column Name="ID_TUYEN" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TEN_TUYEN" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="DIEM_DAU" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DIEM_CUOI" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="KHOANG_CACH" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="THOI_GIAN_DUY_CHUYEN" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TINH_TRANG" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Association Name="TuyenDuong_LichTrinh" Member="LichTrinhs" ThisKey="ID_TUYEN" OtherKey="ID_TUYEN_DUONG" Type="LichTrinh" />
+      <Association Name="DiaDiem_TuyenDuong" Member="DiaDiem" ThisKey="DIEM_DAU" OtherKey="ID_DIADIEM" Type="DiaDiem" IsForeignKey="true" />
+      <Association Name="DiaDiem_TuyenDuong1" Member="DiaDiem1" ThisKey="DIEM_CUOI" OtherKey="ID_DIADIEM" Type="DiaDiem" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.userAccount" Member="userAccounts">

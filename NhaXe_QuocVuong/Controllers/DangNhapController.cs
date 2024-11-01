@@ -12,13 +12,18 @@ namespace NhaXe_QuocVuong.Controllers
         private NhaXeDataContext db = new NhaXeDataContext();
         // GET: DangNhap
         
-
-
         public ActionResult XacNhanRole()
         {
-
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            Session["khach"] = null;
+            return RedirectToAction("Index", "Home");
+        }
+
 
         public ActionResult Login_NguoiDung()
         {
@@ -32,18 +37,85 @@ namespace NhaXe_QuocVuong.Controllers
 
             if (user != null)
             {
-                Session["Username"] = user.username;
-                return RedirectToAction("Index", "Home");
+                if (user.role == "khach")
+                {
+                    Session["khach"] = user;
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = "Bạn không được phép đăng nhập với vai trò này !";
+                    return View();
+                }
             }
             else
             {
-                ViewBag.ErrorMessage = "Username hoặc Password không đúng.";
+                ViewBag.ErrorMessage = "Username hoặc Password không đúng !";
                 return View();
             }
         }
 
 
-       
+        public ActionResult DangKy_NguoiDung()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DangKy_NguoiDung(string tenkhachhang, string sodienthoai, string register_email, string username, string password)
+        {
+            var existingUser = db.userAccounts.FirstOrDefault(u => u.username == username);
+            if (existingUser != null)
+            {
+                ViewBag.RegisterErrorMessage = "Username đã tồn tại. Vui lòng chọn username khác.";
+                return View("DangKy_NguoiDung");
+            }
+
+            userAccount newUser = new userAccount
+            {
+                username = username,
+                password = password,
+                role = "khach"
+            };
+
+            db.userAccounts.InsertOnSubmit(newUser);
+            db.SubmitChanges();
+
+            KhachHang newKhachHang = new KhachHang
+            {
+                USERNAME = username,
+                TEN_KHACH_HANG = tenkhachhang,
+                SO_DIEN_THOAI = sodienthoai,
+                EMAIL = register_email
+            };
+
+            db.KhachHangs.InsertOnSubmit(newKhachHang);
+            db.SubmitChanges();
+
+            return RedirectToAction("Login_NguoiDung", "DangNhap");
+
+        }
+
+
+        public ActionResult ThongTinTaiKhoan()
+        {
+            if (Session["khach"] == null)
+            {
+                return RedirectToAction("Login_NguoiDung");
+            }
+
+            var user = Session["khach"] as userAccount;
+
+            var khachHang = db.KhachHangs.FirstOrDefault(k => k.USERNAME == user.username);
+            return View(khachHang);
+        }
+
+
+
+
+
+
+
 
 
     }

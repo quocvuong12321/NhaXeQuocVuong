@@ -123,7 +123,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Area_Admin\Area_AdminAreaRegistration.cs" />
     <Compile Include="Areas\Area_Admin\Controllers\HomeController.cs" />
-    <Compile Include="Controllers\DangKyController.cs" />
+    <Compile Include="Controllers\DangNhapAdminController.cs" />
     <Compile Include="Controllers\DangNhapController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LichTrinhController.cs" />
@@ -2257,6 +2257,7 @@
     <Content Include="Content\js\bootstrap.esm.min.js" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\jquery\jquery-3.7.1.min.js" />
     <Content Include="Content\Login_NguoiDung\Login_NguoiDung.css" />
     <Content Include="Content\Login_NguoiDung\Login_NguoiDung.js" />
     <Content Include="Content\Login_NguoiDung\XacNhanRole.css" />
@@ -2372,11 +2373,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Areas\Area_Admin\Views\web.config" />
-    <Content Include="Models\NhaXe.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>NhaXe.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Areas\Area_Admin\Views\Shared\LayoutAdmin.cshtml" />
     <Content Include="Areas\Area_Admin\assets\fonts\fontawesome-webfont.eot" />
     <Content Include="Areas\Area_Admin\assets\fonts\fontawesome-webfont.ttf" />
@@ -2387,6 +2383,11 @@
     <Content Include="Areas\Area_Admin\assets\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Areas\Area_Admin\assets\fonts\glyphicons-halflings-regulard41d.eot" />
     <Content Include="Areas\Area_Admin\Views\Home\Index.cshtml" />
+    <Content Include="Models\NhaXe.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>NhaXe.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Models\NhaXe.dbml.layout">
       <DependentUpon>NhaXe.dbml</DependentUpon>
     </None>
@@ -2394,7 +2395,11 @@
     <Content Include="Views\LichTrinh\Index.cshtml" />
     <Content Include="Views\DangNhap\XacNhanRole.cshtml" />
     <Content Include="Views\DangNhap\Login_NguoiDung.cshtml" />
-    <Content Include="Views\DangKy\DangKy_NguoiDung.cshtml" />
+    <Content Include="Views\DangNhap\DangKy_NguoiDung.cshtml" />
+    <Content Include="Views\DangNhapAdmin\Login_Admin.cshtml" />
+    <Content Include="Views\DangNhap\ThongTinTaiKhoan.cshtml" />
+    <Content Include="Views\DangNhapAdmin\ThongTinTaiKhoan.cshtml" />
+    <Content Include="Views\Home\LienHe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

@@ -1,6 +1,8 @@
 ﻿
 USE [nhaxe_quocvuong]
 GO
+
+
 /****** Object:  Trigger [dbo].[trgSetSoGhe]    Script Date: 12/09/2024 1:01:44 PM ******/
 SET ANSI_NULLS ON
 GO
@@ -112,6 +114,8 @@ INSERT INTO [NHANVIEN] ([USERNAME], [TEN_NHANVIEN], [SDT], [EMAIL], [LOAI_NV]) V
 ('nha_xe01', N'Nguyễn Văn A', '0123456789', 'a@example.com', 'QUAN_LY'),
 ('nha_xe02', N'Trần Văn B', '0987654321', 'b@example.com', 'TAI_XE');
 
+
+
 -- Thêm dữ liệu vào bảng LichTrinh
 INSERT INTO [LichTrinh] ([MA_LICH_TRINH], [ID_TUYEN_DUONG], [KHOI_HANH], [KET_THUC], [GIA_VE], [ID_XE], [CHI_PHI_PHAT_SINH], [TAIXE], [NGUOI_TAO_LICH_TRINH]) VALUES 
 ('LT001', 1, '2024-10-20 08:00:00', '2024-10-20 10:00:00', 200000, 1, 0, 'nha_xe02', 'nha_xe01');
@@ -121,6 +125,8 @@ INSERT INTO [LichTrinh] ([MA_LICH_TRINH], [ID_TUYEN_DUONG], [KHOI_HANH], [KET_TH
 ('LT003', 3, '2024-10-22 07:00:00', '2024-10-22 21:00:00', 800000, 3, 30000, 'nha_xe02', 'nha_xe01'),
 ('LT004', 4, '2024-10-23 09:00:00', '2024-10-23 13:00:00', 150000, 4, 0, 'nha_xe02', 'nha_xe01'),
 ('LT005', 5, '2024-10-24 05:00:00', '2024-10-25 11:00:00', 1700000, 5, 100000, 'nha_xe02', 'nha_xe01');
+
+
 
 -- Thêm dữ liệu vào bảng KhachHang
 INSERT INTO [KhachHang] ([USERNAME], [TEN_KHACH_HANG], [SO_DIEN_THOAI], [EMAIL]) VALUES 
@@ -140,17 +146,20 @@ INSERT INTO [Ve] ([ID_VE], [ID_KHACH_HANG], [ID_LICH_TRINH], [NGAY_DAT_VE], [TON
 ('VE005', 'khach01', 'LT005', '2024-10-18 13:00:00', 1700000);
 
 
+select * from ghe
+
+
 -- Thêm dữ liệu vào bảng ChiTietVe
 INSERT INTO [ChiTietVe] ([ID_VE], [VI_TRI_NGOI], [QR_CODE], [TRANG_THAI]) VALUES 
-('VE001', '1A', 'QR1A', 'da_thanh_toan');
+('VE001', 'LT001 29A-12345_A1', 'QR1A', 'da_thanh_toan');
 INSERT INTO [ChiTietVe] ([ID_VE], [VI_TRI_NGOI], [QR_CODE], [TRANG_THAI]) VALUES 
-('VE002', '2A', 'QR2A', 'da_thanh_toan');
+('VE002', 'LT002 30B-67890_A2', 'QR2A', 'da_thanh_toan');
 INSERT INTO [ChiTietVe] ([ID_VE], [VI_TRI_NGOI], [QR_CODE], [TRANG_THAI]) VALUES 
-('VE003', '3A', 'QR3A', 'da_xac_nhan');
+('VE003', 'LT003 31C-11111_A3', 'QR3A', 'da_xac_nhan');
 INSERT INTO [ChiTietVe] ([ID_VE], [VI_TRI_NGOI], [QR_CODE], [TRANG_THAI]) VALUES 
-('VE004', '4A', 'QR4A', 'huy_ve');
+('VE004', 'LT004 32D-22222_A4', 'QR4A', 'huy_ve');
 INSERT INTO [ChiTietVe] ([ID_VE], [VI_TRI_NGOI], [QR_CODE], [TRANG_THAI]) VALUES 
-('VE005', '5A', 'QR5A', 'da_thanh_toan');
+('VE005', 'LT005 33E-33333_A5', 'QR5A', 'da_thanh_toan');
 
 
 -- Thêm dữ liệu vào bảng DoanhThu

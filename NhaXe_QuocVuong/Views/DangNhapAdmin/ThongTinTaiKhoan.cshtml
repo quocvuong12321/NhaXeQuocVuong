@@ -1,0 +1,60 @@
+﻿@model NhaXe_QuocVuong.Models.NHANVIEN
+@{
+    ViewBag.Title = "ThongTinTaiKhoan";
+    Layout = "~/Areas/Area_Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-dark text-white text-center">
+            <h2>Thông Tin Tài Khoản Admin</h2>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <h5 class="text-muted">Tên đăng nhập:</h5>
+                </div>
+                <div class="col-md-8">
+                    <p class="font-weight-bold">@Model.USERNAME</p>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <h5 class="text-muted">Tên nhân viên:</h5>
+                </div>
+                <div class="col-md-8">
+                    <p class="font-weight-bold">@Model.TEN_NHANVIEN</p>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <h5 class="text-muted">Số điện thoại:</h5>
+                </div>
+                <div class="col-md-8">
+                    <p class="font-weight-bold">@Model.SDT</p>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <h5 class="text-muted">Email:</h5>
+                </div>
+                <div class="col-md-8">
+                    <p class="font-weight-bold">@Model.EMAIL</p>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <h5 class="text-muted">Loại nhân viên:</h5>
+                </div>
+                <div class="col-md-8">
+                    <p class="font-weight-bold">@Model.LOAI_NV</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer" >
+            <a href="~/Area_Admin/Home/Index" class="btn btn-outline-dark" style="padding:6px 0px;padding-top:30px">Quay lại Bảng điều khiển</a>
+        </div>
+    </div>
+</div>
+
+

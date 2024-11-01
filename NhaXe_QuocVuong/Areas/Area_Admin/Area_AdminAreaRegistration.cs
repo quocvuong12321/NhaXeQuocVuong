@@ -17,7 +17,8 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin
             context.MapRoute(
                 "Area_Admin_default",
                 "Area_Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new {  action = "Index", id = UrlParameter.Optional }
+
             );
         }
     }

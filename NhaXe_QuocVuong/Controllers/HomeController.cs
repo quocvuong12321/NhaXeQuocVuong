@@ -18,5 +18,10 @@ namespace NhaXe_QuocVuong.Controllers
         {
             return View();
         }
+
+        public ActionResult LienHe()
+        {
+            return View();
+        }
     }
 }

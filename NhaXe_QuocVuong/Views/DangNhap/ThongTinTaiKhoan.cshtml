@@ -1,0 +1,53 @@
+﻿@model NhaXe_QuocVuong.Models.KhachHang
+@{
+    ViewBag.Title = "ThongTinTaiKhoan";
+}
+
+
+<div class="container mt-5" style="padding-bottom:50px">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+            <h2>Thông Tin Tài Khoản</h2>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <h5 class="text-muted">Username:</h5>
+                </div>
+                <div class="col-md-8">
+                    <p class="font-weight-bold" style="font-size:25px;font-weight:600">@Model.USERNAME</p>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <h5 class="text-muted">Tên khách hàng:</h5>
+                </div>
+                <div class="col-md-8">
+                    <p class="font-weight-bold" style="font-size:25px;font-weight:600">@Model.TEN_KHACH_HANG</p>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <h5 class="text-muted">Số điện thoại:</h5>
+                </div>
+                <div class="col-md-8">
+                    <p class="font-weight-bold" style="font-size:25px;font-weight:600">@Model.SO_DIEN_THOAI</p>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <h5 class="text-muted">Email:</h5>
+                </div>
+                <div class="col-md-8">
+                    <p class="font-weight-bold" style="font-size:25px;font-weight:600">@Model.EMAIL</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <a href="~/Home/Index" class="btn btn-outline-primary">Quay lại Trang chủ</a>
+        </div>
+    </div>
+</div>
+
+
+

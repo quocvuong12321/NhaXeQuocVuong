@@ -67,3 +67,10 @@
         background-color: #0056b3; /* Màu nền khi hover */
         transform: translateY(-3px); /* Nâng nút lên khi hover */
     }
+
+
+
+.hvTen:hover{
+    opacity: 0.5;
+
+}

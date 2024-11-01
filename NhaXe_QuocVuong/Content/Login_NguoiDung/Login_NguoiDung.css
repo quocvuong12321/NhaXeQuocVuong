@@ -17,7 +17,8 @@
     width: 370px;
     height: 600px;
     position: relative;
-    margin: 6% auto;
+    margin-top: 46px;
+    margin-left: 600px;
     background: #fff;
     padding: 5px;
     overflow: hidden;

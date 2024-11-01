@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using NhaXe_QuocVuong.Models
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -8,25 +10,48 @@
     <link href="~/Content/Site.css" rel="stylesheet" />
 
     <link href="~/Content/fontawesome-free-6.6.0-web/css/all.min.css" rel="stylesheet" />
+
+
 </head>
 <body>
     @*--------------------------------------------header-----------------------------------------------------*@
     <div class="container-fluid">
-        <div class="row" style="height: 250px; background: linear-gradient(#ffd800,#ff6a00,#ff0000) ">
-            <div class="col-md-5">
-                <img src="~/img/logo3.png" style="width:600px" />
+        <div class="row" style="height: 200px; background: linear-gradient(#ffd800,#ff6a00,#ff0000) ">
+            <div class="col-md-4">
+                <img src="~/img/logo3.png" style="width:500px" />
             </div>
-            <div class="col-md-5" style="margin:150px 0 0 0">
+            <div class="col-md-6" style="margin:120px 0 0 0">
 
                 <div class="nav menu">
-                    <a class="nav-link nav-item " href="#">Trang chủ</a>
-                    <a class="nav-link nav-item " href="~/LichTrinh/index">Lịch trình</a>
-                    <a class="nav-link nav-item " href="#">Liên hệ</a>
-                    <a class="nav-link nav-item " href="~/Home/AboutUs">Về chúng tôi</a>
+                    <a class="nav-link nav-item " href="~/Home/Index"> <i class="fa-solid fa-house"></i> Trang chủ</a>
+                    <a class="nav-link nav-item " href="~/LichTrinh/index"> <i class="fa-regular fa-calendar-days"></i> Lịch trình</a>
+                    <a class="nav-link nav-item " href="~/Home/LienHe"> <i class="fa-solid fa-phone"></i> Liên hệ</a>
+                    <a class="nav-link nav-item " href="~/Home/AboutUs"> <i class="fa-regular fa-address-book"></i> Về chúng tôi</a>
                 </div>
             </div>
-            <div class="col-md-2" style="margin:50px 0 0 0">
-                <div class="dn"><a class="nav-link" href="~/DangNhap/XacNhanRole"><i class="fa-solid fa-user"></i> Đăng nhập / Đăng ký</a></div>
+            <div class="col-md-2" style="margin:50px 0 0 0 ">
+                @if (Session["khach"] == null)
+                {
+                    <div class="dn"><a class="nav-link" href="~/DangNhap/XacNhanRole" style="font-size:17px"><i class="fa-solid fa-right-to-bracket"></i> Đăng nhập</a></div>
+
+                }
+                else
+                {
+                    var tenkh = Session["khach"] as userAccount;
+
+                    <div class="dropdown ">
+                        <a class="dropdown-toggle hvTen" role="button" style="color:white;font-size:17px;border: 0px;text-decoration:none;" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user"></i>
+                            Hi, @tenkh.KhachHang.TEN_KHACH_HANG
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" href="~/DangNhap/ThongTinTaiKhoan"> <i class="fa-solid fa-circle-info"></i> Thông tin tài khoản</a></li>
+                            <li><a class="dropdown-item" href="~/DangNhap/Logout"> <i class="fa-solid fa-right-from-bracket"></i> Đăng Xuất</a></li>
+                        </ul>
+                    </div>
+
+                }
             </div>
         </div>
 
@@ -113,9 +138,8 @@
 
     @*--------------------------------------------end-footer-----------------------------------------------------*@
 
-
-    <script src="~/Content/js/bootstrap.bundle.js"></script>
     <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/bootstrap.bundle.min.js"></script>
     <script src="~/Scripts/jsBackToTop.js"></script>
     @RenderSection("scripts", required: false)
 
