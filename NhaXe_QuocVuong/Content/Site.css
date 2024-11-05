@@ -74,3 +74,20 @@
     opacity: 0.5;
 
 }
+
+.large-radio {
+
+    transform: scale(1.65); /* Tăng kích thước */
+    margin-right: 10px; /* Khoảng cách giữa nút radio và văn bản */
+    margin-bottom: 10px;
+}
+
+.container-LichTrinh{
+    width:800px;
+
+    border: 1.5px solid black;
+    padding: 10px 10px 10px 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.23);
+}

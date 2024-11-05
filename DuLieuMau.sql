@@ -26,7 +26,7 @@ BEGIN
 	INSERT INTO Ghe (ID_GHE,VI_TRI_NGOI,MA_LICH_TRINH)
 	SELECT CONCAT(MA_LICH_TRINH,' ',BIEN_SO_XE, '_', GroupLetter, SeatNumber) AS ID_GHE,
 		   CONCAT(GroupLetter, SeatNumber) AS VI_TRI_NGOI,
-		   MA_LICH_TRINH FROM 
+		   MA_LICH_TRINH FROM  
 		   (SELECT 
 			X.ID_XE,
 			X.BIEN_SO_XE,
@@ -69,7 +69,7 @@ BEGIN
 		--ORDER BY ID_XE, GroupLetter, SeatNumber
 END
 
-
+go
 
 
 
@@ -80,6 +80,7 @@ INSERT INTO [DiaDiem] ([TEN_TINH_THANH]) VALUES
 (N'Đà Nẵng'),
 (N'Hồ Chí Minh'),
 (N'Cần Thơ');
+go
 
 -- Thêm dữ liệu vào bảng TuyenDuong
 INSERT INTO [TuyenDuong] ([TEN_TUYEN], [DIEM_DAU], [DIEM_CUOI], [KHOANG_CACH], [THOI_GIAN_DUY_CHUYEN], [TINH_TRANG]) VALUES 
@@ -88,7 +89,7 @@ INSERT INTO [TuyenDuong] ([TEN_TUYEN], [DIEM_DAU], [DIEM_CUOI], [KHOANG_CACH], [
 (N'Hà Nội - Đà Nẵng', 1, 3, 760, 14, 'KHONG_HOAT_DONG'),
 (N'Hồ Chí Minh - Cần Thơ', 4, 5, 180, 4, 'CON_HOAT_DONG'),
 (N'Hải Phòng - Cần Thơ', 2, 5, 1500, 30, 'CON_HOAT_DONG');
-
+go
 -- Thêm dữ liệu vào bảng Xe
 INSERT INTO [Xe] ([BIEN_SO_XE], [LOAI_XE], [SO_GHE]) VALUES 
 ('29A-12345', 'Ghe', 12),
@@ -96,8 +97,7 @@ INSERT INTO [Xe] ([BIEN_SO_XE], [LOAI_XE], [SO_GHE]) VALUES
 ('31C-11111', 'Giuong', 36),
 ('32D-22222', 'Ghe', 12),
 ('33E-33333', 'Limousine', 24);
-
-
+go
 
 -- Thêm dữ liệu vào bảng userAccount
 INSERT INTO [userAccount] ([username], [password], [role]) VALUES 
@@ -106,15 +106,15 @@ INSERT INTO [userAccount] ([username], [password], [role]) VALUES
 ('nha_xe01', 'pass345', 'nha_xe'),
 ('nha_xe02', 'pass456', 'nha_xe'),
 ('admin01', 'adminpass', 'khach');
+go
 
-select * from [userAccount]
 
 -- Thêm dữ liệu vào bảng NHANVIEN
 INSERT INTO [NHANVIEN] ([USERNAME], [TEN_NHANVIEN], [SDT], [EMAIL], [LOAI_NV]) VALUES 
 ('nha_xe01', N'Nguyễn Văn A', '0123456789', 'a@example.com', 'QUAN_LY'),
 ('nha_xe02', N'Trần Văn B', '0987654321', 'b@example.com', 'TAI_XE');
 
-
+go
 
 -- Thêm dữ liệu vào bảng LichTrinh
 INSERT INTO [LichTrinh] ([MA_LICH_TRINH], [ID_TUYEN_DUONG], [KHOI_HANH], [KET_THUC], [GIA_VE], [ID_XE], [CHI_PHI_PHAT_SINH], [TAIXE], [NGUOI_TAO_LICH_TRINH]) VALUES 
@@ -122,16 +122,19 @@ INSERT INTO [LichTrinh] ([MA_LICH_TRINH], [ID_TUYEN_DUONG], [KHOI_HANH], [KET_TH
 INSERT INTO [LichTrinh] ([MA_LICH_TRINH], [ID_TUYEN_DUONG], [KHOI_HANH], [KET_THUC], [GIA_VE], [ID_XE], [CHI_PHI_PHAT_SINH], [TAIXE], [NGUOI_TAO_LICH_TRINH]) VALUES 
 ('LT002', 2, '2024-10-21 06:00:00', '2024-10-21 22:00:00', 1200000, 2, 50000, 'nha_xe02', 'nha_xe01');
 INSERT INTO [LichTrinh] ([MA_LICH_TRINH], [ID_TUYEN_DUONG], [KHOI_HANH], [KET_THUC], [GIA_VE], [ID_XE], [CHI_PHI_PHAT_SINH], [TAIXE], [NGUOI_TAO_LICH_TRINH]) VALUES 
-('LT003', 3, '2024-10-22 07:00:00', '2024-10-22 21:00:00', 800000, 3, 30000, 'nha_xe02', 'nha_xe01'),
-('LT004', 4, '2024-10-23 09:00:00', '2024-10-23 13:00:00', 150000, 4, 0, 'nha_xe02', 'nha_xe01'),
+('LT003', 3, '2024-10-22 07:00:00', '2024-10-22 21:00:00', 800000, 3, 30000, 'nha_xe02', 'nha_xe01')
+INSERT INTO [LichTrinh] ([MA_LICH_TRINH], [ID_TUYEN_DUONG], [KHOI_HANH], [KET_THUC], [GIA_VE], [ID_XE], [CHI_PHI_PHAT_SINH], [TAIXE], [NGUOI_TAO_LICH_TRINH]) VALUES 
+('LT004', 4, '2024-10-23 09:00:00', '2024-10-23 13:00:00', 150000, 4, 0, 'nha_xe02', 'nha_xe01')
+INSERT INTO [LichTrinh] ([MA_LICH_TRINH], [ID_TUYEN_DUONG], [KHOI_HANH], [KET_THUC], [GIA_VE], [ID_XE], [CHI_PHI_PHAT_SINH], [TAIXE], [NGUOI_TAO_LICH_TRINH]) VALUES 
 ('LT005', 5, '2024-10-24 05:00:00', '2024-10-25 11:00:00', 1700000, 5, 100000, 'nha_xe02', 'nha_xe01');
-
+go
 
 
 -- Thêm dữ liệu vào bảng KhachHang
 INSERT INTO [KhachHang] ([USERNAME], [TEN_KHACH_HANG], [SO_DIEN_THOAI], [EMAIL]) VALUES 
 ('khach01', N'Trần Thị Mai', '0987000001', 'mai@example.com'),
 ('khach02', N'Nguyễn Văn Hùng', '0987000002', 'hung@example.com');
+go
 
 -- Thêm dữ liệu vào bảng Ve
 INSERT INTO [Ve] ([ID_VE], [ID_KHACH_HANG], [ID_LICH_TRINH], [NGAY_DAT_VE], [TONG_TIEN]) VALUES 
@@ -144,9 +147,8 @@ INSERT INTO [Ve] ([ID_VE], [ID_KHACH_HANG], [ID_LICH_TRINH], [NGAY_DAT_VE], [TON
 ('VE004', 'khach02', 'LT004', '2024-10-18 12:00:00', 150000);
 INSERT INTO [Ve] ([ID_VE], [ID_KHACH_HANG], [ID_LICH_TRINH], [NGAY_DAT_VE], [TONG_TIEN]) VALUES 
 ('VE005', 'khach01', 'LT005', '2024-10-18 13:00:00', 1700000);
+go
 
-
-select * from ghe
 
 
 -- Thêm dữ liệu vào bảng ChiTietVe
@@ -160,7 +162,7 @@ INSERT INTO [ChiTietVe] ([ID_VE], [VI_TRI_NGOI], [QR_CODE], [TRANG_THAI]) VALUES
 ('VE004', 'LT004 32D-22222_A4', 'QR4A', 'huy_ve');
 INSERT INTO [ChiTietVe] ([ID_VE], [VI_TRI_NGOI], [QR_CODE], [TRANG_THAI]) VALUES 
 ('VE005', 'LT005 33E-33333_A5', 'QR5A', 'da_thanh_toan');
-
+go
 
 -- Thêm dữ liệu vào bảng DoanhThu
 INSERT INTO [DoanhThu] ([ID_DOANHTHU], [MA_LICH_TRINH], [SO_VE_DA_DAT], [TONGTIEN]) VALUES 
@@ -169,6 +171,8 @@ INSERT INTO [DoanhThu] ([ID_DOANHTHU], [MA_LICH_TRINH], [SO_VE_DA_DAT], [TONGTIE
 ('DT003', 'LT003', 6, 4800000),
 ('DT004', 'LT004', 12, 1800000),
 ('DT005', 'LT005', 4, 6800000);
+go
+
 
 -- Thêm dữ liệu vào bảng TramDungChan
 INSERT INTO [TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES 
@@ -177,6 +181,8 @@ INSERT INTO [TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM],
 ('TDC003', N'Trạm dừng chân Đà Nẵng', 3, N'Số 3, Đường DEF, Đà Nẵng'),
 ('TDC004', N'Trạm dừng chân Hồ Chí Minh', 4, N'Số 4, Đường GHI, Hồ Chí Minh'),
 ('TDC005', N'Trạm dừng chân Cần Thơ', 5, N'Số 5, Đường JKL, Cần Thơ');
+go
+
 
 -- Thêm dữ liệu vào bảng ThemTramDungChan
 INSERT INTO [ThemTramDungChan] ([ID_TRAMDUNGCHAN], [MA_LICH_TRINH], [THOIGIANDEN]) VALUES 
@@ -186,3 +192,4 @@ INSERT INTO [ThemTramDungChan] ([ID_TRAMDUNGCHAN], [MA_LICH_TRINH], [THOIGIANDEN
 ('TDC004', 'LT004', '2024-10-23 12:00:00'),
 ('TDC005', 'LT005', '2024-10-24 07:00:00');
 
+go
