@@ -1,0 +1,12 @@
+﻿
+@model List<string>
+
+<div class="seat-layout">
+    @foreach (var ghe in Model)
+    {
+        <div class="seat-item">
+            <input type="checkbox" id="@ghe" name="@ghe" value="@ghe" />
+            <label for="@ghe">@ghe</label>
+        </div>
+    }
+</div>

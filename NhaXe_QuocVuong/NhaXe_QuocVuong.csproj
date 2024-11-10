@@ -2272,7 +2272,13 @@
     <Content Include="img\AboutUs3.png" />
     <Content Include="img\AboutUs4.png" />
     <Content Include="img\AboutUs5.png" />
+    <Content Include="img\Ghe_1.png" />
+    <Content Include="img\Ghe_3.png" />
+    <Content Include="img\Ghe_6.png" />
     <Content Include="img\home_banner.png" />
+    <Content Include="img\IconGhe\Ghe_1.png" />
+    <Content Include="img\IconGhe\Ghe_3.png" />
+    <Content Include="img\IconGhe\Ghe_6.png" />
     <Content Include="img\logo3.png" />
     <Content Include="Content\css\bootstrap-grid.css.map" />
     <Content Include="Content\css\bootstrap-grid.min.css.map" />
@@ -2402,6 +2408,8 @@
     <Content Include="Views\DangNhap\ThongTinTaiKhoan.cshtml" />
     <Content Include="Views\DangNhapAdmin\ThongTinTaiKhoan.cshtml" />
     <Content Include="Views\Home\LienHe.cshtml" />
+    <Content Include="Views\LichTrinh\DatVe.cshtml" />
+    <Content Include="Views\LichTrinh\HienThiDSGhe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
@@ -2424,7 +2432,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50443</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50443/</IISUrl>
+          <IISUrl>http://localhost:5000/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

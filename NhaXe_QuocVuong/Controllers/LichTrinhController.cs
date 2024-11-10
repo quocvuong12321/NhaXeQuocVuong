@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using NhaXe_QuocVuong.Models;
@@ -32,6 +33,43 @@ namespace NhaXe_QuocVuong.Controllers
         {
             LichTrinh lt = db.LichTrinhs.FirstOrDefault(t => t.MA_LICH_TRINH.Equals(MaLichTrinh));
             return lt.Ghes.Count(t => t.TINH_TRANG == false);
+        }
+
+        public ActionResult DatVe(string  MaLichTrinh)
+        {
+            //LichTrinh lt = db.LichTrinhs.FirstOrDefault(t => t.MA_LICH_TRINH.Equals(MaLichTrinh));
+
+            List<Ghe> lstGhe = db.Ghes.Where(t => t.MA_LICH_TRINH.Equals(MaLichTrinh)).ToList();
+
+            return PartialView(lstGhe);
+        }
+
+        public ActionResult HienThiDSGhe(int SoGhe)
+        {
+            try
+            {
+                // Lấy danh sách ghế dựa trên số ghế
+                var danhSachGhe = LayDanhSachGhe(SoGhe);
+
+                // Trả về partial view với danh sách ghế
+                return PartialView("_DanhSachGhe", danhSachGhe);
+            }
+            catch (Exception ex)
+            {
+                // Xử lý lỗi
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, "Đã xảy ra lỗi: " + ex.Message);
+            }
+        }
+
+        private List<string> LayDanhSachGhe(int soGhe)
+        {
+            // Lấy danh sách ghế từ cơ sở dữ liệu hoặc nguồn khác
+            var danhSachGhe = new List<string>();
+            for (int i = 1; i <= soGhe; i++)
+            {
+                danhSachGhe.Add($"Ghế {i}");
+            }
+            return danhSachGhe;
         }
     }
 }
