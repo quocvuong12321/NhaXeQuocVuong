@@ -1,15 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="NHAXE_QUOCVUONG" Class="NhaXeDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-86N3SME\SQL_KING;Initial Catalog=NHAXE_QUOCVUONG;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="NHAXE_QUOCVUONGConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.ChiTietVe" Member="ChiTietVes">
-    <Type Name="ChiTietVe">
-      <Column Name="ID_VE" Type="System.String" DbType="VarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="VI_TRI_NGOI" Type="System.String" DbType="VarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="QR_CODE" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
-      <Column Name="TRANG_THAI" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
-      <Association Name="Ghe_ChiTietVe" Member="Ghe" ThisKey="VI_TRI_NGOI" OtherKey="ID_GHE" Type="Ghe" IsForeignKey="true" />
-      <Association Name="Ve_ChiTietVe" Member="Ve" ThisKey="ID_VE" OtherKey="ID_VE" Type="Ve" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Xe" Member="Xes">
     <Type Name="Xe">
       <Column Name="ID_XE" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -18,6 +8,14 @@
       <Column Name="SO_GHE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="NGAY_THEM_XE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="Xe_LichTrinh" Member="LichTrinhs" ThisKey="ID_XE" OtherKey="ID_XE" Type="LichTrinh" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ChiTietVe" Member="ChiTietVes">
+    <Type Name="ChiTietVe">
+      <Column Name="ID_VE" Type="System.String" DbType="VarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="VI_TRI_NGOI" Type="System.String" DbType="VarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Ghe_ChiTietVe" Member="Ghe" ThisKey="VI_TRI_NGOI" OtherKey="ID_GHE" Type="Ghe" IsForeignKey="true" />
+      <Association Name="Ve_ChiTietVe" Member="Ve" ThisKey="ID_VE" OtherKey="ID_VE" Type="Ve" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.DiaDiem" Member="DiaDiems">
@@ -67,6 +65,7 @@
       <Column Name="GIA_VE" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="ID_XE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="CHI_PHI_PHAT_SINH" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TRANG_THAI" Type="System.String" DbType="NVarChar(32) NOT NULL" CanBeNull="false" />
       <Column Name="TAIXE" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
       <Column Name="NGAY_TAO_LICH_TRINH" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="NGUOI_TAO_LICH_TRINH" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
@@ -90,6 +89,14 @@
       <Association Name="NHANVIEN_LichTrinh" Member="LichTrinhs" ThisKey="USERNAME" OtherKey="NGUOI_TAO_LICH_TRINH" Type="LichTrinh" />
       <Association Name="NHANVIEN_LichTrinh1" Member="LichTrinhs1" ThisKey="USERNAME" OtherKey="TAIXE" Type="LichTrinh" />
       <Association Name="userAccount_NHANVIEN" Member="userAccount" ThisKey="USERNAME" OtherKey="username" Type="userAccount" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PHUONG_THUC_THANH_TOAN" Member="PHUONG_THUC_THANH_TOANs">
+    <Type Name="PHUONG_THUC_THANH_TOAN">
+      <Column Name="ID_PTTT" Type="System.String" DbType="VarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TEN_PHUONG_THUC_THANH_TOAN" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="CACH_THUC_THANH_TOAN" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="PHUONG_THUC_THANH_TOAN_Ve" Member="Ves" ThisKey="ID_PTTT" OtherKey="PHUONG_THUC_THANH_TOAN" Type="Ve" />
     </Type>
   </Table>
   <Table Name="dbo.TuyenDuong" Member="TuyenDuongs">
@@ -118,10 +125,12 @@
   <Table Name="dbo.TramDungChan" Member="TramDungChans">
     <Type Name="TramDungChan">
       <Column Name="ID_TRAMDUNGCHAN" Type="System.String" DbType="VarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="TEN_TRAMDUNGCHAN" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="TEN_TRAMDUNGCHAN" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
       <Column Name="ID_DIADIEM" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="DIA_CHI" Type="System.String" DbType="NVarChar(258) NOT NULL" CanBeNull="false" />
       <Association Name="TramDungChan_ThemTramDungChan" Member="ThemTramDungChans" ThisKey="ID_TRAMDUNGCHAN" OtherKey="ID_TRAMDUNGCHAN" Type="ThemTramDungChan" />
+      <Association Name="TramDungChan_Ve" Member="Ves" ThisKey="ID_TRAMDUNGCHAN" OtherKey="DIEM_DOAN" Type="Ve" />
+      <Association Name="TramDungChan_Ve1" Member="Ves1" ThisKey="ID_TRAMDUNGCHAN" OtherKey="DIEM_TRA" Type="Ve" />
       <Association Name="DiaDiem_TramDungChan" Member="DiaDiem" ThisKey="ID_DIADIEM" OtherKey="ID_DIADIEM" Type="DiaDiem" IsForeignKey="true" />
     </Type>
   </Table>
@@ -141,9 +150,17 @@
       <Column Name="ID_LICH_TRINH" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
       <Column Name="NGAY_DAT_VE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="TONG_TIEN" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="DIEM_DOAN" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="DIEM_TRA" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="QR_CODE" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="TRANG_THAI" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="PHUONG_THUC_THANH_TOAN" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
       <Association Name="Ve_ChiTietVe" Member="ChiTietVes" ThisKey="ID_VE" OtherKey="ID_VE" Type="ChiTietVe" />
+      <Association Name="TramDungChan_Ve" Member="TramDungChan" ThisKey="DIEM_DOAN" OtherKey="ID_TRAMDUNGCHAN" Type="TramDungChan" IsForeignKey="true" />
+      <Association Name="TramDungChan_Ve1" Member="TramDungChan1" ThisKey="DIEM_TRA" OtherKey="ID_TRAMDUNGCHAN" Type="TramDungChan" IsForeignKey="true" />
       <Association Name="KhachHang_Ve" Member="KhachHang" ThisKey="ID_KHACH_HANG" OtherKey="USERNAME" Type="KhachHang" IsForeignKey="true" />
       <Association Name="LichTrinh_Ve" Member="LichTrinh" ThisKey="ID_LICH_TRINH" OtherKey="MA_LICH_TRINH" Type="LichTrinh" IsForeignKey="true" />
+      <Association Name="PHUONG_THUC_THANH_TOAN_Ve" Member="PHUONG_THUC_THANH_TOAN1" ThisKey="PHUONG_THUC_THANH_TOAN" OtherKey="ID_PTTT" Type="PHUONG_THUC_THANH_TOAN" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

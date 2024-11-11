@@ -35,41 +35,80 @@ namespace NhaXe_QuocVuong.Controllers
             return lt.Ghes.Count(t => t.TINH_TRANG == false);
         }
 
+        [HttpGet]
         public ActionResult DatVe(string  MaLichTrinh)
         {
-            //LichTrinh lt = db.LichTrinhs.FirstOrDefault(t => t.MA_LICH_TRINH.Equals(MaLichTrinh));
-
             List<Ghe> lstGhe = db.Ghes.Where(t => t.MA_LICH_TRINH.Equals(MaLichTrinh)).ToList();
-
-            return PartialView(lstGhe);
+            ViewBag.TuyenDuong = db.LichTrinhs.FirstOrDefault(t => t.MA_LICH_TRINH.Equals(MaLichTrinh)).TuyenDuong.TEN_TUYEN;
+            ViewBag.ThoiGianXuatPhat = db.LichTrinhs.FirstOrDefault(t => t.MA_LICH_TRINH.Equals(MaLichTrinh)).KHOI_HANH;
+            ViewBag.GiaVe = db.LichTrinhs.FirstOrDefault(t => t.MA_LICH_TRINH.Equals(MaLichTrinh)).GIA_VE;
+            return View(lstGhe);
         }
 
-        public ActionResult HienThiDSGhe(int SoGhe)
+        [HttpPost]
+        public ActionResult ThongTinVe(FormCollection c)
+        {
+            if (Session["khach"] == null)
+            {
+                return View();
+            }
+            if (TaoVe(c))
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+
+
+        }
+
+        public bool TaoVe(FormCollection c)
         {
             try
             {
-                // Lấy danh sách ghế dựa trên số ghế
-                var danhSachGhe = LayDanhSachGhe(SoGhe);
+                userAccount kh = Session["khach"] as userAccount;
+                string maLichTrinh = c["maLichTrinh"];
+                int soVe = db.Ves.Where(t => t.ID_KHACH_HANG.Equals(maLichTrinh)).Count() +1;
+                string maVe = maLichTrinh + "VE" + soVe.ToString("D3");
+                string id_KH = kh.username;
+                DateTime ngayDat = DateTime.Now;
+                float tongTien = float.Parse(c["TONG_TIEN"]);
+                Ve ve = new Ve();
+                ve.ID_VE = maVe;
+                ve.ID_LICH_TRINH = maLichTrinh;
+                ve.ID_KHACH_HANG = id_KH;
+                ve.TONG_TIEN = tongTien;
+                ve.PHUONG_THUC_THANH_TOAN = "PT1";
+                ve.DIEM_DOAN = "TDC001";
+                ve.DIEM_TRA = "TDC002";
+                ve.QR_CODE = "abc.jpg";
+                ve.NGAY_DAT_VE = DateTime.Today;
+                ve.TRANG_THAI = "da_thanh_toan";
+                db.Ves.InsertOnSubmit(ve);
+                db.SubmitChanges();
 
-                // Trả về partial view với danh sách ghế
-                return PartialView("_DanhSachGhe", danhSachGhe);
+
+                string vitringoi = c["arrayGhe"];
+                string[] arrayGhe = vitringoi.Split(new string[] { ", " },StringSplitOptions.None);
+                foreach(string item in arrayGhe)
+                {
+                    string maGhe = db.Ghes.FirstOrDefault(t => t.MA_LICH_TRINH.Equals(maLichTrinh) && t.VI_TRI_NGOI.Equals(item)).ID_GHE;
+                    ChiTietVe ct = new ChiTietVe(){
+                        ID_VE = maVe,
+                        VI_TRI_NGOI = maGhe
+                    };
+
+                    db.ChiTietVes.InsertOnSubmit(ct);
+                    db.SubmitChanges();
+                }
+
+                return true;
             }
-            catch (Exception ex)
-            {
-                // Xử lý lỗi
-                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, "Đã xảy ra lỗi: " + ex.Message);
+
+            catch (Exception ex){
+                throw new Exception("Lỗi: "+ex);
             }
         }
 
-        private List<string> LayDanhSachGhe(int soGhe)
-        {
-            // Lấy danh sách ghế từ cơ sở dữ liệu hoặc nguồn khác
-            var danhSachGhe = new List<string>();
-            for (int i = 1; i <= soGhe; i++)
-            {
-                danhSachGhe.Add($"Ghế {i}");
-            }
-            return danhSachGhe;
-        }
+      
     }
 }

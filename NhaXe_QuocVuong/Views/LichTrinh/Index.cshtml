@@ -41,9 +41,7 @@
                     <label style="color:lightgray">Còn @item.SoChoConLai chỗ trống</label><br /><br /><br />
                 </div>
                 <div>
-                    <button class="btn btn-warning load-schedule" data-id="@item.LichTrinh.MA_LICH_TRINH" style="float:right;margin-bottom:30px">Chọn chuyến</button>
-                    <div id="schedule-container-@item.LichTrinh.MA_LICH_TRINH">
-                    </div>
+                    <a href="@Url.Action("DatVe", "LichTrinh", new { MaLichTrinh = item.LichTrinh.MA_LICH_TRINH })" class="btn btn-warning" style="float:right;margin-bottom:30px"class="btn btn-warning" style="float:right;margin-bottom:30px">Chọn chuyến</a>
                 </div>
             </div>
         }
@@ -51,48 +49,5 @@
 </div>
 
 
-@*<script src="~/Content/js/jquery/jquery-3.7.1.min.js"></script>*@
-<script src="~/Content/js/bootstrap.bundle.min.js"></script>
 
-<script>
-    $(document).ready(function () {
-        $('#schedule-container').on('click', '.seat', function () {
-            var seat = this;
-            console.log("Ghế được nhấn:", seat.getAttribute('data-seat')); // Debug để kiểm tra
-            // Kiểm tra trạng thái hiện tại của ghế
-            var currentState = seat.getAttribute('data-tinh-trang');
-            console.log("Trạng thái hiện tại:", currentState); // Debug để kiểm tra trạng thái hiện tại
-            if (currentState === 'False') {
-                // Nếu ghế còn trống thì chọn ghế (đổi ảnh sang Ghe_6.png) và cập nhật trạng thái
-                console.log("Ảnh ghế:", seat.src);
-                seat.src = "/img/IconGhe/Ghe_6.png";
-                seat.setAttribute('data-tinh-trang', 'selected');
-            } else if (currentState === 'selected') {
-                // Nếu ghế đã được chọn, đổi ảnh lại thành Ghế trống và đặt trạng thái về false
-                seat.src = "/img/IconGhe/Ghe_1.png";
-                seat.setAttribute('data-tinh-trang', 'False');
-            }
-        });
-
-        $('.load-schedule').click(function (e) {
-            e.preventDefault(); // Ngăn việc làm mới trang nếu có thẻ <a> bao quanh nút
-            var maLichTrinh = $(this).data('id');
-            var scheduleContainer = '#schedule-container-' + maLichTrinh; // Mỗi chuyến sẽ có container riêng
-            $.ajax({
-               url: '@Url.Action("DatVe", "LichTrinh")',
-                type: 'GET',
-                data: { MaLichTrinh: maLichTrinh  },
-                success: function (data) {
-                    $(scheduleContainer).html(data); // Chèn kết quả vào container
-                },
-                error: function (xhr, status, error) {
-                    console.error('Lỗi:', error);
-                    console.error('Trạng thái:', status);
-                    console.error('Phản hồi từ server:', xhr.responseText);
-                    alert('Có lỗi xảy ra! Kiểm tra console để biết thêm chi tiết.');
-                }
-            });
-        });
-    });
-</script>
 

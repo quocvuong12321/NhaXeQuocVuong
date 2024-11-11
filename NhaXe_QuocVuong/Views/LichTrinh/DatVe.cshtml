@@ -1,169 +1,275 @@
 ﻿@model List<NhaXe_QuocVuong.Models.Ghe>
 
-@{ var numberOfSeats = Model.Count(); // Lấy số ghế từ Model
+@{
+    ViewBag.Title = "DatVe";
+    var numberOfSeats = Model.Count(); // Lấy số ghế từ Model
     var xe36 = numberOfSeats == 36;
     var xe24 = numberOfSeats == 24;
 }
 
-<style>
-    .container-ghes {
-        border: 1.5px solid lightgray;
-        border-radius: 10px;
-        background-color: lightgray;
-        margin: 0 5px 0 5px;
-    }
-    .seat {
-        position: relative;
-        z-index: 1000; /* Đảm bảo ảnh ghế nằm trên các yếu tố khác */
-    }
-</style>
 
-<body>
-
-    <div class="row container">
-        <div class="col-md-4 " style="">
-            <div>
-                <img src="~/img/IconGhe/Ghe_3.png" width="40px" />
-                <label>Ghế không bán</label>
-            </div>
-            <div>
-                <img src="~/img/IconGhe/Ghe_6.png" width="40px" />
-                <label>Đang chọn</label>
-            </div>
-            <div>
-                <img src="~/img/IconGhe/Ghe_1.png" width="40px" />
-                <label>Còn trống</label>
-            </div>
-        </div>
-
-        <div class="col-md-8 container">
-            <div class="row " style="justify-content:center">
-                @if (xe24)
-                {
-                    <div class="col-3 container-ghes">
-                        <div class="row ">
-                            <p>Tầng dưới</p>
-                            <div class="col-1">
-                                @foreach (var seat in Model.Where(t => t.VI_TRI_NGOI.Contains("A") && (int)t.VI_TRI_NGOI[t.VI_TRI_NGOI.Count() - 1] % 2 == 1).OrderBy(seat => int.Parse(seat.VI_TRI_NGOI.Substring(1))))
-                                {
-                                    <img src="~/img/IconGhe/@(seat.TINH_TRANG ? "Ghe_3.png" : "Ghe_1.png")"
-                                         style="width:40px" class="seat" data-seat="@seat.VI_TRI_NGOI" data-tinh-trang="@seat.TINH_TRANG.ToString()" />
-                                }
-                            </div>
-                            <div class="col-1" style="margin-left:10px">
-                                @foreach (var seat in Model.Where(t => t.VI_TRI_NGOI.Contains("B") && (int)t.VI_TRI_NGOI[t.VI_TRI_NGOI.Count() - 1] % 2 == 1).OrderBy(seat => int.Parse(seat.VI_TRI_NGOI.Substring(1))))
-                                {
-                                    <img src="~/img/IconGhe/@(seat.TINH_TRANG ? "Ghe_3.png" : "Ghe_1.png")"
-                                         style="width:40px" class="seat" data-seat="@seat.VI_TRI_NGOI" data-tinh-trang="@seat.TINH_TRANG.ToString()" />
-                                }
-                            </div>
+<body style="background-color: #fff5f5" >
+    <form action="~/LichTrinh/ThongTinVe" method="post" id="seatForm">
+        @Html.AntiForgeryToken();
+        <input type="hidden" id="giaVe" value="@ViewBag.GiaVe" />
+        <input type="hidden" name="maLichTrinh" value="@Model.FirstOrDefault().MA_LICH_TRINH" />
+        <div class="row">
+            <div class="col-md-7 " style="margin-top:50px;margin-bottom: 50px">
+                <div class="row container-ghes">
+                    <div class="col-3" style="margin-top:40px">
+                        <div>
+                            <img src="~/img/IconGhe/seat_disabled.svg" style="width:35px;margin-bottom:15px" />
+                            <label>Ghế không bán</label>
+                        </div>
+                        <div>
+                            <img src="~/img/IconGhe/seat_selecting.svg" style="width: 35px; margin-bottom: 15px" />
+                            <label>Đang chọn</label>
+                        </div>
+                        <div>
+                            <img src="~/img/IconGhe/seat_active.svg" style="width: 35px; margin-bottom: 15px" />
+                            <label>Còn trống</label>
                         </div>
                     </div>
-                    <div class="col-3 container-ghes">
-                        <div class="row ">
-                            <p>Tầng trên</p>
-                            <div class="col-1">
-                                @foreach (var seat in Model.Where(t => t.VI_TRI_NGOI.Contains("A") && (int)t.VI_TRI_NGOI[t.VI_TRI_NGOI.Count() - 1] % 2 == 0).OrderBy(seat => int.Parse(seat.VI_TRI_NGOI.Substring(1))))
-                                {
-                                    <div class="col-1">
-                                        <img src="~/img/IconGhe/@(seat.TINH_TRANG ? "Ghe_3.png" : "Ghe_1.png")"
-                                             style="width:40px" class="seat" data-seat="@seat.VI_TRI_NGOI" data-tinh-trang="@seat.TINH_TRANG.ToString()" />
+                    <div class="col-1"></div>
+                    <div class="col-8" style="justify-content:center">
+                        <div class="row " style="margin-top:20px">
+                            @if (xe24)
+                            {
+                                <div class="col-3 ">
+                                    <div class="row ">
+                                        <p>Tầng dưới</p>
+                                        <div class="col-5">
+                                            @foreach (var seat in Model.Where(t => t.VI_TRI_NGOI.Contains("A") && (int)t.VI_TRI_NGOI[t.VI_TRI_NGOI.Count() - 1] % 2 == 1).OrderBy(seat => int.Parse(seat.VI_TRI_NGOI.Substring(1))))
+                                            {
+                                                <div class="seat">
+                                                    <img src="~/img/IconGhe/@(seat.TINH_TRANG ? "seat_disabled.svg" : "seat_active.svg")"
+                                                         style="width:35px;margin-bottom:10px;" class="seat-image" data-seat="@seat.VI_TRI_NGOI" data-tinh-trang="@seat.TINH_TRANG.ToString()" />
+                                                    <div class="seat-info"></div>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="col-6" style="margin-left:10px">
+                                            @foreach (var seat in Model.Where(t => t.VI_TRI_NGOI.Contains("B") && (int)t.VI_TRI_NGOI[t.VI_TRI_NGOI.Count() - 1] % 2 == 1).OrderBy(seat => int.Parse(seat.VI_TRI_NGOI.Substring(1))))
+                                            {
+                                                <div class="seat">
+                                                    <img src="~/img/IconGhe/@(seat.TINH_TRANG ? "seat_disabled.svg" : "seat_active.svg")"
+                                                         style="width:35px;margin-bottom:10px;" class="seat-image" data-seat="@seat.VI_TRI_NGOI" data-tinh-trang="@seat.TINH_TRANG.ToString()" />
+                                                    <div class="seat-info"></div>
+                                                </div>
+                                            }
+                                        </div>
                                     </div>
-                                }
-                            </div>
-                            <div class="col-1" style="margin-left:10px">
-                                @foreach (var seat in Model.Where(t => t.VI_TRI_NGOI.Contains("B") && (int)t.VI_TRI_NGOI[t.VI_TRI_NGOI.Count() - 1] % 2 == 0).OrderBy(seat => int.Parse(seat.VI_TRI_NGOI.Substring(1))))
-                                {
-                                    <img src="~/img/IconGhe/@(seat.TINH_TRANG ? "Ghe_3.png" : "Ghe_1.png")"
-                                         style="width:40px" class="seat" data-seat="@seat.VI_TRI_NGOI" data-tinh-trang="@seat.TINH_TRANG.ToString()" />
-                                }
-                            </div>
+                                </div>
+                                <div class="col-1"></div>
+                                <div class="col-3 ">
+                                    <div class="row ">
+                                        <p>Tầng trên</p>
+                                        <div class="col-5">
+                                            @foreach (var seat in Model.Where(t => t.VI_TRI_NGOI.Contains("A") && (int)t.VI_TRI_NGOI[t.VI_TRI_NGOI.Count() - 1] % 2 == 0).OrderBy(seat => int.Parse(seat.VI_TRI_NGOI.Substring(1))))
+                                            {
+                                                <div class="seat">
+                                                    <img src="~/img/IconGhe/@(seat.TINH_TRANG ? "seat_disabled.svg" : "seat_active.svg")"
+                                                         style="width:35px;margin-bottom:10px;" class="seat-image" data-seat="@seat.VI_TRI_NGOI" data-tinh-trang="@seat.TINH_TRANG.ToString()" />
+                                                    <div class="seat-info"></div>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="col-6" style="margin-left:10px">
+                                            @foreach (var seat in Model.Where(t => t.VI_TRI_NGOI.Contains("B") && (int)t.VI_TRI_NGOI[t.VI_TRI_NGOI.Count() - 1] % 2 == 0).OrderBy(seat => int.Parse(seat.VI_TRI_NGOI.Substring(1))))
+                                            {
+                                                <div class="seat">
+                                                    <img src="~/img/IconGhe/@(seat.TINH_TRANG ? "seat_disabled.svg" : "seat_active.svg")"
+                                                         style="width:35px;margin-bottom:10px;" class="seat-image" data-seat="@seat.VI_TRI_NGOI" data-tinh-trang="@seat.TINH_TRANG.ToString()" />
+                                                    <div class="seat-info"></div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else if (xe36)
+                            {
+                                <div class="col-4 ">
+                                    <div class="row">
+                                        <p>Tầng dưới</p>
+                                        <div class="col-3">
+                                            @foreach (var seat in Model.Where(t => t.VI_TRI_NGOI.Contains("A") && (int)t.VI_TRI_NGOI[t.VI_TRI_NGOI.Count() - 1] % 2 == 1).OrderBy(seat => int.Parse(seat.VI_TRI_NGOI.Substring(1))))
+                                            {
+                                                <div class="seat">
+                                                    <img src="~/img/IconGhe/@(seat.TINH_TRANG ? "seat_disabled.svg" : "seat_active.svg")"
+                                                         style="width:35px;margin-bottom:10px;" class="seat-image" data-seat="@seat.VI_TRI_NGOI" data-tinh-trang="@seat.TINH_TRANG.ToString()" />
+                                                    <div class="seat-info"></div>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="col-3" style="margin-left:10px">
+                                            @foreach (var seat in Model.Where(t => t.VI_TRI_NGOI.Contains("B") && (int)t.VI_TRI_NGOI[t.VI_TRI_NGOI.Count() - 1] % 2 == 1).OrderBy(seat => int.Parse(seat.VI_TRI_NGOI.Substring(1))))
+                                            {
+                                                <div class="seat">
+                                                    <img src="~/img/IconGhe/@(seat.TINH_TRANG ? "seat_disabled.svg" : "seat_active.svg")"
+                                                         style="width:35px;margin-bottom:10px;" class="seat-image" data-seat="@seat.VI_TRI_NGOI" data-tinh-trang="@seat.TINH_TRANG.ToString()" />
+                                                    <div class="seat-info"></div>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="col-3" style="margin-left:10px">
+                                            @foreach (var seat in Model.Where(t => t.VI_TRI_NGOI.Contains("C") && (int)t.VI_TRI_NGOI[t.VI_TRI_NGOI.Count() - 1] % 2 == 1).OrderBy(seat => int.Parse(seat.VI_TRI_NGOI.Substring(1))))
+                                            {
+                                                <div class="seat">
+                                                    <img src="~/img/IconGhe/@(seat.TINH_TRANG ? "seat_disabled.svg" : "seat_active.svg")"
+                                                         style="width:35px;margin-bottom:10px;" class="seat-image" data-seat="@seat.VI_TRI_NGOI" data-tinh-trang="@seat.TINH_TRANG.ToString()" />
+                                                    <div class="seat-info"></div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-1"></div>
+                                <div class="col-4 ">
+                                    <div class="row">
+                                        <p>Tầng trên</p>
+                                        <div class="col-3">
+                                            @foreach (var seat in Model.Where(t => t.VI_TRI_NGOI.Contains("A") && (int)t.VI_TRI_NGOI[t.VI_TRI_NGOI.Count() - 1] % 2 == 0).OrderBy(seat => int.Parse(seat.VI_TRI_NGOI.Substring(1))))
+                                            {
+                                                <div class="seat">
+                                                    <img src="~/img/IconGhe/@(seat.TINH_TRANG ? "seat_disabled.svg" : "seat_active.svg")"
+                                                         style="width:35px;margin-bottom:10px;" class="seat-image" data-seat="@seat.VI_TRI_NGOI" data-tinh-trang="@seat.TINH_TRANG.ToString()" />
+                                                    <div class="seat-info"></div>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="col-3" style="margin-left:10px">
+                                            @foreach (var seat in Model.Where(t => t.VI_TRI_NGOI.Contains("B") && (int)t.VI_TRI_NGOI[t.VI_TRI_NGOI.Count() - 1] % 2 == 0).OrderBy(seat => int.Parse(seat.VI_TRI_NGOI.Substring(1))))
+                                            {
+                                                <div class="seat">
+                                                    <img src="~/img/IconGhe/@(seat.TINH_TRANG ? "seat_disabled.svg" : "seat_active.svg")"
+                                                         style="width:35px;margin-bottom:10px;" class="seat-image" data-seat="@seat.VI_TRI_NGOI" data-tinh-trang="@seat.TINH_TRANG.ToString()" />
+                                                    <div class="seat-info"></div>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="col-3" style="margin-left:10px">
+                                            @foreach (var seat in Model.Where(t => t.VI_TRI_NGOI.Contains("C") && (int)t.VI_TRI_NGOI[t.VI_TRI_NGOI.Count() - 1] % 2 == 0).OrderBy(seat => int.Parse(seat.VI_TRI_NGOI.Substring(1))))
+                                            {
+                                                <div class="seat">
+                                                    <img src="~/img/IconGhe/@(seat.TINH_TRANG ? "seat_disabled.svg" : "seat_active.svg")"
+                                                         style="width:35px;margin-bottom:10px;" class="seat-image" data-seat="@seat.VI_TRI_NGOI" data-tinh-trang="@seat.TINH_TRANG.ToString()" />
+                                                    <div class="seat-info"></div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                         </div>
+                        <br /><br />
                     </div>
-                }
-                else if (xe36)
-                {
-                    <div class="col-4 container-ghes">
-                        <div class="row">
-                            <p>Tầng dưới</p>
-                            <div class="col-1">
-                                @foreach (var seat in Model.Where(t => t.VI_TRI_NGOI.Contains("A") && (int)t.VI_TRI_NGOI[t.VI_TRI_NGOI.Count() - 1] % 2 == 1).OrderBy(seat => int.Parse(seat.VI_TRI_NGOI.Substring(1))))
-                                {
-                                    <img src="~/img/IconGhe/@(seat.TINH_TRANG ? "Ghe_3.png" : "Ghe_1.png")"
-                                         style="width:40px" class="seat" data-seat="@seat.VI_TRI_NGOI" data-tinh-trang="@seat.TINH_TRANG.ToString()" />
-                                }
-                            </div>
-                            <div class="col-1" style="margin-left:10px">
-                                @foreach (var seat in Model.Where(t => t.VI_TRI_NGOI.Contains("B") && (int)t.VI_TRI_NGOI[t.VI_TRI_NGOI.Count() - 1] % 2 == 1).OrderBy(seat => int.Parse(seat.VI_TRI_NGOI.Substring(1))))
-                                {
-                                    <img src="~/img/IconGhe/@(seat.TINH_TRANG ? "Ghe_3.png" : "Ghe_1.png")"
-                                         style="width:40px" class="seat" data-seat="@seat.VI_TRI_NGOI" data-tinh-trang="@seat.TINH_TRANG.ToString()" />
-                                }
-                            </div>
-                            <div class="col-1" style="margin-left:10px">
-                                @foreach (var seat in Model.Where(t => t.VI_TRI_NGOI.Contains("C") && (int)t.VI_TRI_NGOI[t.VI_TRI_NGOI.Count() - 1] % 2 == 1).OrderBy(seat => int.Parse(seat.VI_TRI_NGOI.Substring(1))))
-                                {
-                                    <img src="~/img/IconGhe/@(seat.TINH_TRANG ? "Ghe_3.png" : "Ghe_1.png")"
-                                         style="width:40px" class="seat" data-seat="@seat.VI_TRI_NGOI" data-tinh-trang="@seat.TINH_TRANG.ToString()" />
-                                }
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 container-ghes">
-                        <div class="row">
-                            <p>Tầng trên</p>
-                            <div class="col-1">
-                                @foreach (var seat in Model.Where(t => t.VI_TRI_NGOI.Contains("A") && (int)t.VI_TRI_NGOI[t.VI_TRI_NGOI.Count() - 1] % 2 == 0).OrderBy(seat => int.Parse(seat.VI_TRI_NGOI.Substring(1))))
-                                {
-                                    <img src="~/img/IconGhe/@(seat.TINH_TRANG ? "Ghe_3.png" : "Ghe_1.png")"
-                                         style="width:40px" class="seat" data-seat="@seat.VI_TRI_NGOI" data-tinh-trang="@seat.TINH_TRANG.ToString()" />
-                                }
-                            </div>
-                            <div class="col-1" style="margin-left:10px">
-                                @foreach (var seat in Model.Where(t => t.VI_TRI_NGOI.Contains("B") && (int)t.VI_TRI_NGOI[t.VI_TRI_NGOI.Count() - 1] % 2 == 0).OrderBy(seat => int.Parse(seat.VI_TRI_NGOI.Substring(1))))
-                                {
-                                    <img src="~/img/IconGhe/@(seat.TINH_TRANG ? "Ghe_3.png" : "Ghe_1.png")"
-                                         style="width:40px" class="seat" data-seat="@seat.VI_TRI_NGOI" data-tinh-trang="@seat.TINH_TRANG.ToString()" />
-                                }
-                            </div>
-                            <div class="col-1" style="margin-left:10px">
-                                @foreach (var seat in Model.Where(t => t.VI_TRI_NGOI.Contains("C") && (int)t.VI_TRI_NGOI[t.VI_TRI_NGOI.Count() - 1] % 2 == 0).OrderBy(seat => int.Parse(seat.VI_TRI_NGOI.Substring(1))))
-                                {
-                                    <img src="~/img/IconGhe/@(seat.TINH_TRANG ? "Ghe_3.png" : "Ghe_1.png")"
-                                         style="width:40px" class="seat" data-seat="@seat.VI_TRI_NGOI" data-tinh-trang="@seat.TINH_TRANG.ToString()" />
-                                }
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
-            <br /><br />
-        </div>
-        <div class="col-10"></div>
-        <button class="btn btn-primary col-2" style="float:left">Tiếp tục</button>
-    </div>
 
-    @*<script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Thêm sự kiện click vào tất cả các ghế
-            document.querySelectorAll('.seat').forEach((seat) => {
-                seat.addEventListener('click', function () {
-                    console.log("Ghế được nhấn:", seat.getAttribute('data-seat')); // Debug để kiểm tra
-                    // Kiểm tra trạng thái hiện tại của ghế
-                    var currentState = seat.getAttribute('data-tinh-trang');
-                    console.log("Trạng thái hiện tại:", currentState); // Debug để kiểm tra trạng thái hiện tại
-                    if (currentState === 'False') {
-                        // Nếu ghế còn trống thì chọn ghế (đổi ảnh sang Ghe_6.png) và cập nhật trạng thái
-                        seat.src = "/img/IconGhe/Ghe_6.png";
-                        seat.setAttribute('data-tinh-trang', 'selected');
-                    } else if (currentState === 'selected') {
-                        // Nếu ghế đã được chọn, đổi ảnh lại thành Ghế trống và đặt trạng thái về false
-                        seat.src = "/img/IconGhe/Ghe_1.png";
-                        seat.setAttribute('data-tinh-trang', 'False');
-                    }
-                });
-            });
-        });
-        //document.addEventListener("DOMContentLoaded", attachSeatClickEvent);
-    </script>*@
+                </div>
+                <div style="margin-top:25px; " class="container-ghes  row">
+                    <div class="col-5 " style="margin-top: 20px">
+                        <p><strong>THÔNG TIN KHÁCH HÀNG</strong></p>
+                        <label>Họ và tên</label><br />
+                        <input type="text" class="form-control" name="name" value="" />
+                        <label>Email</label><br />
+                        <input type="email" class="form-control" name="email" value="" />
+                        <label>Số điện thoại</label><br />
+                        <input type="number" class="form-control" name="sdt" value="" />
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col-5" style="margin-top: 20px">
+                        <p><strong>THÔNG TIN ĐÓN TRẢ</strong></p>
+                        <label>ĐIỂM ĐÓN</label>
+                        <select class="form-control">
+                            <option value="value">...</option>
+                        </select>
+                        <br /><br />
+                        <label>ĐIỂM TRẢ</label>
+                        <select class="form-control">
+                            <option value="value">...</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-primary col-5 container" type="submit" style="margin-top:20px;margin-bottom:20px" id="confirmSelection">Tiếp tục</button>
+                </div>
+            </div>
+            <div class="col-md-4" style="margin-top:50px;">
+                <div class="row">
+                    <div class="container-ghes" style="padding-top:20px;padding-bottom:20px">
+                        <strong style="margin-top:15px">Thông tin lịch trình</strong><br />
+                        <span>Tên tuyến đường</span> <span style="float:right">@ViewBag.TuyenDuong</span><br />
+                        <span>Thời gian xuất phát</span> <span style="float:right">@String.Format("{0:HH:mm dd/MM/yyy}", ViewBag.ThoiGianXuatPhat)</span><br />
+                        <span>Số lượng ghế</span> <span style="float:right" id="selectedSeatsCount"></span><br />
+                        <span>Số ghế</span> <span style="float:right" id="selectedSeats"> </span><br />
+                        <input type="hidden" name="arrayGhe"  id="selectedSeatsInput"/>
+                        <span>Tổng tiền</span> <span style="float:right" id="TongTien"></span>
+                        <input type="hidden" name="TONG_TIEN"  id="tongTienInput"/>
+
+                    </div>
+                    <div class="container-ghes" style="margin: 20px 0 20px 0;padding-top:20px;padding-bottom:20px">
+                        <p><label>Hình thức thanh toán</label></p>
+                        <select class="form-control">
+                            <option value="value">Thanh toán khi lên xe</option>
+                            <option value="da_thanh_toan">Chuyển khoản</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
 </body>
+
+
+<script>
+    const selectedSeats = [];
+    document.querySelectorAll('.seat-image').forEach(seat => {
+        seat.addEventListener('click', function () {
+            const tinhTrang = this.getAttribute('data-tinh-trang'); // Kiểm tra tình trạng ghế
+            const giaVe = parseFloat(document.getElementById('giaVe').value); // Giá vé lấy từ ViewBag.GiaVe
+            // Nếu ghế trống (tinh-trang là false) thì cho phép chọn
+            if (tinhTrang === "False") {
+                const seatId = this.getAttribute('data-seat'); // Lấy mã ghế
+
+                // Kiểm tra ghế đã chọn chưa
+                if (selectedSeats.includes(seatId)) {
+                    // Nếu đã chọn thì bỏ chọn
+                    selectedSeats.splice(selectedSeats.indexOf(seatId), 1);
+                    this.src = "/img/IconGhe/seat_active.svg"; // Hình ghế trống
+                } else {
+                    // Nếu chưa chọn thì thêm vào danh sách
+                    selectedSeats.push(seatId);
+                    this.src = "/img/IconGhe/seat_selecting.svg"; // Hình ghế đang chọn
+                }
+                const tongTien = selectedSeats.length * giaVe;
+                document.getElementById('selectedSeatsCount').innerText = `${selectedSeats.length} Ghế`;
+                document.getElementById('selectedSeats').innerText = `${selectedSeats.join(', ')} Ghế`;
+                document.getElementById('TongTien').innerText = `${tongTien.toLocaleString()} đ`;
+            }
+        });
+    });
+
+    document.querySelectorAll('.seat').forEach(container => {
+        const seatInfo = container.querySelector('.seat-info');
+        const seatImage = container.querySelector('.seat-image');
+
+        // Lấy giá trị `data-seat` từ ảnh và gán vào `seat-info`
+        seatInfo.textContent = seatImage.getAttribute('data-seat');
+    });
+
+    document.getElementById('confirmSelection').addEventListener('click', function () {
+       // const selectedSeatsCount = selectedSeats.length;
+        const selectedSeatsList = selectedSeats.join(', ');
+        const tongTien = selectedSeats.length * parseFloat(document.getElementById('giaVe').value);
+
+        // Cập nhật các thẻ input ẩn với dữ liệu cần gửi
+        //document.getElementById('selectedSeatsCountInput').value = selectedSeatsCount;
+        document.getElementById('selectedSeatsInput').value = selectedSeatsList;
+        document.getElementById('tongTienInput').value = tongTien;
+        console.log(document.getElementById('giaVe').value); // Kiểm tra giá trị giaVe
+
+        // Gửi form
+        document.getElementById('seatForm').submit();
+    });
+</script>
+

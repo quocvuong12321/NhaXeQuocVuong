@@ -91,7 +91,34 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
+
+
 .container-ghes {
-    border: 1.5px solid black;
+    border: 1.5px solid lightgray;
     border-radius: 10px;
+    background-color: whitesmoke;
+    margin: 0 5px 0 5px;
+}
+
+
+.seat {
+    position: relative;
+    display: inline-block;
+}
+
+.seat .seat-info {
+    display: none;
+    position: absolute;
+    bottom: 100%; /* Hiển thị trên ảnh */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: lightsalmon;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+
+.seat:hover .seat-info {
+    display: block;
 }
