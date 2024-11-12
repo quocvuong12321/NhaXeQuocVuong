@@ -82,15 +82,32 @@
     margin-bottom: 10px;
 }
 
-.container-LichTrinh{
-    width:800px;
-    border: 1.5px solid black;
+.container-search {
+    border: 1.5px solid lightgrey;
     padding: 10px 10px 10px 10px;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
+.container-LichTrinh {
+    border: 1.5px solid lightgrey;
+    padding: 10px 10px 10px 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    width:700px;
+}
+
+.div-hover {
+    transition: box-shadow 0.3s ease; /* Tạo hiệu ứng chuyển tiếp mượt */
+}
+
+.div-hover:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Bóng nhẹ khi hover */
+}
+
+.bold{
+    font-weight:bold;
+}
 
 
 .container-ghes {

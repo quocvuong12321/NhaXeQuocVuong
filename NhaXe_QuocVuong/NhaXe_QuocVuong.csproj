@@ -2278,6 +2278,8 @@
     <Content Include="img\AboutUs3.png" />
     <Content Include="img\AboutUs4.png" />
     <Content Include="img\AboutUs5.png" />
+    <Content Include="img\banner-xe.jpeg" />
+    <Content Include="img\departure_.destination.PNG" />
     <Content Include="img\Ghe_1.png" />
     <Content Include="img\Ghe_3.png" />
     <Content Include="img\Ghe_6.png" />
@@ -2364,7 +2366,6 @@
     <Content Include="Content\fontawesome-free-6.6.0-web\webfonts\fa-solid-900.woff2" />
     <Content Include="Content\fontawesome-free-6.6.0-web\webfonts\fa-v4compatibility.ttf" />
     <Content Include="Content\fontawesome-free-6.6.0-web\webfonts\fa-v4compatibility.woff2" />
-    <Content Include="img\NhaXe.jpg" />
     <Content Include="Scripts\jsBackToTop.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

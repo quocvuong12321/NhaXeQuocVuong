@@ -25,6 +25,7 @@ namespace NhaXe_QuocVuong.Controllers
                 model.Add(ltvm);
             }
 
+            ViewBag.DiaDiem = db.DiaDiems.ToList();
 
             return View(model);
         }
@@ -109,6 +110,38 @@ namespace NhaXe_QuocVuong.Controllers
             }
         }
 
-      
+        public ActionResult SapXep(string Sort)
+        {
+            List<LichTrinhViewModel> model = new List<LichTrinhViewModel>();
+            List<LichTrinh> lst = db.LichTrinhs.ToList();
+            foreach (var item in lst)
+            {
+                LichTrinhViewModel ltvm = new LichTrinhViewModel
+                {
+                    LichTrinh = item,
+                    SoChoConLai = LaySoChoCon(item.MA_LICH_TRINH)
+                };
+                model.Add(ltvm);
+            }
+            switch (Sort)
+            {
+                case "Giờ đi sớm nhất":
+                    model = model.OrderBy(m => m.LichTrinh.KHOI_HANH).ToList();
+                    break;
+                case "Giờ đi muộn nhất":
+                    model = model.OrderByDescending(m => m.LichTrinh.KHOI_HANH).ToList();
+                    break;
+                case "Giá tăng dần":
+                    model = model.OrderBy(m => m.LichTrinh.GIA_VE).ToList();
+                    break;
+                case "Giá giảm dần":
+                    model = model.OrderByDescending(m => m.LichTrinh.GIA_VE).ToList();
+                    break;
+                default:
+                    model = model.ToList();// Sắp xếp mặc định
+                    break;
+            }
+            return View("Index", model);
+        }
     }
 }
