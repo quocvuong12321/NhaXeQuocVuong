@@ -1,10 +1,14 @@
-﻿@model List<NhaXe_QuocVuong.Models.Ghe>
+﻿@using NhaXe_QuocVuong.Models;
+@model List<NhaXe_QuocVuong.Models.Ghe>
 
 @{
     ViewBag.Title = "DatVe";
     var numberOfSeats = Model.Count(); // Lấy số ghế từ Model
     var xe36 = numberOfSeats == 36;
     var xe24 = numberOfSeats == 24;
+    List<TramDungChan> lstTramDi = ViewBag.TramDungDi as List<TramDungChan>;
+    List<TramDungChan> lstTramDen = ViewBag.TramDungDen as List<TramDungChan>;
+    List<PHUONG_THUC_THANH_TOAN> lstPTTT = ViewBag.PTThanhToan as List<PHUONG_THUC_THANH_TOAN>;
 }
 
 
@@ -180,13 +184,19 @@
                     <div class="col-5" style="margin-top: 20px">
                         <p><strong>THÔNG TIN ĐÓN TRẢ</strong></p>
                         <label>ĐIỂM ĐÓN</label>
-                        <select class="form-control">
-                            <option value="value">...</option>
+                        <select name="diemdon" class="form-control">
+                            @foreach (var item in lstTramDi)
+                            {
+                                <option value="@item.ID_TRAMDUNGCHAN">@item.TEN_TRAMDUNGCHAN</option>
+                            }
                         </select>
                         <br /><br />
                         <label>ĐIỂM TRẢ</label>
-                        <select class="form-control">
-                            <option value="value">...</option>
+                        <select name="diemtra" class="form-control">
+                            @foreach (var item in lstTramDen)
+                            {
+                                <option value="@item.ID_TRAMDUNGCHAN">@item.TEN_TRAMDUNGCHAN</option>
+                            }
                         </select>
                     </div>
 
@@ -208,9 +218,11 @@
                     </div>
                     <div class="container-ghes" style="margin: 20px 0 20px 0;padding-top:20px;padding-bottom:20px">
                         <p><label>Hình thức thanh toán</label></p>
-                        <select class="form-control">
-                            <option value="value">Thanh toán khi lên xe</option>
-                            <option value="da_thanh_toan">Chuyển khoản</option>
+                        <select name="phuongthuc" class="form-control">
+                            @foreach(var item in lstPTTT)
+            {
+                                <option value="@item.ID_PTTT">@item.TEN_PHUONG_THUC_THANH_TOAN</option>
+            }               
                         </select>
                     </div>
                 </div>

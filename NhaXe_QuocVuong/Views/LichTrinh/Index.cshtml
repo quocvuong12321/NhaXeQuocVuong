@@ -8,45 +8,47 @@
 
 
 <div class=" container row col-11" style="margin-top:35px">
-    <div class="container-search row justify-content-center">
-        <h3 class="text-center" style="padding-bottom:10px">Tìm kiếm</h3>
-        <div class="col-2">
-            <select class="form-select" name="noidi">
-                <option selected disabled>Nơi xuất phát</option>
-                @foreach (var item in lstDiaDiem)
-                {
-                    <option value="@item.ID_DIADIEM">@item.TEN_TINH_THANH</option>
+    <form action="/LichTrinh/TimKiemXe" method="get">
+        <div class="container-search row justify-content-center">
+            <h3 class="text-center" style="padding-bottom:10px">Tìm kiếm</h3>
+            <div class="col-2">
+                <select class="form-select" name="noidi">
+                    <option selected disabled>Nơi xuất phát</option>
+                    @foreach (var item in lstDiaDiem)
+                    {
+                        <option value="@item.ID_DIADIEM">@item.TEN_TINH_THANH</option>
 
-                }
-            </select>
-        </div>
-        <div class="col-1 text-center" style="padding-top:5px">
-            <i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="cursor:pointer"></i>
-        </div>
-        <div class="col-2">
-            <select class="form-select" name="noiden">
-                <option selected disabled>Nơi đến</option>
-                @foreach (var item in lstDiaDiem)
-                {
-                    <option value="@item.ID_DIADIEM">@item.TEN_TINH_THANH</option>
+                    }
+                </select>
+            </div>
+            <div class="col-1 text-center" style="padding-top:5px">
+                <i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="cursor:pointer"></i>
+            </div>
+            <div class="col-2">
+                <select class="form-select" name="noiden">
+                    <option selected disabled>Nơi đến</option>
+                    @foreach (var item in lstDiaDiem)
+                    {
+                        <option value="@item.ID_DIADIEM">@item.TEN_TINH_THANH</option>
 
-                }
-            </select>
+                    }
+                </select>
+            </div>
+            <div class="col-3">
+                <input type="date" class="form-control" placeholder="Ngày đi" name="ngaydi" />
+            </div>
+            <div class="col-2">
+                <button type="submit" class="btn btn-warning form-control">Tìm kiếm</button>
+            </div>
         </div>
-        <div class="col-3">
-            <input type="date" class="form-control" placeholder="Ngày đi" name="ngaydi"/>
-        </div>
-        <div class="col-2">
-            <button type="submit" class="btn btn-warning form-control">Tìm kiếm</button>
-        </div>
-    </div>
+    </form>
 
     <div class="col-md-3" style="margin-top:30px">
         <div style="border: lightgrey solid 1px; border-radius: 10px ">
             <div class="p-3">
                 <p><strong style="font-size:larger;">Sắp xếp</strong></p>
                 <form action="~/LichTrinh/SapXep" method="get">
-                    <input  type="radio" name="Sort" class="large-radio" value="Mặc định" /> Mặc định <br />
+                    <input type="radio" name="Sort" class="large-radio" value="Mặc định" /> Mặc định <br />
                     <input type="radio" name="Sort" class="large-radio" value="Giờ đi sớm nhất" /> Giờ đi sớm nhất <br />
                     <input type="radio" name="Sort" class="large-radio" value="Giờ đi muộn nhất" /> Giờ đi muộn nhất <br />
                     <input type="radio" name="Sort" class="large-radio" value="Giá tăng dần" /> Giá tăng dần <br />

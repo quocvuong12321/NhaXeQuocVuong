@@ -41,8 +41,13 @@ namespace NhaXe_QuocVuong.Controllers
         {
             List<Ghe> lstGhe = db.Ghes.Where(t => t.MA_LICH_TRINH.Equals(MaLichTrinh)).ToList();
             ViewBag.TuyenDuong = db.LichTrinhs.FirstOrDefault(t => t.MA_LICH_TRINH.Equals(MaLichTrinh)).TuyenDuong.TEN_TUYEN;
+            int noidi = db.LichTrinhs.FirstOrDefault(t => t.MA_LICH_TRINH.Equals(MaLichTrinh)).TuyenDuong.DiaDiem.ID_DIADIEM;
+            int noiden = db.LichTrinhs.FirstOrDefault(t => t.MA_LICH_TRINH.Equals(MaLichTrinh)).TuyenDuong.DiaDiem1.ID_DIADIEM;
             ViewBag.ThoiGianXuatPhat = db.LichTrinhs.FirstOrDefault(t => t.MA_LICH_TRINH.Equals(MaLichTrinh)).KHOI_HANH;
             ViewBag.GiaVe = db.LichTrinhs.FirstOrDefault(t => t.MA_LICH_TRINH.Equals(MaLichTrinh)).GIA_VE;
+            ViewBag.TramDungDi = db.TramDungChans.Where(t=>t.ID_DIADIEM==noidi).ToList();
+            ViewBag.TramDungDen = db.TramDungChans.Where(t=>t.ID_DIADIEM==noiden).ToList();
+            ViewBag.PTThanhToan = db.PHUONG_THUC_THANH_TOANs.ToList();
             return View(lstGhe);
         }
 
@@ -68,19 +73,22 @@ namespace NhaXe_QuocVuong.Controllers
             {
                 userAccount kh = Session["khach"] as userAccount;
                 string maLichTrinh = c["maLichTrinh"];
-                int soVe = db.Ves.Where(t => t.ID_KHACH_HANG.Equals(maLichTrinh)).Count() +1;
+                int soVe = db.Ves.Where(t => t.ID_LICH_TRINH.Equals(maLichTrinh)).Count() +1;
                 string maVe = maLichTrinh + "VE" + soVe.ToString("D3");
                 string id_KH = kh.username;
                 DateTime ngayDat = DateTime.Now;
+                string diemdon= c["diemdon"];
+                string diemtra = c["diemtra"];
+                string pttt =c["phuongthuc"];
                 float tongTien = float.Parse(c["TONG_TIEN"]);
                 Ve ve = new Ve();
                 ve.ID_VE = maVe;
                 ve.ID_LICH_TRINH = maLichTrinh;
                 ve.ID_KHACH_HANG = id_KH;
                 ve.TONG_TIEN = tongTien;
-                ve.PHUONG_THUC_THANH_TOAN = "PT1";
-                ve.DIEM_DOAN = "TDC001";
-                ve.DIEM_TRA = "TDC002";
+                ve.PHUONG_THUC_THANH_TOAN = pttt;
+                ve.DIEM_DOAN = diemdon;
+                ve.DIEM_TRA = diemtra;
                 ve.QR_CODE = "abc.jpg";
                 ve.NGAY_DAT_VE = DateTime.Today;
                 ve.TRANG_THAI = "da_thanh_toan";
@@ -100,6 +108,7 @@ namespace NhaXe_QuocVuong.Controllers
 
                     db.ChiTietVes.InsertOnSubmit(ct);
                     db.SubmitChanges();
+                    
                 }
 
                 return true;
@@ -142,6 +151,28 @@ namespace NhaXe_QuocVuong.Controllers
                     break;
             }
             return View("Index", model);
+        }
+
+        public ActionResult TimKiemXe(int noidi,int noiden,DateTime ngaydi)
+        {
+            int Noidi = noidi;
+            int Noiden = noiden;
+            DateTime Ngaydi = ngaydi;
+            List<LichTrinhViewModel> model = new List<LichTrinhViewModel>();
+            List<LichTrinh> lst = db.LichTrinhs.Where(t => t.TuyenDuong.DiaDiem.ID_DIADIEM == Noidi && t.TuyenDuong.DiaDiem1.ID_DIADIEM == Noiden && t.KHOI_HANH.Date ==Ngaydi.Date).ToList();
+            foreach (var item in lst)
+            {
+                LichTrinhViewModel ltvm = new LichTrinhViewModel
+                {
+                    LichTrinh = item,
+                    SoChoConLai = LaySoChoCon(item.MA_LICH_TRINH)
+                };
+                model.Add(ltvm);
+            }
+            ViewBag.DiaDiem = db.DiaDiems.ToList();
+
+            return View("Index",model);
+
         }
     }
 }
