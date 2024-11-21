@@ -126,15 +126,21 @@
     <Compile Include="Controllers\DangNhapAdminController.cs" />
     <Compile Include="Controllers\DangNhapController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KhachHangController.cs" />
     <Compile Include="Controllers\LichTrinhController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CTVe.cs" />
+    <Compile Include="Models\GheDTO.cs" />
+    <Compile Include="Models\LichSuMuaVe.cs" />
+    <Compile Include="Models\LichTrinh_Home.cs" />
     <Compile Include="Models\NhaXe.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NhaXe.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\VeCuaToi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2262,6 +2268,7 @@
     <Content Include="Content\Login_NguoiDung\Login_NguoiDung.js" />
     <Content Include="Content\Login_NguoiDung\XacNhanRole.css" />
     <Content Include="Content\Login_NguoiDung\XeKhach.jpg" />
+    <Content Include="img\qrcode.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -2271,6 +2278,15 @@
     <Content Include="img\AboutUs3.png" />
     <Content Include="img\AboutUs4.png" />
     <Content Include="img\AboutUs5.png" />
+    <Content Include="img\banner.png" />
+    <Content Include="img\dalat.jpg" />
+    <Content Include="img\danang.jpg" />
+    <Content Include="img\danang2.jpeg" />
+    <Content Include="img\danang3.jpg" />
+    <Content Include="img\danang4.jpg" />
+    <Content Include="img\hanoi.jpg" />
+    <Content Include="img\hanoi2.jpg" />
+    <Content Include="img\hanoi3.jpg" />
     <Content Include="img\home_banner.png" />
     <Content Include="img\logo3.png" />
     <Content Include="Content\css\bootstrap-grid.css.map" />
@@ -2348,6 +2364,8 @@
     <Content Include="Content\fontawesome-free-6.6.0-web\webfonts\fa-solid-900.woff2" />
     <Content Include="Content\fontawesome-free-6.6.0-web\webfonts\fa-v4compatibility.ttf" />
     <Content Include="Content\fontawesome-free-6.6.0-web\webfonts\fa-v4compatibility.woff2" />
+    <Content Include="img\saigon.jpg" />
+    <Content Include="img\web.png" />
     <Content Include="Scripts\jsBackToTop.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -2366,6 +2384,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Area_Admin\Data\" />
+    <Folder Include="Views\KhachHang\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -2400,6 +2419,10 @@
     <Content Include="Views\DangNhap\ThongTinTaiKhoan.cshtml" />
     <Content Include="Views\DangNhapAdmin\ThongTinTaiKhoan.cshtml" />
     <Content Include="Views\Home\LienHe.cshtml" />
+    <Content Include="Views\DangNhap\LichSuMuaVe.cshtml" />
+    <Content Include="Views\DangNhap\Details.cshtml" />
+    <Content Include="Views\DangNhap\VeCuaToi.cshtml" />
+    <Content Include="Views\DangNhap\TicketDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

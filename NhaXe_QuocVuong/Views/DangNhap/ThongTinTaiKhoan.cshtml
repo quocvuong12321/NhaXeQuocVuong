@@ -1,53 +1,232 @@
 ﻿@model NhaXe_QuocVuong.Models.KhachHang
 @{
-    ViewBag.Title = "ThongTinTaiKhoan";
+    ViewBag.Title = "Thông Tin Tài Khoản";
 }
 
+<div class="profile-container">
+    <!-- Sidebar Menu -->
+    <aside class="sidebar">
+        <nav>
+            <ul>
+                <li class="menu-item active">
+                    <a href="@Url.Action("ThongTinTaiKhoan", "DangNhap")">
+                        <i class="fas fa-user-circle"></i> Thông tin tài khoản
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="@Url.Action("LichSuMuaVe", "DangNhap")">
+                        <i class="fas fa-cart-shopping"></i> Lịch sử mua vé
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="@Url.Action("VeCuaToi", "DangNhap")">
+                        <i class="fas fa-ticket-alt"></i> Vé của tôi
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="@Url.Action("Logout", "DangNhap")">
+                        <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
 
-<div class="container mt-5" style="padding-bottom:50px">
-    <div class="card shadow-lg">
-        <div class="card-header bg-primary text-white text-center">
-            <h2>Thông Tin Tài Khoản</h2>
-        </div>
-        <div class="card-body">
-            <div class="row mb-3">
-                <div class="col-md-4">
-                    <h5 class="text-muted">Username:</h5>
-                </div>
-                <div class="col-md-8">
-                    <p class="font-weight-bold" style="font-size:25px;font-weight:600">@Model.USERNAME</p>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-4">
-                    <h5 class="text-muted">Tên khách hàng:</h5>
-                </div>
-                <div class="col-md-8">
-                    <p class="font-weight-bold" style="font-size:25px;font-weight:600">@Model.TEN_KHACH_HANG</p>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-4">
-                    <h5 class="text-muted">Số điện thoại:</h5>
-                </div>
-                <div class="col-md-8">
-                    <p class="font-weight-bold" style="font-size:25px;font-weight:600">@Model.SO_DIEN_THOAI</p>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-4">
-                    <h5 class="text-muted">Email:</h5>
-                </div>
-                <div class="col-md-8">
-                    <p class="font-weight-bold" style="font-size:25px;font-weight:600">@Model.EMAIL</p>
-                </div>
-            </div>
-        </div>
-        <div class="card-footer">
-            <a href="~/Home/Index" class="btn btn-outline-primary">Quay lại Trang chủ</a>
-        </div>
-    </div>
+    <!-- Profile Content -->
+    <section class="profile-info">
+        <h2>Thông tin tài khoản</h2>
+
+        <!-- Form to update profile information -->
+        <form class="profile-details" method="post" action="@Url.Action("Update", "DangNhap")">
+            @Html.AntiForgeryToken()
+
+            <!-- Họ và tên -->
+            <label for="fullName">Họ và tên:</label>
+            <input type="text" id="fullName" name="TEN_KHACH_HANG" value="@Model.TEN_KHACH_HANG" required />
+
+            <!-- Số điện thoại -->
+            <label for="phoneNumber">Số điện thoại:</label>
+            <input type="tel" id="phoneNumber" name="SO_DIEN_THOAI" value="@Model.SO_DIEN_THOAI" required pattern="[0-9]{10}" />
+
+            <!-- Email -->
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="EMAIL" value="@Model.EMAIL" required />
+
+            <!-- Hidden field to include username -->
+            <input type="hidden" name="USERNAME" value="@Model.USERNAME" />
+
+            <!-- Cập nhật -->
+            <button type="submit" class="btn-update">Cập nhật</button>
+        </form>
+    </section>
 </div>
+
+
+<style>
+    /* General Styling */
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
+
+    .profile-container {
+        display: flex;
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+    }
+
+    /* Sidebar Styling */
+    .sidebar {
+        width: 280px;
+        background-color: #fef6f3;
+        padding: 30px 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    }
+
+        .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .sidebar nav ul li {
+                padding: 15px;
+                margin-bottom: 20px;
+                /*background-color: #ffe6d8;*/
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                color: #333;
+                font-size: 18px;
+                cursor: pointer;
+                transition: background 0.3s ease, transform 0.3s ease;
+            }
+
+                .sidebar nav ul li a {
+                    margin-right: 15px;
+                    font-size: 18px;
+                    color: #ff7733;
+                    text-decoration: none;
+                    align-items: center;
+                }
+
+                .sidebar nav ul li:hover {
+                    background-color: #ffd3b9;
+                    transform: translateX(8px);
+                }
+
+                .sidebar nav ul li.active {
+                    background-color: #ffb488;
+                    color: #fff;
+                }
+
+    /* Profile Info Section */
+    .profile-info {
+        flex: 1;
+        padding: 20px 40px;
+    }
+
+        .profile-info h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ff7733;
+            padding-bottom: 10px;
+        }
+
+    .profile-picture {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+        .profile-picture img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 25px;
+            border: 2px solid #ff7733;
+        }
+
+    .upload-btn {
+        display: inline-block;
+        background-color: #ff7733;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .upload-btn:hover {
+            background-color: #ff8a47;
+        }
+
+    .profile-picture input[type="file"] {
+        display: none;
+    }
+
+    .profile-picture p {
+        margin-top: 10px;
+        color: #888;
+    }
+
+    /* Profile Details Form */
+    .profile-details {
+        display: flex;
+        flex-direction: column; /* Form elements will stack vertically */
+        gap: 20px; /* Space between fields */
+    }
+
+        .profile-details label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .profile-details input,
+        .profile-details select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s;
+        }
+
+            .profile-details input:focus,
+            .profile-details select:focus {
+                border-color: #ff7733;
+            }
+
+    .btn-update {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #ff7733;
+        color: white;
+        text-align: center;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        align-self: flex-end; /* Align the button to the right */
+    }
+
+        .btn-update:hover {
+            background-color: #ff8a47;
+        }
+</style>
 
 
 

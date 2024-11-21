@@ -1,42 +1,169 @@
-﻿
+﻿@model List<NhaXe_QuocVuong.Models.TuyenDuong>
 @{
     ViewBag.Title = "Index";
+    var imageUrls = new List<string>
+    {
+        "/img/dalat.jpg",
+        "/img/saigon.jpg",
+        "/img/hanoi.jpg",
+        "/img/hanoi2.jpg",
+        "/img/hanoi3.jpg",
+        "/img/danang.jpg",
+        "/img/danang2.jpeg",
+        "/img/danang3.jpg",
+        "/img/danang4.jpg"
+
+    };
+
+    // Hàm để chọn ảnh ngẫu nhiên
+    Random random = new Random();
 }
 
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
+<div class="banner">
+    <img src="~/img/web.png" alt="Banner Image" class="banner-image">
+</div>
+
+<div class="container">
+    <section class="flex flex-column py-6 text-center bg-or">
+        <h3 class="home-title text-green">TUYẾN PHỔ BIẾN</h3>
+        <p class="home-title-content">Được khách hàng tin tưởng và lựa chọn</p>
+        <div class="route-list">
+            @foreach (var route in Model)
+            {
+                var randomImageIndex = random.Next(imageUrls.Count);
+                var randomImage = imageUrls[randomImageIndex];
+                imageUrls.RemoveAt(randomImageIndex);  // Loại bỏ ảnh đã chọn
+                <div class="route-item">
+                    <h3>@route.TEN_TUYEN</h3>
+                    <p>Khoảng cách: @route.KHOANG_CACH km</p>
+                    <p>Thời gian di chuyển: @route.THOI_GIAN_DUY_CHUYEN giờ</p>
+                    <img src="@randomImage" alt="Tuyến ảnh" class="route-image-thumbnail" />
+                </div>
+            }
+        </div>
+    </section>
+
+    <section class="flex flex-column py-6 text-center bg-or">
+        <h2 class="home-title text-green">LỊCH TRÌNH GẦN NHẤT</h2>
+        <div class="schedule-list">
+            @foreach (var schedule in ViewBag.allSchedules)
+            {
+                var randomImageIndex = random.Next(imageUrls.Count);
+                var randomImage = imageUrls[randomImageIndex];
+                imageUrls.RemoveAt(randomImageIndex);  // Loại bỏ ảnh đã chọn
+                <div class="schedule-item">
+                    <h3>@schedule.TenTuyenDuong</h3>
+                    <p>Ngày khởi hành: @schedule.NgayKhoiHanh.ToString("dd/MM/yyyy")</p>
+                    <p style="color: orangered; font-weight: 600; font-size: 17px;">Giá vé: @String.Format("{0:N0}", schedule.GiaVe) VNĐ</p>
+                    <img src="@randomImage" alt="Tuyến ảnh" class="route-image-thumbnail" />
+                </div>
+            }
+        </div>
+    </section>
+</div>
 
 
+
+<style>
+    /* Banner section */
+    .banner {
+        position: relative;
+        width: 100%;
+        height: 350px;
+        overflow: hidden;
+        margin-bottom: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ cho banner */
+    }
+
+    .banner-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 15px; /* Bo góc cho ảnh */
+    }
+
+    /* Background cho section */
+    .bg-or {
+        background-color: rgb(255 247 245); /* Màu cam nhạt nhẹ nhàng */
+        padding: 30px; /* Thêm padding để tạo không gian thoáng cho phần section */
+        border-radius: 15px; /* Bo góc section */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Thêm đổ bóng nhẹ cho section */
+    }
+
+    /* Thêm khoảng cách trên và dưới section */
+    .py-6 {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Tiêu đề phần */
+    .home-title {
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 38px;
+        color: #388e3c; /* Màu xanh lá đậm */
+        margin-bottom: 15px;
+    }
+
+    .text-green {
+        color: #00613d;
+    }
+
+    .home-title-content {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 24px;
+        color: #666;
+        margin-top: 10px;
+    }
+
+    /* Danh sách tuyến đường */
+    .route-list, .schedule-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: space-between; /* Căn đều các phần tử */
+    }
+
+    /* Mỗi phần tử tuyến đường */
+    .route-item, .schedule-item {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        padding: 20px;
+        width: calc(33.333% - 20px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Thêm hiệu ứng khi hover */
+    }
+
+    .route-item:hover, .schedule-item:hover {
+        transform: translateY(-10px); /* Di chuyển lên khi hover */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Đổ bóng mạnh khi hover */
+    }
+
+    .route-item h3, .schedule-item h3 {
+        font-size: 22px;
+        font-weight: 600;
+        color: #388e3c;
+        margin-bottom: 10px;
+    }
+
+        .route-item p, .schedule-item p {
+            margin: 5px 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+    /* Ảnh tuyến đường */
+    .route-image-thumbnail {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Thêm đổ bóng cho ảnh */
+        margin-bottom: 10px; /* Khoảng cách dưới ảnh */
+    }
+
+</style>

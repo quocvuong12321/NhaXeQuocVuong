@@ -1,0 +1,251 @@
+﻿@model List<NhaXe_QuocVuong.Models.LichSuMuaVe>
+@{
+    ViewBag.Title = "Lịch Sử Mua Vé";
+    var currentAction = ViewData["CurrentAction"] as string;  // Get current action from ViewData
+}
+
+<div class="profile-container">
+    <!-- Sidebar Menu -->
+    <aside class="sidebar">
+        <nav>
+            <ul>
+                <li class="menu-item">
+                    <a href="@Url.Action("ThongTinTaiKhoan", "DangNhap")">
+                        <i class="fas fa-user-circle"></i> Thông tin tài khoản
+                    </a>
+                </li>
+                <li class="menu-item active">
+                    <a href="@Url.Action("LichSuMuaVe", "DangNhap")">
+                        <i class="fas fa-cart-shopping"></i> Lịch sử mua vé
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="@Url.Action("VeCuaToi", "DangNhap")">
+                        <i class="fas fa-ticket-alt"></i> Vé của tôi
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="@Url.Action("Logout", "DangNhap")">
+                        <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Profile Content -->
+    <section class="profile-info">
+        <h2>Lịch sử mua vé</h2>
+        <div class="table-section">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mã vé</th>
+                        <th>Ngày đặt</th>
+                        <th>Tổng tiền</th>
+                        <th>Trạng thái</th>
+                        <th>Chi tiết vé</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var ve in Model)
+                        {
+                    <tr>
+                        <td>@ve.Id_Ve</td>
+                        <td>@ve.NgayDat.ToString("dd/MM/yyyy")</td>
+                        <td>@String.Format("{0:N0}", ve.TongTien) VNĐ</td>
+                        <td>@ve.TrangThai</td>
+                        <td>
+                            <a href="@Url.Action("Details", "DangNhap", new { idVe = ve.Id_Ve })" class="btn btn-success">Xem vé</a>
+                           
+                        </td>
+                    </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" class="no-data">Không có vé nào trong lịch sử.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+<style>
+    /* General Styling */
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
+
+    .profile-container {
+        display: flex;
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+    }
+
+    /* Sidebar Styling */
+    .sidebar {
+        width: 280px;
+        background-color: #fef6f3;
+        padding: 30px 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    }
+
+        .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .sidebar nav ul li {
+                padding: 15px;
+                margin-bottom: 20px;
+                /*background-color: #ffe6d8;*/
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                color: #333;
+                font-size: 18px;
+                cursor: pointer;
+                transition: background 0.3s ease, transform 0.3s ease;
+            }
+
+                .sidebar nav ul li a {
+                    margin-right: 15px;
+                    font-size: 18px;
+                    color: #ff7733;
+                    text-decoration: none;
+                    align-items: center;
+                }
+
+                .sidebar nav ul li:hover {
+                    background-color: #ffd3b9;
+                    transform: translateX(8px);
+                }
+
+                .sidebar nav ul li.active {
+                    background-color: #ffb488;
+                    color: #fff;
+                }
+
+    /* Profile Info Section */
+    .profile-info {
+        flex: 1;
+        padding: 20px 40px;
+    }
+
+        .profile-info h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ff7733;
+            padding-bottom: 10px;
+        }
+
+    /* Table Styling */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #ff7733;
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .no-data {
+        text-align: center;
+        font-style: italic;
+        color: #888;
+    }
+
+    /* Profile Section Styling */
+    .profile-picture img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 25px;
+        border: 2px solid #ff7733;
+    }
+
+    .upload-btn {
+        display: inline-block;
+        background-color: #ff7733;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .upload-btn:hover {
+            background-color: #ff8a47;
+        }
+
+    .profile-picture input[type="file"] {
+        display: none;
+    }
+
+    .profile-details {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+        .profile-details input, .profile-details select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s;
+        }
+
+            .profile-details input:focus, .profile-details select:focus {
+                border-color: #ff7733;
+            }
+
+    .btn-update {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #ff7733;
+        color: white;
+        text-align: center;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-update:hover {
+            background-color: #ff8a47;
+        }
+
+</style>
