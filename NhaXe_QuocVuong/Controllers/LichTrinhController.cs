@@ -5,6 +5,10 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using NhaXe_QuocVuong.Models;
+using QRCoder;
+using System.IO;
+using System.Drawing.Imaging;
+
 namespace NhaXe_QuocVuong.Controllers
 {
     public class LichTrinhController : Controller
@@ -89,9 +93,14 @@ namespace NhaXe_QuocVuong.Controllers
                 ve.PHUONG_THUC_THANH_TOAN = pttt;
                 ve.DIEM_DOAN = diemdon;
                 ve.DIEM_TRA = diemtra;
-                ve.QR_CODE = "abc.jpg";
                 ve.NGAY_DAT_VE = DateTime.Today;
                 ve.TRANG_THAI = "da_thanh_toan";
+
+                string tentuyenduong = db.LichTrinhs.First(t => t.MA_LICH_TRINH.Equals(maLichTrinh)).TuyenDuong.TEN_TUYEN;
+                string khachhang = db.KhachHangs.First(t => t.USERNAME.Equals(id_KH)).TEN_KHACH_HANG;
+                string qrContent = $"Vé: {maVe}\nLịch trình: {tentuyenduong}\nKhách hàng: {khachhang}-{ve.ID_KHACH_HANG}";
+                string qrpath = GenerateQRCode(qrContent, maVe);
+                ve.QR_CODE = qrpath;
                 db.Ves.InsertOnSubmit(ve);
                 db.SubmitChanges();
 
@@ -118,6 +127,30 @@ namespace NhaXe_QuocVuong.Controllers
                 throw new Exception("Lỗi: "+ex);
             }
         }
+
+        private string GenerateQRCode(string content, string fileName)
+        {
+            using (var qrGenerator = new QRCodeGenerator())
+            {
+                var qrCodeData = qrGenerator.CreateQrCode(content, QRCodeGenerator.ECCLevel.Q);
+                using (var qrCode = new QRCode(qrCodeData))
+                {
+                    using (var bitmap = qrCode.GetGraphic(20))
+                    {
+                        string folderPath = Server.MapPath("~/img");
+                        if (!Directory.Exists(folderPath))
+                        {
+                            Directory.CreateDirectory(folderPath);
+                        }
+
+                        string filePath = Path.Combine(folderPath, $"{fileName}.png");
+                        bitmap.Save(filePath, ImageFormat.Png);
+                        return $"/img/{fileName}.png"; // Đường dẫn lưu trong DB
+                    }
+                }
+            }
+        }
+
 
         public ActionResult SapXep(string Sort)
         {
