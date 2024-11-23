@@ -1,0 +1,171 @@
+﻿@model NhaXe_QuocVuong.Models.TuyenDuong
+
+@{
+    ViewBag.Title = "Chỉnh Sửa Tuyến Đường";
+    Layout = "~/Areas/Area_Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<div class="container mt-5">
+    <!-- Phần tiêu đề đẹp mắt -->
+    <div class="text-center mb-4">
+        <h2 class="display-5 text-primary fw-bold">CHỈNH SỬA TUYẾN ĐƯỜNG</h2>
+        <p class="text-muted">Cập nhật thông tin tuyến đường hiện có</p>
+    </div>
+
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-5">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.ID_TUYEN)
+
+                <!-- Điểm Đầu -->
+                <div class="form-group mb-4">
+                    @Html.Label("Điểm Đầu", htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.DIEM_DAU, (SelectList)ViewBag.DiemDauList, "Chọn Điểm Đầu", new { @class = "form-control", id = "diemDau" })
+                    @Html.ValidationMessageFor(model => model.DIEM_DAU, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Điểm Cuối -->
+                <div class="form-group mb-4">
+                    @Html.Label("Điểm Cuối", htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.DIEM_CUOI, (SelectList)ViewBag.DiemCuoiList, "Chọn Điểm Cuối", new { @class = "form-control", id = "diemCuoi" })
+                    @Html.ValidationMessageFor(model => model.DIEM_CUOI, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Tên Tuyến -->
+                <div class="form-group mb-4">
+                    @Html.Label("Tên Tuyến", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.TEN_TUYEN, new { htmlAttributes = new { @class = "form-control", id = "tenTuyen", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.TEN_TUYEN, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Khoảng Cách -->
+                <div class="form-group mb-4">
+                    @Html.Label("Khoảng Cách", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.KHOANG_CACH, new { htmlAttributes = new { @class = "form-control", placeholder = "Km" } })
+                    @Html.ValidationMessageFor(model => model.KHOANG_CACH, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Thời Gian Duy Chuyển -->
+                <div class="form-group mb-4">
+                    @Html.Label("Thời Gian Di Chuyển", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.THOI_GIAN_DUY_CHUYEN, new { htmlAttributes = new { @class = "form-control", placeholder = "Giờ" } })
+                    @Html.ValidationMessageFor(model => model.THOI_GIAN_DUY_CHUYEN, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Tình Trạng -->
+                <div class="form-group mb-4">
+                    @Html.Label("Tình Trạng", htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.TINH_TRANG, new SelectList(new[] { "CON_HOAT_DONG", "KHONG_HOAT_DONG" }), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TINH_TRANG, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Button Actions -->
+                <div class="d-flex justify-content-end">
+                    <input type="submit" value="Lưu Thay Đổi" class="btn btn-primary btn-lg me-3 px-4" />
+                    @Html.ActionLink("Trở về danh sách", "Index", null, new { @class = "btn btn-outline-secondary btn-lg px-4" })
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    // Cập nhật tên tuyến khi chọn điểm đầu và điểm cuối
+    document.getElementById("diemDau").addEventListener("change", updateTenTuyen);
+    document.getElementById("diemCuoi").addEventListener("change", updateTenTuyen);
+
+    function updateTenTuyen() {
+        var diemDauText = document.getElementById("diemDau").options[document.getElementById("diemDau").selectedIndex].text;
+        var diemCuoiText = document.getElementById("diemCuoi").options[document.getElementById("diemCuoi").selectedIndex].text;
+
+        if (diemDauText !== "Chọn Điểm Đầu" && diemCuoiText !== "Chọn Điểm Cuối") {
+            document.getElementById("tenTuyen").value = diemDauText + " - " + diemCuoiText;
+        } else {
+            document.getElementById("tenTuyen").value = "";
+        }
+    }
+</script>
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        color: #2d3748;
+        background-color: #edf2f7;
+    }
+
+    .card {
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+        padding: 30px;
+    }
+
+    h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #2b6cb0;
+    }
+
+    h3 {
+        font-size: 24px;
+        font-weight: bold;
+        color: #2b6cb0;
+    }
+
+    .control-label {
+        font-size: 14px;
+        color: #4a5568;
+        font-weight: 500;
+    }
+
+    .form-control {
+        border-radius: 5px;
+        padding: 12px;
+        font-size: 14px;
+        border: 1px solid #e2e8f0;
+        color: #2d3748;
+        transition: all 0.3s ease;
+    }
+
+        .form-control:focus {
+            border-color: #3182ce;
+            background-color: #ffffff;
+            box-shadow: 0 0 5px rgba(49, 130, 206, 0.5);
+        }
+
+    .text-danger {
+        font-size: 12px;
+        color: #e53e3e;
+    }
+
+    .btn-primary {
+        background-color: #3182ce;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-weight: 600;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .btn-primary:hover {
+            background-color: #2b6cb0;
+        }
+
+    .btn-outline-secondary {
+        background-color: transparent;
+        border: 2px solid #e2e8f0;
+        padding: 12px 24px;
+        color: #4a5568;
+        border-radius: 5px;
+    }
+
+        .btn-outline-secondary:hover {
+            background-color: #edf2f7;
+        }
+
+</style>

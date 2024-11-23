@@ -1,0 +1,193 @@
+﻿@model NhaXe_QuocVuong.Models.TramDungChan
+
+@{
+    ViewBag.Title = "Sửa Trạm Dừng Chân";
+    Layout = "~/Areas/Area_Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<div class="container vh-100 d-flex align-items-center justify-content-center" style="background-color: #edf2f7;">
+    <div class="update-form-container">
+        <div class="update-header">
+            <h3>THÊM TRẠM DỪNG CHÂN</h3>
+            <p class="text-muted">nhập thông tin trạm dừng chân</p>
+        </div>
+        <div class="update-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <!-- Validation Summary -->
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <!-- Địa điểm -->
+                <div class="form-field">
+                    @Html.Label("Địa Điểm", htmlAttributes: new { @class = "field-label" })
+                    @Html.DropDownListFor(
+                        model => model.ID_DIADIEM,
+                        (SelectList)ViewBag.DiaDiemList,
+                        "Chọn Địa Điểm",
+                        new { @class = "field-input", id = "diemdau" }
+                    )
+                    @Html.ValidationMessageFor(model => model.ID_DIADIEM, "", new { @class = "field-error" })
+                    <small class="form-text text-muted">Chọn địa điểm cho trạm dừng chân.</small>
+                </div>
+
+                <!-- Tên Trạm Dừng Chân -->
+                <div class="form-field">
+                    @Html.Label("Tên Trạm Dừng Chân", htmlAttributes: new { @class = "field-label" })
+                    @Html.EditorFor(model => model.TEN_TRAMDUNGCHAN, new { htmlAttributes = new { @class = "field-input", id = "TEN_TRAMDUNGCHAN", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.TEN_TRAMDUNGCHAN, "", new { @class = "field-error" })
+                    <small class="form-text text-muted">Tên trạm dừng chân sẽ được tự động điền khi chọn địa điểm.</small>
+                </div>
+
+                <!-- Địa chỉ -->
+                <div class="form-field">
+                    @Html.Label("Địa Chỉ", htmlAttributes: new { @class = "field-label" })
+                    @Html.EditorFor(model => model.DIA_CHI, new { htmlAttributes = new { @class = "field-input" } })
+                    @Html.ValidationMessageFor(model => model.DIA_CHI, "", new { @class = "field-error" })
+                    <small class="form-text text-muted">Nhập địa chỉ chi tiết cho trạm dừng chân.</small>
+                </div>
+
+                <!-- Nút hành động -->
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">
+                        <i class="fa fa-save"></i> Thêm Trạm Dừng Chân
+                    </button>
+                    @Html.ActionLink("Trở Về Danh Sách", "Index", null, new { @class = "btn-cancel" })
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    window.onload = function () {
+        updateTenTramDungChan(); // Gọi hàm khi trang được tải lại
+    };
+
+    document.getElementById("diemdau").addEventListener("change", updateTenTramDungChan);
+
+    function updateTenTramDungChan() {
+        var diemDauText = document.getElementById("diemdau").options[document.getElementById("diemdau").selectedIndex].text;
+        if (diemDauText !== "Chọn Địa Điểm") {
+            document.getElementById("TEN_TRAMDUNGCHAN").value = "Trạm Dừng Chân " + diemDauText;
+        } else {
+            document.getElementById("TEN_TRAMDUNGCHAN").value = "";
+        }
+    }
+</script>
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        color: #2d3748;
+        background-color: #edf2f7;
+    }
+
+    .update-form-container {
+        background: #ffffff;
+        border-radius: 10px;
+        padding: 40px 30px;
+        max-width: 600px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        width: 100%;
+    }
+
+    .update-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+        .update-header h3 {
+            font-size: 24px;
+            color: #1a202c;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .update-header p {
+            font-size: 14px;
+            color: #718096;
+            margin-top: 5px;
+        }
+
+    .update-body {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .field-label {
+        font-size: 14px;
+        color: #4a5568;
+        font-weight: 500;
+    }
+
+    .field-input {
+        border: 1px solid #cbd5e0;
+        border-radius: 5px;
+        padding: 10px 12px;
+        font-size: 14px;
+        color: #2d3748;
+        background: #f7fafc;
+        transition: all 0.3s ease;
+    }
+
+        .field-input:focus {
+            outline: none;
+            border-color: #3182ce;
+            background: #ffffff;
+            box-shadow: 0 0 5px rgba(49, 130, 206, 0.5);
+        }
+
+    .field-error {
+        font-size: 12px;
+        color: #e53e3e;
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn-submit {
+        background: #3182ce;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+        .btn-submit:hover {
+            background: #2b6cb0;
+            transform: translateY(-2px);
+        }
+
+    .btn-cancel {
+        background: #e2e8f0;
+        color: #2d3748;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+        .btn-cancel:hover {
+            background: #cbd5e0;
+            transform: translateY(-2px);
+        }
+
+</style>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">

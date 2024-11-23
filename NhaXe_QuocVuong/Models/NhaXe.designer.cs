@@ -229,11 +229,7 @@ namespace NhaXe_QuocVuong.Models
 		
 		private EntityRef<Ghe> _Ghe;
 		
-		private EntityRef<Ghe> _Ghe1;
-		
 		private EntityRef<Ve> _Ve;
-		
-		private EntityRef<Ve> _Ve1;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -248,9 +244,7 @@ namespace NhaXe_QuocVuong.Models
 		public ChiTietVe()
 		{
 			this._Ghe = default(EntityRef<Ghe>);
-			this._Ghe1 = default(EntityRef<Ghe>);
 			this._Ve = default(EntityRef<Ve>);
-			this._Ve1 = default(EntityRef<Ve>);
 			OnCreated();
 		}
 		
@@ -265,7 +259,7 @@ namespace NhaXe_QuocVuong.Models
 			{
 				if ((this._ID_VE != value))
 				{
-					if ((this._Ve.HasLoadedOrAssignedValue || this._Ve1.HasLoadedOrAssignedValue))
+					if (this._Ve.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -289,7 +283,7 @@ namespace NhaXe_QuocVuong.Models
 			{
 				if ((this._VI_TRI_NGOI != value))
 				{
-					if ((this._Ghe.HasLoadedOrAssignedValue || this._Ghe1.HasLoadedOrAssignedValue))
+					if (this._Ghe.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -336,40 +330,6 @@ namespace NhaXe_QuocVuong.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ghe_ChiTietVe1", Storage="_Ghe1", ThisKey="VI_TRI_NGOI", OtherKey="ID_GHE", IsForeignKey=true)]
-		public Ghe Ghe1
-		{
-			get
-			{
-				return this._Ghe1.Entity;
-			}
-			set
-			{
-				Ghe previousValue = this._Ghe1.Entity;
-				if (((previousValue != value) 
-							|| (this._Ghe1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Ghe1.Entity = null;
-						previousValue.ChiTietVes1.Remove(this);
-					}
-					this._Ghe1.Entity = value;
-					if ((value != null))
-					{
-						value.ChiTietVes1.Add(this);
-						this._VI_TRI_NGOI = value.ID_GHE;
-					}
-					else
-					{
-						this._VI_TRI_NGOI = default(string);
-					}
-					this.SendPropertyChanged("Ghe1");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ve_ChiTietVe", Storage="_Ve", ThisKey="ID_VE", OtherKey="ID_VE", IsForeignKey=true)]
 		public Ve Ve
 		{
@@ -400,40 +360,6 @@ namespace NhaXe_QuocVuong.Models
 						this._ID_VE = default(string);
 					}
 					this.SendPropertyChanged("Ve");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ve_ChiTietVe1", Storage="_Ve1", ThisKey="ID_VE", OtherKey="ID_VE", IsForeignKey=true)]
-		public Ve Ve1
-		{
-			get
-			{
-				return this._Ve1.Entity;
-			}
-			set
-			{
-				Ve previousValue = this._Ve1.Entity;
-				if (((previousValue != value) 
-							|| (this._Ve1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Ve1.Entity = null;
-						previousValue.ChiTietVes1.Remove(this);
-					}
-					this._Ve1.Entity = value;
-					if ((value != null))
-					{
-						value.ChiTietVes1.Add(this);
-						this._ID_VE = value.ID_VE;
-					}
-					else
-					{
-						this._ID_VE = default(string);
-					}
-					this.SendPropertyChanged("Ve1");
 				}
 			}
 		}
@@ -477,8 +403,6 @@ namespace NhaXe_QuocVuong.Models
 		
 		private EntitySet<LichTrinh> _LichTrinhs;
 		
-		private EntitySet<LichTrinh> _LichTrinhs1;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -498,7 +422,6 @@ namespace NhaXe_QuocVuong.Models
 		public Xe()
 		{
 			this._LichTrinhs = new EntitySet<LichTrinh>(new Action<LichTrinh>(this.attach_LichTrinhs), new Action<LichTrinh>(this.detach_LichTrinhs));
-			this._LichTrinhs1 = new EntitySet<LichTrinh>(new Action<LichTrinh>(this.attach_LichTrinhs1), new Action<LichTrinh>(this.detach_LichTrinhs1));
 			OnCreated();
 		}
 		
@@ -615,19 +538,6 @@ namespace NhaXe_QuocVuong.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Xe_LichTrinh1", Storage="_LichTrinhs1", ThisKey="ID_XE", OtherKey="ID_XE")]
-		public EntitySet<LichTrinh> LichTrinhs1
-		{
-			get
-			{
-				return this._LichTrinhs1;
-			}
-			set
-			{
-				this._LichTrinhs1.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -659,18 +569,6 @@ namespace NhaXe_QuocVuong.Models
 			this.SendPropertyChanging();
 			entity.Xe = null;
 		}
-		
-		private void attach_LichTrinhs1(LichTrinh entity)
-		{
-			this.SendPropertyChanging();
-			entity.Xe1 = this;
-		}
-		
-		private void detach_LichTrinhs1(LichTrinh entity)
-		{
-			this.SendPropertyChanging();
-			entity.Xe1 = null;
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DiaDiem")]
@@ -686,10 +584,6 @@ namespace NhaXe_QuocVuong.Models
 		private EntitySet<TuyenDuong> _TuyenDuongs;
 		
 		private EntitySet<TuyenDuong> _TuyenDuongs1;
-		
-		private EntitySet<TuyenDuong> _TuyenDuongs2;
-		
-		private EntitySet<TuyenDuong> _TuyenDuongs3;
 		
 		private EntitySet<TramDungChan> _TramDungChans;
 		
@@ -707,8 +601,6 @@ namespace NhaXe_QuocVuong.Models
 		{
 			this._TuyenDuongs = new EntitySet<TuyenDuong>(new Action<TuyenDuong>(this.attach_TuyenDuongs), new Action<TuyenDuong>(this.detach_TuyenDuongs));
 			this._TuyenDuongs1 = new EntitySet<TuyenDuong>(new Action<TuyenDuong>(this.attach_TuyenDuongs1), new Action<TuyenDuong>(this.detach_TuyenDuongs1));
-			this._TuyenDuongs2 = new EntitySet<TuyenDuong>(new Action<TuyenDuong>(this.attach_TuyenDuongs2), new Action<TuyenDuong>(this.detach_TuyenDuongs2));
-			this._TuyenDuongs3 = new EntitySet<TuyenDuong>(new Action<TuyenDuong>(this.attach_TuyenDuongs3), new Action<TuyenDuong>(this.detach_TuyenDuongs3));
 			this._TramDungChans = new EntitySet<TramDungChan>(new Action<TramDungChan>(this.attach_TramDungChans), new Action<TramDungChan>(this.detach_TramDungChans));
 			OnCreated();
 		}
@@ -779,32 +671,6 @@ namespace NhaXe_QuocVuong.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DiaDiem_TuyenDuong2", Storage="_TuyenDuongs2", ThisKey="ID_DIADIEM", OtherKey="DIEM_DAU")]
-		public EntitySet<TuyenDuong> TuyenDuongs2
-		{
-			get
-			{
-				return this._TuyenDuongs2;
-			}
-			set
-			{
-				this._TuyenDuongs2.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DiaDiem_TuyenDuong3", Storage="_TuyenDuongs3", ThisKey="ID_DIADIEM", OtherKey="DIEM_CUOI")]
-		public EntitySet<TuyenDuong> TuyenDuongs3
-		{
-			get
-			{
-				return this._TuyenDuongs3;
-			}
-			set
-			{
-				this._TuyenDuongs3.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DiaDiem_TramDungChan", Storage="_TramDungChans", ThisKey="ID_DIADIEM", OtherKey="ID_DIADIEM")]
 		public EntitySet<TramDungChan> TramDungChans
 		{
@@ -860,30 +726,6 @@ namespace NhaXe_QuocVuong.Models
 		{
 			this.SendPropertyChanging();
 			entity.DiaDiem1 = null;
-		}
-		
-		private void attach_TuyenDuongs2(TuyenDuong entity)
-		{
-			this.SendPropertyChanging();
-			entity.DiaDiem2 = this;
-		}
-		
-		private void detach_TuyenDuongs2(TuyenDuong entity)
-		{
-			this.SendPropertyChanging();
-			entity.DiaDiem2 = null;
-		}
-		
-		private void attach_TuyenDuongs3(TuyenDuong entity)
-		{
-			this.SendPropertyChanging();
-			entity.DiaDiem3 = this;
-		}
-		
-		private void detach_TuyenDuongs3(TuyenDuong entity)
-		{
-			this.SendPropertyChanging();
-			entity.DiaDiem3 = null;
 		}
 		
 		private void attach_TramDungChans(TramDungChan entity)
@@ -1090,11 +932,7 @@ namespace NhaXe_QuocVuong.Models
 		
 		private EntitySet<ChiTietVe> _ChiTietVes;
 		
-		private EntitySet<ChiTietVe> _ChiTietVes1;
-		
 		private EntityRef<LichTrinh> _LichTrinh;
-		
-		private EntityRef<LichTrinh> _LichTrinh1;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1113,9 +951,7 @@ namespace NhaXe_QuocVuong.Models
 		public Ghe()
 		{
 			this._ChiTietVes = new EntitySet<ChiTietVe>(new Action<ChiTietVe>(this.attach_ChiTietVes), new Action<ChiTietVe>(this.detach_ChiTietVes));
-			this._ChiTietVes1 = new EntitySet<ChiTietVe>(new Action<ChiTietVe>(this.attach_ChiTietVes1), new Action<ChiTietVe>(this.detach_ChiTietVes1));
 			this._LichTrinh = default(EntityRef<LichTrinh>);
-			this._LichTrinh1 = default(EntityRef<LichTrinh>);
 			OnCreated();
 		}
 		
@@ -1170,7 +1006,7 @@ namespace NhaXe_QuocVuong.Models
 			{
 				if ((this._MA_LICH_TRINH != value))
 				{
-					if ((this._LichTrinh.HasLoadedOrAssignedValue || this._LichTrinh1.HasLoadedOrAssignedValue))
+					if (this._LichTrinh.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1216,19 +1052,6 @@ namespace NhaXe_QuocVuong.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ghe_ChiTietVe1", Storage="_ChiTietVes1", ThisKey="ID_GHE", OtherKey="VI_TRI_NGOI")]
-		public EntitySet<ChiTietVe> ChiTietVes1
-		{
-			get
-			{
-				return this._ChiTietVes1;
-			}
-			set
-			{
-				this._ChiTietVes1.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LichTrinh_Ghe", Storage="_LichTrinh", ThisKey="MA_LICH_TRINH", OtherKey="MA_LICH_TRINH", IsForeignKey=true)]
 		public LichTrinh LichTrinh
 		{
@@ -1259,40 +1082,6 @@ namespace NhaXe_QuocVuong.Models
 						this._MA_LICH_TRINH = default(string);
 					}
 					this.SendPropertyChanged("LichTrinh");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LichTrinh_Ghe1", Storage="_LichTrinh1", ThisKey="MA_LICH_TRINH", OtherKey="MA_LICH_TRINH", IsForeignKey=true)]
-		public LichTrinh LichTrinh1
-		{
-			get
-			{
-				return this._LichTrinh1.Entity;
-			}
-			set
-			{
-				LichTrinh previousValue = this._LichTrinh1.Entity;
-				if (((previousValue != value) 
-							|| (this._LichTrinh1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._LichTrinh1.Entity = null;
-						previousValue.Ghes1.Remove(this);
-					}
-					this._LichTrinh1.Entity = value;
-					if ((value != null))
-					{
-						value.Ghes1.Add(this);
-						this._MA_LICH_TRINH = value.MA_LICH_TRINH;
-					}
-					else
-					{
-						this._MA_LICH_TRINH = default(string);
-					}
-					this.SendPropertyChanged("LichTrinh1");
 				}
 			}
 		}
@@ -1328,18 +1117,6 @@ namespace NhaXe_QuocVuong.Models
 			this.SendPropertyChanging();
 			entity.Ghe = null;
 		}
-		
-		private void attach_ChiTietVes1(ChiTietVe entity)
-		{
-			this.SendPropertyChanging();
-			entity.Ghe1 = this;
-		}
-		
-		private void detach_ChiTietVes1(ChiTietVe entity)
-		{
-			this.SendPropertyChanging();
-			entity.Ghe1 = null;
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.KhachHang")]
@@ -1358,11 +1135,7 @@ namespace NhaXe_QuocVuong.Models
 		
 		private EntitySet<Ve> _Ves;
 		
-		private EntitySet<Ve> _Ves1;
-		
 		private EntityRef<userAccount> _userAccount;
-		
-		private EntityRef<userAccount> _userAccount1;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1381,9 +1154,7 @@ namespace NhaXe_QuocVuong.Models
 		public KhachHang()
 		{
 			this._Ves = new EntitySet<Ve>(new Action<Ve>(this.attach_Ves), new Action<Ve>(this.detach_Ves));
-			this._Ves1 = new EntitySet<Ve>(new Action<Ve>(this.attach_Ves1), new Action<Ve>(this.detach_Ves1));
 			this._userAccount = default(EntityRef<userAccount>);
-			this._userAccount1 = default(EntityRef<userAccount>);
 			OnCreated();
 		}
 		
@@ -1398,7 +1169,7 @@ namespace NhaXe_QuocVuong.Models
 			{
 				if ((this._USERNAME != value))
 				{
-					if ((this._userAccount.HasLoadedOrAssignedValue || this._userAccount1.HasLoadedOrAssignedValue))
+					if (this._userAccount.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1484,19 +1255,6 @@ namespace NhaXe_QuocVuong.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KhachHang_Ve1", Storage="_Ves1", ThisKey="USERNAME", OtherKey="ID_KHACH_HANG")]
-		public EntitySet<Ve> Ves1
-		{
-			get
-			{
-				return this._Ves1;
-			}
-			set
-			{
-				this._Ves1.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="userAccount_KhachHang", Storage="_userAccount", ThisKey="USERNAME", OtherKey="username", IsForeignKey=true)]
 		public userAccount userAccount
 		{
@@ -1527,40 +1285,6 @@ namespace NhaXe_QuocVuong.Models
 						this._USERNAME = default(string);
 					}
 					this.SendPropertyChanged("userAccount");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="userAccount_KhachHang1", Storage="_userAccount1", ThisKey="USERNAME", OtherKey="username", IsForeignKey=true)]
-		public userAccount userAccount1
-		{
-			get
-			{
-				return this._userAccount1.Entity;
-			}
-			set
-			{
-				userAccount previousValue = this._userAccount1.Entity;
-				if (((previousValue != value) 
-							|| (this._userAccount1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._userAccount1.Entity = null;
-						previousValue.KhachHang1 = null;
-					}
-					this._userAccount1.Entity = value;
-					if ((value != null))
-					{
-						value.KhachHang1 = this;
-						this._USERNAME = value.username;
-					}
-					else
-					{
-						this._USERNAME = default(string);
-					}
-					this.SendPropertyChanged("userAccount1");
 				}
 			}
 		}
@@ -1596,18 +1320,6 @@ namespace NhaXe_QuocVuong.Models
 			this.SendPropertyChanging();
 			entity.KhachHang = null;
 		}
-		
-		private void attach_Ves1(Ve entity)
-		{
-			this.SendPropertyChanging();
-			entity.KhachHang1 = this;
-		}
-		
-		private void detach_Ves1(Ve entity)
-		{
-			this.SendPropertyChanging();
-			entity.KhachHang1 = null;
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LichTrinh")]
@@ -1642,27 +1354,17 @@ namespace NhaXe_QuocVuong.Models
 		
 		private EntitySet<Ghe> _Ghes;
 		
-		private EntitySet<Ghe> _Ghes1;
-		
 		private EntitySet<ThemTramDungChan> _ThemTramDungChans;
 		
 		private EntitySet<Ve> _Ves;
 		
-		private EntitySet<Ve> _Ves1;
-		
 		private EntityRef<Xe> _Xe;
-		
-		private EntityRef<Xe> _Xe1;
 		
 		private EntityRef<NHANVIEN> _NHANVIEN;
 		
 		private EntityRef<NHANVIEN> _NHANVIEN1;
 		
-		private EntityRef<NHANVIEN> _NHANVIEN2;
-		
 		private EntityRef<TuyenDuong> _TuyenDuong;
-		
-		private EntityRef<TuyenDuong> _TuyenDuong1;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1696,17 +1398,12 @@ namespace NhaXe_QuocVuong.Models
 		{
 			this._DoanhThus = new EntitySet<DoanhThu>(new Action<DoanhThu>(this.attach_DoanhThus), new Action<DoanhThu>(this.detach_DoanhThus));
 			this._Ghes = new EntitySet<Ghe>(new Action<Ghe>(this.attach_Ghes), new Action<Ghe>(this.detach_Ghes));
-			this._Ghes1 = new EntitySet<Ghe>(new Action<Ghe>(this.attach_Ghes1), new Action<Ghe>(this.detach_Ghes1));
 			this._ThemTramDungChans = new EntitySet<ThemTramDungChan>(new Action<ThemTramDungChan>(this.attach_ThemTramDungChans), new Action<ThemTramDungChan>(this.detach_ThemTramDungChans));
 			this._Ves = new EntitySet<Ve>(new Action<Ve>(this.attach_Ves), new Action<Ve>(this.detach_Ves));
-			this._Ves1 = new EntitySet<Ve>(new Action<Ve>(this.attach_Ves1), new Action<Ve>(this.detach_Ves1));
 			this._Xe = default(EntityRef<Xe>);
-			this._Xe1 = default(EntityRef<Xe>);
 			this._NHANVIEN = default(EntityRef<NHANVIEN>);
 			this._NHANVIEN1 = default(EntityRef<NHANVIEN>);
-			this._NHANVIEN2 = default(EntityRef<NHANVIEN>);
 			this._TuyenDuong = default(EntityRef<TuyenDuong>);
-			this._TuyenDuong1 = default(EntityRef<TuyenDuong>);
 			OnCreated();
 		}
 		
@@ -1741,7 +1438,7 @@ namespace NhaXe_QuocVuong.Models
 			{
 				if ((this._ID_TUYEN_DUONG != value))
 				{
-					if ((this._TuyenDuong.HasLoadedOrAssignedValue || this._TuyenDuong1.HasLoadedOrAssignedValue))
+					if (this._TuyenDuong.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1825,7 +1522,7 @@ namespace NhaXe_QuocVuong.Models
 			{
 				if ((this._ID_XE != value))
 				{
-					if ((this._Xe.HasLoadedOrAssignedValue || this._Xe1.HasLoadedOrAssignedValue))
+					if (this._Xe.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1889,7 +1586,7 @@ namespace NhaXe_QuocVuong.Models
 			{
 				if ((this._TAIXE != value))
 				{
-					if (this._NHANVIEN2.HasLoadedOrAssignedValue)
+					if (this._NHANVIEN1.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1933,7 +1630,7 @@ namespace NhaXe_QuocVuong.Models
 			{
 				if ((this._NGUOI_TAO_LICH_TRINH != value))
 				{
-					if ((this._NHANVIEN.HasLoadedOrAssignedValue || this._NHANVIEN1.HasLoadedOrAssignedValue))
+					if (this._NHANVIEN.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1972,19 +1669,6 @@ namespace NhaXe_QuocVuong.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LichTrinh_Ghe1", Storage="_Ghes1", ThisKey="MA_LICH_TRINH", OtherKey="MA_LICH_TRINH")]
-		public EntitySet<Ghe> Ghes1
-		{
-			get
-			{
-				return this._Ghes1;
-			}
-			set
-			{
-				this._Ghes1.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LichTrinh_ThemTramDungChan", Storage="_ThemTramDungChans", ThisKey="MA_LICH_TRINH", OtherKey="MA_LICH_TRINH")]
 		public EntitySet<ThemTramDungChan> ThemTramDungChans
 		{
@@ -2008,19 +1692,6 @@ namespace NhaXe_QuocVuong.Models
 			set
 			{
 				this._Ves.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LichTrinh_Ve1", Storage="_Ves1", ThisKey="MA_LICH_TRINH", OtherKey="ID_LICH_TRINH")]
-		public EntitySet<Ve> Ves1
-		{
-			get
-			{
-				return this._Ves1;
-			}
-			set
-			{
-				this._Ves1.Assign(value);
 			}
 		}
 		
@@ -2054,40 +1725,6 @@ namespace NhaXe_QuocVuong.Models
 						this._ID_XE = default(int);
 					}
 					this.SendPropertyChanged("Xe");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Xe_LichTrinh1", Storage="_Xe1", ThisKey="ID_XE", OtherKey="ID_XE", IsForeignKey=true)]
-		public Xe Xe1
-		{
-			get
-			{
-				return this._Xe1.Entity;
-			}
-			set
-			{
-				Xe previousValue = this._Xe1.Entity;
-				if (((previousValue != value) 
-							|| (this._Xe1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Xe1.Entity = null;
-						previousValue.LichTrinhs1.Remove(this);
-					}
-					this._Xe1.Entity = value;
-					if ((value != null))
-					{
-						value.LichTrinhs1.Add(this);
-						this._ID_XE = value.ID_XE;
-					}
-					else
-					{
-						this._ID_XE = default(int);
-					}
-					this.SendPropertyChanged("Xe1");
 				}
 			}
 		}
@@ -2126,7 +1763,7 @@ namespace NhaXe_QuocVuong.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NHANVIEN_LichTrinh1", Storage="_NHANVIEN1", ThisKey="NGUOI_TAO_LICH_TRINH", OtherKey="USERNAME", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NHANVIEN_LichTrinh1", Storage="_NHANVIEN1", ThisKey="TAIXE", OtherKey="USERNAME", IsForeignKey=true)]
 		public NHANVIEN NHANVIEN1
 		{
 			get
@@ -2149,47 +1786,13 @@ namespace NhaXe_QuocVuong.Models
 					if ((value != null))
 					{
 						value.LichTrinhs1.Add(this);
-						this._NGUOI_TAO_LICH_TRINH = value.USERNAME;
-					}
-					else
-					{
-						this._NGUOI_TAO_LICH_TRINH = default(string);
-					}
-					this.SendPropertyChanged("NHANVIEN1");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NHANVIEN_LichTrinh2", Storage="_NHANVIEN2", ThisKey="TAIXE", OtherKey="USERNAME", IsForeignKey=true)]
-		public NHANVIEN NHANVIEN2
-		{
-			get
-			{
-				return this._NHANVIEN2.Entity;
-			}
-			set
-			{
-				NHANVIEN previousValue = this._NHANVIEN2.Entity;
-				if (((previousValue != value) 
-							|| (this._NHANVIEN2.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._NHANVIEN2.Entity = null;
-						previousValue.LichTrinhs2.Remove(this);
-					}
-					this._NHANVIEN2.Entity = value;
-					if ((value != null))
-					{
-						value.LichTrinhs2.Add(this);
 						this._TAIXE = value.USERNAME;
 					}
 					else
 					{
 						this._TAIXE = default(string);
 					}
-					this.SendPropertyChanged("NHANVIEN2");
+					this.SendPropertyChanged("NHANVIEN1");
 				}
 			}
 		}
@@ -2224,40 +1827,6 @@ namespace NhaXe_QuocVuong.Models
 						this._ID_TUYEN_DUONG = default(int);
 					}
 					this.SendPropertyChanged("TuyenDuong");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TuyenDuong_LichTrinh1", Storage="_TuyenDuong1", ThisKey="ID_TUYEN_DUONG", OtherKey="ID_TUYEN", IsForeignKey=true)]
-		public TuyenDuong TuyenDuong1
-		{
-			get
-			{
-				return this._TuyenDuong1.Entity;
-			}
-			set
-			{
-				TuyenDuong previousValue = this._TuyenDuong1.Entity;
-				if (((previousValue != value) 
-							|| (this._TuyenDuong1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TuyenDuong1.Entity = null;
-						previousValue.LichTrinhs1.Remove(this);
-					}
-					this._TuyenDuong1.Entity = value;
-					if ((value != null))
-					{
-						value.LichTrinhs1.Add(this);
-						this._ID_TUYEN_DUONG = value.ID_TUYEN;
-					}
-					else
-					{
-						this._ID_TUYEN_DUONG = default(int);
-					}
-					this.SendPropertyChanged("TuyenDuong1");
 				}
 			}
 		}
@@ -2306,18 +1875,6 @@ namespace NhaXe_QuocVuong.Models
 			entity.LichTrinh = null;
 		}
 		
-		private void attach_Ghes1(Ghe entity)
-		{
-			this.SendPropertyChanging();
-			entity.LichTrinh1 = this;
-		}
-		
-		private void detach_Ghes1(Ghe entity)
-		{
-			this.SendPropertyChanging();
-			entity.LichTrinh1 = null;
-		}
-		
 		private void attach_ThemTramDungChans(ThemTramDungChan entity)
 		{
 			this.SendPropertyChanging();
@@ -2341,18 +1898,6 @@ namespace NhaXe_QuocVuong.Models
 			this.SendPropertyChanging();
 			entity.LichTrinh = null;
 		}
-		
-		private void attach_Ves1(Ve entity)
-		{
-			this.SendPropertyChanging();
-			entity.LichTrinh1 = this;
-		}
-		
-		private void detach_Ves1(Ve entity)
-		{
-			this.SendPropertyChanging();
-			entity.LichTrinh1 = null;
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.NHANVIEN")]
@@ -2375,11 +1920,7 @@ namespace NhaXe_QuocVuong.Models
 		
 		private EntitySet<LichTrinh> _LichTrinhs1;
 		
-		private EntitySet<LichTrinh> _LichTrinhs2;
-		
 		private EntityRef<userAccount> _userAccount;
-		
-		private EntityRef<userAccount> _userAccount1;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2401,9 +1942,7 @@ namespace NhaXe_QuocVuong.Models
 		{
 			this._LichTrinhs = new EntitySet<LichTrinh>(new Action<LichTrinh>(this.attach_LichTrinhs), new Action<LichTrinh>(this.detach_LichTrinhs));
 			this._LichTrinhs1 = new EntitySet<LichTrinh>(new Action<LichTrinh>(this.attach_LichTrinhs1), new Action<LichTrinh>(this.detach_LichTrinhs1));
-			this._LichTrinhs2 = new EntitySet<LichTrinh>(new Action<LichTrinh>(this.attach_LichTrinhs2), new Action<LichTrinh>(this.detach_LichTrinhs2));
 			this._userAccount = default(EntityRef<userAccount>);
-			this._userAccount1 = default(EntityRef<userAccount>);
 			OnCreated();
 		}
 		
@@ -2418,7 +1957,7 @@ namespace NhaXe_QuocVuong.Models
 			{
 				if ((this._USERNAME != value))
 				{
-					if ((this._userAccount.HasLoadedOrAssignedValue || this._userAccount1.HasLoadedOrAssignedValue))
+					if (this._userAccount.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -2524,7 +2063,7 @@ namespace NhaXe_QuocVuong.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NHANVIEN_LichTrinh1", Storage="_LichTrinhs1", ThisKey="USERNAME", OtherKey="NGUOI_TAO_LICH_TRINH")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NHANVIEN_LichTrinh1", Storage="_LichTrinhs1", ThisKey="USERNAME", OtherKey="TAIXE")]
 		public EntitySet<LichTrinh> LichTrinhs1
 		{
 			get
@@ -2534,19 +2073,6 @@ namespace NhaXe_QuocVuong.Models
 			set
 			{
 				this._LichTrinhs1.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NHANVIEN_LichTrinh2", Storage="_LichTrinhs2", ThisKey="USERNAME", OtherKey="TAIXE")]
-		public EntitySet<LichTrinh> LichTrinhs2
-		{
-			get
-			{
-				return this._LichTrinhs2;
-			}
-			set
-			{
-				this._LichTrinhs2.Assign(value);
 			}
 		}
 		
@@ -2580,40 +2106,6 @@ namespace NhaXe_QuocVuong.Models
 						this._USERNAME = default(string);
 					}
 					this.SendPropertyChanged("userAccount");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="userAccount_NHANVIEN1", Storage="_userAccount1", ThisKey="USERNAME", OtherKey="username", IsForeignKey=true)]
-		public userAccount userAccount1
-		{
-			get
-			{
-				return this._userAccount1.Entity;
-			}
-			set
-			{
-				userAccount previousValue = this._userAccount1.Entity;
-				if (((previousValue != value) 
-							|| (this._userAccount1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._userAccount1.Entity = null;
-						previousValue.NHANVIEN1 = null;
-					}
-					this._userAccount1.Entity = value;
-					if ((value != null))
-					{
-						value.NHANVIEN1 = this;
-						this._USERNAME = value.username;
-					}
-					else
-					{
-						this._USERNAME = default(string);
-					}
-					this.SendPropertyChanged("userAccount1");
 				}
 			}
 		}
@@ -2660,18 +2152,6 @@ namespace NhaXe_QuocVuong.Models
 		{
 			this.SendPropertyChanging();
 			entity.NHANVIEN1 = null;
-		}
-		
-		private void attach_LichTrinhs2(LichTrinh entity)
-		{
-			this.SendPropertyChanging();
-			entity.NHANVIEN2 = this;
-		}
-		
-		private void detach_LichTrinhs2(LichTrinh entity)
-		{
-			this.SendPropertyChanging();
-			entity.NHANVIEN2 = null;
 		}
 	}
 	
@@ -2727,7 +2207,7 @@ namespace NhaXe_QuocVuong.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TEN_PHUONG_THUC_THANH_TOAN", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TEN_PHUONG_THUC_THANH_TOAN", DbType="VarChar(128) NOT NULL", CanBeNull=false)]
 		public string TEN_PHUONG_THUC_THANH_TOAN
 		{
 			get
@@ -2835,15 +2315,9 @@ namespace NhaXe_QuocVuong.Models
 		
 		private EntitySet<LichTrinh> _LichTrinhs;
 		
-		private EntitySet<LichTrinh> _LichTrinhs1;
-		
 		private EntityRef<DiaDiem> _DiaDiem;
 		
 		private EntityRef<DiaDiem> _DiaDiem1;
-		
-		private EntityRef<DiaDiem> _DiaDiem2;
-		
-		private EntityRef<DiaDiem> _DiaDiem3;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2868,11 +2342,8 @@ namespace NhaXe_QuocVuong.Models
 		public TuyenDuong()
 		{
 			this._LichTrinhs = new EntitySet<LichTrinh>(new Action<LichTrinh>(this.attach_LichTrinhs), new Action<LichTrinh>(this.detach_LichTrinhs));
-			this._LichTrinhs1 = new EntitySet<LichTrinh>(new Action<LichTrinh>(this.attach_LichTrinhs1), new Action<LichTrinh>(this.detach_LichTrinhs1));
 			this._DiaDiem = default(EntityRef<DiaDiem>);
 			this._DiaDiem1 = default(EntityRef<DiaDiem>);
-			this._DiaDiem2 = default(EntityRef<DiaDiem>);
-			this._DiaDiem3 = default(EntityRef<DiaDiem>);
 			OnCreated();
 		}
 		
@@ -2927,7 +2398,7 @@ namespace NhaXe_QuocVuong.Models
 			{
 				if ((this._DIEM_DAU != value))
 				{
-					if ((this._DiaDiem.HasLoadedOrAssignedValue || this._DiaDiem2.HasLoadedOrAssignedValue))
+					if (this._DiaDiem.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -2951,7 +2422,7 @@ namespace NhaXe_QuocVuong.Models
 			{
 				if ((this._DIEM_CUOI != value))
 				{
-					if ((this._DiaDiem1.HasLoadedOrAssignedValue || this._DiaDiem3.HasLoadedOrAssignedValue))
+					if (this._DiaDiem1.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -3037,19 +2508,6 @@ namespace NhaXe_QuocVuong.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TuyenDuong_LichTrinh1", Storage="_LichTrinhs1", ThisKey="ID_TUYEN", OtherKey="ID_TUYEN_DUONG")]
-		public EntitySet<LichTrinh> LichTrinhs1
-		{
-			get
-			{
-				return this._LichTrinhs1;
-			}
-			set
-			{
-				this._LichTrinhs1.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DiaDiem_TuyenDuong", Storage="_DiaDiem", ThisKey="DIEM_DAU", OtherKey="ID_DIADIEM", IsForeignKey=true)]
 		public DiaDiem DiaDiem
 		{
@@ -3118,74 +2576,6 @@ namespace NhaXe_QuocVuong.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DiaDiem_TuyenDuong2", Storage="_DiaDiem2", ThisKey="DIEM_DAU", OtherKey="ID_DIADIEM", IsForeignKey=true)]
-		public DiaDiem DiaDiem2
-		{
-			get
-			{
-				return this._DiaDiem2.Entity;
-			}
-			set
-			{
-				DiaDiem previousValue = this._DiaDiem2.Entity;
-				if (((previousValue != value) 
-							|| (this._DiaDiem2.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._DiaDiem2.Entity = null;
-						previousValue.TuyenDuongs2.Remove(this);
-					}
-					this._DiaDiem2.Entity = value;
-					if ((value != null))
-					{
-						value.TuyenDuongs2.Add(this);
-						this._DIEM_DAU = value.ID_DIADIEM;
-					}
-					else
-					{
-						this._DIEM_DAU = default(int);
-					}
-					this.SendPropertyChanged("DiaDiem2");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DiaDiem_TuyenDuong3", Storage="_DiaDiem3", ThisKey="DIEM_CUOI", OtherKey="ID_DIADIEM", IsForeignKey=true)]
-		public DiaDiem DiaDiem3
-		{
-			get
-			{
-				return this._DiaDiem3.Entity;
-			}
-			set
-			{
-				DiaDiem previousValue = this._DiaDiem3.Entity;
-				if (((previousValue != value) 
-							|| (this._DiaDiem3.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._DiaDiem3.Entity = null;
-						previousValue.TuyenDuongs3.Remove(this);
-					}
-					this._DiaDiem3.Entity = value;
-					if ((value != null))
-					{
-						value.TuyenDuongs3.Add(this);
-						this._DIEM_CUOI = value.ID_DIADIEM;
-					}
-					else
-					{
-						this._DIEM_CUOI = default(int);
-					}
-					this.SendPropertyChanged("DiaDiem3");
-				}
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -3216,18 +2606,6 @@ namespace NhaXe_QuocVuong.Models
 		{
 			this.SendPropertyChanging();
 			entity.TuyenDuong = null;
-		}
-		
-		private void attach_LichTrinhs1(LichTrinh entity)
-		{
-			this.SendPropertyChanging();
-			entity.TuyenDuong1 = this;
-		}
-		
-		private void detach_LichTrinhs1(LichTrinh entity)
-		{
-			this.SendPropertyChanging();
-			entity.TuyenDuong1 = null;
 		}
 	}
 	
@@ -3696,11 +3074,7 @@ namespace NhaXe_QuocVuong.Models
 		
 		private EntityRef<KhachHang> _KhachHang;
 		
-		private EntityRef<KhachHang> _KhachHang1;
-		
 		private EntityRef<NHANVIEN> _NHANVIEN;
-		
-		private EntityRef<NHANVIEN> _NHANVIEN1;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -3717,9 +3091,7 @@ namespace NhaXe_QuocVuong.Models
 		public userAccount()
 		{
 			this._KhachHang = default(EntityRef<KhachHang>);
-			this._KhachHang1 = default(EntityRef<KhachHang>);
 			this._NHANVIEN = default(EntityRef<NHANVIEN>);
-			this._NHANVIEN1 = default(EntityRef<NHANVIEN>);
 			OnCreated();
 		}
 		
@@ -3812,35 +3184,6 @@ namespace NhaXe_QuocVuong.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="userAccount_KhachHang1", Storage="_KhachHang1", ThisKey="username", OtherKey="USERNAME", IsUnique=true, IsForeignKey=false)]
-		public KhachHang KhachHang1
-		{
-			get
-			{
-				return this._KhachHang1.Entity;
-			}
-			set
-			{
-				KhachHang previousValue = this._KhachHang1.Entity;
-				if (((previousValue != value) 
-							|| (this._KhachHang1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._KhachHang1.Entity = null;
-						previousValue.userAccount1 = null;
-					}
-					this._KhachHang1.Entity = value;
-					if ((value != null))
-					{
-						value.userAccount1 = this;
-					}
-					this.SendPropertyChanged("KhachHang1");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="userAccount_NHANVIEN", Storage="_NHANVIEN", ThisKey="username", OtherKey="USERNAME", IsUnique=true, IsForeignKey=false)]
 		public NHANVIEN NHANVIEN
 		{
@@ -3866,35 +3209,6 @@ namespace NhaXe_QuocVuong.Models
 						value.userAccount = this;
 					}
 					this.SendPropertyChanged("NHANVIEN");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="userAccount_NHANVIEN1", Storage="_NHANVIEN1", ThisKey="username", OtherKey="USERNAME", IsUnique=true, IsForeignKey=false)]
-		public NHANVIEN NHANVIEN1
-		{
-			get
-			{
-				return this._NHANVIEN1.Entity;
-			}
-			set
-			{
-				NHANVIEN previousValue = this._NHANVIEN1.Entity;
-				if (((previousValue != value) 
-							|| (this._NHANVIEN1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._NHANVIEN1.Entity = null;
-						previousValue.userAccount1 = null;
-					}
-					this._NHANVIEN1.Entity = value;
-					if ((value != null))
-					{
-						value.userAccount1 = this;
-					}
-					this.SendPropertyChanged("NHANVIEN1");
 				}
 			}
 		}
@@ -3948,19 +3262,13 @@ namespace NhaXe_QuocVuong.Models
 		
 		private EntitySet<ChiTietVe> _ChiTietVes;
 		
-		private EntitySet<ChiTietVe> _ChiTietVes1;
-		
 		private EntityRef<TramDungChan> _TramDungChan;
 		
 		private EntityRef<TramDungChan> _TramDungChan1;
 		
 		private EntityRef<KhachHang> _KhachHang;
 		
-		private EntityRef<KhachHang> _KhachHang1;
-		
 		private EntityRef<LichTrinh> _LichTrinh;
-		
-		private EntityRef<LichTrinh> _LichTrinh1;
 		
 		private EntityRef<PHUONG_THUC_THANH_TOAN> _PHUONG_THUC_THANH_TOAN1;
 		
@@ -3993,13 +3301,10 @@ namespace NhaXe_QuocVuong.Models
 		public Ve()
 		{
 			this._ChiTietVes = new EntitySet<ChiTietVe>(new Action<ChiTietVe>(this.attach_ChiTietVes), new Action<ChiTietVe>(this.detach_ChiTietVes));
-			this._ChiTietVes1 = new EntitySet<ChiTietVe>(new Action<ChiTietVe>(this.attach_ChiTietVes1), new Action<ChiTietVe>(this.detach_ChiTietVes1));
 			this._TramDungChan = default(EntityRef<TramDungChan>);
 			this._TramDungChan1 = default(EntityRef<TramDungChan>);
 			this._KhachHang = default(EntityRef<KhachHang>);
-			this._KhachHang1 = default(EntityRef<KhachHang>);
 			this._LichTrinh = default(EntityRef<LichTrinh>);
-			this._LichTrinh1 = default(EntityRef<LichTrinh>);
 			this._PHUONG_THUC_THANH_TOAN1 = default(EntityRef<PHUONG_THUC_THANH_TOAN>);
 			OnCreated();
 		}
@@ -4035,7 +3340,7 @@ namespace NhaXe_QuocVuong.Models
 			{
 				if ((this._ID_KHACH_HANG != value))
 				{
-					if ((this._KhachHang.HasLoadedOrAssignedValue || this._KhachHang1.HasLoadedOrAssignedValue))
+					if (this._KhachHang.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -4059,7 +3364,7 @@ namespace NhaXe_QuocVuong.Models
 			{
 				if ((this._ID_LICH_TRINH != value))
 				{
-					if ((this._LichTrinh.HasLoadedOrAssignedValue || this._LichTrinh1.HasLoadedOrAssignedValue))
+					if (this._LichTrinh.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -4237,19 +3542,6 @@ namespace NhaXe_QuocVuong.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ve_ChiTietVe1", Storage="_ChiTietVes1", ThisKey="ID_VE", OtherKey="ID_VE")]
-		public EntitySet<ChiTietVe> ChiTietVes1
-		{
-			get
-			{
-				return this._ChiTietVes1;
-			}
-			set
-			{
-				this._ChiTietVes1.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TramDungChan_Ve", Storage="_TramDungChan", ThisKey="DIEM_DOAN", OtherKey="ID_TRAMDUNGCHAN", IsForeignKey=true)]
 		public TramDungChan TramDungChan
 		{
@@ -4352,40 +3644,6 @@ namespace NhaXe_QuocVuong.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KhachHang_Ve1", Storage="_KhachHang1", ThisKey="ID_KHACH_HANG", OtherKey="USERNAME", IsForeignKey=true)]
-		public KhachHang KhachHang1
-		{
-			get
-			{
-				return this._KhachHang1.Entity;
-			}
-			set
-			{
-				KhachHang previousValue = this._KhachHang1.Entity;
-				if (((previousValue != value) 
-							|| (this._KhachHang1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._KhachHang1.Entity = null;
-						previousValue.Ves1.Remove(this);
-					}
-					this._KhachHang1.Entity = value;
-					if ((value != null))
-					{
-						value.Ves1.Add(this);
-						this._ID_KHACH_HANG = value.USERNAME;
-					}
-					else
-					{
-						this._ID_KHACH_HANG = default(string);
-					}
-					this.SendPropertyChanged("KhachHang1");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LichTrinh_Ve", Storage="_LichTrinh", ThisKey="ID_LICH_TRINH", OtherKey="MA_LICH_TRINH", IsForeignKey=true)]
 		public LichTrinh LichTrinh
 		{
@@ -4416,40 +3674,6 @@ namespace NhaXe_QuocVuong.Models
 						this._ID_LICH_TRINH = default(string);
 					}
 					this.SendPropertyChanged("LichTrinh");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LichTrinh_Ve1", Storage="_LichTrinh1", ThisKey="ID_LICH_TRINH", OtherKey="MA_LICH_TRINH", IsForeignKey=true)]
-		public LichTrinh LichTrinh1
-		{
-			get
-			{
-				return this._LichTrinh1.Entity;
-			}
-			set
-			{
-				LichTrinh previousValue = this._LichTrinh1.Entity;
-				if (((previousValue != value) 
-							|| (this._LichTrinh1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._LichTrinh1.Entity = null;
-						previousValue.Ves1.Remove(this);
-					}
-					this._LichTrinh1.Entity = value;
-					if ((value != null))
-					{
-						value.Ves1.Add(this);
-						this._ID_LICH_TRINH = value.MA_LICH_TRINH;
-					}
-					else
-					{
-						this._ID_LICH_TRINH = default(string);
-					}
-					this.SendPropertyChanged("LichTrinh1");
 				}
 			}
 		}
@@ -4518,18 +3742,6 @@ namespace NhaXe_QuocVuong.Models
 		{
 			this.SendPropertyChanging();
 			entity.Ve = null;
-		}
-		
-		private void attach_ChiTietVes1(ChiTietVe entity)
-		{
-			this.SendPropertyChanging();
-			entity.Ve1 = this;
-		}
-		
-		private void detach_ChiTietVes1(ChiTietVe entity)
-		{
-			this.SendPropertyChanging();
-			entity.Ve1 = null;
 		}
 	}
 }

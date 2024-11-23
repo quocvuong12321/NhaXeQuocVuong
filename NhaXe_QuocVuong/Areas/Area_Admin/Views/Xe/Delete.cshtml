@@ -1,0 +1,123 @@
+﻿@model NhaXe_QuocVuong.Models.Xe
+
+@{
+    ViewBag.Title = "Xóa Xe";
+    Layout = "~/Areas/Area_Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="confirmation-container">
+        <h3 class="text-center text-danger">XÁC NHẬN XÓA XE</h3>
+        <div class="detail mt-4">
+            <p><strong>Biển Số Xe:</strong> @Model.BIEN_SO_XE</p>
+            <p><strong>Loại Xe:</strong> @Model.LOAI_XE</p>
+            <p><strong>Số Ghế:</strong> @Model.SO_GHE</p>
+            <p><strong>Ngày Thêm Xe:</strong> @Model.NGAY_THEM_XE</p>
+        </div>
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["Error"]
+            </div>
+        }
+
+        @if (TempData["Message"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["Message"]
+            </div>
+        }
+
+        @using (Html.BeginForm("Delete", "Xe", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.HiddenFor(model => model.ID_XE)
+
+            <div class="d-flex justify-content-center mt-4">
+                <input type="submit" class="btn btn-danger btn-custom" value="Xóa Xe" />
+                @Html.ActionLink("Trở lại danh sách", "Index", null, new { @class = "btn btn-secondary btn-custom" })
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .confirmation-container {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 50px;
+        max-width: 500px;
+        margin: 100px auto;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+        .confirmation-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+    h3 {
+        color: #e63946;
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    p {
+        font-size: 16px;
+        color: #6c757d;
+    }
+
+    .detail {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        text-align: left;
+        font-size: 15px;
+        color: #495057;
+        line-height: 1.6;
+    }
+
+        .detail strong {
+            color: #343a40;
+        }
+
+    .btn-custom {
+        padding: 12px 30px;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 50px;
+        margin: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-danger {
+        background-color: #e63946;
+        border-color: #e63946;
+        color: white;
+    }
+
+        .btn-danger:hover {
+            background-color: #d62839;
+            transform: scale(1.05);
+        }
+
+    .btn-secondary {
+        background-color: #495057;
+        border-color: #495057;
+        color: white;
+    }
+
+        .btn-secondary:hover {
+            background-color: #343a40;
+            transform: scale(1.05);
+        }
+
+    .alert {
+        margin-top: 20px;
+    }
+</style>
