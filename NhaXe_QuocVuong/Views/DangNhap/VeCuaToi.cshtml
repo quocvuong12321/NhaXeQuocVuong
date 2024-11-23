@@ -1,0 +1,284 @@
+﻿@model List<NhaXe_QuocVuong.Models.VeCuaToi>
+@{
+    ViewBag.Title = "VeCuaToi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="profile-container">
+    <!-- Sidebar Menu -->
+    <aside class="sidebar">
+        <nav>
+            <ul>
+                <li class="menu-item">
+                    <a href="@Url.Action("ThongTinTaiKhoan", "DangNhap")">
+                        <i class="fas fa-user-circle"></i> Thông tin tài khoản
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="@Url.Action("LichSuMuaVe", "DangNhap")">
+                        <i class="fas fa-cart-shopping"></i> Lịch sử mua vé
+                    </a>
+                </li>
+                <li class="menu-item active">
+                    <a href="@Url.Action("VeCuaToi", "DangNhap")">
+                        <i class="fas fa-ticket-alt"></i> Vé của tôi
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="@Url.Action("Logout", "DangNhap")">
+                        <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Profile Content -->
+    <section class="profile-info">
+        <h2>Vé của tôi</h2>
+
+        <div class="ticket-container">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var ve in Model)
+                {
+                    <div class="ticket-item">
+                        <div class="ticket-info">
+                            <div class="status-paid">@ve.TrangThai</div>
+                            <h3>@ve.NgayKhoiHanh.ToString("dddd, dd/MM/yyyy")</h3>
+                            <div class="date-time"><strong>@ve.NgayKhoiHanh.ToString("HH:mm")</strong></div>
+                            <p><strong>@ve.TenTuyen</strong></p>
+                            <p>Mã vé: <strong>@ve.IdVe</strong></p>
+                            <p>Biển số xe: <strong>@ve.BienSoXe</strong></p>
+                        </div>
+                        <div class="ticket-actions">
+                            <a href="@Url.Action("TicketDetail", "DangNhap", new { idVe = ve.IdVe })">Xem vé</a>
+                        </div>
+                    </div> }
+            }
+            else
+            {
+                <p class="no-data">Hiện tại bạn chưa đặt vé</p>}
+        </div>
+    </section>
+</div>
+<style>
+    /* General Styling */
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
+
+    .profile-container {
+        display: flex;
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+    }
+
+    /* Sidebar Styling */
+    .sidebar {
+        width: 280px;
+        background-color: #fef6f3;
+        padding: 30px 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    }
+
+        .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .sidebar nav ul li {
+                padding: 15px;
+                margin-bottom: 20px;
+                /*background-color: #ffe6d8;*/
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                color: #333;
+                font-size: 18px;
+                cursor: pointer;
+                transition: background 0.3s ease, transform 0.3s ease;
+            }
+
+                .sidebar nav ul li a {
+                    margin-right: 15px;
+                    font-size: 18px;
+                    color: #ff7733;
+                    text-decoration: none;
+                    align-items: center;
+                }
+
+                .sidebar nav ul li:hover {
+                    background-color: #ffd3b9;
+                    transform: translateX(8px);
+                }
+
+                .sidebar nav ul li.active {
+                    background-color: #ffb488;
+                    color: #fff;
+                }
+
+    /* Profile Info Section */
+    .profile-info {
+        flex: 1;
+        padding: 20px 40px;
+    }
+
+        .profile-info h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ff7733;
+            padding-bottom: 10px;
+        }
+
+    /* Ticket container */
+    .ticket-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* Each ticket item */
+    .ticket-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .ticket-info {
+        flex: 1;
+    }
+
+        .ticket-info h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+    .date-time {
+        font-size: 20px;
+        color: #555;
+    }
+
+    .ticket-info p {
+        margin: 5px 0;
+        color: #777;
+    }
+
+    .ticket-actions {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+        .ticket-actions a {
+            margin: 5px 0;
+            color: #ff7733;
+            font-size: 16px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+            .ticket-actions a:hover {
+                color: #ff4c00;
+            }
+
+    .status-paid {
+        background-color: #28a745;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        text-align: center;
+        max-width: 150px;
+        margin-bottom: 10px;
+    }
+
+    .no-data {
+        text-align: center;
+        color: #888;
+        font-size: 16px;
+    }
+
+
+    /* Profile Section Styling */
+    .profile-picture img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 25px;
+        border: 2px solid #ff7733;
+    }
+
+    .upload-btn {
+        display: inline-block;
+        background-color: #ff7733;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .upload-btn:hover {
+            background-color: #ff8a47;
+        }
+
+    .profile-picture input[type="file"] {
+        display: none;
+    }
+
+    .profile-details {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+        .profile-details input, .profile-details select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s;
+        }
+
+            .profile-details input:focus, .profile-details select:focus {
+                border-color: #ff7733;
+            }
+
+    .btn-update {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #ff7733;
+        color: white;
+        text-align: center;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-update:hover {
+            background-color: #ff8a47;
+        }
+</style>

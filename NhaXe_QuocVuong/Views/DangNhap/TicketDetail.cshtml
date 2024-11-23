@@ -1,0 +1,384 @@
+﻿@model NhaXe_QuocVuong.Models.VeCuaToi
+@{
+    ViewBag.Title = "TicketDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var startDiemList = ViewBag.StartDiem as SelectList;
+    var endDiemList = ViewBag.EndDiem as SelectList;
+
+    // Lấy tên trạm đón và trạm trả từ SelectList
+    var startDiemText = startDiemList?.FirstOrDefault()?.Text ?? "Không có thông tin";
+    var endDiemText = endDiemList?.FirstOrDefault()?.Text ?? "Không có thông tin";
+}
+
+<div class="profile-container">
+    <!-- Sidebar Menu -->
+    <aside class="sidebar">
+        <nav>
+            <ul>
+                <li class="menu-item">
+                    <a href="@Url.Action("ThongTinTaiKhoan", "DangNhap")">
+                        <i class="fas fa-user-circle"></i> Thông tin tài khoản
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="@Url.Action("LichSuMuaVe", "DangNhap")">
+                        <i class="fas fa-cart-shopping"></i> Lịch sử mua vé
+                    </a>
+                </li>
+                <li class="menu-item active">
+                    <a href="@Url.Action("VeCuaToi", "DangNhap")">
+                        <i class="fas fa-ticket-alt"></i> Vé của tôi
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="@Url.Action("Logout", "DangNhap")">
+                        <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Profile Content -->
+    <section class="profile-info">
+        <h2>Thông tin vé</h2>
+
+        <div class="trip-card">
+            @if (Model != null)
+            {
+                <input type="hidden" id="idVe" value="@Model.IdVe" />
+                <div class="trip-header">
+                    <div class="trip-date">@Model.NgayKhoiHanh.ToString("dddd, dd/MM/yyyy")</div>
+                    <div class="trip-status">
+                        <span>
+                            <button id="btnUpdate" class="btn btn-default">Thay đổi</button>
+                        </span>
+                        <span class="status">
+                            <a href="@Url.Action("Details", "DangNhap", new { idVe = Model.IdVe })" style="color: #fff; text-decoration: none;">Chi tiết</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="trip-body">
+                    <div class="trip-info">
+                        <div class="trip-location">
+                            <span class="trip-name">Quốc Vương</span>
+                        </div>
+                        <div class="schedule">
+                            <div class="schedule-item">
+                                <span class="time">@Model.NgayKhoiHanh.ToString("HH:mm")</span>
+                                <span class="address" id="diemDonText">
+                                    @startDiemText
+                                </span> <!-- Hiển thị tên trạm đón -->
+                            </div>
+                            <div class="line"></div>
+                            <div class="schedule-item">
+                                <span class="time">@Model.NgayKetThuc.ToString("HH:mm")</span>
+                                <span class="address" id="diemTraText">
+                                    @endDiemText
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div> }
+            else
+            {
+                <p class="no-data">Hiện tại bạn chưa đặt vé</p>}
+        </div>
+
+        <!-- Modal for updating ticket information -->
+        <div id="updateModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cập nhật thông tin vé</h5>
+                    </div>
+                    <form id="updateForm" method="post">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="diemDon">Điểm đón:</label>
+                                <select id="diemDonSelect" name="diemDon" class="form-control">
+                                    @if (ViewBag.StartDiem != null)
+                                    {
+                                        foreach (var item in ViewBag.StartDiem as SelectList)
+                                        {
+                                            <option value="@item.Value">@item.Text</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="diemTra">Điểm trả:</label>
+                                <select id="diemTraSelect" name="diemTra" class="form-control">
+                                    @if (ViewBag.EndDiem != null)
+                                    {
+                                        foreach (var item in ViewBag.EndDiem as SelectList)
+                                        {
+                                            <option value="@item.Value">@item.Text</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Cập nhật</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Mở modal khi nhấn nút "Thay đổi"
+        $('#btnUpdate').click(function () {
+            $('#updateModal').modal('show');
+        });
+
+        // Gửi AJAX để cập nhật dữ liệu
+        $('#updateForm').submit(function (e) {
+            e.preventDefault();
+            var idVe = $('#idVe').val();  // Lấy idVe từ input ẩn hoặc model
+            console.log("idVe: " + idVe);
+            var diemDon = $('#diemDonSelect').val(); // Lấy điểm đón từ select
+            var diemTra = $('#diemTraSelect').val(); // Lấy điểm trả từ select
+
+            $.ajax({
+                url: '@Url.Action("UpdateTicket", "DangNhap")',  // Đảm bảo đường dẫn chính xác
+                type: 'POST',
+                data: {
+                    idVe: idVe,
+                    diemDon: diemDon,
+                    diemTra: diemTra
+                },
+                success: function (response) {
+                    if (response.success) {
+                        alert(response.message);
+                        // Cập nhật trên giao diện người dùng
+                        $('#diemDonText').text($("#diemDonSelect option:selected").text());
+                        $('#diemTraText').text($("#diemTraSelect option:selected").text());
+                        $('#updateModal').modal('hide');
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function () {
+                    alert("Đã xảy ra lỗi!");
+                }
+            });
+        });
+
+        // Đảm bảo nút Đóng hoạt động
+        $('.btn-danger').click(function () {
+            $('#updateModal').modal('hide');
+        });
+    });
+</script>
+
+
+
+<style>
+    /* General Styling */
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
+
+    .profile-container {
+        display: flex;
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+    }
+
+    /* Sidebar Styling */
+    .sidebar {
+        width: 280px;
+        background-color: #fef6f3;
+        padding: 30px 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    }
+
+        .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .sidebar nav ul li {
+                padding: 15px;
+                margin-bottom: 20px;
+                /*background-color: #ffe6d8;*/
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                color: #333;
+                font-size: 18px;
+                cursor: pointer;
+                transition: background 0.3s ease, transform 0.3s ease;
+            }
+
+                .sidebar nav ul li a {
+                    margin-right: 15px;
+                    font-size: 18px;
+                    color: #ff7733;
+                    text-decoration: none;
+                    align-items: center;
+                }
+
+                .sidebar nav ul li:hover {
+                    background-color: #ffd3b9;
+                    transform: translateX(8px);
+                }
+
+                .sidebar nav ul li.active {
+                    background-color: #ffb488;
+                    color: #fff;
+                }
+
+    /* Profile Info Section */
+    .profile-info {
+        flex: 1;
+        padding: 20px 40px;
+    }
+
+        .profile-info h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ff7733;
+            padding-bottom: 10px;
+        }
+
+    /* Ticket container */
+    .trip-card {
+        background-color: #ffffff;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        margin: 20px auto;
+        font-size: 16px;
+    }
+
+    /* Header Styling */
+    .trip-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+        color: #777;
+        margin-bottom: 15px;
+    }
+
+        .trip-header .trip-date {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .trip-header .trip-status {
+            display: flex;
+            align-items: center;
+        }
+
+        .trip-header .status {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+
+    /* Trip Info Styling */
+    .trip-info {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .trip-location {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .schedule {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    /* Schedule Item Styling */
+    .schedule-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        font-size: 15px;
+    }
+
+        .schedule-item .time {
+            font-weight: bold;
+            margin-right: 20px;
+            color: #333;
+        }
+
+        /* Address Styling */
+        .schedule-item .address {
+            color: #555;
+        }
+
+    /* Line between schedule items */
+    .line {
+        width: 2px;
+        background-color: #ccc;
+        height: 40px;
+        margin-top: -10px;
+        margin-bottom: 4px;
+        margin-left: 20px;
+        /* margin: 5px 0; */
+    }
+
+
+
+    .schedule-item .time:first-child::before {
+        background-color: #2196f3; /* Blue */
+    }
+
+    .schedule-item .time:last-child::before {
+        background-color: #f44336; /* Red */
+    }
+
+    /* Footer Styling */
+    .trip-footer {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    /* Button Styling */
+    .details-btn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 30px;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .details-btn:hover {
+            background-color: #45a049;
+        }
+</style>
+
+
