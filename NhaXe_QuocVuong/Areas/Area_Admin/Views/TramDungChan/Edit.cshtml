@@ -1,0 +1,163 @@
+﻿@model NhaXe_QuocVuong.Models.TramDungChan
+
+@{
+    ViewBag.Title = "Chỉnh Sửa Trạm Dừng Chân";
+    Layout = "~/Areas/Area_Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<div class="container mt-5">
+    <!-- Phần tiêu đề -->
+    <div class="text-center mb-4">
+        <h2 class="display-5 text-primary fw-bold">CHỈNH SỬA TRẠM DỪNG CHÂN</h2>
+        <p class="text-muted">Cập nhật thông tin trạm dừng chân hiện có</p>
+    </div>
+
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-5">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <!-- Validation Summary -->
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <!-- ID Trạm Dừng Chân (Hidden) -->
+                @Html.HiddenFor(model => model.ID_TRAMDUNGCHAN)
+
+                <!-- Địa Điểm -->
+                <div class="form-group mb-4">
+                    @Html.Label("Địa Điểm", htmlAttributes: new { @class = "form-label fw-bold text-secondary" })
+                    @Html.DropDownListFor(
+                        model => model.ID_DIADIEM,
+                        (SelectList)ViewBag.DiaDiemList,
+                        "Chọn Địa Điểm",
+                        new { @class = "form-control form-control-lg rounded-3", id = "diemdau" }
+                    )
+                    @Html.ValidationMessageFor(model => model.ID_DIADIEM, "", new { @class = "text-danger" })
+                    <small class="form-text text-muted">Chọn địa điểm cho trạm dừng chân.</small>
+                </div>
+
+                <!-- Tên Trạm Dừng Chân -->
+                <div class="form-group mb-4">
+                    @Html.Label("Tên Trạm Dừng Chân", htmlAttributes: new { @class = "form-label fw-bold text-secondary" })
+                    @Html.EditorFor(model => model.TEN_TRAMDUNGCHAN, new { htmlAttributes = new { @class = "form-control form-control-lg rounded-3", id = "TEN_TRAMDUNGCHAN", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.TEN_TRAMDUNGCHAN, "", new { @class = "text-danger" })
+                    <small class="form-text text-muted">Tên trạm dừng chân sẽ được tự động điền khi chọn địa điểm.</small>
+                </div>
+
+                <!-- Địa Chỉ -->
+                <div class="form-group mb-4">
+                    @Html.Label("Địa Chỉ", htmlAttributes: new { @class = "form-label fw-bold text-secondary" })
+                    @Html.EditorFor(model => model.DIA_CHI, new { htmlAttributes = new { @class = "form-control form-control-lg rounded-3" } })
+                    @Html.ValidationMessageFor(model => model.DIA_CHI, "", new { @class = "text-danger" })
+                    <small class="form-text text-muted">Nhập địa chỉ chi tiết cho trạm dừng chân.</small>
+                </div>
+
+                <!-- Nút Lưu và Trở Về -->
+                <div class="d-flex justify-content-end">
+                    <input type="submit" value="Lưu Thay Đổi" class="btn btn-primary btn-lg me-3 px-4" />
+                    @Html.ActionLink("Trở về danh sách", "Index", null, new { @class = "btn btn-outline-secondary btn-lg px-4" })
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    // Hàm tự động điền tên trạm dừng chân khi chọn địa điểm
+    window.onload = function () {
+        updateTenTramDungChan(); // Gọi hàm khi trang được tải lại
+    };
+
+    document.getElementById("diemdau").addEventListener("change", updateTenTramDungChan);
+
+    function updateTenTramDungChan() {
+        var diemDauText = document.getElementById("diemdau").options[document.getElementById("diemdau").selectedIndex].text;
+        if (diemDauText !== "Chọn Địa Điểm") {
+            document.getElementById("TEN_TRAMDUNGCHAN").value = "Trạm Dừng Chân " + diemDauText;
+        } else {
+            document.getElementById("TEN_TRAMDUNGCHAN").value = "";
+        }
+    }
+</script>
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        color: #2d3748;
+        background-color: #edf2f7;
+    }
+
+    .card {
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+        padding: 30px;
+    }
+
+    h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #2b6cb0;
+    }
+
+    h3 {
+        font-size: 24px;
+        font-weight: bold;
+        color: #2b6cb0;
+    }
+
+    .form-label {
+        font-size: 14px;
+        color: #4a5568;
+        font-weight: 500;
+    }
+
+    .form-control {
+        border-radius: 5px;
+        padding: 12px;
+        font-size: 14px;
+        border: 1px solid #e2e8f0;
+        color: #2d3748;
+        transition: all 0.3s ease;
+    }
+
+        .form-control:focus {
+            border-color: #3182ce;
+            background-color: #ffffff;
+            box-shadow: 0 0 5px rgba(49, 130, 206, 0.5);
+        }
+
+    .text-danger {
+        font-size: 12px;
+        color: #e53e3e;
+    }
+
+    .btn-primary {
+        background-color: #3182ce;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-weight: 600;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .btn-primary:hover {
+            background-color: #2b6cb0;
+        }
+
+    .btn-outline-secondary {
+        background-color: transparent;
+        border: 2px solid #e2e8f0;
+        padding: 12px 24px;
+        color: #4a5568;
+        border-radius: 5px;
+    }
+
+        .btn-outline-secondary:hover {
+            background-color: #edf2f7;
+        }
+
+</style>

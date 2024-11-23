@@ -15,61 +15,62 @@ AFTER INSERT, UPDATE
 AS
 BEGIN
 
-   -- XOA TRC CAC GHE DA TON TAI TRONG TRUONG HOP UPDATE
     IF EXISTS (SELECT 1 FROM Ghe WHERE Ghe.MA_LICH_TRINH IN (SELECT MA_LICH_TRINH FROM inserted))
 	BEGIN
 			DELETE FROM Ghe
 			WHERE MA_LICH_TRINH IN (SELECT MA_LICH_TRINH FROM inserted);
 	END
 
-	-- INSERT SỐ LƯỢNG GHẾ ZO TÙY THEO CASE TRÊN
-	INSERT INTO Ghe (ID_GHE,VI_TRI_NGOI,MA_LICH_TRINH)
-	SELECT CONCAT(MA_LICH_TRINH,' ',BIEN_SO_XE, '_', GroupLetter, SeatNumber) AS ID_GHE,
+	-- INSERT SỐ LƯỢNG GHẾ VÀO THEO TRƯỜNG HỢP TRÊN
+	INSERT INTO Ghe (ID_GHE, VI_TRI_NGOI, MA_LICH_TRINH)
+	SELECT CONCAT(MA_LICH_TRINH, ' ', BIEN_SO_XE, '_', GroupLetter, SeatNumber) AS ID_GHE,
 		   CONCAT(GroupLetter, SeatNumber) AS VI_TRI_NGOI,
-		   MA_LICH_TRINH FROM 
-		   (SELECT 
-			X.ID_XE,
-			X.BIEN_SO_XE,
-			X.LOAI_XE,
-			X.SO_GHE,
-			LT.MA_LICH_TRINH,
-			N.Number,
-			CASE 
-				WHEN N.Number <= CASE 
-					   WHEN X.LOAI_XE = 'Ghe' THEN 12
-					   WHEN X.LOAI_XE = 'Limousine' THEN 24
-					   WHEN X.LOAI_XE = 'Giuong' THEN 36
-			   ELSE 0 
-			   END  / 2 THEN 'A'
-				ELSE 'B'
-			END AS GroupLetter,
-			ROW_NUMBER() OVER (PARTITION BY X.ID_XE, 
+		   MA_LICH_TRINH 
+	FROM 
+		(
+			SELECT 
+				X.ID_XE,
+				X.BIEN_SO_XE,
+				X.LOAI_XE,
+				X.SO_GHE,
+				LT.MA_LICH_TRINH,
+				N.Number,
 				CASE 
-					WHEN N.Number <= CASE 
-					   WHEN X.LOAI_XE = 'Ghe' THEN 12
-					   WHEN X.LOAI_XE = 'Limousine' THEN 24
-					   WHEN X.LOAI_XE = 'Giuong' THEN 36
-			   ELSE 0 
-			   END  / 2 THEN 'A'
-				ELSE 'B'
+					WHEN X.LOAI_XE = 'Limousine' AND N.Number <= 12 THEN 'A'
+					WHEN X.LOAI_XE = 'Limousine' AND N.Number > 12 AND N.Number <= 24 THEN 'B'
+					WHEN X.LOAI_XE = 'Giuong' AND N.Number <= 12 THEN 'A'
+					WHEN X.LOAI_XE = 'Giuong' AND N.Number > 12 AND N.Number <= 24 THEN 'B'
+					WHEN X.LOAI_XE = 'Giuong' AND N.Number > 24 AND N.Number <= 36 THEN 'C'
+					ELSE NULL
+				END AS GroupLetter,
+				ROW_NUMBER() OVER (PARTITION BY X.ID_XE, 
+					CASE 
+						WHEN X.LOAI_XE = 'Limousine' AND N.Number <= 12 THEN 'A'
+						WHEN X.LOAI_XE = 'Limousine' AND N.Number > 12 AND N.Number <= 24 THEN 'B'
+						WHEN X.LOAI_XE = 'Giuong' AND N.Number <= 12 THEN 'A'
+						WHEN X.LOAI_XE = 'Giuong' AND N.Number > 12 AND N.Number <= 24 THEN 'B'
+						WHEN X.LOAI_XE = 'Giuong' AND N.Number > 24 AND N.Number <= 36 THEN 'C'
+						ELSE NULL
+					END
+					ORDER BY N.Number
+				) AS SeatNumber
+			FROM 
+				inserted LT 
+				JOIN dbo.Xe X ON X.ID_XE = LT.ID_XE
+				CROSS JOIN 
+				(
+					SELECT TOP 36 ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS Number
+					FROM sys.objects
+				) N
+			WHERE 
+				N.Number <= 
+				CASE 
+					WHEN X.LOAI_XE = 'Limousine' THEN 24
+					WHEN X.LOAI_XE = 'Giuong' THEN 36
+					ELSE 0
 				END
-				ORDER BY N.Number
-			) AS SeatNumber
-		FROM 
-			inserted LT join dbo.Xe X ON X.ID_XE=LT.ID_XE
-			CROSS JOIN ( SELECT TOP 36 ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS Number
-		FROM sys.objects) N
-		WHERE 
-			N.Number <= CASE 
-					   WHEN X.LOAI_XE = 'Ghe' THEN 12
-					   WHEN X.LOAI_XE = 'Limousine' THEN 24
-					   WHEN X.LOAI_XE = 'Giuong' THEN 36
-			   ELSE 0 
-			   END ) as NumberedSeats
-		--ORDER BY ID_XE, GroupLetter, SeatNumber
-END
-
-
+		) AS NumberedSeats
+END;
 
 
 

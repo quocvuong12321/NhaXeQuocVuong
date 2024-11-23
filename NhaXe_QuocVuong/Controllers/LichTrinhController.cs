@@ -9,7 +9,7 @@ namespace NhaXe_QuocVuong.Controllers
     public class LichTrinhController : Controller
     {
         // GET: LichTrinh
-        NhaXeDataContext db = new NhaXeDataContext();
+        NhaXeDataContext db = new NhaXeDataContext("");
         public ActionResult Index()
         {
             return View(db.LichTrinhs.ToList());

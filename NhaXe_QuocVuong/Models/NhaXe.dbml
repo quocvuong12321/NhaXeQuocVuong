@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="NHAXE_QUOCVUONG" Class="NhaXeDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-I22SAC7\TKHANGDI;Initial Catalog=NHAXE_QUOCVUONG;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="NHAXE_QUOCVUONGConnectionString2" Provider="System.Data.SqlClient" />
   <Table Name="dbo.ChiTietVe" Member="ChiTietVes">
     <Type Name="ChiTietVe">
       <Column Name="ID_VE" Type="System.String" DbType="VarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -8,16 +7,6 @@
       <Column Name="TRANG_THAI" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
       <Association Name="Ghe_ChiTietVe" Member="Ghe" ThisKey="VI_TRI_NGOI" OtherKey="ID_GHE" Type="Ghe" IsForeignKey="true" />
       <Association Name="Ve_ChiTietVe" Member="Ve" ThisKey="ID_VE" OtherKey="ID_VE" Type="Ve" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Xe" Member="Xes">
-    <Type Name="Xe">
-      <Column Name="ID_XE" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="BIEN_SO_XE" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
-      <Column Name="LOAI_XE" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
-      <Column Name="SO_GHE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="NGAY_THEM_XE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Xe_LichTrinh" Member="LichTrinhs" ThisKey="ID_XE" OtherKey="ID_XE" Type="LichTrinh" />
     </Type>
   </Table>
   <Table Name="dbo.DiaDiem" Member="DiaDiems">
@@ -74,10 +63,10 @@
       <Association Name="LichTrinh_Ghe" Member="Ghes" ThisKey="MA_LICH_TRINH" OtherKey="MA_LICH_TRINH" Type="Ghe" />
       <Association Name="LichTrinh_ThemTramDungChan" Member="ThemTramDungChans" ThisKey="MA_LICH_TRINH" OtherKey="MA_LICH_TRINH" Type="ThemTramDungChan" />
       <Association Name="LichTrinh_Ve" Member="Ves" ThisKey="MA_LICH_TRINH" OtherKey="ID_LICH_TRINH" Type="Ve" />
-      <Association Name="Xe_LichTrinh" Member="Xe" ThisKey="ID_XE" OtherKey="ID_XE" Type="Xe" IsForeignKey="true" />
       <Association Name="NHANVIEN_LichTrinh" Member="NHANVIEN" ThisKey="NGUOI_TAO_LICH_TRINH" OtherKey="USERNAME" Type="NHANVIEN" IsForeignKey="true" />
       <Association Name="NHANVIEN_LichTrinh1" Member="NHANVIEN1" ThisKey="TAIXE" OtherKey="USERNAME" Type="NHANVIEN" IsForeignKey="true" />
       <Association Name="TuyenDuong_LichTrinh" Member="TuyenDuong" ThisKey="ID_TUYEN_DUONG" OtherKey="ID_TUYEN" Type="TuyenDuong" IsForeignKey="true" />
+      <Association Name="Xe_LichTrinh" Member="Xe" ThisKey="ID_XE" OtherKey="ID_XE" Type="Xe" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.NHANVIEN" Member="NHANVIENs">
@@ -144,6 +133,16 @@
       <Association Name="Ve_ChiTietVe" Member="ChiTietVes" ThisKey="ID_VE" OtherKey="ID_VE" Type="ChiTietVe" />
       <Association Name="KhachHang_Ve" Member="KhachHang" ThisKey="ID_KHACH_HANG" OtherKey="USERNAME" Type="KhachHang" IsForeignKey="true" />
       <Association Name="LichTrinh_Ve" Member="LichTrinh" ThisKey="ID_LICH_TRINH" OtherKey="MA_LICH_TRINH" Type="LichTrinh" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Xe" Member="Xes">
+    <Type Name="Xe">
+      <Column Name="ID_XE" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BIEN_SO_XE" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="LOAI_XE" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="SO_GHE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NGAY_THEM_XE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Xe_LichTrinh" Member="LichTrinhs" ThisKey="ID_XE" OtherKey="ID_XE" Type="LichTrinh" />
     </Type>
   </Table>
 </Database>

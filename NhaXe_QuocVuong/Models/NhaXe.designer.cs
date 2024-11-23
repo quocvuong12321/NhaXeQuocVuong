@@ -33,9 +33,6 @@ namespace NhaXe_QuocVuong.Models
     partial void InsertChiTietVe(ChiTietVe instance);
     partial void UpdateChiTietVe(ChiTietVe instance);
     partial void DeleteChiTietVe(ChiTietVe instance);
-    partial void InsertXe(Xe instance);
-    partial void UpdateXe(Xe instance);
-    partial void DeleteXe(Xe instance);
     partial void InsertDiaDiem(DiaDiem instance);
     partial void UpdateDiaDiem(DiaDiem instance);
     partial void DeleteDiaDiem(DiaDiem instance);
@@ -69,13 +66,10 @@ namespace NhaXe_QuocVuong.Models
     partial void InsertVe(Ve instance);
     partial void UpdateVe(Ve instance);
     partial void DeleteVe(Ve instance);
+    partial void InsertXe(Xe instance);
+    partial void UpdateXe(Xe instance);
+    partial void DeleteXe(Xe instance);
     #endregion
-		
-		public NhaXeDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["NHAXE_QUOCVUONGConnectionString2"].ConnectionString, mappingSource)
-		{
-			OnCreated();
-		}
 		
 		public NhaXeDataContext(string connection) : 
 				base(connection, mappingSource)
@@ -106,14 +100,6 @@ namespace NhaXe_QuocVuong.Models
 			get
 			{
 				return this.GetTable<ChiTietVe>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Xe> Xes
-		{
-			get
-			{
-				return this.GetTable<Xe>();
 			}
 		}
 		
@@ -202,6 +188,14 @@ namespace NhaXe_QuocVuong.Models
 			get
 			{
 				return this.GetTable<Ve>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Xe> Xes
+		{
+			get
+			{
+				return this.GetTable<Xe>();
 			}
 		}
 	}
@@ -419,192 +413,6 @@ namespace NhaXe_QuocVuong.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Xe")]
-	public partial class Xe : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID_XE;
-		
-		private string _BIEN_SO_XE;
-		
-		private string _LOAI_XE;
-		
-		private int _SO_GHE;
-		
-		private System.DateTime _NGAY_THEM_XE;
-		
-		private EntitySet<LichTrinh> _LichTrinhs;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnID_XEChanging(int value);
-    partial void OnID_XEChanged();
-    partial void OnBIEN_SO_XEChanging(string value);
-    partial void OnBIEN_SO_XEChanged();
-    partial void OnLOAI_XEChanging(string value);
-    partial void OnLOAI_XEChanged();
-    partial void OnSO_GHEChanging(int value);
-    partial void OnSO_GHEChanged();
-    partial void OnNGAY_THEM_XEChanging(System.DateTime value);
-    partial void OnNGAY_THEM_XEChanged();
-    #endregion
-		
-		public Xe()
-		{
-			this._LichTrinhs = new EntitySet<LichTrinh>(new Action<LichTrinh>(this.attach_LichTrinhs), new Action<LichTrinh>(this.detach_LichTrinhs));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_XE", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID_XE
-		{
-			get
-			{
-				return this._ID_XE;
-			}
-			set
-			{
-				if ((this._ID_XE != value))
-				{
-					this.OnID_XEChanging(value);
-					this.SendPropertyChanging();
-					this._ID_XE = value;
-					this.SendPropertyChanged("ID_XE");
-					this.OnID_XEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BIEN_SO_XE", DbType="VarChar(128) NOT NULL", CanBeNull=false)]
-		public string BIEN_SO_XE
-		{
-			get
-			{
-				return this._BIEN_SO_XE;
-			}
-			set
-			{
-				if ((this._BIEN_SO_XE != value))
-				{
-					this.OnBIEN_SO_XEChanging(value);
-					this.SendPropertyChanging();
-					this._BIEN_SO_XE = value;
-					this.SendPropertyChanged("BIEN_SO_XE");
-					this.OnBIEN_SO_XEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LOAI_XE", DbType="VarChar(128) NOT NULL", CanBeNull=false)]
-		public string LOAI_XE
-		{
-			get
-			{
-				return this._LOAI_XE;
-			}
-			set
-			{
-				if ((this._LOAI_XE != value))
-				{
-					this.OnLOAI_XEChanging(value);
-					this.SendPropertyChanging();
-					this._LOAI_XE = value;
-					this.SendPropertyChanged("LOAI_XE");
-					this.OnLOAI_XEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SO_GHE", DbType="Int NOT NULL")]
-		public int SO_GHE
-		{
-			get
-			{
-				return this._SO_GHE;
-			}
-			set
-			{
-				if ((this._SO_GHE != value))
-				{
-					this.OnSO_GHEChanging(value);
-					this.SendPropertyChanging();
-					this._SO_GHE = value;
-					this.SendPropertyChanged("SO_GHE");
-					this.OnSO_GHEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NGAY_THEM_XE", DbType="DateTime NOT NULL")]
-		public System.DateTime NGAY_THEM_XE
-		{
-			get
-			{
-				return this._NGAY_THEM_XE;
-			}
-			set
-			{
-				if ((this._NGAY_THEM_XE != value))
-				{
-					this.OnNGAY_THEM_XEChanging(value);
-					this.SendPropertyChanging();
-					this._NGAY_THEM_XE = value;
-					this.SendPropertyChanged("NGAY_THEM_XE");
-					this.OnNGAY_THEM_XEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Xe_LichTrinh", Storage="_LichTrinhs", ThisKey="ID_XE", OtherKey="ID_XE")]
-		public EntitySet<LichTrinh> LichTrinhs
-		{
-			get
-			{
-				return this._LichTrinhs;
-			}
-			set
-			{
-				this._LichTrinhs.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_LichTrinhs(LichTrinh entity)
-		{
-			this.SendPropertyChanging();
-			entity.Xe = this;
-		}
-		
-		private void detach_LichTrinhs(LichTrinh entity)
-		{
-			this.SendPropertyChanging();
-			entity.Xe = null;
 		}
 	}
 	
@@ -1393,13 +1201,13 @@ namespace NhaXe_QuocVuong.Models
 		
 		private EntitySet<Ve> _Ves;
 		
-		private EntityRef<Xe> _Xe;
-		
 		private EntityRef<NHANVIEN> _NHANVIEN;
 		
 		private EntityRef<NHANVIEN> _NHANVIEN1;
 		
 		private EntityRef<TuyenDuong> _TuyenDuong;
+		
+		private EntityRef<Xe> _Xe;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1433,10 +1241,10 @@ namespace NhaXe_QuocVuong.Models
 			this._Ghes = new EntitySet<Ghe>(new Action<Ghe>(this.attach_Ghes), new Action<Ghe>(this.detach_Ghes));
 			this._ThemTramDungChans = new EntitySet<ThemTramDungChan>(new Action<ThemTramDungChan>(this.attach_ThemTramDungChans), new Action<ThemTramDungChan>(this.detach_ThemTramDungChans));
 			this._Ves = new EntitySet<Ve>(new Action<Ve>(this.attach_Ves), new Action<Ve>(this.detach_Ves));
-			this._Xe = default(EntityRef<Xe>);
 			this._NHANVIEN = default(EntityRef<NHANVIEN>);
 			this._NHANVIEN1 = default(EntityRef<NHANVIEN>);
 			this._TuyenDuong = default(EntityRef<TuyenDuong>);
+			this._Xe = default(EntityRef<Xe>);
 			OnCreated();
 		}
 		
@@ -1708,40 +1516,6 @@ namespace NhaXe_QuocVuong.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Xe_LichTrinh", Storage="_Xe", ThisKey="ID_XE", OtherKey="ID_XE", IsForeignKey=true)]
-		public Xe Xe
-		{
-			get
-			{
-				return this._Xe.Entity;
-			}
-			set
-			{
-				Xe previousValue = this._Xe.Entity;
-				if (((previousValue != value) 
-							|| (this._Xe.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Xe.Entity = null;
-						previousValue.LichTrinhs.Remove(this);
-					}
-					this._Xe.Entity = value;
-					if ((value != null))
-					{
-						value.LichTrinhs.Add(this);
-						this._ID_XE = value.ID_XE;
-					}
-					else
-					{
-						this._ID_XE = default(int);
-					}
-					this.SendPropertyChanged("Xe");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NHANVIEN_LichTrinh", Storage="_NHANVIEN", ThisKey="NGUOI_TAO_LICH_TRINH", OtherKey="USERNAME", IsForeignKey=true)]
 		public NHANVIEN NHANVIEN
 		{
@@ -1840,6 +1614,40 @@ namespace NhaXe_QuocVuong.Models
 						this._ID_TUYEN_DUONG = default(int);
 					}
 					this.SendPropertyChanged("TuyenDuong");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Xe_LichTrinh", Storage="_Xe", ThisKey="ID_XE", OtherKey="ID_XE", IsForeignKey=true)]
+		public Xe Xe
+		{
+			get
+			{
+				return this._Xe.Entity;
+			}
+			set
+			{
+				Xe previousValue = this._Xe.Entity;
+				if (((previousValue != value) 
+							|| (this._Xe.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Xe.Entity = null;
+						previousValue.LichTrinhs.Remove(this);
+					}
+					this._Xe.Entity = value;
+					if ((value != null))
+					{
+						value.LichTrinhs.Add(this);
+						this._ID_XE = value.ID_XE;
+					}
+					else
+					{
+						this._ID_XE = default(int);
+					}
+					this.SendPropertyChanged("Xe");
 				}
 			}
 		}
@@ -3318,6 +3126,194 @@ namespace NhaXe_QuocVuong.Models
 		{
 			this.SendPropertyChanging();
 			entity.Ve = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Xe")]
+	public partial class Xe : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID_XE;
+		
+		private string _BIEN_SO_XE;
+		
+		private string _LOAI_XE;
+		
+		private int _SO_GHE;
+		
+		private System.DateTime _NGAY_THEM_XE;
+		
+		private EntitySet<LichTrinh> _LichTrinhs;
+
+
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnID_XEChanging(int value);
+    partial void OnID_XEChanged();
+    partial void OnBIEN_SO_XEChanging(string value);
+    partial void OnBIEN_SO_XEChanged();
+    partial void OnLOAI_XEChanging(string value);
+    partial void OnLOAI_XEChanged();
+    partial void OnSO_GHEChanging(int value);
+    partial void OnSO_GHEChanged();
+    partial void OnNGAY_THEM_XEChanging(System.DateTime value);
+    partial void OnNGAY_THEM_XEChanged();
+    #endregion
+		
+		public Xe()
+		{
+			this._LichTrinhs = new EntitySet<LichTrinh>(new Action<LichTrinh>(this.attach_LichTrinhs), new Action<LichTrinh>(this.detach_LichTrinhs));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_XE", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID_XE
+		{
+			get
+			{
+				return this._ID_XE;
+			}
+			set
+			{
+				if ((this._ID_XE != value))
+				{
+					this.OnID_XEChanging(value);
+					this.SendPropertyChanging();
+					this._ID_XE = value;
+					this.SendPropertyChanged("ID_XE");
+					this.OnID_XEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BIEN_SO_XE", DbType="VarChar(128) NOT NULL", CanBeNull=false)]
+		public string BIEN_SO_XE
+		{
+			get
+			{
+				return this._BIEN_SO_XE;
+			}
+			set
+			{
+				if ((this._BIEN_SO_XE != value))
+				{
+					this.OnBIEN_SO_XEChanging(value);
+					this.SendPropertyChanging();
+					this._BIEN_SO_XE = value;
+					this.SendPropertyChanged("BIEN_SO_XE");
+					this.OnBIEN_SO_XEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LOAI_XE", DbType="VarChar(128) NOT NULL", CanBeNull=false)]
+		public string LOAI_XE
+		{
+			get
+			{
+				return this._LOAI_XE;
+			}
+			set
+			{
+				if ((this._LOAI_XE != value))
+				{
+					this.OnLOAI_XEChanging(value);
+					this.SendPropertyChanging();
+					this._LOAI_XE = value;
+					this.SendPropertyChanged("LOAI_XE");
+					this.OnLOAI_XEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SO_GHE", DbType="Int NOT NULL")]
+		public int SO_GHE
+		{
+			get
+			{
+				return this._SO_GHE;
+			}
+			set
+			{
+				if ((this._SO_GHE != value))
+				{
+					this.OnSO_GHEChanging(value);
+					this.SendPropertyChanging();
+					this._SO_GHE = value;
+					this.SendPropertyChanged("SO_GHE");
+					this.OnSO_GHEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NGAY_THEM_XE", DbType="DateTime NOT NULL")]
+		public System.DateTime NGAY_THEM_XE
+		{
+			get
+			{
+				return this._NGAY_THEM_XE;
+			}
+			set
+			{
+				if ((this._NGAY_THEM_XE != value))
+				{
+					this.OnNGAY_THEM_XEChanging(value);
+					this.SendPropertyChanging();
+					this._NGAY_THEM_XE = value;
+					this.SendPropertyChanged("NGAY_THEM_XE");
+					this.OnNGAY_THEM_XEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Xe_LichTrinh", Storage="_LichTrinhs", ThisKey="ID_XE", OtherKey="ID_XE")]
+		public EntitySet<LichTrinh> LichTrinhs
+		{
+			get
+			{
+				return this._LichTrinhs;
+			}
+			set
+			{
+				this._LichTrinhs.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_LichTrinhs(LichTrinh entity)
+		{
+			this.SendPropertyChanging();
+			entity.Xe = this;
+		}
+		
+		private void detach_LichTrinhs(LichTrinh entity)
+		{
+			this.SendPropertyChanging();
+			entity.Xe = null;
 		}
 	}
 }

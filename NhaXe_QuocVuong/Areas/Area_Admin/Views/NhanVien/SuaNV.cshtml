@@ -1,0 +1,163 @@
+﻿@model NhaXe_QuocVuong.Models.NHANVIEN
+
+@{ ViewBag.Title = "Cập Nhật Nhân Viên";
+    Layout = "~/Areas/Area_Admin/Views/Shared/LayoutAdmin.cshtml"; }
+<div class="d-flex vh-100 align-items-center justify-content-center" style="background-color: #edf2f7;">
+    <div class="update-form-container">
+        <div class="update-header">
+            <h3>CẬP NHẬT THÔNG TIN NHÂN VIÊN</h3>
+        </div>
+        <div class="update-body">
+            @using (Html.BeginForm())
+            {
+@Html.AntiForgeryToken()
+
+                <div class="form-field">
+                    @Html.LabelFor(m => m.TEN_NHANVIEN, "Tên Nhân Viên", new { @class = "field-label" })
+                    @Html.TextBoxFor(m => m.TEN_NHANVIEN, new { @class = "field-input", @placeholder = "Nhập tên nhân viên" })
+                    @Html.ValidationMessageFor(m => m.TEN_NHANVIEN, "", new { @class = "field-error" })
+                </div>
+
+                                <div class="form-field">
+                                    @Html.LabelFor(m => m.EMAIL, "Email", new { @class = "field-label" })
+                                    @Html.TextBoxFor(m => m.EMAIL, new { @class = "field-input", @placeholder = "Nhập email" })
+                                    @Html.ValidationMessageFor(m => m.EMAIL, "", new { @class = "field-error" })
+                                </div>
+
+                                                <div class="form-field">
+                                                    @Html.LabelFor(m => m.SDT, "Số Điện Thoại", new { @class = "field-label" })
+                                                    @Html.TextBoxFor(m => m.SDT, new { @class = "field-input", @placeholder = "Nhập số điện thoại" })
+                                                    @Html.ValidationMessageFor(m => m.SDT, "", new { @class = "field-error" })
+                                                </div>
+
+                                                                <div class="form-field">
+                                                                    @Html.LabelFor(m => m.LOAI_NV, "Loại Nhân Viên", new { @class = "field-label" })
+                                                                    @Html.DropDownListFor(model => model.LOAI_NV,
+                                                                             new SelectList(new List<SelectListItem>
+                                                                             {
+                            new SelectListItem { Value = "QUAN_LY", Text = "Quản Lý" },
+                            new SelectListItem { Value = "TAI_XE", Text = "Tài Xế" }
+                         }, "Value", "Text"),
+                                                                             "Chọn loại nhân viên",
+                                                                             new { @class = "field-input" })
+                                                                    @Html.ValidationMessageFor(m => m.LOAI_NV, "", new { @class = "field-error" })
+                                                                </div>
+
+                                                                                <div class="form-actions">
+                                                                                    <button type="submit" class="btn-submit">
+                                                                                        <i class="fa fa-save"></i> Cập Nhật
+                                                                                    </button>
+                                                                                    @Html.ActionLink("Quay Lại", "DanhSachNV", null, new { @class = "btn-cancel" })
+                                                                                </div>            }
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        color: #2d3748;
+        background-color: #edf2f7;
+        margin: 0;
+        min-height: 100vh;
+    }
+
+    .update-form-container {
+        background: #ffffff;
+        border-radius: 10px;
+        padding: 40px 30px;
+        max-width: 500px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        width: 100%;
+    }
+
+    .update-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+        .update-header h3 {
+            font-size: 24px;
+            color: #1a202c;
+            font-weight: 600;
+            margin: 0;
+        }
+
+    .update-body {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .field-label {
+        font-size: 14px;
+        color: #4a5568;
+        font-weight: 500;
+    }
+
+    .field-input {
+        border: 1px solid #cbd5e0;
+        border-radius: 5px;
+        padding: 10px 12px;
+        font-size: 14px;
+        color: #2d3748;
+        background: #f7fafc;
+        transition: all 0.3s ease;
+    }
+
+        .field-input:focus {
+            outline: none;
+            border-color: #3182ce;
+            background: #ffffff;
+            box-shadow: 0 0 5px rgba(49, 130, 206, 0.5);
+        }
+
+    .field-error {
+        font-size: 12px;
+        color: #e53e3e;
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn-submit {
+        background: #3182ce;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+        .btn-submit:hover {
+            background: #2b6cb0;
+            transform: translateY(-2px);
+        }
+
+    .btn-cancel {
+        background: #e2e8f0;
+        color: #2d3748;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+        .btn-cancel:hover {
+            background: #cbd5e0;
+            transform: translateY(-2px);
+        }
+</style>

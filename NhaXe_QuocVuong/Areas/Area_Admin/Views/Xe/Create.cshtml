@@ -1,0 +1,180 @@
+﻿@model NhaXe_QuocVuong.Models.Xe
+
+@{
+    ViewBag.Title = "Tạo Xe Mới";
+    Layout = "~/Areas/Area_Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<div class="container vh-100 d-flex align-items-center justify-content-center" style="background-color: #edf2f7;">
+    <div class="form-container">
+        <div class="form-header">
+            <h3>TẠO XE MỚI</h3>
+            <p class="text-muted">Nhập thông tin cần thiết để thêm xe mới</p>
+        </div>
+        <div class="form-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <!-- Validation Summary -->
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <!-- Biển số xe -->
+                <div class="form-field">
+                    @Html.Label("Biển Số Xe", htmlAttributes: new { @class = "field-label" })
+                    @Html.EditorFor(model => model.BIEN_SO_XE, new { htmlAttributes = new { @class = "field-input", placeholder = "Nhập biển số xe" } })
+                    @Html.ValidationMessageFor(model => model.BIEN_SO_XE, "", new { @class = "field-error" })
+                    <small class="form-text text-muted">Nhập biển số xe chính xác để dễ quản lý.</small>
+                </div>
+
+                <!-- Loại xe -->
+                <div class="form-field">
+                    @Html.Label("Loại Xe", htmlAttributes: new { @class = "field-label" })
+                    @Html.DropDownListFor(
+                        model => model.LOAI_XE,
+                        new SelectList(new[] { "Ghế", "Giường", "Limousine" }),
+                        "Chọn Loại Xe",
+                        new { @class = "field-input" }
+                    )
+                    @Html.ValidationMessageFor(model => model.LOAI_XE, "", new { @class = "field-error" })
+                    <small class="form-text text-muted">Chọn loại xe phù hợp với nhu cầu.</small>
+                </div>
+
+                <!-- Số ghế -->
+                <div class="form-field">
+                    @Html.Label("Số Ghế", htmlAttributes: new { @class = "field-label" })
+                    @Html.DropDownListFor(model => model.SO_GHE, new SelectList(new[] { "12", "24", "36" }), new { @class = "field-input" })
+                    @Html.ValidationMessageFor(model => model.SO_GHE, "", new { @class = "field-error" })
+                    <small class="form-text text-muted">Chọn số ghế phù hợp với loại xe.</small>
+                </div>
+
+                <!-- Ngày thêm xe -->
+                <div class="form-field">
+                    @Html.Label("Ngày Thêm Xe", htmlAttributes: new { @class = "field-label" })
+                    <input type="date" name="NGAY_THEM_XE" class="field-input" placeholder="Ngày Thêm Xe" />
+                    @Html.ValidationMessageFor(model => model.NGAY_THEM_XE, "", new { @class = "field-error" })
+                </div>
+
+                <!-- Nút Hành Động -->
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">
+                        <i class="fa fa-plus"></i> Thêm Xe
+                    </button>
+                    @Html.ActionLink("Trở Về Danh Sách", "Index", null, new { @class = "btn-cancel" })
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        color: #2d3748;
+        background-color: #edf2f7;
+    }
+
+    .form-container {
+        background: #ffffff;
+        border-radius: 10px;
+        padding: 40px 30px;
+        max-width: 600px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        width: 100%;
+    }
+
+    .form-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+        .form-header h3 {
+            font-size: 24px;
+            color: #1a202c;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .form-header p {
+            font-size: 14px;
+            color: #718096;
+            margin-top: 5px;
+        }
+
+    .form-body {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .field-label {
+        font-size: 14px;
+        color: #4a5568;
+        font-weight: 500;
+    }
+
+    .field-input {
+        border: 1px solid #cbd5e0;
+        border-radius: 5px;
+        padding: 10px 12px;
+        font-size: 14px;
+        color: #2d3748;
+        background: #f7fafc;
+        transition: all 0.3s ease;
+    }
+
+        .field-input:focus {
+            outline: none;
+            border-color: #3182ce;
+            background: #ffffff;
+            box-shadow: 0 0 5px rgba(49, 130, 206, 0.5);
+        }
+
+    .field-error {
+        font-size: 12px;
+        color: #e53e3e;
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn-submit {
+        background: #3182ce;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+        .btn-submit:hover {
+            background: #2b6cb0;
+            transform: translateY(-2px);
+        }
+
+    .btn-cancel {
+        background: #e2e8f0;
+        color: #4a5568;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 14px;
+        text-align: center;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+        .btn-cancel:hover {
+            background: #cbd5e0;
+        }
+
+</style>

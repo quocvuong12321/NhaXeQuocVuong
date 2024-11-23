@@ -71,6 +71,7 @@ CREATE TABLE [LichTrinh] (
   [GIA_VE] float NOT NULL,
   [ID_XE] INT NOT NULL,
   [CHI_PHI_PHAT_SINH] float,
+  [TRANG_THAI] NVARCHAR(32) NOT NULL CHECK ([LOAI_NV] IN ('MO_BAN', 'DA_DONG',"DANG_KHOI_HANH","KET_THUC")),
   [TAIXE] varchar(128) NOT NULL foreign key references NHANVIEN([USERNAME]),
   [NGAY_TAO_LICH_TRINH]  datetime NOT NULL DEFAULT GETDATE(),
   [NGUOI_TAO_LICH_TRINH] varchar(128) NOT NULL
@@ -93,15 +94,25 @@ CREATE TABLE [Ve] (
   [ID_LICH_TRINH] varchar(128) NOT NULL,
   [NGAY_DAT_VE]  datetime NOT NULL DEFAULT GETDATE(),
   [TONG_TIEN] float NOT NULL
- 
+  [DIEM_DOAN] varchar(128) NOT NULL,
+  [DIEM_TRA] varchar(128) NOT NULL,
+  [QR_CODE] varchar(128) NOT NULL,
+  [TRANG_THAI] varchar(128) NOT NULL CHECK ([TRANG_THAI] IN ('da_xac_nhan', 'da_thanh_toan', 'huy_ve')) DEFAULT 'da_thanh_toan',
+  [PHUONG_THUC_THANH_TOAN] varchar(128)NOT NULL,
+   FOREIGN KEY ([PHUONG_THUC_THANH_TOAN]) REFERENCES [PHUONG_THUC_THANH_TOAN] ([ID_PTTT]),
+  FOREIGN KEY ([DIEM_DOAN]) REFERENCES [TramDungChan] ([ID_TRAMDUNGCHAN]),
+  FOREIGN KEY ([DIEM_TRA]) REFERENCES [TramDungChan] ([ID_TRAMDUNGCHAN])
 )
 GO
+CREATE TABLE [PHUONG_THUC_THANH_TOAN](
+  ID_PTTT varchar(128) primary key,
+  TEN_PHUONG_THUC_THANH_TOAN varchar(128)NOT NULL,
+  CACH_THUC_THANH_TOAN varchar(max)
+)
 
 CREATE TABLE [ChiTietVe] (
   [ID_VE] varchar(128) NOT NULL,
   [VI_TRI_NGOI] varchar(128) NOT NULL,
-  [QR_CODE] varchar(128) NOT NULL,
-  [TRANG_THAI] varchar(128) NOT NULL CHECK ([TRANG_THAI] IN ('da_xac_nhan', 'da_thanh_toan', 'huy_ve')) DEFAULT 'da_thanh_toan',
   primary key(ID_VE,VI_TRI_NGOI)
 )
 GO

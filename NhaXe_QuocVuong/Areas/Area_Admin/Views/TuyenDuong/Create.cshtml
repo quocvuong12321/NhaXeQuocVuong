@@ -1,0 +1,226 @@
+﻿@model NhaXe_QuocVuong.Models.TuyenDuong
+
+@{
+    ViewBag.Title = "Chỉnh Sửa Tuyến Đường";
+    Layout = "~/Areas/Area_Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<div class="container vh-100 d-flex align-items-center justify-content-center" style="background-color: #edf2f7;">
+    <div class="update-form-container">
+        <div class="update-header">
+            <h3>TẠO MỚI TUYẾN ĐƯỜNG</h3>
+            <p class="text-muted">Nhập thông tin tuyến đường</p>
+        </div>
+        <div class="update-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <!-- Validation Summary -->
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <!-- Điểm Đầu -->
+                <div class="form-field">
+                    @Html.Label("Điểm Đầu", htmlAttributes: new { @class = "field-label" })
+                    @Html.DropDownListFor(
+                        model => model.DIEM_DAU,
+                        (SelectList)ViewBag.DiaDiemList,
+                        "Chọn Điểm Đầu",
+                        new { @class = "field-input", id = "diemDau" }
+                    )
+                    @Html.ValidationMessageFor(model => model.DIEM_DAU, "", new { @class = "field-error" })
+                    <small class="form-text text-muted">Chọn điểm đầu của tuyến đường.</small>
+                </div>
+
+                <!-- Điểm Cuối -->
+                <div class="form-field">
+                    @Html.Label("Điểm Cuối", htmlAttributes: new { @class = "field-label" })
+                    @Html.DropDownListFor(
+                        model => model.DIEM_CUOI,
+                        (SelectList)ViewBag.DiaDiemList,
+                        "Chọn Điểm Cuối",
+                        new { @class = "field-input", id = "diemCuoi" }
+                    )
+                    @Html.ValidationMessageFor(model => model.DIEM_CUOI, "", new { @class = "field-error" })
+                    <small class="form-text text-muted">Chọn điểm cuối của tuyến đường.</small>
+                </div>
+
+                <!-- Tên Tuyến -->
+                <div class="form-field">
+                    @Html.Label("Tên Tuyến", htmlAttributes: new { @class = "field-label" })
+                    @Html.EditorFor(model => model.TEN_TUYEN, new { htmlAttributes = new { @class = "field-input", id = "tenTuyen", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.TEN_TUYEN, "", new { @class = "field-error" })
+                    <small class="form-text text-muted">Tên tuyến đường sẽ được tự động điền khi chọn điểm đầu và điểm cuối.</small>
+                </div>
+
+                <!-- Khoảng Cách -->
+                <div class="form-field">
+                    @Html.Label("Khoảng Cách (Km)", htmlAttributes: new { @class = "field-label" })
+                    @Html.EditorFor(model => model.KHOANG_CACH, new { htmlAttributes = new { @class = "field-input", placeholder = "Km" } })
+                    @Html.ValidationMessageFor(model => model.KHOANG_CACH, "", new { @class = "field-error" })
+                    <small class="form-text text-muted">Nhập khoảng cách giữa điểm đầu và điểm cuối.</small>
+                </div>
+
+                <!-- Thời Gian Duy Chuyển -->
+                <div class="form-field">
+                    @Html.Label("Thời Gian Di Chuyển (Giờ)", htmlAttributes: new { @class = "field-label" })
+                    @Html.EditorFor(model => model.THOI_GIAN_DUY_CHUYEN, new { htmlAttributes = new { @class = "field-input", placeholder = "Giờ" } })
+                    @Html.ValidationMessageFor(model => model.THOI_GIAN_DUY_CHUYEN, "", new { @class = "field-error" })
+                    <small class="form-text text-muted">Nhập thời gian di chuyển giữa các điểm.</small>
+                </div>
+
+                <!-- Tình Trạng -->
+                <div class="form-field">
+                    @Html.Label("Tình Trạng", htmlAttributes: new { @class = "field-label" })
+                    @Html.DropDownListFor(
+                        model => model.TINH_TRANG,
+                        new SelectList(new[] { "CON_HOAT_DONG", "KHONG_HOAT_DONG" }),
+                        new { @class = "field-input" }
+                    )
+                    @Html.ValidationMessageFor(model => model.TINH_TRANG, "", new { @class = "field-error" })
+                    <small class="form-text text-muted">Chọn tình trạng hoạt động của tuyến đường.</small>
+                </div>
+
+                <!-- Nút Hành Động -->
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">
+                        <i class="fa fa-save"></i> Thêm Tuyến Đường
+                    </button>
+                    @Html.ActionLink("Trở Về Danh Sách", "Index", null, new { @class = "btn-cancel" })
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        color: #2d3748;
+        background-color: #edf2f7;
+    }
+
+    .update-form-container {
+        background: #ffffff;
+        border-radius: 10px;
+        padding: 40px 30px;
+        max-width: 600px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        width: 100%;
+    }
+
+    .update-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+        .update-header h3 {
+            font-size: 24px;
+            color: #1a202c;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .update-header p {
+            font-size: 14px;
+            color: #718096;
+            margin-top: 5px;
+        }
+
+    .update-body {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .field-label {
+        font-size: 14px;
+        color: #4a5568;
+        font-weight: 500;
+    }
+
+    .field-input {
+        border: 1px solid #cbd5e0;
+        border-radius: 5px;
+        padding: 10px 12px;
+        font-size: 14px;
+        color: #2d3748;
+        background: #f7fafc;
+        transition: all 0.3s ease;
+    }
+
+        .field-input:focus {
+            outline: none;
+            border-color: #3182ce;
+            background: #ffffff;
+            box-shadow: 0 0 5px rgba(49, 130, 206, 0.5);
+        }
+
+    .field-error {
+        font-size: 12px;
+        color: #e53e3e;
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn-submit {
+        background: #3182ce;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+        .btn-submit:hover {
+            background: #2b6cb0;
+            transform: translateY(-2px);
+        }
+
+    .btn-cancel {
+        background: #e2e8f0;
+        color: #4a5568;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 14px;
+        text-align: center;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+        .btn-cancel:hover {
+            background: #cbd5e0;
+        }
+
+</style>
+
+<script>
+    // Hàm tự động điền tên tuyến đường khi chọn điểm đầu và điểm cuối
+    document.getElementById("diemDau").addEventListener("change", updateTenTuyen);
+    document.getElementById("diemCuoi").addEventListener("change", updateTenTuyen);
+
+    function updateTenTuyen() {
+        var diemDauText = document.getElementById("diemDau").options[document.getElementById("diemDau").selectedIndex].text;
+        var diemCuoiText = document.getElementById("diemCuoi").options[document.getElementById("diemCuoi").selectedIndex].text;
+
+        if (diemDauText !== "Chọn Điểm Đầu" && diemCuoiText !== "Chọn Điểm Cuối") {
+            document.getElementById("tenTuyen").value = diemDauText + " - " + diemCuoiText;
+        } else {
+            document.getElementById("tenTuyen").value = "";
+        }
+    }
+
+    // Gọi hàm tự động điền tên tuyến đường nếu có giá trị trong dropdown khi trang được tải
+    updateTenTuyen();
+</script>
