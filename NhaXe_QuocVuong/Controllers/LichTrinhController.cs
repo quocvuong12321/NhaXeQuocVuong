@@ -17,11 +17,11 @@ namespace NhaXe_QuocVuong.Controllers
         NhaXeDataContext db = new NhaXeDataContext();
         public ActionResult Index()
         {
-            List<LichTrinhViewModel> model = new List<LichTrinhViewModel>();
+            List<LichTrinh_Display> model = new List<LichTrinh_Display>();
             List< LichTrinh > lst = db.LichTrinhs.ToList();
             foreach(var item in lst)
             {
-                LichTrinhViewModel ltvm = new LichTrinhViewModel
+                LichTrinh_Display ltvm = new LichTrinh_Display
                 {
                     LichTrinh = item,
                     SoChoConLai = LaySoChoCon(item.MA_LICH_TRINH)
@@ -154,11 +154,11 @@ namespace NhaXe_QuocVuong.Controllers
 
         public ActionResult SapXep(string Sort)
         {
-            List<LichTrinhViewModel> model = new List<LichTrinhViewModel>();
+            List<LichTrinh_Display> model = new List<LichTrinh_Display>();
             List<LichTrinh> lst = db.LichTrinhs.ToList();
             foreach (var item in lst)
             {
-                LichTrinhViewModel ltvm = new LichTrinhViewModel
+                LichTrinh_Display ltvm = new LichTrinh_Display
                 {
                     LichTrinh = item,
                     SoChoConLai = LaySoChoCon(item.MA_LICH_TRINH)
@@ -191,11 +191,11 @@ namespace NhaXe_QuocVuong.Controllers
             int Noidi = noidi;
             int Noiden = noiden;
             DateTime Ngaydi = ngaydi;
-            List<LichTrinhViewModel> model = new List<LichTrinhViewModel>();
+            List<LichTrinh_Display> model = new List<LichTrinh_Display>();
             List<LichTrinh> lst = db.LichTrinhs.Where(t => t.TuyenDuong.DiaDiem.ID_DIADIEM == Noidi && t.TuyenDuong.DiaDiem1.ID_DIADIEM == Noiden && t.KHOI_HANH.Date ==Ngaydi.Date).ToList();
             foreach (var item in lst)
             {
-                LichTrinhViewModel ltvm = new LichTrinhViewModel
+                LichTrinh_Display ltvm = new LichTrinh_Display
                 {
                     LichTrinh = item,
                     SoChoConLai = LaySoChoCon(item.MA_LICH_TRINH)

@@ -1,13 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="NHAXE_QUOCVUONG" Class="NhaXeDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-86N3SME\SQL_KING;Initial Catalog=NHAXE_QUOCVUONG;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="NHAXE_QUOCVUONGConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=LAPTOP-Q412LBS9\SQLEXPRESS;Initial Catalog=NHAXE_QUOCVUONG;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="NHAXE_QUOCVUONGConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.ChiTietVe" Member="ChiTietVes">
     <Type Name="ChiTietVe">
       <Column Name="ID_VE" Type="System.String" DbType="VarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="VI_TRI_NGOI" Type="System.String" DbType="VarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="Ghe_ChiTietVe" Member="Ghe" ThisKey="VI_TRI_NGOI" OtherKey="ID_GHE" Type="Ghe" IsForeignKey="true" />
-      <Association Name="Ghe_ChiTietVe1" Member="Ghe1" ThisKey="VI_TRI_NGOI" OtherKey="ID_GHE" Type="Ghe" IsForeignKey="true" />
       <Association Name="Ve_ChiTietVe" Member="Ve" ThisKey="ID_VE" OtherKey="ID_VE" Type="Ve" IsForeignKey="true" />
-      <Association Name="Ve_ChiTietVe1" Member="Ve1" ThisKey="ID_VE" OtherKey="ID_VE" Type="Ve" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Xe" Member="Xes">
@@ -18,18 +16,15 @@
       <Column Name="SO_GHE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="NGAY_THEM_XE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="Xe_LichTrinh" Member="LichTrinhs" ThisKey="ID_XE" OtherKey="ID_XE" Type="LichTrinh" />
-      <Association Name="Xe_LichTrinh1" Member="LichTrinhs1" ThisKey="ID_XE" OtherKey="ID_XE" Type="LichTrinh" />
     </Type>
   </Table>
   <Table Name="dbo.DiaDiem" Member="DiaDiems">
     <Type Name="DiaDiem">
       <Column Name="ID_DIADIEM" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TEN_TINH_THANH" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="DiaDiem_TramDungChan" Member="TramDungChans" ThisKey="ID_DIADIEM" OtherKey="ID_DIADIEM" Type="TramDungChan" />
       <Association Name="DiaDiem_TuyenDuong" Member="TuyenDuongs" ThisKey="ID_DIADIEM" OtherKey="DIEM_DAU" Type="TuyenDuong" />
       <Association Name="DiaDiem_TuyenDuong1" Member="TuyenDuongs1" ThisKey="ID_DIADIEM" OtherKey="DIEM_CUOI" Type="TuyenDuong" />
-      <Association Name="DiaDiem_TuyenDuong2" Member="TuyenDuongs2" ThisKey="ID_DIADIEM" OtherKey="DIEM_DAU" Type="TuyenDuong" />
-      <Association Name="DiaDiem_TuyenDuong3" Member="TuyenDuongs3" ThisKey="ID_DIADIEM" OtherKey="DIEM_CUOI" Type="TuyenDuong" />
-      <Association Name="DiaDiem_TramDungChan" Member="TramDungChans" ThisKey="ID_DIADIEM" OtherKey="ID_DIADIEM" Type="TramDungChan" />
     </Type>
   </Table>
   <Table Name="dbo.DoanhThu" Member="DoanhThus">
@@ -48,9 +43,7 @@
       <Column Name="MA_LICH_TRINH" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
       <Column Name="TINH_TRANG" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Ghe_ChiTietVe" Member="ChiTietVes" ThisKey="ID_GHE" OtherKey="VI_TRI_NGOI" Type="ChiTietVe" />
-      <Association Name="Ghe_ChiTietVe1" Member="ChiTietVes1" ThisKey="ID_GHE" OtherKey="VI_TRI_NGOI" Type="ChiTietVe" />
       <Association Name="LichTrinh_Ghe" Member="LichTrinh" ThisKey="MA_LICH_TRINH" OtherKey="MA_LICH_TRINH" Type="LichTrinh" IsForeignKey="true" />
-      <Association Name="LichTrinh_Ghe1" Member="LichTrinh1" ThisKey="MA_LICH_TRINH" OtherKey="MA_LICH_TRINH" Type="LichTrinh" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.KhachHang" Member="KhachHangs">
@@ -60,9 +53,7 @@
       <Column Name="SO_DIEN_THOAI" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
       <Column Name="EMAIL" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
       <Association Name="KhachHang_Ve" Member="Ves" ThisKey="USERNAME" OtherKey="ID_KHACH_HANG" Type="Ve" />
-      <Association Name="KhachHang_Ve1" Member="Ves1" ThisKey="USERNAME" OtherKey="ID_KHACH_HANG" Type="Ve" />
       <Association Name="userAccount_KhachHang" Member="userAccount" ThisKey="USERNAME" OtherKey="username" Type="userAccount" IsForeignKey="true" />
-      <Association Name="userAccount_KhachHang1" Member="userAccount1" ThisKey="USERNAME" OtherKey="username" Type="userAccount" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.LichTrinh" Member="LichTrinhs">
@@ -80,17 +71,12 @@
       <Column Name="NGUOI_TAO_LICH_TRINH" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
       <Association Name="LichTrinh_DoanhThu" Member="DoanhThus" ThisKey="MA_LICH_TRINH" OtherKey="MA_LICH_TRINH" Type="DoanhThu" />
       <Association Name="LichTrinh_Ghe" Member="Ghes" ThisKey="MA_LICH_TRINH" OtherKey="MA_LICH_TRINH" Type="Ghe" />
-      <Association Name="LichTrinh_Ghe1" Member="Ghes1" ThisKey="MA_LICH_TRINH" OtherKey="MA_LICH_TRINH" Type="Ghe" />
       <Association Name="LichTrinh_ThemTramDungChan" Member="ThemTramDungChans" ThisKey="MA_LICH_TRINH" OtherKey="MA_LICH_TRINH" Type="ThemTramDungChan" />
       <Association Name="LichTrinh_Ve" Member="Ves" ThisKey="MA_LICH_TRINH" OtherKey="ID_LICH_TRINH" Type="Ve" />
-      <Association Name="LichTrinh_Ve1" Member="Ves1" ThisKey="MA_LICH_TRINH" OtherKey="ID_LICH_TRINH" Type="Ve" />
       <Association Name="Xe_LichTrinh" Member="Xe" ThisKey="ID_XE" OtherKey="ID_XE" Type="Xe" IsForeignKey="true" />
-      <Association Name="Xe_LichTrinh1" Member="Xe1" ThisKey="ID_XE" OtherKey="ID_XE" Type="Xe" IsForeignKey="true" />
       <Association Name="NHANVIEN_LichTrinh" Member="NHANVIEN" ThisKey="NGUOI_TAO_LICH_TRINH" OtherKey="USERNAME" Type="NHANVIEN" IsForeignKey="true" />
-      <Association Name="NHANVIEN_LichTrinh1" Member="NHANVIEN1" ThisKey="NGUOI_TAO_LICH_TRINH" OtherKey="USERNAME" Type="NHANVIEN" IsForeignKey="true" />
-      <Association Name="NHANVIEN_LichTrinh2" Member="NHANVIEN2" ThisKey="TAIXE" OtherKey="USERNAME" Type="NHANVIEN" IsForeignKey="true" />
+      <Association Name="NHANVIEN_LichTrinh1" Member="NHANVIEN1" ThisKey="TAIXE" OtherKey="USERNAME" Type="NHANVIEN" IsForeignKey="true" />
       <Association Name="TuyenDuong_LichTrinh" Member="TuyenDuong" ThisKey="ID_TUYEN_DUONG" OtherKey="ID_TUYEN" Type="TuyenDuong" IsForeignKey="true" />
-      <Association Name="TuyenDuong_LichTrinh1" Member="TuyenDuong1" ThisKey="ID_TUYEN_DUONG" OtherKey="ID_TUYEN" Type="TuyenDuong" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.NHANVIEN" Member="NHANVIENs">
@@ -101,35 +87,16 @@
       <Column Name="EMAIL" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
       <Column Name="LOAI_NV" Type="System.String" DbType="NVarChar(32) NOT NULL" CanBeNull="false" />
       <Association Name="NHANVIEN_LichTrinh" Member="LichTrinhs" ThisKey="USERNAME" OtherKey="NGUOI_TAO_LICH_TRINH" Type="LichTrinh" />
-      <Association Name="NHANVIEN_LichTrinh1" Member="LichTrinhs1" ThisKey="USERNAME" OtherKey="NGUOI_TAO_LICH_TRINH" Type="LichTrinh" />
-      <Association Name="NHANVIEN_LichTrinh2" Member="LichTrinhs2" ThisKey="USERNAME" OtherKey="TAIXE" Type="LichTrinh" />
+      <Association Name="NHANVIEN_LichTrinh1" Member="LichTrinhs1" ThisKey="USERNAME" OtherKey="TAIXE" Type="LichTrinh" />
       <Association Name="userAccount_NHANVIEN" Member="userAccount" ThisKey="USERNAME" OtherKey="username" Type="userAccount" IsForeignKey="true" />
-      <Association Name="userAccount_NHANVIEN1" Member="userAccount1" ThisKey="USERNAME" OtherKey="username" Type="userAccount" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PHUONG_THUC_THANH_TOAN" Member="PHUONG_THUC_THANH_TOANs">
     <Type Name="PHUONG_THUC_THANH_TOAN">
       <Column Name="ID_PTTT" Type="System.String" DbType="VarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="TEN_PHUONG_THUC_THANH_TOAN" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="TEN_PHUONG_THUC_THANH_TOAN" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
       <Column Name="CACH_THUC_THANH_TOAN" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Association Name="PHUONG_THUC_THANH_TOAN_Ve" Member="Ves" ThisKey="ID_PTTT" OtherKey="PHUONG_THUC_THANH_TOAN" Type="Ve" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TuyenDuong" Member="TuyenDuongs">
-    <Type Name="TuyenDuong">
-      <Column Name="ID_TUYEN" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TEN_TUYEN" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="DIEM_DAU" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="DIEM_CUOI" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="KHOANG_CACH" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="THOI_GIAN_DUY_CHUYEN" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="TINH_TRANG" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
-      <Association Name="TuyenDuong_LichTrinh" Member="LichTrinhs" ThisKey="ID_TUYEN" OtherKey="ID_TUYEN_DUONG" Type="LichTrinh" />
-      <Association Name="TuyenDuong_LichTrinh1" Member="LichTrinhs1" ThisKey="ID_TUYEN" OtherKey="ID_TUYEN_DUONG" Type="LichTrinh" />
-      <Association Name="DiaDiem_TuyenDuong" Member="DiaDiem" ThisKey="DIEM_DAU" OtherKey="ID_DIADIEM" Type="DiaDiem" IsForeignKey="true" />
-      <Association Name="DiaDiem_TuyenDuong1" Member="DiaDiem1" ThisKey="DIEM_CUOI" OtherKey="ID_DIADIEM" Type="DiaDiem" IsForeignKey="true" />
-      <Association Name="DiaDiem_TuyenDuong2" Member="DiaDiem2" ThisKey="DIEM_DAU" OtherKey="ID_DIADIEM" Type="DiaDiem" IsForeignKey="true" />
-      <Association Name="DiaDiem_TuyenDuong3" Member="DiaDiem3" ThisKey="DIEM_CUOI" OtherKey="ID_DIADIEM" Type="DiaDiem" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.ThemTramDungChan" Member="ThemTramDungChans">
@@ -153,15 +120,27 @@
       <Association Name="DiaDiem_TramDungChan" Member="DiaDiem" ThisKey="ID_DIADIEM" OtherKey="ID_DIADIEM" Type="DiaDiem" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.TuyenDuong" Member="TuyenDuongs">
+    <Type Name="TuyenDuong">
+      <Column Name="ID_TUYEN" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TEN_TUYEN" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="DIEM_DAU" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DIEM_CUOI" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="KHOANG_CACH" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="THOI_GIAN_DUY_CHUYEN" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TINH_TRANG" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Association Name="TuyenDuong_LichTrinh" Member="LichTrinhs" ThisKey="ID_TUYEN" OtherKey="ID_TUYEN_DUONG" Type="LichTrinh" />
+      <Association Name="DiaDiem_TuyenDuong" Member="DiaDiem" ThisKey="DIEM_DAU" OtherKey="ID_DIADIEM" Type="DiaDiem" IsForeignKey="true" />
+      <Association Name="DiaDiem_TuyenDuong1" Member="DiaDiem1" ThisKey="DIEM_CUOI" OtherKey="ID_DIADIEM" Type="DiaDiem" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.userAccount" Member="userAccounts">
     <Type Name="userAccount">
       <Column Name="username" Type="System.String" DbType="VarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="password" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
       <Column Name="role" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
       <Association Name="userAccount_KhachHang" Member="KhachHang" ThisKey="username" OtherKey="USERNAME" Type="KhachHang" Cardinality="One" />
-      <Association Name="userAccount_KhachHang1" Member="KhachHang1" ThisKey="username" OtherKey="USERNAME" Type="KhachHang" Cardinality="One" />
       <Association Name="userAccount_NHANVIEN" Member="NHANVIEN" ThisKey="username" OtherKey="USERNAME" Type="NHANVIEN" Cardinality="One" />
-      <Association Name="userAccount_NHANVIEN1" Member="NHANVIEN1" ThisKey="username" OtherKey="USERNAME" Type="NHANVIEN" Cardinality="One" />
     </Type>
   </Table>
   <Table Name="dbo.Ve" Member="Ves">
@@ -177,13 +156,10 @@
       <Column Name="TRANG_THAI" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
       <Column Name="PHUONG_THUC_THANH_TOAN" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
       <Association Name="Ve_ChiTietVe" Member="ChiTietVes" ThisKey="ID_VE" OtherKey="ID_VE" Type="ChiTietVe" />
-      <Association Name="Ve_ChiTietVe1" Member="ChiTietVes1" ThisKey="ID_VE" OtherKey="ID_VE" Type="ChiTietVe" />
       <Association Name="TramDungChan_Ve" Member="TramDungChan" ThisKey="DIEM_DOAN" OtherKey="ID_TRAMDUNGCHAN" Type="TramDungChan" IsForeignKey="true" />
       <Association Name="TramDungChan_Ve1" Member="TramDungChan1" ThisKey="DIEM_TRA" OtherKey="ID_TRAMDUNGCHAN" Type="TramDungChan" IsForeignKey="true" />
       <Association Name="KhachHang_Ve" Member="KhachHang" ThisKey="ID_KHACH_HANG" OtherKey="USERNAME" Type="KhachHang" IsForeignKey="true" />
-      <Association Name="KhachHang_Ve1" Member="KhachHang1" ThisKey="ID_KHACH_HANG" OtherKey="USERNAME" Type="KhachHang" IsForeignKey="true" />
       <Association Name="LichTrinh_Ve" Member="LichTrinh" ThisKey="ID_LICH_TRINH" OtherKey="MA_LICH_TRINH" Type="LichTrinh" IsForeignKey="true" />
-      <Association Name="LichTrinh_Ve1" Member="LichTrinh1" ThisKey="ID_LICH_TRINH" OtherKey="MA_LICH_TRINH" Type="LichTrinh" IsForeignKey="true" />
       <Association Name="PHUONG_THUC_THANH_TOAN_Ve" Member="PHUONG_THUC_THANH_TOAN1" ThisKey="PHUONG_THUC_THANH_TOAN" OtherKey="ID_PTTT" Type="PHUONG_THUC_THANH_TOAN" IsForeignKey="true" />
     </Type>
   </Table>

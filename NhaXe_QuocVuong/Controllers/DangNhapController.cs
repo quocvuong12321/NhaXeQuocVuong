@@ -9,7 +9,7 @@ namespace NhaXe_QuocVuong.Controllers
 {
     public class DangNhapController : Controller
     {
-        private NhaXeDataContext db = new NhaXeDataContext();
+        private NhaXeDataContext db = new NhaXeDataContext("");
         // GET: DangNhap
         
         public ActionResult XacNhanRole()
@@ -33,11 +33,30 @@ namespace NhaXe_QuocVuong.Controllers
         [HttpPost]
         public ActionResult Login_NguoiDung(string username, string password)
         {
-            var user = db.userAccounts.FirstOrDefault(u => u.username == username && u.password == password);
+            //var user = db.userAccounts.FirstOrDefault(u => u.username == username && u.password == password);
+            //if (user != null)
+            //{
+            //    if (user.role == "khach")
+            //    {
+            //        Session["khach"] = user;
+            //        return RedirectToAction("Index", "Home");
+            //    }
+            //    else
+            //    {
+            //        ViewBag.ErrorMessage = "Bạn không được phép đăng nhập với vai trò này !";
+            //        return View();
+            //    }
+            //}
+            //else
+            //{
+            //    ViewBag.ErrorMessage = "Username hoặc Password không đúng !";
+            //    return View();
+            //}
 
-            if (user != null)
+            try
             {
-                if (user.role == "khach")
+                var user = db.userAccounts.FirstOrDefault(u => u.username == username && u.password == password);
+                 if (user.role == "khach")
                 {
                     Session["khach"] = user;
                     return RedirectToAction("Index", "Home");
@@ -48,10 +67,11 @@ namespace NhaXe_QuocVuong.Controllers
                     return View();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                ViewBag.ErrorMessage = "Username hoặc Password không đúng !";
-                return View();
+                // Ghi log chi tiết lỗi
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+                return new HttpStatusCodeResult(500, "Internal server error");
             }
         }
 

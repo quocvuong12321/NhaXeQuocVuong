@@ -1,11 +1,7 @@
 ﻿
-USE [nhaxe_quocvuong]
+USE NHAXE_QUOCVUONG
 GO
 
-
-
-USE [nhaxe_quocvuong]
-GO
 
 
 /****** Object:  Trigger [dbo].[trgSetSoGhe]    Script Date: 12/09/2024 1:01:44 PM ******/
@@ -161,19 +157,19 @@ INSERT INTO [Ve] ([ID_VE], [ID_KHACH_HANG], [ID_LICH_TRINH], [NGAY_DAT_VE], [TON
 
 
 
--- Thêm dữ liệu vào bảng ChiTietVe
-INSERT INTO [ChiTietVe] ([ID_VE], [VI_TRI_NGOI]) VALUES 
-('VE001', 'LT001 30B-67890_A1');
-INSERT INTO [ChiTietVe] ([ID_VE], [VI_TRI_NGOI]) VALUES 
-('VE001', 'LT001 30B-67890_A3');
-INSERT INTO [ChiTietVe] ([ID_VE], [VI_TRI_NGOI]) VALUES 
-('VE002', 'LT002 30B-67890_A2', 'QR2A', 'da_thanh_toan');
-INSERT INTO [ChiTietVe] ([ID_VE], [VI_TRI_NGOI]) VALUES 
-('VE003', 'LT003 31C-11111_A3', 'QR3A', 'da_xac_nhan');
-INSERT INTO [ChiTietVe] ([ID_VE], [VI_TRI_NGOI]) VALUES 
-('VE004', 'LT004 32D-22222_A4', 'QR4A', 'huy_ve');
-INSERT INTO [ChiTietVe] ([ID_VE], [VI_TRI_NGOI]) VALUES 
-('VE005', 'LT005 33E-33333_A5', 'QR5A', 'da_thanh_toan');
+---- Thêm dữ liệu vào bảng ChiTietVe
+--INSERT INTO [ChiTietVe] ([ID_VE], [VI_TRI_NGOI]) VALUES 
+--('VE001', 'LT001 30B-67890_A1');
+--INSERT INTO [ChiTietVe] ([ID_VE], [VI_TRI_NGOI]) VALUES 
+--('VE001', 'LT001 30B-67890_A3');
+--INSERT INTO [ChiTietVe] ([ID_VE], [VI_TRI_NGOI]) VALUES 
+--('VE002', 'LT002 30B-67890_A2', 'QR2A', 'da_thanh_toan');
+--INSERT INTO [ChiTietVe] ([ID_VE], [VI_TRI_NGOI]) VALUES 
+--('VE003', 'LT003 31C-11111_A3', 'QR3A', 'da_xac_nhan');
+--INSERT INTO [ChiTietVe] ([ID_VE], [VI_TRI_NGOI]) VALUES 
+--('VE004', 'LT004 32D-22222_A4', 'QR4A', 'huy_ve');
+--INSERT INTO [ChiTietVe] ([ID_VE], [VI_TRI_NGOI]) VALUES 
+--('VE005', 'LT005 33E-33333_A5', 'QR5A', 'da_thanh_toan');
 
 
 -- Thêm dữ liệu vào bảng DoanhThu

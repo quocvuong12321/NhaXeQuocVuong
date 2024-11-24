@@ -1,0 +1,178 @@
+﻿@model List<NhaXe_QuocVuong.Models.TuyenDuong>
+
+@{
+    ViewBag.Title = "Danh Sách Tuyến Đường";
+    Layout = "~/Areas/Area_Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .page-title {
+        color: #343a40;
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .card-container {
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 25px;
+    }
+
+    .btn-add {
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 8px;
+        padding: 12px 20px;
+        background-color: #5cb85c;
+        color: white;
+        transition: 0.3s;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
+        .btn-add:hover {
+            background-color: #4cae4c;
+            transform: translateY(-2px);
+        }
+
+    .search-bar {
+        border: 1px solid #ced4da;
+        border-radius: 8px;
+        padding: 12px 15px;
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .btn-search {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        transition: 0.3s;
+    }
+
+        .btn-search:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+    .table-container {
+        overflow-x: auto;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+
+    .table {
+        margin-bottom: 0;
+        font-size: 16px;
+    }
+
+        .table th {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        .table td {
+            text-align: center;
+            padding: 15px;
+            vertical-align: middle;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+    .btn-update {
+        background-color: #f0ad4e;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 8px;
+        font-size: 16px;
+        border: none;
+    }
+
+        .btn-update:hover {
+            background-color: #ec971f;
+        }
+
+    .btn-delete {
+        background-color: #d9534f;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 8px;
+        font-size: 16px;
+        border: none;
+    }
+
+        .btn-delete:hover {
+            background-color: #c9302c;
+        }
+</style>
+
+<h1 class="page-title">QUẢN LÝ TUYẾN ĐƯỜNG</h1>
+
+<div class="container">
+    <div class="card-container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <!-- Form tìm kiếm -->
+            <form class="w-75 d-flex">
+                <input type="search" class="form-control search-bar me-2" id="search" name="search" value="@ViewBag.Search" placeholder="Nhập Tên Tuyến Đường" />
+                <button type="submit" class="btn btn-search">Tìm kiếm</button>
+            </form>
+            <!-- Nút Thêm Tuyến Đường -->
+            <a href="~/Area_Admin/TuyenDuong/Create" class="btn btn-add">
+                <i class="bi bi-plus-lg"></i> Tạo Tuyến Đường Mới
+            </a>
+        </div>
+
+        <!-- Bảng Danh Sách Tuyến Đường -->
+        <div class="table-container">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        @*<th>ID Tuyến</th>*@
+                        <th>Tên Tuyến</th>
+                        <th>Điểm Đầu</th>
+                        <th>Điểm Cuối</th>
+                        <th>Khoảng Cách</th>
+                        <th>Thời Gian Di Chuyển</th>
+                        <th>Tình Trạng</th>
+                        <th>Thao Tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @*<td>@item.ID_TUYEN</td>*@
+                            <td>@item.TEN_TUYEN</td>
+                            <td>@item.DiaDiem.TEN_TINH_THANH</td>
+                            <td>@item.DiaDiem1.TEN_TINH_THANH</td>
+                            <td>@item.KHOANG_CACH.ToString("F2") km</td>
+                            <td>@item.THOI_GIAN_DUY_CHUYEN giờ</td>
+                            <td>@item.TINH_TRANG</td>
+                            <td >
+                                <a href="@Url.Action("Edit", new { id = item.ID_TUYEN })" class="btn btn-update me-2">Cập nhật</a>
+                                <a href="@Url.Action("Delete", new { id = item.ID_TUYEN })" class="btn btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

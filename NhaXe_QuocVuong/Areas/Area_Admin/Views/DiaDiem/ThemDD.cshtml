@@ -1,0 +1,145 @@
+﻿@using NhaXe_QuocVuong.Models
+@model NhaXe_QuocVuong.Models.DiaDiem
+@{ ViewBag.Title = "ThemDD"; Layout = "~/Areas/Area_Admin/Views/Shared/LayoutAdmin.cshtml"; }
+
+<div class="container-fluid vh-100 d-flex align-items-center justify-content-center" style="background-color: #edf2f7;">
+    <div class="form-container">
+        <div class="form-header text-center mb-4">
+            <h3>THÊM ĐỊA ĐIỂM MỚI</h3>
+        </div>
+
+        <div class="form-body">
+            @using (Html.BeginForm())
+            {
+@Html.AntiForgeryToken()
+                                <div class="form-group mb-4">
+                                    @Html.LabelFor(model => model.TEN_TINH_THANH, "Tên Tỉnh Thành", new { @class = "form-label" })
+                                    @Html.TextBoxFor(model => model.TEN_TINH_THANH, new { @class = "form-control", placeholder = "Nhập tên địa điểm...", @required = "required" })
+                                </div> 
+                                                                <div class="form-footer d-flex justify-content-between mt-3">
+                                                                    <button type="submit" class="btn btn-primary btn-lg px-4">
+                                                                        <i class="fa fa-save"></i> Thêm Địa Điểm 
+                                                                    </button>
+                                                                    @Html.ActionLink("Quay Lại", "DanhSachDD", null, new { @class = "btn btn-light btn-lg px-4" })
+                                                                </div>            }
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        @if (ViewBag.Message != null)
+        {
+            <text>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Thành công!',
+                    text: '@ViewBag.Message',
+                    confirmButtonText: 'Đóng'
+                });
+            </text>
+        }
+    });
+</script>
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTTXrw3fQA7AqMy2z0GF6zOvYlxP1FQY5K3d8QodW9i2FA+o/fGz9cPqU77Gt6y3KpHp8MEeQ=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        color: #2d3748;
+        background-color: #edf2f7;
+    }
+
+    .form-container {
+        background: #ffffff;
+        border-radius: 10px;
+        padding: 40px 30px;
+        max-width: 500px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        width: 100%;
+    }
+
+    .form-header h3 {
+        font-size: 24px;
+        color: #1a202c;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    .form-body {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .form-label {
+        font-size: 14px;
+        color: #4a5568;
+        font-weight: 500;
+    }
+
+    .form-control {
+        border: 1px solid #cbd5e0;
+        border-radius: 5px;
+        padding: 10px 12px;
+        font-size: 14px;
+        color: #2d3748;
+        background: #f7fafc;
+        transition: all 0.3s ease;
+    }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #3182ce;
+            background: #ffffff;
+            box-shadow: 0 0 5px rgba(49, 130, 206, 0.5);
+        }
+
+    .form-footer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn-primary {
+        background: #3182ce;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+        .btn-primary:hover {
+            background: #2b6cb0;
+            transform: translateY(-2px);
+        }
+
+    .btn-light {
+        background: #f0f4f8;
+        color: #2d3748;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+        .btn-light:hover {
+            background: #e2e8f0;
+            transform: translateY(-2px);
+        }
+</style>
