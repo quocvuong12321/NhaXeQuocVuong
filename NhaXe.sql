@@ -87,7 +87,7 @@ CREATE TABLE [KhachHang] (
 GO
 
 CREATE TABLE [PHUONG_THUC_THANH_TOAN](
-  ID_PTTT varchar(128) primary key,
+  ID_PTTT varchar(128) primary key not null,
   TEN_PHUONG_THUC_THANH_TOAN nvarchar(128) not null,
   CACH_THUC_THANH_TOAN varchar(max)
 )
@@ -101,6 +101,7 @@ CREATE TABLE TramDungChan(
   DIA_CHI nvarchar(258) NOT NULL
 )
 GO
+
 
 
 CREATE TABLE ThemTramDungChan(

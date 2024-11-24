@@ -1,0 +1,369 @@
+﻿@model NhaXe_QuocVuong.Models.LichTrinh
+
+@{
+    ViewBag.Title = "UpdateLichTrinh";
+    Layout = "~/Areas/Area_Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<style>
+
+    .form-container {
+        background: #ffffff;
+        border-radius: 10px;
+        padding: 40px 30px;
+        min-width: 50vw;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        width: 100%;
+    }
+</style>
+
+
+<div class="container-fluid vh-100 d-flex align-items-center justify-content-center" style="background-color: #edf2f7;">
+    <div class="form-container">
+        <div class="form-header text-center mb-4">
+            <h3>CẬP NHẬT LỊCH TRÌNH</h3>
+        </div>
+
+        <div class="form-body">
+
+            @using (Html.BeginForm("UpdateLichTrinh", "QuanLyLichTrinh", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal" style="width: 75%; margin: 0 auto;padding:16px;border-radius:10px;box-shadow:1px,0,0,1px" id="">
+                    <h4>LichTrinh</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <!-- Hidden field để lưu MA_LICH_TRINH -->
+                    @Html.HiddenFor(model => model.MA_LICH_TRINH)
+
+                    <div class="form-group">
+                        <span class="control-label col-md-12">Tuyến đường</span>
+                        <div class="col-md-12">
+                            @*<span class="form-control">@Model.ID_TUYEN_DUONG.ToString()</span>*@
+                            @Html.DropDownList(Model.ID_TUYEN_DUONG.ToString(), (SelectList)ViewBag.ID_TUYEN_DUONG, "Chọn Tuyến Đường", new { @class = "form-control", @disabled = "disabled", @id = "ID_TUYEN_DUONG" })
+                            @Html.ValidationMessageFor(model => model.ID_TUYEN_DUONG, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <span class="control-label col-md-12">Thời gian khởi hành</span>
+                            @Html.TextBoxFor(model => model.KHOI_HANH, "{0:yyyy-MM-ddTHH:mm:ss}", new { @class = "form-control", @type = "datetime-local", @onchange = "setSecondsToZero(this)" })
+                            @Html.ValidationMessageFor(model => model.KHOI_HANH, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-6">
+                            <span class="control-label col-md-12">Giá vé</span>
+                            @Html.EditorFor(model => model.GIA_VE, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                            @Html.ValidationMessageFor(model => model.GIA_VE, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <span class="control-label col-md-12">Xe</span>
+                            @Html.DropDownList(Model.ID_XE.ToString(), (SelectList)ViewBag.ID_XE, "Chọn Xe", new { @class = "form-control", @name = "ID_XE", @id = "ID_XE" })
+                            @Html.ValidationMessageFor(model => model.ID_XE, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-6">
+                            <span class="control-label col-md-12">Tài xế</span>
+                            @Html.DropDownList(Model.TAIXE, (SelectList)ViewBag.TAIXE, "Chọn Tài Xế", new { @class = "form-control", @name = "TAIXE", @id = "TAIXE" })
+                            @Html.ValidationMessageFor(model => model.TAIXE, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-12" style="margin:auto">
+                            <input type="submit" value="Cập nhật lịch trình" class="btn btn-default" />
+                        </div>
+                    </div>
+
+                    <div id="stopsContainer" class="form-horizontal row" style="margin-top: 20px; display: flex; align-items: flex-start; position: relative; overflow-y: auto; max-height: 500px;">
+                        <!-- Đường thẳng dọc ở giữa -->
+                        <div style="position: absolute; left: 50%; top: 0; height: 100%; width: 2px; background-color: #000; transform: translateX(-50%); z-index: 1;"></div>
+
+                        <!-- Thẻ bắt đầu -->
+                        <div class="col-md-6 card" id="khoidau" style="position: relative; display: flex; flex-direction: column; box-sizing: border-box; padding-right: 10px;">
+                            <div style="width: 100%; box-sizing: border-box;">
+                                <input type="button" value="Thêm địa điểm dừng chân khởi hành" class="btn btn-info" onclick="addStop('khoidau')" />
+                                <span class="control-label col-md-12" style="text-align: left; display: block; margin-top: 10px;">Trạm dừng chân khởi hành</span>
+                                @foreach (NhaXe_QuocVuong.Models.ThemTramDungChan start in ViewBag.TramDiemDau)
+                                {
+                                    <div class="card mb-3 stop-item-all khoidau" style="border: 1px solid #ccc; padding: 10px; display: flex; justify-content: space-around">
+                                        <div class="form-group position-relative form-group123" style="position:relative;">
+                                            <button type="button" style="top:-10px;left:5px;position: absolute;" class="btn btn-primary btn-sm position-absolute top-0 end-0 m-2 rounded-circle" onclick="deleteItem(this)">X</button>
+
+                                            <span class="control-label col-md-12">Địa điểm dừng chân    </span>
+                                            <div class="col-md-12">
+                                                <select class="form-control" name="stopLocation[]">
+                                                    <option value="">Chọn lịch trình</option>
+                                                    <!-- Nếu ViewBag có danh sách địa điểm cho dropdown -->
+                                                    @foreach (var location in (IEnumerable<SelectListItem>)ViewBag.StartDiem)
+                                                    {
+                                                        <option value="@location.Value" @(location.Value == start.ID_TRAMDUNGCHAN.ToString() ? "selected" : "")>@location.Text</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <span class="control-label col-md-12">Thời gian đến</span>
+                                            <div class="col-md-12">
+                                                @Html.TextBoxFor(model => start.THOIGIANDEN, "{0:yyyy-MM-ddTHH:mm:ss}", new { @class = "form-control", @type = "datetime-local", @name = "arrivalTime[]", @id = "arrivalTime[]", @onchange = "setSecondsToZero(this)" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <!-- Thanh ngang ở dưới span -->
+
+                            <div style="width: 100%; height: 2px; background-color: #000; position: absolute; top: 50px; left: 0;"></div>
+                        </div>
+
+                        <!-- Thẻ kết thúc -->
+                        <div class="col-md-6 card" id="ketthuc" style="position: relative; display: flex; flex-direction: column; box-sizing: border-box; padding-left: 10px;">
+                            <div style="width: 100%; box-sizing: border-box;">
+                                <input type="button" value="Thêm địa điểm dừng chân kết thúc" class="btn btn-info" onclick="addStop('ketthuc')" />
+                                <span class="control-label col-md-12" style="text-align: left; display: block; margin-top: 10px;">Trạm dừng chân kết thúc</span>
+                                @foreach (NhaXe_QuocVuong.Models.ThemTramDungChan end in ViewBag.TramDiemCuoi)
+                                {
+
+
+                                    <div class="card mb-3 stop-item-all khoidau" style="border: 1px solid #ccc; padding: 10px; display: flex; justify-content: space-around">
+                                        <div class="form-group position-relative form-group123" style="position:relative;">
+                                            <button type="button" style="top:-10px;left:5px;position: absolute;" class="btn btn-primary btn-sm position-absolute top-0 end-0 m-2 rounded-circle" onclick="deleteItem(this)">X</button>
+                                            <span class="control-label col-md-12">Địa điểm dừng chân    </span>
+                                            <div class="col-md-12">
+                                                <select class="form-control" name="stopLocation[]">
+                                                    <option value="">Chọn lịch trình</option>
+                                                    <!-- Nếu ViewBag có danh sách địa điểm cho dropdown -->
+                                                    @foreach (var location in (IEnumerable<SelectListItem>)ViewBag.EndDiem)
+                                                    {
+                                                        <option value="@location.Value" @(location.Value == end.ID_TRAMDUNGCHAN.ToString() ? "selected" : "")>@location.Text</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <span class="control-label col-md-12">Thời gian đến</span>
+                                            <div class="col-md-12">
+                                                @Html.TextBoxFor(model => end.THOIGIANDEN, "{0:yyyy-MM-ddTHH:mm:ss}", new { @class = "form-control", @type = "datetime-local", @name = "arrivalTime[]", @id = "arrivalTime[]", @onchange = "setSecondsToZero(this)" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <!-- Thanh ngang ở dưới span -->
+                            <div style="width: 100%; height: 2px; background-color: #000; position: absolute; top: 50px; left: 0;"></div>
+                        </div>
+                    </div>
+
+
+                </div>
+            }
+        </div>
+        </div>
+    </div>
+
+
+
+            <script>
+
+            document.querySelector('form').addEventListener('submit', function (e) {
+                e.preventDefault();
+                const currentUrl = window.location.href;
+                const urlSegments = currentUrl.split('/');
+                const lastSegment = urlSegments[urlSegments.length - 1];
+
+                const formData = {
+                    ID_TUYEN_DUONG: document.getElementById("ID_TUYEN_DUONG").value,
+                    KHOI_HANH: document.querySelector('[name="KHOI_HANH"]').value,
+                    TAIXE: document.getElementById('TAIXE').value,
+                    GIA_VE: document.querySelector('[name="GIA_VE"]').value,
+                    ID_XE: document.getElementById('ID_XE').value,
+                    MA_LICH_TRINH: lastSegment
+                };
+                const stopLocations = Array.from(document.querySelectorAll('select[name="stopLocation[]"]')).map(select => select.value);
+                const arrivalTimes = Array.from(document.querySelectorAll('input[id="arrivalTime[]"]')).map(input => input.value);
+                const stopsData = stopLocations.map((location, index) => ({
+                    Diachi: location,
+                    thoigianden: arrivalTimes[index]
+                }));
+                console.log(stopsData, "stopsData", "arrivalTimes", arrivalTimes)
+                //const data = ;
+
+                $.ajax({
+                    url: '@Url.Action("UpdateLichTrinh", "QuanLyLichTrinh", new { area = "Area_Admin" })',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ formData: formData, StopsData: stopsData }),
+                    success: function (response) {
+                        if (response.message == undefined) {
+                            alert("Thêm dữ liệu thành công")
+                            location.reload();
+                            return;
+                        }
+                        alert(response.message);
+
+                    },
+                    error: function(error) {
+                        console.error("Error:", error);
+                        alert("Lỗi xảy ra khi tạo lịch trình.");
+                    }
+                });
+            });
+
+
+
+
+            function addStopNew(id, selectedOption = '', selectedDateTime = '') {
+                // Tạo một card mới cho địa điểm dừng chân
+
+                let cachedData = localStorage.getItem('diemDungChan');
+                if (cachedData) {
+                    cachedData = JSON.parse(cachedData);
+                    // Sử dụng dữ liệu trong view theo nhu cầu
+                } else return;
+
+                if (id.length == 0) return;
+                let stopOptions = '';
+
+                if (id === "khoidau") {
+                    cachedData.khoihanh.forEach(stop => {
+                        stopOptions += `<option value="${stop.ID_TRAMDUNGCHAN}" ${stop.ID_TRAMDUNGCHAN===selectedOption ? 'selected' : '' }>${stop.TEN_TRAM} (${stop.DD_TRAMDUNG})</option>`;
+                    });
+                } else {
+                    cachedData.ketthuc.forEach(stop => {
+                        stopOptions += `<option value="${stop.ID_TRAMDUNGCHAN}" ${stop.ID_TRAMDUNGCHAN===selectedOption ? 'selected' : '' }>${stop.TEN_TRAM} (${stop.DD_TRAMDUNG})</option>`;
+                    });
+                }
+
+                const stopCard = document.createElement('div');
+                stopCard.className = 'card mb-3 stop-item-all ' + id;
+                stopCard.style = 'border: 1px solid #ccc; padding: 10px; display: flex; justify-content: space-around';
+
+
+
+                stopCard.innerHTML = `
+             <div class="form-group position-relative form-group123" style="position:relative;">
+      <button type="button" style="top:-10px;left:5px;position: absolute;" class="btn btn-primary btn-sm position-absolute top-0 end-0 m-2 rounded-circle" onclick="deleteItem(this)">X</button>
+      <span class="control-label col-md-12">Địa điểm dừng chân</span>
+      <div class="col-md-12">
+          <select class="form-control" name="stopLocation[]">
+             ${stopOptions}
+          </select>
+      </div>
+  </div>
+  <div class="form-group ">
+      <span class="control-label col-md-12">Thời gian đến</span>
+      <div class="col-md-12">
+          <input type="datetime-local" class="form-control" name="arrivalTime[]" onchange="setSecondsToZero(this)">
+      </div>
+  </div>
+        `;
+
+                const container = document.getElementById(id);
+                if (container.lastChild) {
+                    container.insertBefore(stopCard, container.lastChild);
+                } else {
+                    container.appendChild(stopCard);
+                }
+            }
+
+
+    function deleteItem(button) {
+        // Tìm phần tử cha của nút "X" và xóa nó
+        //console.log("hihi", button)
+        const item = button.closest('.form-group123').parentNode;
+        item.remove();
+    }
+            function addStop(id) {
+                // Tạo một card mới cho địa điểm dừng chân
+
+                let cachedData = localStorage.getItem('diemDungChan');
+                if (cachedData) {
+                    cachedData = JSON.parse(cachedData);
+                    // Sử dụng dữ liệu trong view theo nhu cầu
+                } else return
+
+                if (id.lenght == 0) return;
+                let stopOptions = '';
+                if (id === "khoidau") {
+                    cachedData.khoihanh.forEach(stop => {
+                        stopOptions += `<option value="${stop.ID_TRAMDUNGCHAN}">${stop.TEN_TRAM} (${stop.DD_TRAMDUNG})</option>`;
+                    });
+                } else {
+                    cachedData.ketthuc.forEach(stop => {
+                        stopOptions += `<option value="${stop.ID_TRAMDUNGCHAN}">${stop.TEN_TRAM} (${stop.DD_TRAMDUNG})</option>`;
+                    });
+                }
+                var selectedID = document.getElementById("ID_TUYEN_DUONG").value;
+                const stopCard = document.createElement('div');
+                stopCard.className = 'card mb-3 stop-item-all '+id;
+                stopCard.style = 'border: 1px solid #ccc; padding: 10px;display:flex;justify-content:space-around';
+
+                stopCard.innerHTML = `
+           <div class="form-group position-relative form-group123" style="position:relative;">
+    <button type="button" style="top:-10px;left:5px;position: absolute;" class="btn btn-primary btn-sm position-absolute top-0 end-0 m-2 rounded-circle" onclick="deleteItem(this)">X</button>
+    <span class="control-label col-md-12">Địa điểm dừng chân</span>
+    <div class="col-md-12">
+        <select class="form-control" name="stopLocation[]">
+           ${stopOptions}
+        </select>
+    </div>
+</div>
+<div class="form-group ">
+    <span class="control-label col-md-12">Thời gian đến</span>
+    <div class="col-md-12">
+        <input type="datetime-local" class="form-control" name="arrivalTime[]" onchange="setSecondsToZero(this)">
+    </div>
+</div>
+      `;
+
+                const container = document.getElementById(id);
+                if (container.lastChild) {
+                    container.insertBefore(stopCard, container.lastChild);
+                } else {
+                    container.appendChild(stopCard);
+                }
+            }
+
+            function setSecondsToZero(input) {
+                const value = input.value; // Lấy giá trị hiện tại
+                const date = new Date(value); // Tạo đối tượng Date từ giá trị
+
+                // Thiết lập giây về 0
+                date.setSeconds(0);
+                date.setHours(date.getHours() + 7);
+                // Định dạng lại giá trị để chỉ lấy đến phút và cập nhật input
+                const formattedValue = date.toISOString().slice(0, 16); // Chỉ lấy đến phút
+                console.log(formattedValue)
+                input.value = formattedValue;
+            }
+
+          function removeAllTDC(id) {
+            const stopItems = document.querySelectorAll('.stop-item-all');
+            stopItems.forEach(item => {
+                item.remove();
+            });
+            const idTuyenDuong = id;
+            $.ajax({
+                url: '@Url.Action("GetDiemDungChan", "QuanLyLichTrinh", new { area = "Area_Admin" })',
+                type: 'GET',
+                data: { idTuyenDuong: idTuyenDuong },
+                success: function(data) {
+                localStorage.setItem('diemDungChan', JSON.stringify(data));
+                },
+                error: function(error) {
+                alert('Lỗi:', error);
+                console.log(error);
+                }
+                });
+                }
+
+            </script>
+
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>

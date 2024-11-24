@@ -5,7 +5,7 @@ using System.Web;
 
 namespace NhaXe_QuocVuong.Models
 {
-    public class LichTrinhViewModel
+    public class LichTrinh_display
     {
         public LichTrinh LichTrinh { get; set; }
         public int SoChoConLai { get; set; }

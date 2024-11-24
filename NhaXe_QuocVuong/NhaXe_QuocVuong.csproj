@@ -17,7 +17,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress />
+    <Use64BitIISExpress>true</Use64BitIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -128,7 +128,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Area_Admin\Area_AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Area_Admin\Controllers\DiaDiemController.cs" />
     <Compile Include="Areas\Area_Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Area_Admin\Controllers\NhanVienController.cs" />
+    <Compile Include="Areas\Area_Admin\Controllers\QuanLyLichTrinhController.cs" />
+    <Compile Include="Areas\Area_Admin\Controllers\TramDungChanController.cs" />
+    <Compile Include="Areas\Area_Admin\Controllers\TuyenDuongController.cs" />
+    <Compile Include="Areas\Area_Admin\Controllers\XeController.cs" />
     <Compile Include="Controllers\DangNhapAdminController.cs" />
     <Compile Include="Controllers\DangNhapController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -140,12 +146,13 @@
     <Compile Include="Models\GheDTO.cs" />
     <Compile Include="Models\LichSuMuaVe.cs" />
     <Compile Include="Models\LichTrinh_Home.cs" />
-    <Compile Include="Models\LichTrinhViewModel.cs" />
+    <Compile Include="Models\LichTrinh_display.cs" />
     <Compile Include="Models\NhaXe.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NhaXe.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\QuanLyTuyenDuong.cs" />
     <Compile Include="Models\VeCuaToi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -2424,6 +2431,29 @@
       <LastGenOutput>NhaXe.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Areas\Area_Admin\Views\DiaDiem\CapNhatDD.cshtml" />
+    <Content Include="Areas\Area_Admin\Views\DiaDiem\DanhSachDD.cshtml" />
+    <Content Include="Areas\Area_Admin\Views\DiaDiem\ThemDD.cshtml" />
+    <Content Include="Areas\Area_Admin\Views\DiaDiem\XoaDD.cshtml" />
+    <Content Include="Areas\Area_Admin\Views\NhanVien\DanhSachNV.cshtml" />
+    <Content Include="Areas\Area_Admin\Views\NhanVien\SuaNV.cshtml" />
+    <Content Include="Areas\Area_Admin\Views\NhanVien\ThemNV.cshtml" />
+    <Content Include="Areas\Area_Admin\Views\NhanVien\XoaNV.cshtml" />
+    <Content Include="Areas\Area_Admin\Views\QuanLyLichTrinh\CreateLichTrirnh.cshtml" />
+    <Content Include="Areas\Area_Admin\Views\QuanLyLichTrinh\Index.cshtml" />
+    <Content Include="Areas\Area_Admin\Views\QuanLyLichTrinh\UpdateLichTrinh.cshtml" />
+    <Content Include="Areas\Area_Admin\Views\TramDungChan\Create.cshtml" />
+    <Content Include="Areas\Area_Admin\Views\TramDungChan\Delete.cshtml" />
+    <Content Include="Areas\Area_Admin\Views\TramDungChan\Edit.cshtml" />
+    <Content Include="Areas\Area_Admin\Views\TramDungChan\Index.cshtml" />
+    <Content Include="Areas\Area_Admin\Views\TuyenDuong\Create.cshtml" />
+    <Content Include="Areas\Area_Admin\Views\TuyenDuong\Delete.cshtml" />
+    <Content Include="Areas\Area_Admin\Views\TuyenDuong\Edit.cshtml" />
+    <Content Include="Areas\Area_Admin\Views\TuyenDuong\Index.cshtml" />
+    <Content Include="Areas\Area_Admin\Views\Xe\Create.cshtml" />
+    <Content Include="Areas\Area_Admin\Views\Xe\Delete.cshtml" />
+    <Content Include="Areas\Area_Admin\Views\Xe\Edit.cshtml" />
+    <Content Include="Areas\Area_Admin\Views\Xe\Index.cshtml" />
     <None Include="Models\NhaXe.dbml.layout">
       <DependentUpon>NhaXe.dbml</DependentUpon>
     </None>
@@ -2463,7 +2493,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50443</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:5000/</IISUrl>
+          <IISUrl>http://localhost:50443/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

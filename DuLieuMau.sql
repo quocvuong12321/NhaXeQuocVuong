@@ -123,7 +123,6 @@ INSERT INTO [userAccount] ([username], [password], [role]) VALUES
 ('nha_xe02', 'pass456', 'nha_xe'),
 ('admin01', 'adminpass', 'khach');
 
-select * from [userAccount]
 
 -- Thêm dữ liệu vào bảng NHANVIEN
 INSERT INTO [NHANVIEN] ([USERNAME], [TEN_NHANVIEN], [SDT], [EMAIL], [LOAI_NV]) VALUES 
@@ -155,7 +154,6 @@ INSERT INTO PHUONG_THUC_THANH_TOAN values
 -- Thêm dữ liệu vào bảng Ve
 INSERT INTO [Ve] ([ID_VE], [ID_KHACH_HANG], [ID_LICH_TRINH], [NGAY_DAT_VE], [TONG_TIEN] , [DIEM_DOAN], [DIEM_TRA], [QR_CODE], [PHUONG_THUC_THANH_TOAN]) VALUES 
 ('VE001', 'khach01', 'LT001', '2024-10-18 09:00:00', 2400000,'TDC001','TDC002','abc.jpg', 'PT1');
-
 
 
 
