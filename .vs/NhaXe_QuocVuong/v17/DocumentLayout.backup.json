@@ -1,0 +1,163 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|c:\\users\\admin\\desktop\\cnpm\\new folder\\nhaxequocvuong\\nhaxe_quocvuong\\areas\\area_admin\\views\\quanlylichtrinh\\updatelichtrinh.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\views\\quanlylichtrinh\\updatelichtrinh.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\nhaxe_quocvuong\\areas\\area_admin\\views\\quanlylichtrinh\\createlichtrirnh.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\views\\quanlylichtrinh\\createlichtrirnh.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\nhaxe_quocvuong\\areas\\area_admin\\views\\tuyenduong\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\views\\tuyenduong\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\nhaxe_quocvuong\\areas\\area_admin\\views\\quanlylichtrinh\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\views\\quanlylichtrinh\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\nhaxe_quocvuong\\areas\\area_admin\\views\\xe\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\views\\xe\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\nhaxe_quocvuong\\areas\\area_admin\\views\\diadiem\\danhsachdd.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\views\\diadiem\\danhsachdd.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\nhaxe_quocvuong\\areas\\area_admin\\views\\nhanvien\\danhsachnv.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\views\\nhanvien\\danhsachnv.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\nhaxe_quocvuong\\areas\\area_admin\\views\\tramdungchan\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\views\\tramdungchan\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UpdateLichTrinh.cshtml",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\UpdateLichTrinh.cshtml",
+              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\UpdateLichTrinh.cshtml",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\UpdateLichTrinh.cshtml",
+              "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\UpdateLichTrinh.cshtml",
+              "ViewState": "AgIAAO0AAAAAAAAAAAAAAP4AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-30T13:27:46.122Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CreateLichTrirnh.cshtml",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\CreateLichTrirnh.cshtml",
+              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\CreateLichTrirnh.cshtml",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\CreateLichTrirnh.cshtml",
+              "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\CreateLichTrirnh.cshtml",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAAAGQAAACAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-30T08:55:53.64Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\Xe\\Index.cshtml",
+              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\Xe\\Index.cshtml",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\Xe\\Index.cshtml",
+              "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\Xe\\Index.cshtml",
+              "ViewState": "AgIAAJkAAAAAAAAAAAAswKcAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-30T08:36:13.104Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\TuyenDuong\\Index.cshtml",
+              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\TuyenDuong\\Index.cshtml",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\TuyenDuong\\Index.cshtml",
+              "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\TuyenDuong\\Index.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAJUAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-30T08:35:42.92Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\TramDungChan\\Index.cshtml",
+              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\TramDungChan\\Index.cshtml",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\TramDungChan\\Index.cshtml",
+              "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\TramDungChan\\Index.cshtml",
+              "ViewState": "AgIAAJ0AAAAAAAAAAAAqwKoAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-30T08:35:33.807Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DanhSachNV.cshtml",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\NhanVien\\DanhSachNV.cshtml",
+              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\NhanVien\\DanhSachNV.cshtml",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\NhanVien\\DanhSachNV.cshtml",
+              "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\NhanVien\\DanhSachNV.cshtml",
+              "ViewState": "AgIAAJ8AAAAAAAAAAAAqwKcAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-30T08:35:21.283Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DanhSachDD.cshtml",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\DiaDiem\\DanhSachDD.cshtml",
+              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\DiaDiem\\DanhSachDD.cshtml",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\DiaDiem\\DanhSachDD.cshtml",
+              "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\DiaDiem\\DanhSachDD.cshtml",
+              "ViewState": "AgIAAJAAAAAAAAAAAAAqwKAAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-30T08:35:03.068Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\Index.cshtml",
+              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\Index.cshtml",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\Index.cshtml",
+              "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\Index.cshtml",
+              "ViewState": "AgIAAJoAAAAAAAAAAAAAAKwAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-30T08:30:37.097Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

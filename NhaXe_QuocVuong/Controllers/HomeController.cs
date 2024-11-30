@@ -10,7 +10,7 @@ namespace NhaXe_QuocVuong.Controllers
     public class HomeController : Controller
     {
         // GET: Home
-        NhaXeDataContext db = new NhaXeDataContext();
+        NhaXeDataContext db = new NhaXeDataContext("");
         public ActionResult Index()
         {
             List<TuyenDuong> lst = db.TuyenDuongs.Take(3).ToList();

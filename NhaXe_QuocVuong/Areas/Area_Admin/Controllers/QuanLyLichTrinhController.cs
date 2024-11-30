@@ -12,7 +12,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
     public class QuanLyLichTrinhController : Controller
     {
         // GET: Area_Admin/QuanLyLịchTrinh
-        NhaXeDataContext db = new NhaXeDataContext();
+        NhaXeDataContext db = new NhaXeDataContext("");
 
 
         public ActionResult Index()
@@ -127,17 +127,19 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                 if (db.LichTrinhs.FirstOrDefault(lt => lt.MA_LICH_TRINH == MaLichTrinh) != null) {
                     MaLichTrinh += "(1)";
                 };
-                LichTrinh newLichTrinh = new LichTrinh { 
-                MA_LICH_TRINH = MaLichTrinh,
-                NGUOI_TAO_LICH_TRINH = user.username,
-                ID_TUYEN_DUONG =int.Parse(request.formData.ID_TUYEN_DUONG),
-                KHOI_HANH = DateTime.Parse(request.formData.KHOI_HANH),
-                KET_THUC = DateTime.Parse(request.formData.KHOI_HANH).AddHours(db.TuyenDuongs.FirstOrDefault(td=>td.ID_TUYEN == int.Parse(request.formData.ID_TUYEN_DUONG)).THOI_GIAN_DUY_CHUYEN ),
-                GIA_VE = double.Parse(request.formData.GIA_VE),
-                ID_XE= int.Parse(request.formData.ID_XE),
-                TAIXE=request.formData.TAIXE,
-                CHI_PHI_PHAT_SINH=0,
-                NGAY_TAO_LICH_TRINH= DateTime.Now,
+                LichTrinh newLichTrinh = new LichTrinh
+                {
+                    MA_LICH_TRINH = MaLichTrinh,
+                    NGUOI_TAO_LICH_TRINH = user.username,
+                    ID_TUYEN_DUONG = int.Parse(request.formData.ID_TUYEN_DUONG),
+                    KHOI_HANH = DateTime.Parse(request.formData.KHOI_HANH),
+                    KET_THUC = DateTime.Parse(request.formData.KHOI_HANH).AddHours(db.TuyenDuongs.FirstOrDefault(td => td.ID_TUYEN == int.Parse(request.formData.ID_TUYEN_DUONG)).THOI_GIAN_DUY_CHUYEN),
+                    GIA_VE = double.Parse(request.formData.GIA_VE),
+                    ID_XE = int.Parse(request.formData.ID_XE),
+                    TAIXE = request.formData.TAIXE,
+                    CHI_PHI_PHAT_SINH = 0,
+                    NGAY_TAO_LICH_TRINH = DateTime.Now,
+                    TRANG_THAI = "MO_BAN"
                 };
 
                 var stops = request.StopsData;

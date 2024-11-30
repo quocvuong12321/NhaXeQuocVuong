@@ -10,7 +10,7 @@ namespace NhaXe_QuocVuong.Controllers
     public class DangNhapAdminController : Controller
     {
         // GET: DangNhapAdmin
-        private NhaXeDataContext db = new NhaXeDataContext();
+        private NhaXeDataContext db = new NhaXeDataContext("");
 
         public ActionResult Logout()
         {

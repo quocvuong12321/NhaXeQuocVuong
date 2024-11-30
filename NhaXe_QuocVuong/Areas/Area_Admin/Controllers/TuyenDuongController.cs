@@ -9,7 +9,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
 {
     public class TuyenDuongController : Controller
     {
-        NhaXeDataContext db = new NhaXeDataContext();
+        NhaXeDataContext db = new NhaXeDataContext("");
         // GET: Area_Admin/TuyenDuong
         public ActionResult Index(string search="")
         {

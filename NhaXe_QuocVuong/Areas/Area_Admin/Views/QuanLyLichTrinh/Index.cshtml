@@ -69,9 +69,11 @@
             background-color: #007bff;
             border: none;
             border-radius: 10px;
-            display: flex;
+            display: inline-flex; /* Sử dụng inline-flex thay vì flex để tránh ảnh hưởng width */
             align-items: center;
+            white-space: nowrap; /* Đảm bảo text không xuống dòng */
             transition: all 0.3s ease;
+            min-width: 60px;
         }
 
             .btn-search img {
@@ -183,7 +185,7 @@
                             <td>@Html.DisplayFor(modelItem => nv.SoGhe)</td>
                             <td>@Html.DisplayFor(modelItem => nv.SoGheTrong)</td>
                             <td>@Html.DisplayFor(modelItem => nv.TenNhanVien)</td>
-                            <td class="text-center">
+                            <td class="text-center" style="min-width:200px">
                                 @Html.ActionLink("Cập nhật", "UpdateLichTrinh", new { id = nv.MaLichTrinh }, new { @class = "btn btn-warning btn-sm action-link btn-custom" })
                                 @Html.ActionLink("Xóa", "XoaNV", new { id = nv.MaLichTrinh }, new { @class = "btn btn-danger btn-sm action-link btn-custom" })
                             </td>
