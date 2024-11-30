@@ -5,9 +5,9 @@
     Layout = "~/Areas/Area_Admin/Views/Shared/LayoutAdmin.cshtml";
 }
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+@*<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">*@
 
-<style>
+@*<style>
     body {
         background-color: #f8f9fa;
         font-family: 'Poppins', sans-serif;
@@ -44,19 +44,19 @@
             transform: translateY(-2px);
         }
 
-    .search-bar {
+    /*.search-bar {
         border: 1px solid #ced4da;
         border-radius: 8px;
-        padding: 12px 15px;
-        width: 100%;
-        font-size: 16px;
-    }
-
+        padding: 12px 15px;*/
+/*        width: 100%;
+*/        /*font-size: 16px;
+    }*/
+/*
     .btn-search {
         background-color: #007bff;
         color: white;
         border: none;
-        padding: 10px 20px;
+        padding: 10px 20px ;
         border-radius: 8px;
         font-size: 16px;
         font-weight: 500;
@@ -67,7 +67,7 @@
             background-color: #0056b3;
             transform: translateY(-2px);
         }
-
+*/
     .table-container {
         overflow-x: auto;
         border-radius: 10px;
@@ -121,23 +121,29 @@
         .btn-delete:hover {
             background-color: #c9302c;
         }
-</style>
+</style>*@
 
 <h1 class="page-title">QUẢN LÝ TUYẾN ĐƯỜNG</h1>
 
 <div class="container">
-    <div class="card-container">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <!-- Form tìm kiếm -->
-            <form class="w-75 d-flex">
-                <input type="search" class="form-control search-bar me-2" id="search" name="search" value="@ViewBag.Search" placeholder="Nhập Tên Tuyến Đường" />
-                <button type="submit" class="btn btn-search">Tìm kiếm</button>
-            </form>
-            <!-- Nút Thêm Tuyến Đường -->
-            <a href="~/Area_Admin/TuyenDuong/Create" class="btn btn-add">
-                <i class="bi bi-plus-lg"></i> Tạo Tuyến Đường Mới
-            </a>
-        </div>
+    @*<div class="card-container">*@
+
+        <!-- Form tìm kiếm -->
+        <form>
+            <div class="row">
+                <div class="col-7">
+                    <input type="search" class="form-control" id="search" name="search" value="@ViewBag.Search" placeholder="Nhập Tên Tuyến Đường" />
+                </div>
+                <div class="col-3">
+                    <button type="submit" class="btn btn-danger">Tìm kiếm</button>
+                </div>
+            </div>
+        </form>
+        
+        <!-- Nút Thêm Tuyến Đường -->
+        <a href="~/Area_Admin/TuyenDuong/Create" class="btn btn-add">
+            <i class="bi bi-plus-lg"></i> Tạo Tuyến Đường Mới
+        </a>
 
         <!-- Bảng Danh Sách Tuyến Đường -->
         <div class="table-container">
@@ -165,7 +171,7 @@
                             <td>@item.KHOANG_CACH.ToString("F2") km</td>
                             <td>@item.THOI_GIAN_DUY_CHUYEN giờ</td>
                             <td>@item.TINH_TRANG</td>
-                            <td >
+                            <td>
                                 <a href="@Url.Action("Edit", new { id = item.ID_TUYEN })" class="btn btn-update me-2">Cập nhật</a>
                                 <a href="@Url.Action("Delete", new { id = item.ID_TUYEN })" class="btn btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
                             </td>
@@ -174,5 +180,5 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    @*</div>*@
 </div>

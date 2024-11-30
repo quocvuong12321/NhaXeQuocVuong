@@ -12,7 +12,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
     public class QuanLyLichTrinhController : Controller
     {
         // GET: Area_Admin/QuanLyLịchTrinh
-        NhaXeDataContext db = new NhaXeDataContext("");
+        NhaXeDataContext db = new NhaXeDataContext();
 
 
         public ActionResult Index()

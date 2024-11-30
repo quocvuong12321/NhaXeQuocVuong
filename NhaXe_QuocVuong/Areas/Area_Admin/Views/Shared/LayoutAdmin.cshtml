@@ -1,4 +1,4 @@
-﻿@using NhaXe_QuocVuong.Models
+﻿﻿@using NhaXe_QuocVuong.Models
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -8,7 +8,8 @@
     <!-- BOOTSTRAP STYLES-->
     <link href="~/Areas/Area_Admin/assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONTAWESOME STYLES-->
-    @*<link href="~/Areas/Area_Admin/assets/css/font-awesome.css" rel="stylesheet" />*@
+    <link href="~/Areas/Area_Admin/assets/css/font-awesome.css" rel="stylesheet" />
+
     <link href="~/Content/fontawesome-free-6.6.0-web/css/all.min.css" rel="stylesheet" />
     <!-- CUSTOM STYLES-->
     <link href="~/Areas/Area_Admin/assets/css/custom.css" rel="stylesheet" />
@@ -27,7 +28,7 @@
 
 </head>
 <body>
-    <div id="wrapper">
+    <div id="">
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="adjust-nav">
 
@@ -72,41 +73,51 @@
         </div>
 
 
-        <nav class="navbar-default navbar-side" role="navigation">
+        <nav class="navbar-default navbar-side" role="navigation" style="padding-top:80px">
             <div class="sidebar-collapse">
-                <ul class="nav" id="main-menu">
+                <ul class="nav" id="main-menu" style="padding-top:0">
 
-
-
-                    <li class="active-link">
-                        <a href="index.html"><i class="fa fa-desktop "></i>Dashboard <span class="badge">Included</span></a>
+                    <li>
+                        <a href="@Url.Action("Index", "QuanLyLichTrinh" )">
+                            <i class="fa fa-table"></i> Quản lý lịch trình
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("DanhSachNV", "NhanVien")">
+                            <i class="fa fa-table"></i> Quản lý Nhân viên
+                        </a>
                     </li>
 
 
                     <li>
-                        <a href="ui.html"><i class="fa fa-table "></i>UI Elements  <span class="badge">Included</span></a>
+                        <a href="@Url.Action("DanhSachDD", "DiaDiem")">
+
+                            <i class="fa fa-table"></i> Quản lý Địa điểm
+                        </a>
+
                     </li>
                     <li>
-                        <a href="blank.html"><i class="fa fa-edit "></i>Blank Page  <span class="badge">Included</span></a>
+                        <a href="@Url.Action("Index", "Xe")">
+                            <i class="fa fa-table"></i> Quản lý Xe
+                        </a>
                     </li>
 
 
                     <li>
-                        <a href="#"><i class="fa fa-qrcode "></i>My Link One</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-bar-chart-o"></i>My Link Two</a>
+                        <a href="@Url.Action("Index", "TramDungChan")">
+                            <i class="fa fa-table"></i> Quản lý Trạm Dừng Chân
+                        </a>
                     </li>
 
+
                     <li>
-                        <a href="#"><i class="fa fa-edit "></i>My Link Three </a>
+                        <a href="@Url.Action("Index", "TuyenDuong")">
+
+                            <i class="fa fa-table"></i> Quản lý Tuyến Đường
+                        </a>
+
                     </li>
-                    <li>
-                        <a href="#"><i class="fa fa-table "></i>My Link Four</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-edit "></i>My Link Five </a>
-                    </li>
+
 
                 </ul>
             </div>
@@ -130,5 +141,6 @@
     <script src="~/Content/js/bootstrap.min.js"></script>
     <script src="~/Content/js/bootstrap.bundle.min.js"></script>
     <script src="~/Areas/Area_Admin/assets/js/custom.js"></script>
+
 </body>
 </html>
