@@ -4,9 +4,6 @@ GO
 
 
 
-USE [nhaxe_quocvuong]
-GO
-
 
 /****** Object:  Trigger [dbo].[trgSetSoGhe]    Script Date: 12/09/2024 1:01:44 PM ******/
 SET ANSI_NULLS ON
@@ -40,7 +37,7 @@ BEGIN
 	END
 
 	-- INSERT SỐ LƯỢNG GHẾ VÀO THEO TRƯỜNG HỢP TRÊN
-	INSERT INTO Ghe (ID_GHE, VI_TRI_NGOI, MA_LICH_TRINH,TINH_TRANG)
+	INSERT INTO Ghe (ID_GHE, VI_TRI_NGOI, MA_LICH_TRINH)
 	SELECT CONCAT(MA_LICH_TRINH, ' ', BIEN_SO_XE, '_', GroupLetter, SeatNumber) AS ID_GHE,
 		   CONCAT(GroupLetter, SeatNumber) AS VI_TRI_NGOI,
 		   MA_LICH_TRINH 
@@ -87,33 +84,32 @@ BEGIN
 					WHEN X.LOAI_XE = 'Giuong' THEN 36
 					ELSE 0
 				END
-		) AS NumberedSeats,
+		) AS NumberedSeats
 END;
-go
+GO
 
 
 -- Thêm dữ liệu vào bảng DiaDiem
 INSERT INTO [DiaDiem] ([TEN_TINH_THANH]) VALUES 
-(N'Hà Nội'),
-(N'Hải Phòng'),
-(N'Đà Nẵng'),
 (N'Hồ Chí Minh'),
-(N'Cần Thơ');
+(N'Đắk Lắk'),
+(N'oà Lạt')
+go
 
 -- Thêm dữ liệu vào bảng TuyenDuong
 INSERT INTO [TuyenDuong] ([TEN_TUYEN], [DIEM_DAU], [DIEM_CUOI], [KHOANG_CACH], [THOI_GIAN_DUY_CHUYEN], [TINH_TRANG]) VALUES 
-(N'Hà Nội - Hải Phòng', 1, 2, 120, 2, 'CON_HOAT_DONG'),
-(N'Đà Nẵng - Hồ Chí Minh', 3, 4, 850, 16, 'CON_HOAT_DONG'),
-(N'Hà Nội - Đà Nẵng', 1, 3, 760, 14, 'KHONG_HOAT_DONG'),
-(N'Hồ Chí Minh - Cần Thơ', 4, 5, 180, 4, 'CON_HOAT_DONG'),
-(N'Hải Phòng - Cần Thơ', 2, 5, 1500, 30, 'CON_HOAT_DONG');
-
+(N'Hồ Chí Mình - Đăk Lăk', 1, 2, 350, 8, 'CON_HOAT_DONG'),
+(N'Đăk Lăk - Hồ Chí Mình', 2, 1, 350, 8, 'CON_HOAT_DONG'),
+(N'Hồ Chí Mình - Đà Lạt', 1, 3, 300, 7, 'CON_HOAT_DONG'),
+(N'Đà Lạt - Hồ Chí Minh', 3, 1, 300, 7, 'CON_HOAT_DONG'),
+(N'Đăk Lăk - Đà Lạt', 2, 3, 200, 5, 'KHONG_HOAT_DONG');
+go
 -- Thêm dữ liệu vào bảng Xe
 INSERT INTO [Xe] ([BIEN_SO_XE], [LOAI_XE], [SO_GHE]) VALUES 
 ('30B-67890', 'Limousine', 24),
 ('31C-11111', 'Giuong', 36),
 ('33E-33333', 'Limousine', 24);
-
+go
 
 
 -- Thêm dữ liệu vào bảng userAccount
@@ -123,36 +119,46 @@ INSERT INTO [userAccount] ([username], [password], [role]) VALUES
 ('nha_xe01', 'pass345', 'nha_xe'),
 ('nha_xe02', 'pass456', 'nha_xe'),
 ('admin01', 'adminpass', 'khach');
-
+go
 -- Thêm dữ liệu vào bảng NHANVIEN
 INSERT INTO [NHANVIEN] ([USERNAME], [TEN_NHANVIEN], [SDT], [EMAIL], [LOAI_NV]) VALUES 
 ('nha_xe01', N'Nguyễn Văn A', '0123456789', 'a@example.com', 'QUAN_LY'),
 ('nha_xe02', N'Trần Văn B', '0987654321', 'b@example.com', 'TAI_XE');
-
-
-
-
+go
 
 
 -- Thêm dữ liệu vào bảng KhachHang
 INSERT INTO [KhachHang] ([USERNAME], [TEN_KHACH_HANG], [SO_DIEN_THOAI], [EMAIL]) VALUES 
 ('khach01', N'Trần Thị Mai', '0987000001', 'mai@example.com'),
 ('khach02', N'Nguyễn Văn Hùng', '0987000002', 'hung@example.com');
+go
 
 INSERT INTO PHUONG_THUC_THANH_TOAN values
-('PT1',N'Tiền mặt','abasdasd')
-
+('PT1',N'Tiền mặt',''),
+('PT2',N'Momo',''),
+('PT3',N'Thẻ tín dụng','')
+go
 
 -- Thêm dữ liệu vào bảng TramDungChan
 INSERT INTO [TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES 
-('TDC001', N'Trạm dừng chân Hà Nội', 1, N'Số 1, Đường ABC, Hà Nội'),
-('TDC002', N'Trạm dừng chân Hải Phòng', 2, N'Số 2, Đường XYZ, Hải Phòng'),
-('TDC003', N'Trạm dừng chân Đà Nẵng', 3, N'Số 3, Đường DEF, Đà Nẵng'),
-('TDC004', N'Trạm dừng chân Hồ Chí Minh', 4, N'Số 4, Đường GHI, Hồ Chí Minh'),
-('TDC005', N'Trạm dừng chân Cần Thơ', 5, N'Số 5, Đường JKL, Cần Thơ');
-
-
-
-
-
+ ('TDC001', N'Bến xe Miền Đông', 1, N'292 Đinh Bộ Lĩnh, Bình Thạnh');
+INSERT INTO [TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES 
+ ('TDC002', N'Bến xe An Sương', 1, N'Quốc lộ 22, Bà Điểm, Hóc Môn');
+INSERT INTO [TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES 
+ ('TDC003', N'Mũi Tàu Trường Trinh', 1, N'19B1 Trường Chinh, Tân Bình');
+INSERT INTO [TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES 
+ ('TDC004', N'Bến xe Miền Tây', 1, N'395 Kinh Dương Vương, Bình Tân');
+INSERT INTO [TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES 
+ ('TDC005', N'Coop Mart Bảo Lộc', 3, N'Tháp Nước, đường Trần Phú, Phường 2, Bảo Lộc, Lâm Đồng');
+INSERT INTO [TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES 
+ ('TDC006', N'Bến xe Di Linh', 3, N'681 Hùng Vương, Di Linh, Lâm Đồng');
+INSERT INTO [TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES 
+ ('TDC007', N'Bến xe phía Nam', 2, N'Võ Văn Kiệt, Khánh Xuân, Buôn Ma Thuột, Đắk Lắk');
+INSERT INTO [TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES 
+ ('TDC008', N'Ngã 3 Duy Hoà', 2, N'387 Võ Văn Kiệt, Phường Khánh Xuân, Buôn Ma Thuột, Đắk Lắk');
+INSERT INTO [TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES 
+ ('TDC009', N'Bến xe phía Bắc', 2, N'71 Nguyễn Chí Thanh, Tân An, Buôn Ma Thuột, Đắk Lắk');
+INSERT INTO [TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES 
+ ('TDC011', N'Bến xe liên tỉnh Đà Lạt', 3, N'01 Tô Hiến Thành - P3 - Đà Lạt - Lâm Đồng');
+go
 
