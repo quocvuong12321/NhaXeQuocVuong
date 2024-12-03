@@ -167,6 +167,7 @@
                         <th>Số ghế</th>
                         <th>Số ghế trống</th>
                         <th>Tên tài xế</th>
+                        <th>Trạng thái</th>
                         <th class="text-center" style="width: 200px;">THAO TÁC</th>
                     </tr>
                 </thead>
@@ -185,9 +186,15 @@
                             <td>@Html.DisplayFor(modelItem => nv.SoGhe)</td>
                             <td>@Html.DisplayFor(modelItem => nv.SoGheTrong)</td>
                             <td>@Html.DisplayFor(modelItem => nv.TenNhanVien)</td>
+                            <td>@Html.DisplayFor(modelItem => nv.TrangThai)</td>
                             <td class="text-center" style="min-width:200px">
                                 @Html.ActionLink("Cập nhật", "UpdateLichTrinh", new { id = nv.MaLichTrinh }, new { @class = "btn btn-warning btn-sm action-link btn-custom" })
-                                @Html.ActionLink("Xóa", "XoaNV", new { id = nv.MaLichTrinh }, new { @class = "btn btn-danger btn-sm action-link btn-custom" })
+                                <button class="btn btn-danger btn-sm action-link btn-custom"
+                                        onclick="deleteLichTrinh('@nv.MaLichTrinh')">
+                                    Xóa
+                                </button>
+
+                                @*@Html.ActionLink("Xóa", "DeleteLichTrinh", new { id = nv.MaLichTrinh }, new { @class = "btn btn-danger btn-sm action-link btn-custom" })*@
                             </td>
                         </tr>
                     }
@@ -196,6 +203,30 @@
         </div>
     </div>
 
+<script>
+
+    function deleteLichTrinh(id) {
+        if (confirm("Bạn có chắc chắn muốn xóa lịch trình này?")) {
+            $.ajax({
+                url: '@Url.Action("DeleteLichTrinh", "QuanLyLichTrinh", new { area = "Area_Admin" })',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({id:id}),
+                success: function (response) {
+                    alert(response.message);
+                    location.reload();
+                },
+                error: function (error) {
+                    console.error("Error:", error);
+                    alert("Lỗi xảy ra khi xóa lịch trình.");
+                }
+            });
+        }
+    }
+
+
+
+</script>
     @*@foreach (var item in Model)
         {
             <div style="display: flex; padding:16px; flex-direction: column; width: 100%; border: 1px solid #ec7f1f; border-radius: 0.75rem; background-color: white; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); margin-top: 2rem;">

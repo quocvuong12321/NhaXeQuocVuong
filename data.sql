@@ -89,6 +89,41 @@ END;
 GO
 
 
+CREATE TRIGGER trg_CheckLichTrinhOverlap
+ON LichTrinh
+INSTEAD OF INSERT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Kiểm tra trùng lặp TAIXE hoặc ID_XE trong khoảng thời gian
+    IF EXISTS (
+        SELECT 1
+        FROM LichTrinh lt
+        JOIN inserted i
+        ON (
+            lt.TAIXE = i.TAIXE OR lt.ID_XE = i.ID_XE
+        )
+        AND (
+            (i.KHOI_HANH BETWEEN lt.KHOI_HANH AND lt.KET_THUC) OR
+            (i.KET_THUC BETWEEN lt.KHOI_HANH AND lt.KET_THUC) OR
+            (lt.KHOI_HANH BETWEEN i.KHOI_HANH AND i.KET_THUC) OR
+            (lt.KET_THUC BETWEEN i.KHOI_HANH AND i.KET_THUC)
+        )
+    )
+    BEGIN
+        -- Trả về thông báo lỗi
+        RAISERROR ('Trùng lịch trình: Tài xế hoặc xe đã có lịch trong khoảng thời gian này.', 16, 1);
+        RETURN;
+    END
+
+    -- Nếu không trùng, thêm dữ liệu vào bảng LichTrinh
+    INSERT INTO LichTrinh (MA_LICH_TRINH, ID_TUYEN_DUONG, KHOI_HANH, KET_THUC, GIA_VE, ID_XE, CHI_PHI_PHAT_SINH, TRANG_THAI, TAIXE, NGAY_TAO_LICH_TRINH, NGUOI_TAO_LICH_TRINH)
+    SELECT MA_LICH_TRINH, ID_TUYEN_DUONG, KHOI_HANH, KET_THUC, GIA_VE, ID_XE, CHI_PHI_PHAT_SINH, TRANG_THAI, TAIXE, NGAY_TAO_LICH_TRINH, NGUOI_TAO_LICH_TRINH
+    FROM inserted;
+END;
+GO
+
 -- Thêm dữ liệu vào bảng DiaDiem
 INSERT INTO [DiaDiem] ([TEN_TINH_THANH]) VALUES 
 (N'Hồ Chí Minh'),

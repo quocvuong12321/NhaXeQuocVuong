@@ -9,7 +9,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
 {
     public class XeController : Controller
     {
-        NhaXeDataContext db = new NhaXeDataContext("");
+        NhaXeDataContext db = new NhaXeDataContext();
         // GET: Area_Admin/Xe
         public ActionResult Index(string search="")
         {
@@ -25,6 +25,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
         [HttpPost]
         public ActionResult Create(Xe x)
         {
+            x.NGAY_THEM_XE = DateTime.Now;
             db.Xes.InsertOnSubmit(x);
             db.SubmitChanges();
             return RedirectToAction("Index");

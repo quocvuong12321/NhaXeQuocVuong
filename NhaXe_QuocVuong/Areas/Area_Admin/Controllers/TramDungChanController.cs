@@ -9,7 +9,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
 {
     public class TramDungChanController : Controller
     {
-        NhaXeDataContext db = new NhaXeDataContext("");
+        NhaXeDataContext db = new NhaXeDataContext();
         // GET: Area_Admin/TramDungChan
         public ActionResult Index(string search)
         {
@@ -39,10 +39,6 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
             var diemDau = db.DiaDiems.FirstOrDefault(d => d.ID_DIADIEM == tdc.ID_DIADIEM)?.TEN_TINH_THANH;
             if (ModelState.IsValid)
             {
-                if (diemDau!=null)
-                    {
-                        tdc.TEN_TRAMDUNGCHAN = "Trạm Dừng Chân " + diemDau;
-                    }
                 db.TramDungChans.InsertOnSubmit(tdc);
                 db.SubmitChanges();
                 return RedirectToAction("Index");

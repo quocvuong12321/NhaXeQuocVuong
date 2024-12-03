@@ -36,20 +36,20 @@
                     @Html.Label("Loại Xe", htmlAttributes: new { @class = "field-label" })
                     @Html.DropDownListFor(
                         model => model.LOAI_XE,
-                        new SelectList(new[] { "Ghế", "Giường", "Limousine" }),
+                        new SelectList(new[] { "Limousine", "Giuong" }),
                         "Chọn Loại Xe",
-                        new { @class = "field-input" }
+                        new { @class = "field-input", id = "loaiXe" }
                     )
                     @Html.ValidationMessageFor(model => model.LOAI_XE, "", new { @class = "field-error" })
-                    <small class="form-text text-muted">Chọn loại xe phù hợp từ danh sách.</small>
+                    <small class="form-text text-muted">Chọn loại xe phù hợp với nhu cầu.</small>
                 </div>
 
                 <!-- Số ghế -->
                 <div class="form-field">
                     @Html.Label("Số Ghế", htmlAttributes: new { @class = "field-label" })
-                    @Html.DropDownListFor(model => model.SO_GHE, new SelectList(new[] { "12", "24", "36" }), new { @class = "field-input" })
+                    @Html.TextBoxFor(model => model.SO_GHE, new { @class = "field-input", id = "soGhe", @readonly = "readonly" })
                     @Html.ValidationMessageFor(model => model.SO_GHE, "", new { @class = "field-error" })
-                    <small class="form-text text-muted">Chọn số ghế phù hợp với loại xe.</small>
+                    <small class="form-text text-muted">Số ghế sẽ được tự động điền dựa vào loại xe.</small>
                 </div>
 
                 <!-- Nút Hành Động -->
@@ -175,3 +175,18 @@
         }
 
 </style>
+<script>
+    document.getElementById("loaiXe").addEventListener("change", function () {
+        var loaiXe = this.value;
+        var soGhe = document.getElementById("soGhe");
+
+        // Tự động thay đổi số ghế dựa vào loại xe
+        if (loaiXe === "Limousine") {
+            soGhe.value = "24"; // Giá trị mặc định cho Limousine
+        } else if (loaiXe === "Giuong") {
+            soGhe.value = "36"; // Giá trị mặc định cho Giường
+        } else {
+            soGhe.value = ""; // Trống nếu không chọn loại xe đặc biệt
+        }
+    });
+</script>

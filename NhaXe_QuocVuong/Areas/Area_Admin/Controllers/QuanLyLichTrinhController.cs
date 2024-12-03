@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Windows.Documents;
 using NhaXe_QuocVuong.Models;
 
 namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
@@ -12,7 +13,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
     public class QuanLyLichTrinhController : Controller
     {
         // GET: Area_Admin/QuanLyLịchTrinh
-        NhaXeDataContext db = new NhaXeDataContext("");
+        NhaXeDataContext db = new NhaXeDataContext();
 
 
         public ActionResult Index()
@@ -41,7 +42,8 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                             DiemKetThuc = DiemCuoi.TEN_TINH_THANH,
                             LoaiXe = Xe.LOAI_XE,
                             SoGhe = Xe.SO_GHE,
-                            SoGheTrong = db.Ghes.Count(i => i.TINH_TRANG == false && i.MA_LICH_TRINH == LichTrinh.MA_LICH_TRINH)
+                            SoGheTrong = db.Ghes.Count(i => i.TINH_TRANG == false && i.MA_LICH_TRINH == LichTrinh.MA_LICH_TRINH),
+                            TrangThai= LichTrinh.TRANG_THAI,
                         };
 
             var result = query.ToList().Select(item => new LichTrinhViewModel
@@ -58,6 +60,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                 SoGhe = item.SoGhe.ToString(),
                 SoGheTrong = item.SoGheTrong,
                 TenNhanVien = item.TaiXe.TEN_NHANVIEN,
+                TrangThai = item.TrangThai
             }).ToList();
 
 
@@ -112,6 +115,43 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                 return Json("",JsonRequestBehavior.AllowGet);
              }
         }
+        [HttpGet]
+        [AllowAnonymous]
+        public JsonResult GetTaiXe(int idTuyenDuong,string KHOI_HANH)
+        {
+            try
+            {
+                TuyenDuong td = db.TuyenDuongs.FirstOrDefault(tdd => tdd.ID_TUYEN == idTuyenDuong);
+                DateTime KetThuc = DateTime.Parse(KHOI_HANH).AddHours(td.THOI_GIAN_DUY_CHUYEN);
+                DateTime KhoiHanh = DateTime.Parse(KHOI_HANH);
+
+
+                var nhanVienKhongCoLichTrinh = db.NHANVIENs
+                .Where(nv => nv.LOAI_NV == "TAI_XE" && !db.LichTrinhs 
+                    .Where(lt => lt.KHOI_HANH < KetThuc && lt.KET_THUC > KhoiHanh ) // Lọc lịch trình nằm trong khoảng thời gian
+                    .Select(lt => lt.TAIXE)
+                    .Contains(nv.USERNAME));
+
+                var xeKhongCoLichTrinh = db.Xes
+                    .Where(xe => !db.LichTrinhs
+                        .Where(lt => lt.KHOI_HANH < KetThuc && lt.KET_THUC > KhoiHanh && lt.ID_XE == xe.ID_XE) // Lọc lịch trình nằm trong khoảng thời gian
+                        .Select(lt => lt.ID_XE)
+                        .Contains(xe.ID_XE));
+                var query = new
+                {
+                    taixe = nhanVienKhongCoLichTrinh.Select(nv => new { USERNAME = nv.USERNAME, NAME = nv.TEN_NHANVIEN }),
+                    xe = xeKhongCoLichTrinh.Select(nv => new { ID_XE = nv.ID_XE, NAME = $"{nv.BIEN_SO_XE} - {nv.LOAI_XE}" }),
+
+                };
+                Session["tai_xe"] = query;
+                return Json(query, JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+
+                return Json("", JsonRequestBehavior.AllowGet);
+            }
+        }
 
         [HttpPost]
         public ActionResult CreateLichTrinh( LichTrinhRequest request)
@@ -143,27 +183,37 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                 };
 
                 var stops = request.StopsData;
-                bool check=false;
+                string check="";
                 stops.ForEach(sp =>
                 {
                     DateTime timeStop = DateTime.Parse(sp.thoigianden);
                     if (timeStop < newLichTrinh.KHOI_HANH|| timeStop > newLichTrinh.KET_THUC)
                     {
-                        check = true;
+                            check = "Thời gian Khởi hành và kết thúc không hợp lệ ";
                         return;
                     }
+
                 });
-                if (check)
+                var duplicates = stops.GroupBy(x => new { x.Diachi })
+                 .Where(g => g.Count() > 1)
+                 .Select(g => g.Key);
+                if (duplicates.Any())
                 {
-                    return Json(new { success = false, message = "Dữ liệu không hợp lệ điêm dừng chân không hợp lệ!" });
+                    check = "Trạm dừng chân trùng ";
                 }
+                if (check.Length>0)
+                {
+                    return Json(new { success = false, message = check });
+                }
+
+
                 db.LichTrinhs.InsertOnSubmit(newLichTrinh);
                 db.SubmitChanges();
 
                 var TramDungChan = stops.Select(stop => new ThemTramDungChan { 
                     ID_TRAMDUNGCHAN=stop.Diachi,
                     MA_LICH_TRINH= MaLichTrinh,
-                    THOIGIANDEN = DateTime.Parse(stop.thoigianden),
+                    THOIGIANDEN = DateTime.Parse(stop.thoigianden), 
                 }).ToList();
                 db.ThemTramDungChans.InsertAllOnSubmit(TramDungChan);
                 db.SubmitChanges();
@@ -263,6 +313,29 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
         }
 
         [HttpPost]
+        public JsonResult DeleteLichTrinh(string id)
+        {
+            try
+            {
+                var existingLichTrinh = db.LichTrinhs.FirstOrDefault(l => l.MA_LICH_TRINH == id);
+                if (existingLichTrinh == null)
+                {
+                    return Json(new { success = false, message = "Không tìm thấy lịch trình cần xóa." });
+                }
+
+                existingLichTrinh.TRANG_THAI = "DA_DONG";
+                db.SubmitChanges();
+
+                return Json(new { success = true, message = "Xóa lịch trình thành công." });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Có lỗi xảy ra: " + ex.Message });
+            }
+        }
+
+
+        [HttpPost]
         public ActionResult UpdateLichTrinh(LichTrinhRequest model)
         {
 
@@ -311,26 +384,32 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                     var stops = model.StopsData;
                     if (stops != null)
                     {
-                        bool check = false;
+                       
+
+                        string check = "";
                         stops.ForEach(sp =>
                         {
-                            if (sp.thoigianden == null)
-                            {
-                                check = true;
-                                return;
-                            }
                             DateTime timeStop = DateTime.Parse(sp.thoigianden);
-
                             if (!(timeStop >= existingLichTrinh.KHOI_HANH && timeStop <= existingLichTrinh.KET_THUC))
                             {
-                                check = true;
+                                check = "Thời gian Khởi hành và kết thúc không hợp lệ ";
                                 return;
                             }
+
                         });
-                        if (check)
+                        var duplicates = stops.GroupBy(x => new { x.Diachi })
+                         .Where(g => g.Count() > 1)
+                         .Select(g => g.Key);
+                        if (duplicates.Any())
                         {
-                            return Json(new { success = false, message = "Dữ liệu không hợp lệ điểm dừng chân không hợp lệ!" });
+                            check = "Trạm dừng chân trùng ";
                         }
+                        if (check.Length > 0)
+                        {
+                            return Json(new { success = false, message = check });
+                        }
+
+
                         //db.SubmitChanges();
                         var TramDungChan = stops.Select(stop => new ThemTramDungChan
                         {

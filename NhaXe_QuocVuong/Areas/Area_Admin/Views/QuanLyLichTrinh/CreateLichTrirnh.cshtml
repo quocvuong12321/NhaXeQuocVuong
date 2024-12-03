@@ -38,7 +38,7 @@
                     <div class="form-group">
                         <span class="control-label col-md-12">Tuyến đường</span>
                         <div class="col-md-12">
-                            @Html.DropDownListFor(model => model.ID_TUYEN_DUONG, (SelectList)ViewBag.ID_TUYEN_DUONG, "Chọn Tuyến Đường", new { @class = "form-control", @onchange = "removeAllTDC(this.value)" })
+                            @Html.DropDownListFor(model => model.ID_TUYEN_DUONG, (SelectList)ViewBag.ID_TUYEN_DUONG, "Chọn Tuyến Đường", new {@id= "ID_TUYEN_DUONG", @class = "form-control", @onchange = "removeAllTDC(this.value),checkInputsAndFetchData()" })
                             @Html.ValidationMessageFor(model => model.ID_TUYEN_DUONG, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                     <div class="form-group">
                         <div class="col-md-6">
                             <span class="control-label col-md-12">Thời gian khởi hành</span>
-                            @Html.TextBoxFor(model => model.KHOI_HANH, "{0:yyyy-MM-ddTHH:mm:ss}", new { @class = "form-control", @type = "datetime-local", @onchange = "setSecondsToZero(this)" })
+                            @Html.TextBoxFor(model => model.KHOI_HANH, "{0:yyyy-MM-ddTHH:mm:ss}", new {@id = "KHOI_HANH", @class = "form-control", @type = "datetime-local", @onchange = "setSecondsToZero(this),checkInputsAndFetchData()" })
                             @Html.ValidationMessageFor(model => model.KHOI_HANH, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-6">
@@ -112,14 +112,7 @@
         </div>
     </div>
     </div>
-    <script>
-    //document.addEventListener("DOMContentLoaded", function () {
-    //    func1();
-    //    func2();
-    //    addStop(id)
-    //    removeAllTDC(id)
-    //});
-
+<script>
 
 
     document.querySelector('form').addEventListener('submit', function (e) {
@@ -252,7 +245,59 @@
             console.log(error);
         }
     });
+        }
+
+function checkInputsAndFetchData() {
+    var idTuyenDuong = $("#ID_TUYEN_DUONG").val();  // Lấy giá trị Tuyến đường
+    var khoiHanh = $("#KHOI_HANH").val();  // Lấy giá trị Thời gian khởi hành
+
+    // Kiểm tra nếu cả 2 ô input đều có dữ liệu
+    if (idTuyenDuong && khoiHanh) {
+        // Gọi AJAX để lấy dữ liệu
+        $.ajax({
+            url: '@Url.Action("GetTaiXe", "QuanLyLichTrinh")',  // Thay "YourController" bằng tên controller của bạn
+            type: 'GET',
+            data: { idTuyenDuong: idTuyenDuong, KHOI_HANH: khoiHanh },
+            success: function(data) {
+                // Xử lý dữ liệu trả về (data) từ server
+                updateSelectOptions(data)
+                console.log("data nè",data, "kjoi hanh",khoiHanh);
+            },
+            error: function(error) {
+                alert('Lỗi:', error);
+                console.log(error);
+            }
+        });
+    }
 }
 
-    </script>
+
+
+        function updateSelectOptions(data) {
+            // Cập nhật danh sách Xe
+            var xeDropdown = $("#ID_XE");
+            xeDropdown.empty();  // Xóa tất cả các option hiện tại
+
+            // Thêm option "Chọn Xe" đầu tiên
+            xeDropdown.append('<option value="">Chọn Xe</option>');
+
+            // Thêm các Xe không có lịch trình vào dropdown
+            $.each(data.xe, function (index, xe) {
+                xeDropdown.append('<option value="' + xe.ID_XE + '">' + xe.NAME + '</option>');
+            });
+
+            // Cập nhật danh sách Tài xế
+            var taiXeDropdown = $("#TAIXE");
+            taiXeDropdown.empty();  // Xóa tất cả các option hiện tại
+
+            // Thêm option "Chọn Tài Xế" đầu tiên
+            taiXeDropdown.append('<option value="">Chọn Tài Xế</option>');
+
+            // Thêm các Tài xế không có lịch trình vào dropdown
+            $.each(data.taixe, function (index, taixe) {
+                taiXeDropdown.append('<option value="' + taixe.USERNAME + '">' + taixe.NAME + '</option>');
+            });
+        }
+
+</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

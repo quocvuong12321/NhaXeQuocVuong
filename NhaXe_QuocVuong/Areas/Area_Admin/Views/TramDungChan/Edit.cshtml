@@ -40,9 +40,9 @@
                 <!-- Tên Trạm Dừng Chân -->
                 <div class="form-group mb-4">
                     @Html.Label("Tên Trạm Dừng Chân", htmlAttributes: new { @class = "form-label fw-bold text-secondary" })
-                    @Html.EditorFor(model => model.TEN_TRAMDUNGCHAN, new { htmlAttributes = new { @class = "form-control form-control-lg rounded-3", id = "TEN_TRAMDUNGCHAN", @readonly = "readonly" } })
+                    @Html.EditorFor(model => model.TEN_TRAMDUNGCHAN, new { htmlAttributes = new { @class = "form-control form-control-lg rounded-3", id = "TEN_TRAMDUNGCHAN" } })
                     @Html.ValidationMessageFor(model => model.TEN_TRAMDUNGCHAN, "", new { @class = "text-danger" })
-                    <small class="form-text text-muted">Tên trạm dừng chân sẽ được tự động điền khi chọn địa điểm.</small>
+                    <small class="form-text text-muted">Nhập tên trạm dừng chân theo ý muốn.</small>
                 </div>
 
                 <!-- Địa Chỉ -->
@@ -63,7 +63,7 @@
     </div>
 </div>
 
-<script>
+@*<script>
     // Hàm tự động điền tên trạm dừng chân khi chọn địa điểm
     window.onload = function () {
         updateTenTramDungChan(); // Gọi hàm khi trang được tải lại
@@ -79,7 +79,7 @@
             document.getElementById("TEN_TRAMDUNGCHAN").value = "";
         }
     }
-</script>
+</script>*@
 <style>
     body {
         font-family: 'Roboto', sans-serif;

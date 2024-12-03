@@ -5,7 +5,6 @@
     Layout = "~/Areas/Area_Admin/Views/Shared/LayoutAdmin.cshtml";
 }
 
-
 <div class="container vh-100 d-flex align-items-center justify-content-center" style="background-color: #edf2f7;">
     <div class="update-form-container">
         <div class="update-header">
@@ -36,9 +35,9 @@
                 <!-- Tên Trạm Dừng Chân -->
                 <div class="form-field">
                     @Html.Label("Tên Trạm Dừng Chân", htmlAttributes: new { @class = "field-label" })
-                    @Html.EditorFor(model => model.TEN_TRAMDUNGCHAN, new { htmlAttributes = new { @class = "field-input", id = "TEN_TRAMDUNGCHAN", @readonly = "readonly" } })
+                    @Html.EditorFor(model => model.TEN_TRAMDUNGCHAN, new { htmlAttributes = new { @class = "field-input", id = "TEN_TRAMDUNGCHAN" } })
                     @Html.ValidationMessageFor(model => model.TEN_TRAMDUNGCHAN, "", new { @class = "field-error" })
-                    <small class="form-text text-muted">Tên trạm dừng chân sẽ được tự động điền khi chọn địa điểm.</small>
+                    <small class="form-text text-muted">Nhập tên trạm dừng chân.</small>
                 </div>
 
                 <!-- Địa chỉ -->
@@ -61,7 +60,7 @@
     </div>
 </div>
 
-<script>
+@*<script>
     window.onload = function () {
         updateTenTramDungChan(); // Gọi hàm khi trang được tải lại
     };
@@ -76,7 +75,7 @@
             document.getElementById("TEN_TRAMDUNGCHAN").value = "";
         }
     }
-</script>
+</script>*@
 <style>
     body {
         font-family: 'Roboto', sans-serif;
