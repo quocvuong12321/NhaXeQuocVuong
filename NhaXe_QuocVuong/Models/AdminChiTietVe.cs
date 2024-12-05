@@ -8,6 +8,7 @@ namespace NhaXe_QuocVuong.Models
     public class AdminChiTietVe
     {
         public string ID_GHE { get; set; }
+        public string ID_VE { get; set; }
         public string VI_TRI_NGOI { get; set; } 
 
         public string TINH_TRANG { get; set; }
@@ -16,6 +17,8 @@ namespace NhaXe_QuocVuong.Models
         public string EMAIL { get; set; }
         public string DIEM_DOAN { get; set; }
         public string DIEM_TRA { get; set; }
-      
+        public double TongTien { get; set; }
+
+
     }
 }

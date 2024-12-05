@@ -5,6 +5,7 @@
     Layout = "~/Areas/Area_Admin/Views/Shared/LayoutAdmin.cshtml";
 
     var Ghes = ViewBag.Ghe as IEnumerable<NhaXe_QuocVuong.Models.AdminChiTietVe>;
+    var Ves = ViewBag.Ves as IEnumerable<NhaXe_QuocVuong.Models.AdminChiTietVe>;
 }
 
 <style>
@@ -28,19 +29,19 @@
     }
 
     .container {
-/*        width: 1100px;*/
-/*        width: 100%;
+        /*        width: 1100px;*/
+        /*        width: 100%;
         min-width: 50vw;*/
     }
 
     .table-container {
         background: white;
-/*        padding: 20px;*/
+        /*        padding: 20px;*/
         border-radius: 12px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         width: 1100px;
         padding: 40px 30px;
-        margin:auto;
+        margin: auto;
     }
 
     h1 {
@@ -110,7 +111,6 @@
     .table {
         margin-bottom: 0;
         font-size: 16px;
-
     }
 
     .thead-dark {
@@ -310,7 +310,43 @@
 
 
 </div>
+
 <div class="table-container" style="position:relative;margin-top:100px">
+    <h2>Danh sách vé</h2>
+    <table class="table table-hover table-bordered">
+        <thead class="">
+            <tr>
+                <th>Tên khách hàng</th>
+                <th>Số điện thoại</th>
+                <th>Email</th>
+                <th>Vị trí ngồi</th>
+                <th>Trạng thái</th>
+                <th>Điểm đón khách</th>
+                <th>Điểm trả khách</th>
+
+                <th>Tổng tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var nv in Ves)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => nv.TEN_KHACH_HANG)</td>
+                    <td>@Html.DisplayFor(modelItem => nv.SO_DIEN_THOAI)</td>
+                    <td>@Html.DisplayFor(modelItem => nv.EMAIL)</td>
+                    <td>@Html.DisplayFor(modelItem => nv.VI_TRI_NGOI)</td>
+                    <td>@Html.DisplayFor(modelItem => nv.TINH_TRANG)</td>
+                    <td>@Html.DisplayFor(modelItem => nv.DIEM_DOAN)</td>
+                    <td>@Html.DisplayFor(modelItem => nv.DIEM_TRA)</td>
+                    <td>@Html.DisplayFor(modelItem => nv.TongTien)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="table-container" style="position:relative;margin-top:100px">
+    <h2>Danh sách ghế</h2>
     <table class="table table-hover table-bordered">
         <thead class="">
             <tr>

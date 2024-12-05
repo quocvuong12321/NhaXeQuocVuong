@@ -18,7 +18,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
         NhaXeDataContext db = new NhaXeDataContext();
 
 
-        public ActionResult Index(string search="")
+        public ActionResult Index(string search = "")
         {
             var user = Session["quanly"] as userAccount;
             if (user == null)
@@ -33,9 +33,9 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                         join NHANVIEN in db.NHANVIENs on LichTrinh.TAIXE equals NHANVIEN.USERNAME
                         select new
                         {
-                            MaLichTrinh= LichTrinh.MA_LICH_TRINH,
-                            BienSo= Xe.BIEN_SO_XE,
-                            TaiXe= NHANVIEN,
+                            MaLichTrinh = LichTrinh.MA_LICH_TRINH,
+                            BienSo = Xe.BIEN_SO_XE,
+                            TaiXe = NHANVIEN,
                             TG_KhoiHanh = LichTrinh.KHOI_HANH,
                             TG_KetThuc = LichTrinh.KET_THUC,
                             Gia = LichTrinh.GIA_VE,
@@ -45,12 +45,12 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                             LoaiXe = Xe.LOAI_XE,
                             SoGhe = Xe.SO_GHE,
                             SoGheTrong = db.Ghes.Count(i => i.TINH_TRANG == false && i.MA_LICH_TRINH == LichTrinh.MA_LICH_TRINH),
-                            TrangThai= LichTrinh.TRANG_THAI,
+                            TrangThai = LichTrinh.TRANG_THAI,
                         };
 
             var result = query.ToList().Select(item => new LichTrinhViewModel
             {
-                MaLichTrinh=item.MaLichTrinh,
+                MaLichTrinh = item.MaLichTrinh,
                 TG_KhoiHanh = item.TG_KhoiHanh.ToString("dd/MM/yyyy HH:mm:ss"),
                 TG_KetThuc = item.TG_KetThuc.ToString("dd/MM/yyyy HH:mm:ss"),
                 Gia = item.Gia.ToString("N0", CultureInfo.InvariantCulture).Replace(",", "."),
@@ -58,7 +58,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                 DiemKhoiHanh = item.DiemKhoiHanh,
                 DiemKetThuc = item.DiemKetThuc,
                 LoaiXe = item.LoaiXe,
-                BienSoXe= item.BienSo,
+                BienSoXe = item.BienSo,
                 SoGhe = item.SoGhe.ToString(),
                 SoGheTrong = item.SoGheTrong,
                 TenNhanVien = item.TaiXe.TEN_NHANVIEN,
@@ -73,13 +73,13 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
 
             }
 
-            if(user.NHANVIEN.LOAI_NV == "TAI_XE")
+            if (user.NHANVIEN.LOAI_NV == "TAI_XE")
             {
-                result = result.Where(e => e.IDTaiXe == user.username && e.TrangThai== "MO_BAN").ToList();
+                result = result.Where(e => e.IDTaiXe == user.username && e.TrangThai == "MO_BAN").ToList();
             }
 
             return View(result);
-           
+
         }
 
         public ActionResult CreateLichTrirnh()
@@ -90,7 +90,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                 return RedirectToAction("Login_Admin", "DangNhapAdmin", new { area = "" });
             }
 
-            ViewBag.ID_TUYEN_DUONG = new SelectList(db.TuyenDuongs.ToList(), "ID_TUYEN", "TEN_TUYEN"); 
+            ViewBag.ID_TUYEN_DUONG = new SelectList(db.TuyenDuongs.ToList(), "ID_TUYEN", "TEN_TUYEN");
             ViewBag.ID_XE = new SelectList(db.Xes.ToList().Select(x => new
             {
                 ID_XE = x.ID_XE,
@@ -105,15 +105,16 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
 
         public JsonResult GetDiemDungChan(int idTuyenDuong)
         {
-            try {
+            try
+            {
                 TuyenDuong td = db.TuyenDuongs.FirstOrDefault(tdd => tdd.ID_TUYEN == idTuyenDuong);
                 var query = new
                 {
                     khoihanh = db.TramDungChans.Where(tdc => tdc.ID_DIADIEM == td.DIEM_DAU).Select(tdc => new
                     {
-                        ID_TRAMDUNGCHAN= tdc.ID_TRAMDUNGCHAN,
-                        DD_TRAMDUNG= tdc.DIA_CHI,
-                        TEN_TRAM=tdc.TEN_TRAMDUNGCHAN
+                        ID_TRAMDUNGCHAN = tdc.ID_TRAMDUNGCHAN,
+                        DD_TRAMDUNG = tdc.DIA_CHI,
+                        TEN_TRAM = tdc.TEN_TRAMDUNGCHAN
                     }).ToList(),
                     ketthuc = db.TramDungChans.Where(tdc => tdc.ID_DIADIEM == td.DIEM_CUOI).Select(tdc => new
                     {
@@ -124,14 +125,16 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                 };
                 Session["tramduchan"] = query;
                 return Json(query, JsonRequestBehavior.AllowGet);
-            } catch { 
-           
-                return Json("",JsonRequestBehavior.AllowGet);
-             }
+            }
+            catch
+            {
+
+                return Json("", JsonRequestBehavior.AllowGet);
+            }
         }
         [HttpGet]
         [AllowAnonymous]
-        public JsonResult GetTaiXe(int idTuyenDuong,string KHOI_HANH)
+        public JsonResult GetTaiXe(int idTuyenDuong, string KHOI_HANH)
         {
             try
             {
@@ -141,8 +144,8 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
 
 
                 var nhanVienKhongCoLichTrinh = db.NHANVIENs
-                .Where(nv => nv.LOAI_NV == "TAI_XE" && !db.LichTrinhs 
-                    .Where(lt => lt.KHOI_HANH < KetThuc && lt.KET_THUC > KhoiHanh ) // Lọc lịch trình nằm trong khoảng thời gian
+                .Where(nv => nv.LOAI_NV == "TAI_XE" && !db.LichTrinhs
+                    .Where(lt => lt.KHOI_HANH < KetThuc && lt.KET_THUC > KhoiHanh) // Lọc lịch trình nằm trong khoảng thời gian
                     .Select(lt => lt.TAIXE)
                     .Contains(nv.USERNAME));
 
@@ -169,17 +172,19 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
 
         [HttpPost]
         [CheckSessionRole("")]
-        public ActionResult CreateLichTrinh( LichTrinhRequest request)
+        public ActionResult CreateLichTrinh(LichTrinhRequest request)
         {
             if (ModelState.IsValid)
             {
                 var user = Session["quanly"] as userAccount;
-                if (user == null) {
+                if (user == null)
+                {
                     return RedirectToAction("Login_Admin", "DangNhapAdmin", new { area = "" });
                 }
                 string MaLichTrinh = DateTime.Now.ToString("ddMMyyyyHH") + GenerateRandomString(4);
-                
-                if (db.LichTrinhs.FirstOrDefault(lt => lt.MA_LICH_TRINH == MaLichTrinh) != null) {
+
+                if (db.LichTrinhs.FirstOrDefault(lt => lt.MA_LICH_TRINH == MaLichTrinh) != null)
+                {
                     MaLichTrinh += "(1)";
                 };
                 LichTrinh newLichTrinh = new LichTrinh
@@ -198,13 +203,13 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                 };
 
                 var stops = request.StopsData;
-                string check="";
+                string check = "";
                 stops.ForEach(sp =>
                 {
                     DateTime timeStop = DateTime.Parse(sp.thoigianden);
-                    if (timeStop < newLichTrinh.KHOI_HANH|| timeStop > newLichTrinh.KET_THUC)
+                    if (timeStop < newLichTrinh.KHOI_HANH || timeStop > newLichTrinh.KET_THUC)
                     {
-                            check = "Thời gian Khởi hành và kết thúc không hợp lệ ";
+                        check = "Thời gian Khởi hành và kết thúc không hợp lệ ";
                         return;
                     }
 
@@ -216,7 +221,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                 {
                     check = "Trạm dừng chân trùng ";
                 }
-                if (check.Length>0)
+                if (check.Length > 0)
                 {
                     return Json(new { success = false, message = check });
                 }
@@ -225,10 +230,11 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                 db.LichTrinhs.InsertOnSubmit(newLichTrinh);
                 db.SubmitChanges();
 
-                var TramDungChan = stops.Select(stop => new ThemTramDungChan { 
-                    ID_TRAMDUNGCHAN=stop.Diachi,
-                    MA_LICH_TRINH= MaLichTrinh,
-                    THOIGIANDEN = DateTime.Parse(stop.thoigianden), 
+                var TramDungChan = stops.Select(stop => new ThemTramDungChan
+                {
+                    ID_TRAMDUNGCHAN = stop.Diachi,
+                    MA_LICH_TRINH = MaLichTrinh,
+                    THOIGIANDEN = DateTime.Parse(stop.thoigianden),
                 }).ToList();
                 db.ThemTramDungChans.InsertAllOnSubmit(TramDungChan);
                 db.SubmitChanges();
@@ -257,11 +263,11 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
         //}
         public ActionResult UpdateLichTrinh(string id)
         {
-           
+
 
 
             var user = Session["quanly"] as userAccount;
-          
+
             /// vao trang chi tiet
             // Lấy đối tượng LichTrinh cần chỉnh sửa
             LichTrinh lt = db.LichTrinhs.FirstOrDefault(ltt => ltt.MA_LICH_TRINH == id);
@@ -276,11 +282,11 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                 // kiem tra thoi gian
                 if (lt.KET_THUC >= DateTime.Now)
                 {
-                     TempData["ThongBao"] = "Thời gian không hợp lệ!";
+                    TempData["ThongBao"] = "Thời gian không hợp lệ!";
                     return RedirectToAction("Index"); // hoặc action khác
                 }
 
-                if (lt.TAIXE!= user.username)
+                if (lt.TAIXE != user.username)
                 {
                     TempData["ThongBao"] = "Bạn không thể cập nhật chuyến đi này.";
                     return RedirectToAction("Index"); // hoặc action khác
@@ -311,14 +317,14 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                 }
                 //db.Ves.InsertAllOnSubmit(vesToUpdate);
                 db.SubmitChanges();
-                
+
                 return RedirectToAction("Index"); // hoặc action khác
 
             }
             // Gán dữ liệu vào ViewBag cho dropdown
             // tạo selectList danh sách tuyến đường
             ViewBag.ID_TUYEN_DUONG = new SelectList(db.TuyenDuongs.ToList(), "ID_TUYEN", "TEN_TUYEN", lt.ID_TUYEN_DUONG); // Gán giá trị đã chọn
-             // tạo selectList danh sách xe
+                                                                                                                          // tạo selectList danh sách xe
             ViewBag.ID_XE = new SelectList(db.Xes.ToList().Select(x => new
             {
                 ID_XE = x.ID_XE,
@@ -326,12 +332,12 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
             }), "ID_XE", "DisplayText", lt.ID_XE); // Gán giá trị đã chọn
             // tài xế
             ViewBag.TAIXE = new SelectList(db.NHANVIENs.Where(nv => nv.LOAI_NV == "TAI_XE").ToList(), "USERNAME", "TEN_NHANVIEN", lt.TAIXE); // Gán giá trị đã chọn
-            // lấy ra điểm đầu và điểm cuối của lịch trình này.
-           
-            
-          
-            
-            int diemdau = db.TuyenDuongs.First(td=>td.ID_TUYEN==lt.ID_TUYEN_DUONG).DIEM_DAU;
+                                                                                                                                             // lấy ra điểm đầu và điểm cuối của lịch trình này.
+
+
+
+
+            int diemdau = db.TuyenDuongs.First(td => td.ID_TUYEN == lt.ID_TUYEN_DUONG).DIEM_DAU;
             int diemcuoi = db.TuyenDuongs.First(td => td.ID_TUYEN == lt.ID_TUYEN_DUONG).DIEM_CUOI;
             // từ điểm bắt đầu, lấy danh sách thêm trạm dừng chân của tuyến đường
             ViewBag.TramDiemDau = from ThemTramDungChan in db.ThemTramDungChans
@@ -340,8 +346,8 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                                   select ThemTramDungChan;
             // từ điểm kết thúc lấy danh sách thêm trạm dừng chân của tuyến đường
             ViewBag.TramDiemCuoi = from ThemTramDungChan in db.ThemTramDungChans
-                                  join TramDungChan in db.TramDungChans on ThemTramDungChan.ID_TRAMDUNGCHAN equals TramDungChan.ID_TRAMDUNGCHAN
-                                  where TramDungChan.ID_DIADIEM == diemcuoi && ThemTramDungChan.MA_LICH_TRINH == lt.MA_LICH_TRINH
+                                   join TramDungChan in db.TramDungChans on ThemTramDungChan.ID_TRAMDUNGCHAN equals TramDungChan.ID_TRAMDUNGCHAN
+                                   where TramDungChan.ID_DIADIEM == diemcuoi && ThemTramDungChan.MA_LICH_TRINH == lt.MA_LICH_TRINH
                                    select ThemTramDungChan;
 
             // lấy thông tin tuyết đường
@@ -364,7 +370,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                     TEN_TRAM = tdc.TEN_TRAMDUNGCHAN
                 }).ToList(),
             };
-            
+
             ViewBag.StartDiem = new SelectList(query.khoihanh, "ID_TRAMDUNGCHAN", "TEN_TRAM"); ;
             ViewBag.EndDiem = new SelectList(query.ketthuc, "ID_TRAMDUNGCHAN", "TEN_TRAM"); ;
 
@@ -400,12 +406,12 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
         public ActionResult UpdateLichTrinh(LichTrinhRequest model)
         {
 
- 
+
             //return Json(new { success = false, message = "Dữ liệu không hợp lệ điêm dừng chân không hợp lệ!" }); ;
             var user = Session["quanly"] as userAccount;
             if (user == null)
             {
-                return RedirectToAction("Login_Admin", "DangNhapAdmin",new { area = "" });
+                return RedirectToAction("Login_Admin", "DangNhapAdmin", new { area = "" });
             }
 
             // Kiểm tra tính hợp lệ của dữ liệu
@@ -413,30 +419,31 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
             {
                 // Tìm kiếm LichTrinh theo MA_LICH_TRINH
                 LichTrinh existingLichTrinh = db.LichTrinhs.FirstOrDefault(l => l.MA_LICH_TRINH == model.formData.MA_LICH_TRINH);
-                TuyenDuong td = db.TuyenDuongs.FirstOrDefault(tdd=>tdd.ID_TUYEN == existingLichTrinh.ID_TUYEN_DUONG);
-                if (td == null) {
+                TuyenDuong td = db.TuyenDuongs.FirstOrDefault(tdd => tdd.ID_TUYEN == existingLichTrinh.ID_TUYEN_DUONG);
+                if (td == null)
+                {
                     ModelState.AddModelError("", "Không tìm thấy lịch trình cần cập nhật.");
                 }
                 if (existingLichTrinh != null)
                 {
                     //existingLichTrinh.ID_TUYEN_DUONG = model.ID_TUYEN_DUONG;
-              
+
                     existingLichTrinh.KHOI_HANH = DateTime.Parse(model.formData.KHOI_HANH);
                     existingLichTrinh.KET_THUC = DateTime.Parse(model.formData.KHOI_HANH).AddHours(td.THOI_GIAN_DUY_CHUYEN);
-                    existingLichTrinh.GIA_VE = double.Parse( model.formData.GIA_VE);
+                    existingLichTrinh.GIA_VE = double.Parse(model.formData.GIA_VE);
                     if (int.Parse(model.formData.ID_XE) != 0)
                     {
-                    existingLichTrinh.ID_XE = int.Parse(model.formData.ID_XE);
+                        existingLichTrinh.ID_XE = int.Parse(model.formData.ID_XE);
                     }
                     if (model.formData.TAIXE != null)
                     {
                         existingLichTrinh.TAIXE = model.formData.TAIXE;
                     }
-                    
+
 
                     //db.ThemTramDungChans.DeleteAllOnSubmit();
-                    var itemsToDelete = db.ThemTramDungChans.Where(item => item.MA_LICH_TRINH==existingLichTrinh.MA_LICH_TRINH);
-                     db.ThemTramDungChans.DeleteAllOnSubmit(itemsToDelete);
+                    var itemsToDelete = db.ThemTramDungChans.Where(item => item.MA_LICH_TRINH == existingLichTrinh.MA_LICH_TRINH);
+                    db.ThemTramDungChans.DeleteAllOnSubmit(itemsToDelete);
                     // // Xóa các mục được tìm thấy
                     //foreach ( var item in itemsToDelete)
                     // {
@@ -445,7 +452,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                     var stops = model.StopsData;
                     if (stops != null)
                     {
-                       
+
 
                         string check = "";
                         stops.ForEach(sp =>
@@ -572,17 +579,45 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                           join kh in db.KhachHangs on veItem.ID_KHACH_HANG equals kh.USERNAME into veKh
                           from khItem in veKh.DefaultIfEmpty()
                           where ghe.MA_LICH_TRINH == id
-                        select new AdminChiTietVe
-                        {
-                            ID_GHE= ghe.ID_GHE,
-                            VI_TRI_NGOI = ghe.VI_TRI_NGOI,
-                            TINH_TRANG= ghe.TINH_TRANG ?"Đã đặt":"Trống",
-                            TEN_KHACH_HANG = khItem.TEN_KHACH_HANG,
-                            SO_DIEN_THOAI = khItem.SO_DIEN_THOAI,
-                            EMAIL = khItem.EMAIL,
-                            DIEM_DOAN =db.TramDungChans.Where(ttdc=>ttdc.ID_TRAMDUNGCHAN == veItem.DIEM_DOAN).FirstOrDefault().DIA_CHI,
-                           DIEM_TRA = db.TramDungChans.Where(ttdc => ttdc.ID_TRAMDUNGCHAN == veItem.DIEM_TRA).FirstOrDefault().DIA_CHI,
-                        };
+                          select new AdminChiTietVe
+                          {
+                              ID_GHE = ghe.ID_GHE,
+                              VI_TRI_NGOI = ghe.VI_TRI_NGOI,
+                              TINH_TRANG = ghe.TINH_TRANG ? "Đã đặt" : "Trống",
+                              TEN_KHACH_HANG = khItem.TEN_KHACH_HANG,
+                              SO_DIEN_THOAI = khItem.SO_DIEN_THOAI,
+                              EMAIL = khItem.EMAIL,
+                              DIEM_DOAN = db.TramDungChans.Where(ttdc => ttdc.ID_TRAMDUNGCHAN == veItem.DIEM_DOAN).FirstOrDefault().DIA_CHI,
+                              DIEM_TRA = db.TramDungChans.Where(ttdc => ttdc.ID_TRAMDUNGCHAN == veItem.DIEM_TRA).FirstOrDefault().DIA_CHI,
+                          };
+
+
+
+            List<AdminChiTietVe> vess = new List<AdminChiTietVe>();
+            var vescu = db.Ves.Where(e => e.ID_LICH_TRINH == id).ToList();
+            foreach (var e in vescu)
+            {
+                string vitringoi = "";
+                foreach (var item in e.ChiTietVes)
+                {
+                    vitringoi += item.Ghe.VI_TRI_NGOI + ",  ";
+                }
+                AdminChiTietVe GHe = new AdminChiTietVe
+                {
+                    ID_VE = e.ID_VE,
+                    TINH_TRANG = e.TRANG_THAI,
+                    TEN_KHACH_HANG = e.KhachHang.TEN_KHACH_HANG,
+                    SO_DIEN_THOAI = e.KhachHang.SO_DIEN_THOAI,
+                    EMAIL = e.KhachHang.EMAIL,
+                    DIEM_DOAN = db.TramDungChans.Where(ttdc => ttdc.ID_TRAMDUNGCHAN == e.DIEM_DOAN).FirstOrDefault().DIA_CHI,
+                    DIEM_TRA = db.TramDungChans.Where(ttdc => ttdc.ID_TRAMDUNGCHAN == e.DIEM_TRA).FirstOrDefault().DIA_CHI,
+                    TongTien = e.TONG_TIEN,
+
+                    VI_TRI_NGOI = vitringoi
+                };
+                vess.Add(GHe);
+            }
+            ViewBag.Ves = vess;
             return View(lt);
 
         }

@@ -1,22 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\",
+  "WorkspaceRootPath": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\nhaxe_quocvuong\\areas\\area_admin\\controllers\\quanlylichtrinhcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\controllers\\quanlylichtrinhcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\nhaxe_quocvuong\\areas\\area_admin\\views\\quanlylichtrinh\\detaillichtrinh.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\nhaxe_quocvuong\\areas\\area_admin\\views\\quanlylichtrinh\\detaillichtrinh.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\views\\quanlylichtrinh\\detaillichtrinh.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|c:\\users\\admin\\desktop\\cnpm\\new folder\\nhaxequocvuong\\nhaxe_quocvuong\\areas\\area_admin\\views\\shared\\layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\views\\shared\\layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|c:\\users\\admin\\desktop\\cnpm\\new folder\\nhaxequocvuong\\nhaxe_quocvuong\\areas\\area_admin\\views\\quanlylichtrinh\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\views\\quanlylichtrinh\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|c:\\users\\admin\\desktop\\cnpm\\code cuoi\\nhaxequocvuong\\nhaxe_quocvuong\\areas\\area_admin\\controllers\\quanlylichtrinhcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\controllers\\quanlylichtrinhcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,52 +38,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\Index.cshtml",
-              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\Index.cshtml",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\Index.cshtml",
-              "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\Index.cshtml",
-              "ViewState": "AgIAAIQAAAAAAAAAAAAAAJcAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-05T07:09:45.682Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "LayoutAdmin.cshtml",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\Shared\\LayoutAdmin.cshtml",
-              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\Shared\\LayoutAdmin.cshtml",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\Shared\\LayoutAdmin.cshtml",
-              "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\Shared\\LayoutAdmin.cshtml",
-              "ViewState": "AgIAAJMAAAAAAAAAAAAAAJMAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-05T07:01:59.603Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "DetailLichTrinh.cshtml",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\DetailLichTrinh.cshtml",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\DetailLichTrinh.cshtml",
               "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\DetailLichTrinh.cshtml",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\DetailLichTrinh.cshtml",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\DetailLichTrinh.cshtml",
               "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\DetailLichTrinh.cshtml",
-              "ViewState": "AgIAAH4AAAAAAAAAAAAAAH4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABsCAAAAAAAAAADwvykCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-12-05T05:30:58.244Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "QuanLyLichTrinhController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\QuanLyLichTrinhController.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\QuanLyLichTrinhController.cs",
               "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\QuanLyLichTrinhController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\QuanLyLichTrinhController.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\QuanLyLichTrinhController.cs",
               "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\QuanLyLichTrinhController.cs",
-              "ViewState": "AgIAACoBAAAAAAAAAAAgwDgBAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAE0CAAAAAAAAAAAYwE8CAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-05T05:19:22.673Z",
               "EditorCaption": ""
