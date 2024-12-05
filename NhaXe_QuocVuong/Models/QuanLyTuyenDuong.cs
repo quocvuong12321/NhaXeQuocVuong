@@ -50,6 +50,7 @@ namespace NhaXe_QuocVuong.Models
         public string TenNhanVien { get; set; }
         public string BienSoXe { get; set; }
         public string TrangThai { get; set; }
+        public string IDTaiXe { get; set; }
     }
 
 }

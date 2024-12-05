@@ -6,9 +6,10 @@ using System.Web.Mvc;
 using NhaXe_QuocVuong.Models;
 namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
 {
+    [AuthorizeSession]
     public class DiaDiemController : Controller
     {
-        NhaXeDataContext db = new NhaXeDataContext();
+        NhaXeDataContext db = new NhaXeDataContext("");
         //Danh sách địa điểm
         public ActionResult DanhSachDD(string search)
         {
@@ -29,6 +30,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CheckSessionRole("")]
         public ActionResult ThemDD(DiaDiem id)
         {
             if (ModelState.IsValid)
@@ -63,6 +65,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
         }
 
         [HttpPost, ActionName("XoaDD")]
+        [CheckSessionRole("")]
         public ActionResult XoaDDConfirmed(int id)
         {
             var diaDiem = db.DiaDiems.SingleOrDefault(dd => dd.ID_DIADIEM == id);
@@ -88,6 +91,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CheckSessionRole("")]
         public ActionResult CapNhatDD(DiaDiem diaDiem)
         {
             if (ModelState.IsValid)

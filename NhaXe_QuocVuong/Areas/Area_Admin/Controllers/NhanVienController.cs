@@ -6,9 +6,10 @@ using System.Web.Mvc;
 using NhaXe_QuocVuong.Models;
 namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
 {
+    [AuthorizeSession]
     public class NhanVienController : Controller
     {
-        NhaXeDataContext db = new NhaXeDataContext();
+        NhaXeDataContext db = new NhaXeDataContext("");
 
         public ActionResult DanhSachNV(string search)
         {
@@ -34,6 +35,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
         }
 
         [HttpPost, ActionName("XoaNV")]
+        [CheckSessionRole("")]
         public ActionResult XoaNVConfirmed(string username)
         {
             var nhanVien = db.NHANVIENs.SingleOrDefault(n => n.USERNAME == username);
@@ -63,8 +65,10 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CheckSessionRole("")]
         public ActionResult ThemNV(NHANVIEN model)
         {
+            model.LOAI_NV = "TAI_XE";
             if (ModelState.IsValid)
             {
                 try
@@ -73,12 +77,12 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                     if (existingUser == null)
                     {
                         string password = model.USERNAME; 
-                        string role = model.LOAI_NV == "QUAN_LY" || model.LOAI_NV == "TAI_XE" ? "nha_xe": "khach";
+                        //string role = model.LOAI_NV == "QUAN_LY" || model.LOAI_NV == "TAI_XE" ? "nha_xe": "khach";
                         db.userAccounts.InsertOnSubmit(new userAccount
                         {
                             username = model.USERNAME,
                             password = password,  
-                            role = role
+                            role = "nha_xe"
                         });
                     }
                     db.NHANVIENs.InsertOnSubmit(model);
@@ -105,8 +109,10 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CheckSessionRole("")]
         public ActionResult SuaNV(NHANVIEN model)
         {
+            model.LOAI_NV = "TAI_XE";
             if (ModelState.IsValid)
             {
                 var nhanVien = db.NHANVIENs.SingleOrDefault(n => n.USERNAME == model.USERNAME);

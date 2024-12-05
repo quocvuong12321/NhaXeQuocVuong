@@ -13,53 +13,49 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f5f7fa;
-            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
         }
 
-        .container {
-            max-width: 1100px;
-        }
-
-        .table-container {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            color: #4A90E2;
+        .page-title {
+            color: #343a40;
             font-size: 32px;
-            font-family: 'Roboto Slab', serif;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .card-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 25px;
         }
 
         .btn-add {
-            font-size: 16px;
-            font-weight: bold;
-            padding: 8px 16px;
-            transition: all 0.3s ease;
+            font-size: 20px;
+            font-weight: 500;
+            border-radius: 8px;
+            padding: 12px 20px;
+            background-color: #5cb85c;
+            color: white;
+            transition: 0.3s;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .btn-success {
-            background-color: #28a745;
-            border: none;
-            position: relative;
-            overflow: hidden;
-        }
-
-            .btn-success:hover {
-                background-color: #218838;
-                transform: scale(1.05);
-                box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+            .btn-add:hover {
+                background-color: #4cae4c;
+                transform: translateY(-2px);
             }
 
         .search-bar {
-            border-radius: 10px;
-            padding: 8px;
-            font-size: 14px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            padding: 12px 15px;
+            width: 100%;
+            font-size: 20px;
         }
+
 
         .btn-search {
             padding: 8px 16px;
@@ -88,50 +84,61 @@
                 box-shadow: 0 4px 8px rgba(0, 91, 187, 0.2);
             }
 
-        .table th, .table td {
-            vertical-align: middle;
+        .table-container {
+            overflow-x: auto;
+            border-radius: 10px;
+            margin-top: 20px;
         }
+
         .table {
             margin-bottom: 0;
             font-size: 12px;
         }
-        .thead-dark {
-            background-color: #4A90E2;
-            color: white;
-        }
 
-        .btn-custom {
-            padding: 6px 10px;
-            font-size: 13px;
-            border-radius: 8px;
-            transition: transform 0.2s ease;
-        }
-        .table th {
-            background-color: #007bff;
-            color: white;
-            text-align: center;
-            padding: 15px;
-        }
-        .btn-warning {
-            background-color: #FFC107;
-            border: none;
-        }
-
-            .btn-warning:hover {
-                background-color: #FFB300;
-                transform: scale(1.05);
+            .table th {
+                background-color: #007bff;
+                color: white;
+                text-align: center;
+                padding: 15px;
             }
 
-        .btn-danger {
-            background-color: #D32F2F;
+            .table td {
+                text-align: center;
+                padding: 15px;
+                vertical-align: middle;
+            }
+
+            .table tbody tr:hover {
+                background-color: #f1f1f1;
+            }
+
+        .btn-update {
+            background-color: #f0ad4e;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 20px;
             border: none;
         }
 
-            .btn-danger:hover {
-                background-color: #C62828;
-                transform: scale(1.05);
+            .btn-update:hover {
+                background-color: #ec971f;
+            }
+
+        .btn-delete {
+            background-color: #d9534f;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 20px;
+            border: none;
+        }
+
+            .btn-delete:hover {
+                background-color: #c9302c;
             }
     </style>
+
 </head>
 
 <h1 class="text-center mb-5">QUẢN LÝ LỊCH TRÌNH</h1>
@@ -139,10 +146,10 @@
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <form method="get" class="w-75 d-flex">
-            <input type="text" name="search" class="form-control search-bar me-2" placeholder="Nhập thông tin tìm kiếm..." />
+            <input type="date" name="search" class="form-control search-bar me-2" placeholder="Nhập thông tin tìm kiếm..." />
             <button type="submit" class="btn btn-search">Tìm kiếm</button>
         </form>
-            @Html.ActionLink("Thêm Lịch Trình Mới", "CreateLichTrirnh", null, new { @class = "btn btn-success btn-add" })
+        @Html.ActionLink("Thêm Lịch Trình Mới", "CreateLichTrirnh", null, new { @class = "btn btn-success btn-add" })
     </div>
         @*<div class="text-right mb-4">
         </div>
@@ -187,13 +194,13 @@
                             <td>@Html.DisplayFor(modelItem => nv.SoGheTrong)</td>
                             <td>@Html.DisplayFor(modelItem => nv.TenNhanVien)</td>
                             <td>@Html.DisplayFor(modelItem => nv.TrangThai)</td>
-                            <td class="text-center" style="min-width:200px">
+                            <td class="text-center" style="width:200px">
                                 @Html.ActionLink("Cập nhật", "UpdateLichTrinh", new { id = nv.MaLichTrinh }, new { @class = "btn btn-warning btn-sm action-link btn-custom" })
-                                <button class="btn btn-danger btn-sm action-link btn-custom"
+                                @*<button class="btn btn-danger btn-sm action-link btn-custom"
                                         onclick="deleteLichTrinh('@nv.MaLichTrinh')">
                                     Xóa
-                                </button>
-
+                                </button>*@
+                                @Html.ActionLink("Chi tiết", "DetailLichTrinh", new { id = nv.MaLichTrinh }, new { @class = "btn btn-primary btn-sm action-link btn-custom" })   
                                 @*@Html.ActionLink("Xóa", "DeleteLichTrinh", new { id = nv.MaLichTrinh }, new { @class = "btn btn-danger btn-sm action-link btn-custom" })*@
                             </td>
                         </tr>

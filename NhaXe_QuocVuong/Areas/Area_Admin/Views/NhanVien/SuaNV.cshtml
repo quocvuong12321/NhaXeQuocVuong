@@ -5,7 +5,7 @@
 <div class="d-flex vh-100 align-items-center justify-content-center" style="background-color: #edf2f7;">
     <div class="update-form-container">
         <div class="update-header">
-            <h3>CẬP NHẬT THÔNG TIN NHÂN VIÊN</h3>
+            <h3>CẬP NHẬT THÔNG TIN TÀI XẾ</h3>
         </div>
         <div class="update-body">
             @using (Html.BeginForm())
@@ -13,7 +13,7 @@
 @Html.AntiForgeryToken()
 
                 <div class="form-field">
-                    @Html.LabelFor(m => m.TEN_NHANVIEN, "Tên Nhân Viên", new { @class = "field-label" })
+                    @Html.LabelFor(m => m.TEN_NHANVIEN, "Tên Tài Xế", new { @class = "field-label" })
                     @Html.TextBoxFor(m => m.TEN_NHANVIEN, new { @class = "field-input", @placeholder = "Nhập tên nhân viên" })
                     @Html.ValidationMessageFor(m => m.TEN_NHANVIEN, "", new { @class = "field-error" })
                 </div>
@@ -30,7 +30,7 @@
                                                     @Html.ValidationMessageFor(m => m.SDT, "", new { @class = "field-error" })
                                                 </div>
 
-                                                                <div class="form-field">
+                                                                @*<div class="form-field">
                                                                     @Html.LabelFor(m => m.LOAI_NV, "Loại Nhân Viên", new { @class = "field-label" })
                                                                     @Html.DropDownListFor(model => model.LOAI_NV,
                                                                              new SelectList(new List<SelectListItem>
@@ -41,7 +41,7 @@
                                                                              "Chọn loại nhân viên",
                                                                              new { @class = "field-input" })
                                                                     @Html.ValidationMessageFor(m => m.LOAI_NV, "", new { @class = "field-error" })
-                                                                </div>
+                                                                </div>*@
 
                                                                                 <div class="form-actions">
                                                                                     <button type="submit" class="btn-submit">

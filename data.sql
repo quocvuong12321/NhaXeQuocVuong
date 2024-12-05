@@ -2,9 +2,6 @@
 USE [nhaxe_quocvuong]
 GO
 
-
-
-
 /****** Object:  Trigger [dbo].[trgSetSoGhe]    Script Date: 12/09/2024 1:01:44 PM ******/
 SET ANSI_NULLS ON
 GO

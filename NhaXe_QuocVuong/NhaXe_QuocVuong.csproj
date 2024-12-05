@@ -128,6 +128,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Area_Admin\Area_AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Area_Admin\Controllers\Authen.cs" />
+    <Compile Include="Areas\Area_Admin\Controllers\Authorization.cs" />
     <Compile Include="Areas\Area_Admin\Controllers\DiaDiemController.cs" />
     <Compile Include="Areas\Area_Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Area_Admin\Controllers\NhanVienController.cs" />
@@ -142,6 +144,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdminChiTietVe.cs" />
     <Compile Include="Models\CTVe.cs" />
     <Compile Include="Models\GheDTO.cs" />
     <Compile Include="Models\LichSuMuaVe.cs" />
@@ -2455,6 +2458,7 @@
       <LastGenOutput>NhaXe.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Areas\Area_Admin\Views\QuanLyLichTrinh\DetailLichTrinh.cshtml" />
     <None Include="Models\NhaXe.dbml.layout">
       <DependentUpon>NhaXe.dbml</DependentUpon>
     </None>

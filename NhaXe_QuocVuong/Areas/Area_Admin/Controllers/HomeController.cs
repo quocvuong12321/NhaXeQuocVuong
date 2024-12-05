@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
 {
+    [AuthorizeSession]
     public class HomeController : Controller
     {
         // GET: Area_Admin/Home
