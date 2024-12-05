@@ -52,20 +52,32 @@
         font-size: 20px;
     }
 
+
     .btn-search {
-        background-color: #007bff;
+        padding: 8px 16px;
+        font-size: 14px;
+        font-weight: bold;
         color: white;
+        background-color: #007bff;
         border: none;
-        padding: 10px 20px;
-        border-radius: 8px;
-        font-size: 20px;
-        font-weight: 500;
-        transition: 0.3s;
+        border-radius: 10px;
+        display: inline-flex; /* Sử dụng inline-flex thay vì flex để tránh ảnh hưởng width */
+        align-items: center;
+        white-space: nowrap; /* Đảm bảo text không xuống dòng */
+        transition: all 0.3s ease;
+        min-width: 60px;
     }
+
+        .btn-search img {
+            width: 18px;
+            height: 18px;
+            margin-right: 6px;
+        }
 
         .btn-search:hover {
             background-color: #0056b3;
-            transform: translateY(-2px);
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 91, 187, 0.2);
         }
 
     .table-container {

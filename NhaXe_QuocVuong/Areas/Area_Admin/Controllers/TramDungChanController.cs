@@ -7,6 +7,7 @@ using NhaXe_QuocVuong.Models;
 
 namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
 {
+    [AuthorizeSession]
     public class TramDungChanController : Controller
     {
         NhaXeDataContext db = new NhaXeDataContext();
@@ -32,6 +33,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
             return View();
         }
         [HttpPost]
+        [CheckSessionRole("")]
         public ActionResult Create(TramDungChan tdc)
         {
             int count = db.TramDungChans.Count() + 1;
@@ -57,6 +59,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
             return View(tdc);
         }
         [HttpPost]
+        [CheckSessionRole("")]
         public ActionResult Edit(TramDungChan tdc)
         {
             TramDungChan TDC = db.TramDungChans.Where(row => row.ID_TRAMDUNGCHAN == tdc.ID_TRAMDUNGCHAN).FirstOrDefault();
@@ -72,6 +75,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
             return View(tdc);
         }
         [HttpPost]
+        [CheckSessionRole("")]
         public ActionResult Delete(string id, TramDungChan TDC)
         {
             TramDungChan tdc = db.TramDungChans.Where(row => row.ID_TRAMDUNGCHAN == id).FirstOrDefault();

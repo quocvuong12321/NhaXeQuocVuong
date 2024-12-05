@@ -3,32 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|c:\\users\\admin\\desktop\\cnpm\\new folder\\nhaxequocvuong\\nhaxe_quocvuong\\areas\\area_admin\\controllers\\xecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\controllers\\xecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|c:\\users\\admin\\desktop\\cnpm\\new folder\\nhaxequocvuong\\nhaxe_quocvuong\\areas\\area_admin\\controllers\\tuyenduongcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\controllers\\tuyenduongcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|c:\\users\\admin\\desktop\\cnpm\\new folder\\nhaxequocvuong\\nhaxe_quocvuong\\areas\\area_admin\\controllers\\tramdungchancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\controllers\\tramdungchancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|c:\\users\\admin\\desktop\\cnpm\\new folder\\nhaxequocvuong\\nhaxe_quocvuong\\areas\\area_admin\\controllers\\quanlylichtrinhcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\nhaxe_quocvuong\\areas\\area_admin\\controllers\\quanlylichtrinhcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\controllers\\quanlylichtrinhcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|c:\\users\\admin\\desktop\\cnpm\\new folder\\nhaxequocvuong\\nhaxe_quocvuong\\areas\\area_admin\\controllers\\nhanviencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\controllers\\nhanviencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\nhaxe_quocvuong\\areas\\area_admin\\views\\quanlylichtrinh\\detaillichtrinh.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\views\\quanlylichtrinh\\detaillichtrinh.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|c:\\users\\admin\\desktop\\cnpm\\new folder\\nhaxequocvuong\\nhaxe_quocvuong\\areas\\area_admin\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|c:\\users\\admin\\desktop\\cnpm\\new folder\\nhaxequocvuong\\nhaxe_quocvuong\\areas\\area_admin\\views\\shared\\layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\views\\shared\\layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|c:\\users\\admin\\desktop\\cnpm\\new folder\\nhaxequocvuong\\nhaxe_quocvuong\\areas\\area_admin\\controllers\\diadiemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\controllers\\diadiemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|c:\\users\\admin\\desktop\\cnpm\\new folder\\nhaxequocvuong\\nhaxe_quocvuong\\areas\\area_admin\\views\\quanlylichtrinh\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\views\\quanlylichtrinh\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -53,94 +41,59 @@
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "XeController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\XeController.cs",
-              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\XeController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\XeController.cs",
-              "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\XeController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-03T13:35:08.222Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TuyenDuongController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\TuyenDuongController.cs",
-              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\TuyenDuongController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\TuyenDuongController.cs",
-              "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\TuyenDuongController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-03T13:35:06.329Z",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\Index.cshtml",
+              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\Index.cshtml",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\Index.cshtml",
+              "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\Index.cshtml",
+              "ViewState": "AgIAAIQAAAAAAAAAAAAAAJcAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-05T07:09:45.682Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "TramDungChanController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\TramDungChanController.cs",
-              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\TramDungChanController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\TramDungChanController.cs",
-              "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\TramDungChanController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-03T13:35:04.905Z",
+              "Title": "LayoutAdmin.cshtml",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\Shared\\LayoutAdmin.cshtml",
+              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\Shared\\LayoutAdmin.cshtml",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\Shared\\LayoutAdmin.cshtml",
+              "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\Shared\\LayoutAdmin.cshtml",
+              "ViewState": "AgIAAJMAAAAAAAAAAAAAAJMAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-05T07:01:59.603Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
+              "Title": "DetailLichTrinh.cshtml",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\DetailLichTrinh.cshtml",
+              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\DetailLichTrinh.cshtml",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\DetailLichTrinh.cshtml",
+              "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\DetailLichTrinh.cshtml",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAAAH4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-05T05:30:58.244Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "QuanLyLichTrinhController.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\QuanLyLichTrinhController.cs",
               "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\QuanLyLichTrinhController.cs",
               "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\QuanLyLichTrinhController.cs",
               "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\QuanLyLichTrinhController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAzAAAAAAAAAA==",
+              "ViewState": "AgIAACoBAAAAAAAAAAAgwDgBAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-03T13:35:02.492Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "NhanVienController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\NhanVienController.cs",
-              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\NhanVienController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\NhanVienController.cs",
-              "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\NhanVienController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-03T13:34:59.873Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-03T13:34:57.72Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "DiaDiemController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\DiaDiemController.cs",
-              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\DiaDiemController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\New folder\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\DiaDiemController.cs",
-              "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\DiaDiemController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-03T13:34:53.131Z",
+              "WhenOpened": "2024-12-05T05:19:22.673Z",
               "EditorCaption": ""
             }
           ]

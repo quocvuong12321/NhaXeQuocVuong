@@ -128,13 +128,17 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Area_Admin\Area_AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Area_Admin\Controllers\Authen.cs" />
+    <Compile Include="Areas\Area_Admin\Controllers\Authorization.cs" />
     <Compile Include="Areas\Area_Admin\Controllers\DiaDiemController.cs" />
     <Compile Include="Areas\Area_Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Area_Admin\Controllers\NhanVienController.cs" />
     <Compile Include="Areas\Area_Admin\Controllers\QuanLyLichTrinhController.cs" />
+    <Compile Include="Areas\Area_Admin\Controllers\ThongKeController.cs" />
     <Compile Include="Areas\Area_Admin\Controllers\TramDungChanController.cs" />
     <Compile Include="Areas\Area_Admin\Controllers\TuyenDuongController.cs" />
     <Compile Include="Areas\Area_Admin\Controllers\XeController.cs" />
+    <Compile Include="Areas\Area_Admin\Data\ves.cs" />
     <Compile Include="Controllers\DangNhapAdminController.cs" />
     <Compile Include="Controllers\DangNhapController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -142,6 +146,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdminChiTietVe.cs" />
     <Compile Include="Models\CTVe.cs" />
     <Compile Include="Models\GheDTO.cs" />
     <Compile Include="Models\LichSuMuaVe.cs" />
@@ -2407,7 +2412,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Area_Admin\Data\" />
     <Folder Include="Content\admin_ui\" />
     <Folder Include="Views\KhachHang\" />
   </ItemGroup>
@@ -2450,6 +2454,8 @@
     <Content Include="Areas\Area_Admin\Views\Xe\Delete.cshtml" />
     <Content Include="Areas\Area_Admin\Views\Xe\Edit.cshtml" />
     <Content Include="Areas\Area_Admin\Views\Xe\Index.cshtml" />
+    <Content Include="Areas\Area_Admin\Views\QuanLyLichTrinh\DetailLichTrinh.cshtml" />
+    <Content Include="Areas\Area_Admin\Views\ThongKe\Index.cshtml" />
     <Content Include="Models\NhaXe.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>NhaXe.designer.cs</LastGenOutput>

@@ -5,61 +5,57 @@
 }
 
 @*<div class="text-right" style="margin-top:16px">
-    @Html.ActionLink("Tạo lịch trình mới", "CreateLichTrirnh", null, new { @class = "btn btn-success btn-add" })
-</div>*@
+        @Html.ActionLink("Tạo lịch trình mới", "CreateLichTrirnh", null, new { @class = "btn btn-success btn-add" })
+    </div>*@
 
 
 <head>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f5f7fa;
-            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
         }
 
-        .container {
-            max-width: 1100px;
-        }
-
-        .table-container {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            color: #4A90E2;
+        .page-title {
+            color: #343a40;
             font-size: 32px;
-            font-family: 'Roboto Slab', serif;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .card-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 25px;
         }
 
         .btn-add {
-            font-size: 16px;
-            font-weight: bold;
-            padding: 8px 16px;
-            transition: all 0.3s ease;
+            font-size: 20px;
+            font-weight: 500;
+            border-radius: 8px;
+            padding: 12px 20px;
+            background-color: #5cb85c;
+            color: white;
+            transition: 0.3s;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .btn-success {
-            background-color: #28a745;
-            border: none;
-            position: relative;
-            overflow: hidden;
-        }
-
-            .btn-success:hover {
-                background-color: #218838;
-                transform: scale(1.05);
-                box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+            .btn-add:hover {
+                background-color: #4cae4c;
+                transform: translateY(-2px);
             }
 
         .search-bar {
-            border-radius: 10px;
-            padding: 8px;
-            font-size: 14px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            padding: 12px 15px;
+            width: 100%;
+            font-size: 20px;
         }
+
 
         .btn-search {
             padding: 8px 16px;
@@ -88,63 +84,92 @@
                 box-shadow: 0 4px 8px rgba(0, 91, 187, 0.2);
             }
 
-        .table th, .table td {
-            vertical-align: middle;
+        .table-container {
+            overflow-x: auto;
+            border-radius: 10px;
+            margin-top: 20px;
         }
+
         .table {
             margin-bottom: 0;
             font-size: 12px;
         }
-        .thead-dark {
-            background-color: #4A90E2;
-            color: white;
-        }
 
-        .btn-custom {
-            padding: 6px 10px;
-            font-size: 13px;
-            border-radius: 8px;
-            transition: transform 0.2s ease;
-        }
-        .table th {
-            background-color: #007bff;
-            color: white;
-            text-align: center;
-            padding: 15px;
-        }
-        .btn-warning {
-            background-color: #FFC107;
-            border: none;
-        }
-
-            .btn-warning:hover {
-                background-color: #FFB300;
-                transform: scale(1.05);
+            .table th {
+                background-color: #007bff;
+                color: white;
+                text-align: center;
+                padding: 15px;
             }
 
-        .btn-danger {
-            background-color: #D32F2F;
+            .table td {
+                text-align: center;
+                padding: 15px;
+                vertical-align: middle;
+            }
+
+            .table tbody tr:hover {
+                background-color: #f1f1f1;
+            }
+
+        .btn-update {
+            background-color: #f0ad4e;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 20px;
             border: none;
         }
 
-            .btn-danger:hover {
-                background-color: #C62828;
-                transform: scale(1.05);
+            .btn-update:hover {
+                background-color: #ec971f;
+            }
+
+        .btn-delete {
+            background-color: #d9534f;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 20px;
+            border: none;
+        }
+
+            .btn-delete:hover {
+                background-color: #c9302c;
             }
     </style>
+
 </head>
+@if (TempData["ThongBao"] != null)
+{
+    <div class="alert alert-warning" id="xoa">
+        <button style="border:none;border-radius:999px " onclick="closeAlert()" class="bg-warning">X</button>
+        @TempData["ThongBao"]
+    </div>
+
+    <script>
+        // Function to close the alert
+        function closeAlert() {
+            // Lấy phần tử thông báo và ẩn nó
+            var alertBox = document.getElementById("xoa");
+            if (alertBox) {
+                alertBox.style.display = "none";  // Ẩn thông báo
+            }
+        }
+    </script>
+}
 
 <h1 class="text-center mb-5">QUẢN LÝ LỊCH TRÌNH</h1>
 
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <form method="get" class="w-75 d-flex">
-            <input type="text" name="search" class="form-control search-bar me-2" placeholder="Nhập thông tin tìm kiếm..." />
+            <input type="date" name="search" class="form-control search-bar me-2" placeholder="Nhập thông tin tìm kiếm..." />
             <button type="submit" class="btn btn-search">Tìm kiếm</button>
         </form>
-            @Html.ActionLink("Thêm Lịch Trình Mới", "CreateLichTrirnh", null, new { @class = "btn btn-success btn-add" })
+        @Html.ActionLink("Thêm Lịch Trình Mới", "CreateLichTrirnh", null, new { @class = "btn btn-success btn-add" })
     </div>
-        @*<div class="text-right mb-4">
+    @*<div class="text-right mb-4">
         </div>
         <form method="get" class="d-flex mb-4">
             <input type="text" name="search" class="form-control search-bar" placeholder="Tìm kiếm lịch trình..." />
@@ -152,56 +177,56 @@
                 <img src="https://img.icons8.com/ios-filled/50/ffffff/search--v1.png" alt="Search icon" /> Tìm kiếm
             </button>
         </form>*@
-        <div class="table-container">
-            <table class="table table-hover table-bordered">
-                <thead class="">
+    <div class="table-container">
+        <table class="table table-hover table-bordered">
+            <thead class="">
+                <tr>
+                    <th>Thời gian khởi hành</th>
+                    <th>Thời gian kết thúc</th>
+                    <th>Giá vé</th>
+                    <th>Thời gian duy chuyển(Giờ)</th>
+                    <th>Điểm khởi hành</th>
+                    <th>Điểm kết thúc</th>
+                    <th>Loại xe</th>
+                    <th>Biên số xe</th>
+                    <th>Số ghế</th>
+                    <th>Số ghế trống</th>
+                    <th>Tên tài xế</th>
+                    <th>Trạng thái</th>
+                    <th class="text-center" style="width: 200px;">THAO TÁC</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var nv in Model)
+                {
                     <tr>
-                        <th>Thời gian khởi hành</th>
-                        <th>Thời gian kết thúc</th>
-                        <th>Giá vé</th>
-                        <th>Thời gian duy chuyển(Giờ)</th>
-                        <th>Điểm khởi hành</th>
-                        <th>Điểm kết thúc</th>
-                        <th>Loại xe</th>
-                        <th>Biên số xe</th>
-                        <th>Số ghế</th>
-                        <th>Số ghế trống</th>
-                        <th>Tên tài xế</th>
-                        <th>Trạng thái</th>
-                        <th class="text-center" style="width: 200px;">THAO TÁC</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var nv in Model)
-                    {
-                        <tr>
-                            <td>@Html.DisplayFor(modelItem => nv.TG_KhoiHanh)</td>
-                            <td>@Html.DisplayFor(modelItem => nv.TG_KetThuc)</td>
-                            <td>@Html.DisplayFor(modelItem => nv.Gia) đ</td>
-                            <td>@Html.DisplayFor(modelItem => nv.ThoiGianDuyChuyen)</td>
-                            <td>@Html.DisplayFor(modelItem => nv.DiemKhoiHanh)</td>
-                            <td>@Html.DisplayFor(modelItem => nv.DiemKetThuc)</td>
-                            <td>@Html.DisplayFor(modelItem => nv.LoaiXe)</td>
-                            <td>@Html.DisplayFor(modelItem => nv.BienSoXe)</td>
-                            <td>@Html.DisplayFor(modelItem => nv.SoGhe)</td>
-                            <td>@Html.DisplayFor(modelItem => nv.SoGheTrong)</td>
-                            <td>@Html.DisplayFor(modelItem => nv.TenNhanVien)</td>
-                            <td>@Html.DisplayFor(modelItem => nv.TrangThai)</td>
-                            <td class="text-center" style="min-width:200px">
-                                @Html.ActionLink("Cập nhật", "UpdateLichTrinh", new { id = nv.MaLichTrinh }, new { @class = "btn btn-warning btn-sm action-link btn-custom" })
-                                <button class="btn btn-danger btn-sm action-link btn-custom"
+                        <td>@Html.DisplayFor(modelItem => nv.TG_KhoiHanh)</td>
+                        <td>@Html.DisplayFor(modelItem => nv.TG_KetThuc)</td>
+                        <td>@Html.DisplayFor(modelItem => nv.Gia) đ</td>
+                        <td>@Html.DisplayFor(modelItem => nv.ThoiGianDuyChuyen)</td>
+                        <td>@Html.DisplayFor(modelItem => nv.DiemKhoiHanh)</td>
+                        <td>@Html.DisplayFor(modelItem => nv.DiemKetThuc)</td>
+                        <td>@Html.DisplayFor(modelItem => nv.LoaiXe)</td>
+                        <td>@Html.DisplayFor(modelItem => nv.BienSoXe)</td>
+                        <td>@Html.DisplayFor(modelItem => nv.SoGhe)</td>
+                        <td>@Html.DisplayFor(modelItem => nv.SoGheTrong)</td>
+                        <td>@Html.DisplayFor(modelItem => nv.TenNhanVien)</td>
+                        <td>@Html.DisplayFor(modelItem => nv.TrangThai)</td>
+                        <td class="text-center" style="width:200px">
+                            @Html.ActionLink("Cập nhật", "UpdateLichTrinh", new { id = nv.MaLichTrinh }, new { @class = "btn btn-warning btn-sm action-link btn-custom" })
+                            @*<button class="btn btn-danger btn-sm action-link btn-custom"
                                         onclick="deleteLichTrinh('@nv.MaLichTrinh')">
                                     Xóa
-                                </button>
-
-                                @*@Html.ActionLink("Xóa", "DeleteLichTrinh", new { id = nv.MaLichTrinh }, new { @class = "btn btn-danger btn-sm action-link btn-custom" })*@
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+                                </button>*@
+                            @Html.ActionLink("Chi tiết", "DetailLichTrinh", new { id = nv.MaLichTrinh }, new { @class = "btn btn-primary btn-sm action-link btn-custom" })
+                            @*@Html.ActionLink("Xóa", "DeleteLichTrinh", new { id = nv.MaLichTrinh }, new { @class = "btn btn-danger btn-sm action-link btn-custom" })*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
+</div>
 
 <script>
 
@@ -227,67 +252,67 @@
 
 
 </script>
-    @*@foreach (var item in Model)
-        {
-            <div style="display: flex; padding:16px; flex-direction: column; width: 100%; border: 1px solid #ec7f1f; border-radius: 0.75rem; background-color: white; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); margin-top: 2rem;">
-                <div style="padding-top: 1rem; padding-left: 1rem; padding-right: 1rem;">
-                    <div style="display: flex; align-items: flex-start; gap: 2.5rem;">
-                        <div style="display: flex; flex-direction: column; width: 100%;">
-                            <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
-                                <span style="font-size: 1.5rem; font-weight: 500;">@item.TG_KhoiHanh</span>
-                                <div style="display: flex; align-items: center; width: 100%;">
-                                    <img src="~/img/diembatdau.svg" alt="pickup" style="margin-right: 0.5rem;">
-                                    <span style="flex: 1; border-bottom: 2px dotted;"></span>
-                                    <span style="color: gray; text-align: center; line-height: 1.25; padding: 0 0.5rem;">
-                                        @item.ThoiGianDuyChuyen giờ<br>
-                                        <span style="font-size: 13px;">(Asian/Ho Chi Minh)</span>
-                                    </span>
-                                    <span style="flex: 1; border-bottom: 2px dotted;"></span>
-                                    <img src="~/img/iemketrhuc.svg" alt="station" style="margin-left: 0.5rem;">
-                                </div>
-                                <span style="font-size: 1.5rem; font-weight: 500;">@item.TG_KetThuc</span>
+@*@foreach (var item in Model)
+    {
+        <div style="display: flex; padding:16px; flex-direction: column; width: 100%; border: 1px solid #ec7f1f; border-radius: 0.75rem; background-color: white; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); margin-top: 2rem;">
+            <div style="padding-top: 1rem; padding-left: 1rem; padding-right: 1rem;">
+                <div style="display: flex; align-items: flex-start; gap: 2.5rem;">
+                    <div style="display: flex; flex-direction: column; width: 100%;">
+                        <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
+                            <span style="font-size: 1.5rem; font-weight: 500;">@item.TG_KhoiHanh</span>
+                            <div style="display: flex; align-items: center; width: 100%;">
+                                <img src="~/img/diembatdau.svg" alt="pickup" style="margin-right: 0.5rem;">
+                                <span style="flex: 1; border-bottom: 2px dotted;"></span>
+                                <span style="color: gray; text-align: center; line-height: 1.25; padding: 0 0.5rem;">
+                                    @item.ThoiGianDuyChuyen giờ<br>
+                                    <span style="font-size: 13px;">(Asian/Ho Chi Minh)</span>
+                                </span>
+                                <span style="flex: 1; border-bottom: 2px dotted;"></span>
+                                <img src="~/img/iemketrhuc.svg" alt="station" style="margin-left: 0.5rem;">
                             </div>
-                            <div style="display: flex; justify-content: space-between; margin-top: 0.75rem; font-size: 13px;">
-                                <div style="flex: 1;">
-                                    <span style="font-size: 15px; font-weight: 500;">@item.DiemKhoiHanh</span><br>
-                                </div>
-                                <div style="flex: 1; text-align: right;">
-                                    <span style="font-size: 15px; font-weight: 500;">@item.DiemKetThuc</span><br>
-                                </div>
-                            </div>
+                            <span style="font-size: 1.5rem; font-weight: 500;">@item.TG_KetThuc</span>
                         </div>
-                        <div style="display: none; min-width: 200px; flex-wrap: wrap; align-items: center; gap: 0.5rem; color: gray;">
-                            <div style="width: 6px; height: 6px; border-radius: 50%; background-color: #C8CCD3;"></div><span>@item.LoaiXe</span>
-                            <div style="width: 6px; height: 6px; border-radius: 50%; background-color: #C8CCD3;"></div>
-                            <span style="color: green;">@item.SoGheTrong/@item.SoGhe chỗ trống</span>
-                            <span style="margin-top: 0.5rem; width: 100%; text-align: end; font-size: 1.125rem; font-weight: 600; color: orange;">@item.Gia đ</span>
+                        <div style="display: flex; justify-content: space-between; margin-top: 0.75rem; font-size: 13px;">
+                            <div style="flex: 1;">
+                                <span style="font-size: 15px; font-weight: 500;">@item.DiemKhoiHanh</span><br>
+                            </div>
+                            <div style="flex: 1; text-align: right;">
+                                <span style="font-size: 15px; font-weight: 500;">@item.DiemKetThuc</span><br>
+                            </div>
                         </div>
                     </div>
-                    <div style="border-top: 1px solid #DDE2E8; margin-top: 1rem; margin-bottom: 1rem;"></div>
-                </div>
-                <div width: 100%; align-items: center;">
-                    <div style="display: flex; justify-content: space-between;">
-                        <div style="display: flex; justify-content: center; gap: 1rem; font-size: 15px; font-weight: 500;">
-                            <span style="margin:0 6px;cursor:pointer">Chọn ghế</span>
-                            <span style="margin:0 6px;cursor:pointer">Lịch trình</span>
-                            <span style="margin:0 6px;cursor:pointer">Trung chuyển</span>
-                            <span style="margin:0 6px;cursor:pointer">Chính sách</span>
-                        </div>
-                        <button style="display: block; background-color: #ec7f1f; color: white; padding: 0.125rem 1rem;margin:4px 0px; border-radius: 50px; font-weight: 500; border: none;">
-                            Chọn chuyến
-                        </button>
-                    </div>
-                </div>
-                <div style="display: flex; align-items: center; justify-content: space-between; padding-left: 0.5rem; padding-right: 0.5rem; padding-bottom: 0.5rem; color: gray;">
-                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <div style="display: none; min-width: 200px; flex-wrap: wrap; align-items: center; gap: 0.5rem; color: gray;">
                         <div style="width: 6px; height: 6px; border-radius: 50%; background-color: #C8CCD3;"></div><span>@item.LoaiXe</span>
                         <div style="width: 6px; height: 6px; border-radius: 50%; background-color: #C8CCD3;"></div>
                         <span style="color: green;">@item.SoGheTrong/@item.SoGhe chỗ trống</span>
+                        <span style="margin-top: 0.5rem; width: 100%; text-align: end; font-size: 1.125rem; font-weight: 600; color: orange;">@item.Gia đ</span>
                     </div>
-                    <span style="text-align: end; font-size: 2rem; font-weight: 600; color: orange;">@item.Gia đ</span>
+                </div>
+                <div style="border-top: 1px solid #DDE2E8; margin-top: 1rem; margin-bottom: 1rem;"></div>
+            </div>
+            <div width: 100%; align-items: center;">
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="display: flex; justify-content: center; gap: 1rem; font-size: 15px; font-weight: 500;">
+                        <span style="margin:0 6px;cursor:pointer">Chọn ghế</span>
+                        <span style="margin:0 6px;cursor:pointer">Lịch trình</span>
+                        <span style="margin:0 6px;cursor:pointer">Trung chuyển</span>
+                        <span style="margin:0 6px;cursor:pointer">Chính sách</span>
+                    </div>
+                    <button style="display: block; background-color: #ec7f1f; color: white; padding: 0.125rem 1rem;margin:4px 0px; border-radius: 50px; font-weight: 500; border: none;">
+                        Chọn chuyến
+                    </button>
                 </div>
             </div>
-        }*@
+            <div style="display: flex; align-items: center; justify-content: space-between; padding-left: 0.5rem; padding-right: 0.5rem; padding-bottom: 0.5rem; color: gray;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <div style="width: 6px; height: 6px; border-radius: 50%; background-color: #C8CCD3;"></div><span>@item.LoaiXe</span>
+                    <div style="width: 6px; height: 6px; border-radius: 50%; background-color: #C8CCD3;"></div>
+                    <span style="color: green;">@item.SoGheTrong/@item.SoGhe chỗ trống</span>
+                </div>
+                <span style="text-align: end; font-size: 2rem; font-weight: 600; color: orange;">@item.Gia đ</span>
+            </div>
+        </div>
+    }*@
 
 
 

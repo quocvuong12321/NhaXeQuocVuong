@@ -7,6 +7,7 @@ using NhaXe_QuocVuong.Models;
 
 namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
 {
+    [AuthorizeSession]
     public class TuyenDuongController : Controller
     {
         NhaXeDataContext db = new NhaXeDataContext();
@@ -23,6 +24,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
             return View();
         }
         [HttpPost]
+        [CheckSessionRole("")]
         public ActionResult Create(TuyenDuong td)
         {
             var diemDau = db.DiaDiems.FirstOrDefault(d => d.ID_DIADIEM == td.DIEM_DAU)?.TEN_TINH_THANH;
@@ -49,6 +51,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
             return View(TD);
         }
         [HttpPost]
+        [CheckSessionRole("")]
         public ActionResult Edit(TuyenDuong td)
         {
             TuyenDuong t = db.TuyenDuongs.Where(row => row.ID_TUYEN == td.ID_TUYEN).FirstOrDefault();
@@ -67,6 +70,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
             return View(td);
         }
         [HttpPost]
+        [CheckSessionRole("")]
         public ActionResult Delete(int id, TuyenDuong t)
         {
             TuyenDuong td = db.TuyenDuongs.Where(row => row.ID_TUYEN == id).FirstOrDefault();

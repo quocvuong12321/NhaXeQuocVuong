@@ -7,6 +7,7 @@ using NhaXe_QuocVuong.Models;
 
 namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
 {
+    [AuthorizeSession]
     public class XeController : Controller
     {
         NhaXeDataContext db = new NhaXeDataContext();
@@ -23,6 +24,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
             return View();
         }
         [HttpPost]
+        [CheckSessionRole("")]    
         public ActionResult Create(Xe x)
         {
             x.NGAY_THEM_XE = DateTime.Now;
@@ -40,6 +42,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
             return View(xe);
         }
         [HttpPost]
+        [CheckSessionRole("")]
         public ActionResult Edit(Xe x)
         {
             Xe XE = db.Xes.Where(row => row.ID_XE == x.ID_XE).FirstOrDefault();
@@ -57,6 +60,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
             return View(xe);
         }
         [HttpPost]
+        [CheckSessionRole("")]
         public ActionResult Delete(int id, Xe x)
         {
             Xe xe = db.Xes.Where(row => row.ID_XE == id).FirstOrDefault();

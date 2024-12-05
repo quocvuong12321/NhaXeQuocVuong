@@ -1,9 +1,5 @@
-﻿
-USE [nhaxe_quocvuong]
+﻿USE [nhaxe_quocvuong]
 GO
-
-
-
 
 /****** Object:  Trigger [dbo].[trgSetSoGhe]    Script Date: 12/09/2024 1:01:44 PM ******/
 SET ANSI_NULLS ON
@@ -26,7 +22,7 @@ go
 
 CREATE TRIGGER [dbo].[trgSetSoGhe]
 ON [dbo].[LichTrinh]
-AFTER INSERT, UPDATE
+AFTER INSERT
 AS
 BEGIN
 
@@ -124,76 +120,117 @@ BEGIN
 END;
 GO
 
--- Thêm dữ liệu vào bảng DiaDiem
-INSERT INTO [DiaDiem] ([TEN_TINH_THANH]) VALUES 
-(N'Hồ Chí Minh'),
-(N'Đắk Lắk'),
-(N'oà Lạt')
-go
-
--- Thêm dữ liệu vào bảng TuyenDuong
-INSERT INTO [TuyenDuong] ([TEN_TUYEN], [DIEM_DAU], [DIEM_CUOI], [KHOANG_CACH], [THOI_GIAN_DUY_CHUYEN], [TINH_TRANG]) VALUES 
-(N'Hồ Chí Mình - Đăk Lăk', 1, 2, 350, 8, 'CON_HOAT_DONG'),
-(N'Đăk Lăk - Hồ Chí Mình', 2, 1, 350, 8, 'CON_HOAT_DONG'),
-(N'Hồ Chí Mình - Đà Lạt', 1, 3, 300, 7, 'CON_HOAT_DONG'),
-(N'Đà Lạt - Hồ Chí Minh', 3, 1, 300, 7, 'CON_HOAT_DONG'),
-(N'Đăk Lăk - Đà Lạt', 2, 3, 200, 5, 'KHONG_HOAT_DONG');
-go
--- Thêm dữ liệu vào bảng Xe
-INSERT INTO [Xe] ([BIEN_SO_XE], [LOAI_XE], [SO_GHE]) VALUES 
-('30B-67890', 'Limousine', 24),
-('31C-11111', 'Giuong', 36),
-('33E-33333', 'Limousine', 24);
-go
 
 
--- Thêm dữ liệu vào bảng userAccount
-INSERT INTO [userAccount] ([username], [password], [role]) VALUES 
-('khach01', 'pass123', 'khach'),
-('khach02', 'pass234', 'khach'),
-('nha_xe01', 'pass345', 'nha_xe'),
-('nha_xe02', 'pass456', 'nha_xe'),
-('admin01', 'adminpass', 'khach');
-go
--- Thêm dữ liệu vào bảng NHANVIEN
-INSERT INTO [NHANVIEN] ([USERNAME], [TEN_NHANVIEN], [SDT], [EMAIL], [LOAI_NV]) VALUES 
-('nha_xe01', N'Nguyễn Văn A', '0123456789', 'a@example.com', 'QUAN_LY'),
-('nha_xe02', N'Trần Văn B', '0987654321', 'b@example.com', 'TAI_XE');
-go
 
 
--- Thêm dữ liệu vào bảng KhachHang
-INSERT INTO [KhachHang] ([USERNAME], [TEN_KHACH_HANG], [SO_DIEN_THOAI], [EMAIL]) VALUES 
-('khach01', N'Trần Thị Mai', '0987000001', 'mai@example.com'),
-('khach02', N'Nguyễn Văn Hùng', '0987000002', 'hung@example.com');
-go
 
-INSERT INTO PHUONG_THUC_THANH_TOAN values
-('PT1',N'Tiền mặt',''),
-('PT2',N'Momo',''),
-('PT3',N'Thẻ tín dụng','')
-go
+SET IDENTITY_INSERT [dbo].[DiaDiem] ON 
 
--- Thêm dữ liệu vào bảng TramDungChan
-INSERT INTO [TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES 
- ('TDC001', N'Bến xe Miền Đông', 1, N'292 Đinh Bộ Lĩnh, Bình Thạnh');
-INSERT INTO [TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES 
- ('TDC002', N'Bến xe An Sương', 1, N'Quốc lộ 22, Bà Điểm, Hóc Môn');
-INSERT INTO [TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES 
- ('TDC003', N'Mũi Tàu Trường Trinh', 1, N'19B1 Trường Chinh, Tân Bình');
-INSERT INTO [TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES 
- ('TDC004', N'Bến xe Miền Tây', 1, N'395 Kinh Dương Vương, Bình Tân');
-INSERT INTO [TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES 
- ('TDC005', N'Coop Mart Bảo Lộc', 3, N'Tháp Nước, đường Trần Phú, Phường 2, Bảo Lộc, Lâm Đồng');
-INSERT INTO [TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES 
- ('TDC006', N'Bến xe Di Linh', 3, N'681 Hùng Vương, Di Linh, Lâm Đồng');
-INSERT INTO [TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES 
- ('TDC007', N'Bến xe phía Nam', 2, N'Võ Văn Kiệt, Khánh Xuân, Buôn Ma Thuột, Đắk Lắk');
-INSERT INTO [TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES 
- ('TDC008', N'Ngã 3 Duy Hoà', 2, N'387 Võ Văn Kiệt, Phường Khánh Xuân, Buôn Ma Thuột, Đắk Lắk');
-INSERT INTO [TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES 
- ('TDC009', N'Bến xe phía Bắc', 2, N'71 Nguyễn Chí Thanh, Tân An, Buôn Ma Thuột, Đắk Lắk');
-INSERT INTO [TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES 
- ('TDC011', N'Bến xe liên tỉnh Đà Lạt', 3, N'01 Tô Hiến Thành - P3 - Đà Lạt - Lâm Đồng');
-go
+GO
+INSERT [dbo].[DiaDiem] ([ID_DIADIEM], [TEN_TINH_THANH]) VALUES (1, N'Hồ Chí Minh')
+GO
+INSERT [dbo].[DiaDiem] ([ID_DIADIEM], [TEN_TINH_THANH]) VALUES (2, N'Đắk Lắk')
+GO
+INSERT [dbo].[DiaDiem] ([ID_DIADIEM], [TEN_TINH_THANH]) VALUES (3, N'oà Lạt')
+GO
+SET IDENTITY_INSERT [dbo].[DiaDiem] OFF
+GO
+INSERT [dbo].[TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES (N'TDC001', N'Bến xe Miền Đông', 1, N'292 Đinh Bộ Lĩnh, Bình Thạnh')
+GO
+INSERT [dbo].[TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES (N'TDC002', N'Bến xe An Sương', 1, N'Quốc lộ 22, Bà Điểm, Hóc Môn')
+GO
+INSERT [dbo].[TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES (N'TDC003', N'Mũi Tàu Trường Trinh', 1, N'19B1 Trường Chinh, Tân Bình')
+GO
+INSERT [dbo].[TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES (N'TDC004', N'Bến xe Miền Tây', 1, N'395 Kinh Dương Vương, Bình Tân')
+GO
+INSERT [dbo].[TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES (N'TDC005', N'Coop Mart Bảo Lộc', 3, N'Tháp Nước, đường Trần Phú, Phường 2, Bảo Lộc, Lâm Đồng')
+GO
+INSERT [dbo].[TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES (N'TDC006', N'Bến xe Di Linh', 3, N'681 Hùng Vương, Di Linh, Lâm Đồng')
+GO
+INSERT [dbo].[TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES (N'TDC007', N'Bến xe phía Nam', 2, N'Võ Văn Kiệt, Khánh Xuân, Buôn Ma Thuột, Đắk Lắk')
+GO
+INSERT [dbo].[TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES (N'TDC008', N'Ngã 3 Duy Hoà', 2, N'387 Võ Văn Kiệt, Phường Khánh Xuân, Buôn Ma Thuột, Đắk Lắk')
+GO
+INSERT [dbo].[TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES (N'TDC009', N'Bến xe phía Bắc', 2, N'71 Nguyễn Chí Thanh, Tân An, Buôn Ma Thuột, Đắk Lắk')
+GO
+INSERT [dbo].[TramDungChan] ([ID_TRAMDUNGCHAN], [TEN_TRAMDUNGCHAN], [ID_DIADIEM], [DIA_CHI]) VALUES (N'TDC011', N'Bến xe liên tỉnh Đà Lạt', 3, N'01 Tô Hiến Thành - P3 - Đà Lạt - Lâm Đồng')
+GO
+SET IDENTITY_INSERT [dbo].[TuyenDuong] ON 
 
+GO
+INSERT [dbo].[TuyenDuong] ([ID_TUYEN], [TEN_TUYEN], [DIEM_DAU], [DIEM_CUOI], [KHOANG_CACH], [THOI_GIAN_DUY_CHUYEN], [TINH_TRANG]) VALUES (1, N'Hồ Chí Mình - Đăk Lăk', 1, 2, 350, 8, N'CON_HOAT_DONG')
+GO
+INSERT [dbo].[TuyenDuong] ([ID_TUYEN], [TEN_TUYEN], [DIEM_DAU], [DIEM_CUOI], [KHOANG_CACH], [THOI_GIAN_DUY_CHUYEN], [TINH_TRANG]) VALUES (2, N'Đăk Lăk - Hồ Chí Mình', 2, 1, 350, 8, N'CON_HOAT_DONG')
+GO
+INSERT [dbo].[TuyenDuong] ([ID_TUYEN], [TEN_TUYEN], [DIEM_DAU], [DIEM_CUOI], [KHOANG_CACH], [THOI_GIAN_DUY_CHUYEN], [TINH_TRANG]) VALUES (3, N'Hồ Chí Mình - Đà Lạt', 1, 3, 300, 7, N'CON_HOAT_DONG')
+GO
+INSERT [dbo].[TuyenDuong] ([ID_TUYEN], [TEN_TUYEN], [DIEM_DAU], [DIEM_CUOI], [KHOANG_CACH], [THOI_GIAN_DUY_CHUYEN], [TINH_TRANG]) VALUES (4, N'Đà Lạt - Hồ Chí Minh', 3, 1, 300, 7, N'CON_HOAT_DONG')
+GO
+INSERT [dbo].[TuyenDuong] ([ID_TUYEN], [TEN_TUYEN], [DIEM_DAU], [DIEM_CUOI], [KHOANG_CACH], [THOI_GIAN_DUY_CHUYEN], [TINH_TRANG]) VALUES (5, N'Đăk Lăk - Đà Lạt', 2, 3, 200, 5, N'KHONG_HOAT_DONG')
+GO
+SET IDENTITY_INSERT [dbo].[TuyenDuong] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Xe] ON 
+
+GO
+INSERT [dbo].[Xe] ([ID_XE], [BIEN_SO_XE], [LOAI_XE], [SO_GHE], [NGAY_THEM_XE]) VALUES (1, N'30B-67890', N'Limousine', 24, CAST(N'2024-12-05 15:32:01.023' AS DateTime))
+GO
+INSERT [dbo].[Xe] ([ID_XE], [BIEN_SO_XE], [LOAI_XE], [SO_GHE], [NGAY_THEM_XE]) VALUES (2, N'31C-11111', N'Giuong', 36, CAST(N'2024-12-05 15:32:01.023' AS DateTime))
+GO
+INSERT [dbo].[Xe] ([ID_XE], [BIEN_SO_XE], [LOAI_XE], [SO_GHE], [NGAY_THEM_XE]) VALUES (3, N'33E-33333', N'Limousine', 24, CAST(N'2024-12-05 15:32:01.023' AS DateTime))
+GO
+SET IDENTITY_INSERT [dbo].[Xe] OFF
+GO
+INSERT [dbo].[userAccount] ([username], [password], [role]) VALUES (N'admin01', N'adminpass', N'khach')
+GO
+INSERT [dbo].[userAccount] ([username], [password], [role]) VALUES (N'khach01', N'pass123', N'khach')
+GO
+INSERT [dbo].[userAccount] ([username], [password], [role]) VALUES (N'khach02', N'pass234', N'khach')
+GO
+INSERT [dbo].[userAccount] ([username], [password], [role]) VALUES (N'nha_xe01', N'pass345', N'nha_xe')
+GO
+INSERT [dbo].[userAccount] ([username], [password], [role]) VALUES (N'nha_xe02', N'pass456', N'nha_xe')
+GO
+INSERT [dbo].[NHANVIEN] ([USERNAME], [TEN_NHANVIEN], [SDT], [EMAIL], [LOAI_NV]) VALUES (N'nha_xe01', N'Nguyễn Văn A', N'0123456789', N'a@example.com', N'QUAN_LY')
+GO
+INSERT [dbo].[NHANVIEN] ([USERNAME], [TEN_NHANVIEN], [SDT], [EMAIL], [LOAI_NV]) VALUES (N'nha_xe02', N'Trần Văn B', N'0987654321', N'b@example.com', N'TAI_XE')
+GO
+INSERT [dbo].[LichTrinh] ([MA_LICH_TRINH], [ID_TUYEN_DUONG], [KHOI_HANH], [KET_THUC], [GIA_VE], [ID_XE], [CHI_PHI_PHAT_SINH], [TRANG_THAI], [TAIXE], [NGAY_TAO_LICH_TRINH], [NGUOI_TAO_LICH_TRINH]) VALUES (N'LT001', 1, CAST(N'2024-10-20 08:00:00.000' AS DateTime), CAST(N'2024-10-20 10:00:00.000' AS DateTime), 200000, 1, 0, N'MO_BAN', N'nha_xe02', CAST(N'2024-12-05 16:09:43.140' AS DateTime), N'nha_xe01')
+GO
+INSERT [dbo].[LichTrinh] ([MA_LICH_TRINH], [ID_TUYEN_DUONG], [KHOI_HANH], [KET_THUC], [GIA_VE], [ID_XE], [CHI_PHI_PHAT_SINH], [TRANG_THAI], [TAIXE], [NGAY_TAO_LICH_TRINH], [NGUOI_TAO_LICH_TRINH]) VALUES (N'LT002', 2, CAST(N'2024-10-21 06:00:00.000' AS DateTime), CAST(N'2024-10-21 22:00:00.000' AS DateTime), 1200000, 2, 50000, N'MO_BAN', N'nha_xe02', CAST(N'2024-12-05 16:09:43.157' AS DateTime), N'nha_xe01')
+GO
+INSERT [dbo].[KhachHang] ([USERNAME], [TEN_KHACH_HANG], [SO_DIEN_THOAI], [EMAIL]) VALUES (N'khach01', N'Trần Thị Mai', N'0987000001', N'mai@example.com')
+GO
+INSERT [dbo].[KhachHang] ([USERNAME], [TEN_KHACH_HANG], [SO_DIEN_THOAI], [EMAIL]) VALUES (N'khach02', N'Nguyễn Văn Hùng', N'0987000002', N'hung@example.com')
+GO
+INSERT [dbo].[PHUONG_THUC_THANH_TOAN] ([ID_PTTT], [TEN_PHUONG_THUC_THANH_TOAN], [CACH_THUC_THANH_TOAN]) VALUES (N'PT1', N'Tiền mặt', N'')
+GO
+INSERT [dbo].[PHUONG_THUC_THANH_TOAN] ([ID_PTTT], [TEN_PHUONG_THUC_THANH_TOAN], [CACH_THUC_THANH_TOAN]) VALUES (N'PT2', N'Momo', N'')
+GO
+INSERT [dbo].[PHUONG_THUC_THANH_TOAN] ([ID_PTTT], [TEN_PHUONG_THUC_THANH_TOAN], [CACH_THUC_THANH_TOAN]) VALUES (N'PT3', N'Thẻ tín dụng', N'')
+GO
+INSERT [dbo].[Ve] ([ID_VE], [ID_KHACH_HANG], [ID_LICH_TRINH], [NGAY_DAT_VE], [TONG_TIEN], [DIEM_DOAN], [DIEM_TRA], [QR_CODE], [TRANG_THAI], [PHUONG_THUC_THANH_TOAN]) VALUES (N'LT001VE001', N'khach01', N'LT001', CAST(N'2024-12-05 00:00:00.000' AS DateTime), 400000, N'TDC001', N'TDC007', N'/img/LT001VE001.png', N'da_su_dung', N'PT1')
+GO
+INSERT [dbo].[Ve] ([ID_VE], [ID_KHACH_HANG], [ID_LICH_TRINH], [NGAY_DAT_VE], [TONG_TIEN], [DIEM_DOAN], [DIEM_TRA], [QR_CODE], [TRANG_THAI], [PHUONG_THUC_THANH_TOAN]) VALUES (N'LT002VE001', N'khach01', N'LT002', CAST(N'2024-12-05 00:00:00.000' AS DateTime), 3600000, N'TDC008', N'TDC002', N'/img/LT002VE001.png', N'da_su_dung', N'PT3')
+GO
+INSERT [dbo].[ChiTietVe] ([ID_VE], [VI_TRI_NGOI]) VALUES (N'LT001VE001', N'LT001 30B-67890_A1')
+GO
+INSERT [dbo].[ChiTietVe] ([ID_VE], [VI_TRI_NGOI]) VALUES (N'LT001VE001', N'LT001 30B-67890_B1')
+GO
+INSERT [dbo].[ChiTietVe] ([ID_VE], [VI_TRI_NGOI]) VALUES (N'LT002VE001', N'LT002 31C-11111_A6')
+GO
+INSERT [dbo].[ChiTietVe] ([ID_VE], [VI_TRI_NGOI]) VALUES (N'LT002VE001', N'LT002 31C-11111_B4')
+GO
+INSERT [dbo].[ChiTietVe] ([ID_VE], [VI_TRI_NGOI]) VALUES (N'LT002VE001', N'LT002 31C-11111_B6')
+GO
+
+
+INSERT [dbo].[Ve] ([ID_VE], [ID_KHACH_HANG], [ID_LICH_TRINH], [NGAY_DAT_VE], [TONG_TIEN], [DIEM_DOAN], [DIEM_TRA], [QR_CODE], [TRANG_THAI], [PHUONG_THUC_THANH_TOAN]) VALUES (N'LT002VE002', N'khach01', N'LT002', CAST(N'2024-11-12 00:00:00.000' AS DateTime), 300000, N'TDC008', N'TDC002', N'/img/LT002VE002.png', N'da_su_dung', N'PT3')
+GO
+INSERT [dbo].[Ve] ([ID_VE], [ID_KHACH_HANG], [ID_LICH_TRINH], [NGAY_DAT_VE], [TONG_TIEN], [DIEM_DOAN], [DIEM_TRA], [QR_CODE], [TRANG_THAI], [PHUONG_THUC_THANH_TOAN]) VALUES (N'LT002VE003', N'khach01', N'LT002', CAST(N'2024-11-13 00:00:00.000' AS DateTime), 320000, N'TDC008', N'TDC002', N'/img/LT002VE003.png', N'da_su_dung', N'PT1')
+GO
+INSERT [dbo].[Ve] ([ID_VE], [ID_KHACH_HANG], [ID_LICH_TRINH], [NGAY_DAT_VE], [TONG_TIEN], [DIEM_DOAN], [DIEM_TRA], [QR_CODE], [TRANG_THAI], [PHUONG_THUC_THANH_TOAN]) VALUES (N'LT002VE004', N'khach01', N'LT002', CAST(N'2024-11-25 00:00:00.000' AS DateTime), 280000, N'TDC008', N'TDC002', N'/img/LT002VE004.png', N'da_su_dung', N'PT3')
+GO
+INSERT [dbo].[Ve] ([ID_VE], [ID_KHACH_HANG], [ID_LICH_TRINH], [NGAY_DAT_VE], [TONG_TIEN], [DIEM_DOAN], [DIEM_TRA], [QR_CODE], [TRANG_THAI], [PHUONG_THUC_THANH_TOAN]) VALUES (N'LT002VE005', N'khach01', N'LT002', CAST(N'2024-10-28 00:00:00.000' AS DateTime), 500000, N'TDC008', N'TDC002', N'/img/LT002VE005.png', N'da_su_dung', N'PT2')
+GO

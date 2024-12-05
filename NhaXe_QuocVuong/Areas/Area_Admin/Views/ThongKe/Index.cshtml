@@ -1,0 +1,229 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Area_Admin/Views/Shared/LayoutAdmin.cshtml";
+    var doanhThu = ViewBag.DoanhThu as decimal[];
+    var tongVe = ViewBag.ListTongVe;
+}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        #chartContainer {
+            width: 80%;
+            margin: auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        canvas {
+            max-width: 100%;
+        }
+
+        .filter-container {
+            margin-bottom: 20px;
+            text-align: center;
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+            .filter-container input,
+            .filter-container select {
+                margin: 0 5px;
+                padding: 10px;
+                border: 1px solid #ced4da;
+                border-radius: 4px;
+                width: calc(25% - 10px);
+            }
+
+            .filter-container button {
+                padding: 10px 15px;
+                background-color: #007BFF;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+                .filter-container button:hover {
+                    background-color: #0056b3;
+                }
+
+            .filter-container label {
+                display: block;
+                margin: 10px 0 5px;
+                font-weight: bold;
+            }
+    </style>
+</head>
+<body>
+    <div id="chartContainer">
+        <canvas id="revenueChart"></canvas>
+    </div>
+    <div class="filter-container">
+        <label for="startDate">Từ Ngày:</label>
+        <input type="date" id="startDate" placeholder="Từ ngày" />
+
+        <label for="endDate">Đến Ngày:</label>
+        <input type="date" id="endDate" placeholder="Đến ngày" />
+
+        <label for="priceRange">Giá:</label>
+        <select id="priceRange">
+            <option value="">Tất cả</option>
+            <option value="under500k">Dưới 500.000đ</option>
+            <option value="500k-2m">Từ 500.000đ đến 2.000.000đ</option>
+            <option value="2m-10m">Từ 2.000.000đ đến 10.000.000đ</option>
+            <option value="10m-50m">Từ 10.000.000đ đến 50.000.000đ</option>
+            <option value="over50m">Trên 50.000.000đ</option>
+        </select>
+
+        <button onclick="filterOrders()">Tìm Kiếm</button>
+        <button onclick="sortOrders()">Sắp Xếp Theo Giá</button>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Mã vé</td>
+                <td>Ngày đặt hàng</td>
+                <td>Tổng tiền</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody id="orderCards">
+            @foreach (var tong in tongVe)
+            {
+                <tr class="cardd" data-date="@tong.NGAY_DAT_VE.ToString(" yyyy-MM-dd")" data-price="@tong.TONG_TIEN">
+                    <td>@tong.ID_VE</td>
+                    <td>@tong.NGAY_DAT_VE.ToString("dd-MM-yyyy")</td>
+                    <td>@tong.TONG_TIEN.ToString("N0", System.Globalization.CultureInfo.GetCultureInfo("vi-VN"))đ</td>
+                    <td>@*<a href="@Url.Action("", "", new {id = tong.ID_VE})">Xem Chi Tiết</a>*@</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <h3 id="totalAmount">Tổng tiền các vé: @ViewBag.TongGia.ToString("N0", System.Globalization.CultureInfo.GetCultureInfo("vi-VN"))đ</h3>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const labels = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'];
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Doanh Thu',
+                data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(doanhThu)),
+                backgroundColor: 'rgba(127, 0, 255, 1)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        };
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Doanh Thu'
+                        }
+                    }
+                }
+            }
+        };
+        const revenueChart = new Chart(
+            document.getElementById('revenueChart'),
+            config
+        );
+        function updateTotal() {
+            const cards = document.querySelectorAll('.cardd');
+            let total = 0;
+
+            cards.forEach(card => {
+                if (card.style.display !== 'none') {
+                    total += parseFloat(card.getAttribute('data-price'));
+                }
+            });
+
+            const totalContainer = document.getElementById('totalAmount');
+            totalContainer.textContent = "Tổng tiền các đơn hàng: " + total.toLocaleString('vi-VN') + 'đ';
+        }
+
+        function filterOrders() {
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            const priceRange = document.getElementById('priceRange').value;
+
+            document.querySelectorAll('.cardd').forEach(card => {
+                const cardDate = new Date(card.getAttribute('data-date'));
+                const cardPrice = parseFloat(card.getAttribute('data-price'));
+
+                const dateCondition = (!startDate || cardDate >= new Date(startDate)) &&
+                    (!endDate || cardDate <= new Date(endDate));
+
+                const priceCondition = priceRange === '' || checkPriceRange(cardPrice, priceRange);
+
+                card.style.display = (dateCondition && priceCondition) ? 'table-row' : 'none';
+            });
+            updateTotal();
+        }
+
+        function checkPriceRange(price, range) {
+            switch (range) {
+                case 'under500k':
+                    return price < 500000;
+                case '500k-2m':
+                    return price >= 500000 && price <= 2000000;
+                case '2m-10m':
+                    return price > 2000000 && price <= 10000000;
+                case '10m-50m':
+                    return price > 10000000 && price <= 50000000;
+                case 'over50m':
+                    return price > 50000000;
+                default:
+                    return true;
+            }
+        }
+
+        function sortOrders() {
+            const container = document.getElementById('orderCards');
+            const cards = Array.from(container.children);
+
+            cards.sort((a, b) => parseFloat(b.getAttribute('data-price')) - parseFloat(a.getAttribute('data-price')));
+
+            container.innerHTML = '';
+            cards.forEach(card => container.appendChild(card));
+            updateTotal();
+        }
+    </script>
+</body>
+</html>
+
+
+
+

@@ -132,7 +132,7 @@
         }
 </style>
 
-<h1 class="page-title">QUẢN LÝ NHÂN VIÊN</h1>
+<h1 class="page-title">QUẢN LÝ TÀI XẾ</h1>
 
 <div class="container">
     <div class="card-container">
@@ -141,7 +141,7 @@
                 <input type="text" name="search" class="form-control search-bar me-2" placeholder="Nhập thông tin tìm kiếm..." />
                 <button type="submit" class="btn btn-search">Tìm kiếm</button>
             </form>
-            @Html.ActionLink("Thêm Nhân Viên", "ThemNV", null, new { @class = "btn btn-add" })
+            @Html.ActionLink("Thêm Tài Xế", "ThemNV", null, new { @class = "btn btn-add" })
         </div>
 
         <div class="table-container">
@@ -149,10 +149,10 @@
                 <thead>
                     <tr>
                         <th>Username</th>
-                        <th>Tên Nhân Viên</th>
+                        <th>Tên Tài Xế</th>
                         <th>Email</th>
                         <th>Số Điện Thoại</th>
-                        <th>Loại Nhân Viên</th>
+                        @*<th>Loại Nhân Viên</th>*@
                         <th>Thao Tác</th>
                     </tr>
                 </thead>
@@ -164,7 +164,7 @@
                             <td>@nv.TEN_NHANVIEN</td>
                             <td>@nv.EMAIL</td>
                             <td>@nv.SDT</td>
-                            <td>@nv.LOAI_NV</td>
+                            @*<td>@nv.LOAI_NV</td>*@
                             <td style="min-width:200px">
                                 @Html.ActionLink("Cập nhật", "SuaNV", new { username = nv.USERNAME }, new { @class = "btn btn-update me-2" })
                                 @Html.ActionLink("Xóa", "XoaNV", new { username = nv.USERNAME }, new { @class = "btn btn-delete" })
