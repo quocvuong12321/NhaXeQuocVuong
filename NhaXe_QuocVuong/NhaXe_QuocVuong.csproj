@@ -134,9 +134,11 @@
     <Compile Include="Areas\Area_Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Area_Admin\Controllers\NhanVienController.cs" />
     <Compile Include="Areas\Area_Admin\Controllers\QuanLyLichTrinhController.cs" />
+    <Compile Include="Areas\Area_Admin\Controllers\ThongKeController.cs" />
     <Compile Include="Areas\Area_Admin\Controllers\TramDungChanController.cs" />
     <Compile Include="Areas\Area_Admin\Controllers\TuyenDuongController.cs" />
     <Compile Include="Areas\Area_Admin\Controllers\XeController.cs" />
+    <Compile Include="Areas\Area_Admin\Data\ves.cs" />
     <Compile Include="Controllers\DangNhapAdminController.cs" />
     <Compile Include="Controllers\DangNhapController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -2410,7 +2412,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Area_Admin\Data\" />
     <Folder Include="Content\admin_ui\" />
     <Folder Include="Views\KhachHang\" />
   </ItemGroup>
@@ -2459,6 +2460,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Areas\Area_Admin\Views\QuanLyLichTrinh\DetailLichTrinh.cshtml" />
+    <Content Include="Areas\Area_Admin\Views\ThongKe\Index.cshtml" />
     <None Include="Models\NhaXe.dbml.layout">
       <DependentUpon>NhaXe.dbml</DependentUpon>
     </None>

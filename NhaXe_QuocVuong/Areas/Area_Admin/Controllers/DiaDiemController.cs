@@ -9,7 +9,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
     [AuthorizeSession]
     public class DiaDiemController : Controller
     {
-        NhaXeDataContext db = new NhaXeDataContext("");
+        NhaXeDataContext db = new NhaXeDataContext();
         //Danh sách địa điểm
         public ActionResult DanhSachDD(string search)
         {

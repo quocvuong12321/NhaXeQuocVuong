@@ -9,7 +9,7 @@ namespace NhaXe_QuocVuong.Controllers
 {
     public class DangNhapController : Controller
     {
-        private NhaXeDataContext db = new NhaXeDataContext("");
+        private NhaXeDataContext db = new NhaXeDataContext();
         // GET: DangNhap
         
         public ActionResult XacNhanRole()
