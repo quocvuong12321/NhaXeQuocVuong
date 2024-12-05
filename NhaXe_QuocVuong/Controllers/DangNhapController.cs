@@ -9,7 +9,7 @@ namespace NhaXe_QuocVuong.Controllers
 {
     public class DangNhapController : Controller
     {
-        private NhaXeDataContext db = new NhaXeDataContext("");
+        private NhaXeDataContext db = new NhaXeDataContext();
         // GET: DangNhap
         
         public ActionResult XacNhanRole()
@@ -40,6 +40,15 @@ namespace NhaXe_QuocVuong.Controllers
                 if (user.role == "khach")
                 {
                     Session["khach"] = user;
+                    // Kiểm tra nếu có URL cần quay lại
+                    if (Session["ReturnUrl"] != null)
+                    {
+                        string returnUrl = Session["ReturnUrl"].ToString();
+                        Session["ReturnUrl"] = null; // Xóa dữ liệu sau khi sử dụng
+                        return Redirect(returnUrl);
+                    }
+
+                    // Nếu không có URL lưu trước, chuyển hướng đến trang chính
                     return RedirectToAction("Index", "Home");
                 }
                 else

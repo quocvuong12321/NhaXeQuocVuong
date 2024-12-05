@@ -35,7 +35,7 @@
                 </select>
             </div>
             <div class="col-3">
-                <input type="date" class="form-control" placeholder="Ngày đi" name="ngaydi" />
+                <input type="date" class="form-control" placeholder="Ngày đi" id="ngaydi" name="ngaydi" value="" />
             </div>
             <div class="col-2">
                 <button type="submit" class="btn btn-warning form-control">Tìm kiếm</button>
@@ -84,7 +84,7 @@
                     <div class="col-4" style="text-align: right; font-size: larger">
                         <strong class="text-primary">@string.Format("{0:0,00} đ", item.LichTrinh.GIA_VE)</strong><br />
                         <label style="color:lightgray">Còn @item.SoChoConLai chỗ trống</label><br /><br /><br />
-                        <a href="@Url.Action("DatVe", "LichTrinh", new { MaLichTrinh = item.LichTrinh.MA_LICH_TRINH })" class="btn btn-warning" style="float:right;margin-bottom:10px">Chọn chuyến</a>
+                        <a href="@Url.Action("DatVe", "LichTrinh", new { MaLichTrinh = item.LichTrinh.MA_LICH_TRINH })" class="btn btn-warning" style="float:right;margin-bottom:10px"  >Chọn chuyến</a>
                     </div>
                 </div>
             </div>
@@ -93,4 +93,15 @@
 </div>
 
 
+<script>
+    window.onload = function () {
+        var today = new Date();
+        var day = ('0' + today.getDate()).slice(-2); // Đảm bảo là 2 chữ số
+        var month = ('0' + (today.getMonth() + 1)).slice(-2); // Tháng bắt đầu từ 0, cộng thêm 1
+        var year = today.getFullYear();
 
+        // Thiết lập giá trị mặc định cho input là ngày hiện tại theo định dạng YYYY-MM-DD
+        document.getElementById("ngaydi").value = `${year}-${month}-${day}`;
+    };
+
+</script>

@@ -14,7 +14,7 @@ namespace NhaXe_QuocVuong.Controllers
     public class LichTrinhController : Controller
     {
         // GET: LichTrinh
-        NhaXeDataContext db = new NhaXeDataContext("");
+        NhaXeDataContext db = new NhaXeDataContext();
         public ActionResult Index()
         {
             List<LichTrinh_display> model = new List<LichTrinh_display>();
@@ -43,6 +43,11 @@ namespace NhaXe_QuocVuong.Controllers
         [HttpGet]
         public ActionResult DatVe(string  MaLichTrinh)
         {
+            if (Session["khach"] == null)
+            {
+                Session["ReturnUrl"] = "~/LichTrinh/DatVe/?MaLichTrinh="+MaLichTrinh;
+                return RedirectToAction("Login_Nguoidung", "DangNhap");
+            }
             List<Ghe> lstGhe = db.Ghes.Where(t => t.MA_LICH_TRINH.Equals(MaLichTrinh)).ToList();
             ViewBag.TuyenDuong = db.LichTrinhs.FirstOrDefault(t => t.MA_LICH_TRINH.Equals(MaLichTrinh)).TuyenDuong.TEN_TUYEN;
             int noidi = db.LichTrinhs.FirstOrDefault(t => t.MA_LICH_TRINH.Equals(MaLichTrinh)).TuyenDuong.DiaDiem.ID_DIADIEM;
@@ -52,6 +57,7 @@ namespace NhaXe_QuocVuong.Controllers
             ViewBag.TramDungDi = db.TramDungChans.Where(t=>t.ID_DIADIEM==noidi).ToList();
             ViewBag.TramDungDen = db.TramDungChans.Where(t=>t.ID_DIADIEM==noiden).ToList();
             ViewBag.PTThanhToan = db.PHUONG_THUC_THANH_TOANs.ToList();
+            ViewBag.KH = Session["khach"] as userAccount;
             return View(lstGhe);
         }
 
@@ -64,11 +70,9 @@ namespace NhaXe_QuocVuong.Controllers
             }
             if (TaoVe(c))
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("ThongBaoDaDat");
             }
             return View();
-
-
         }
 
         public bool TaoVe(FormCollection c)
@@ -117,7 +121,6 @@ namespace NhaXe_QuocVuong.Controllers
 
                     db.ChiTietVes.InsertOnSubmit(ct);
                     db.SubmitChanges();
-                    
                 }
 
                 return true;
@@ -186,13 +189,22 @@ namespace NhaXe_QuocVuong.Controllers
             return View("Index", model);
         }
 
-        public ActionResult TimKiemXe(int noidi,int noiden,DateTime ngaydi)
+        public ActionResult TimKiemXe(int ?noidi,int ?noiden,DateTime ?ngaydi)
         {
-            int Noidi = noidi;
-            int Noiden = noiden;
-            DateTime Ngaydi = ngaydi;
+            if (noidi == null || noiden == null || ngaydi == null)
+            {
+                // Trả về một kết quả mặc định hoặc thông báo lỗi nếu có giá trị null
+                ViewBag.ErrorMessage = "Vui lòng cung cấp đầy đủ thông tin.";
+                ViewBag.DiaDiem = db.DiaDiems.ToList();
+                return View("Index",new List<LichTrinh_display>());
+            }
+
+            // Nếu tất cả tham số đều có giá trị, thực hiện tìm kiếm
             List<LichTrinh_display> model = new List<LichTrinh_display>();
-            List<LichTrinh> lst = db.LichTrinhs.Where(t => t.TuyenDuong.DiaDiem.ID_DIADIEM == Noidi && t.TuyenDuong.DiaDiem1.ID_DIADIEM == Noiden && t.KHOI_HANH.Date ==Ngaydi.Date).ToList();
+            List<LichTrinh> lst = db.LichTrinhs.Where(t => t.TuyenDuong.DiaDiem.ID_DIADIEM == noidi
+                                                        && t.TuyenDuong.DiaDiem1.ID_DIADIEM == noiden
+                                                        && t.KHOI_HANH.Date == ngaydi.Value.Date).ToList();
+
             foreach (var item in lst)
             {
                 LichTrinh_display ltvm = new LichTrinh_display
@@ -202,10 +214,29 @@ namespace NhaXe_QuocVuong.Controllers
                 };
                 model.Add(ltvm);
             }
+
             ViewBag.DiaDiem = db.DiaDiems.ToList();
+            return View("Index", model);
+        }
 
-            return View("Index",model);
+        public ActionResult ThongBaoDaDat()
+        {
+            return View();
+        }
 
+        public ActionResult HuyVe(string id)
+        {
+            var ve = db.Ves.FirstOrDefault(t => t.ID_VE.Equals(id));
+            ve.TRANG_THAI = "huy_ve";
+            db.SubmitChanges();
+            var ChiTietVe = db.ChiTietVes.Where(t => t.ID_VE.Equals(id)).ToList();
+            foreach(var item in ChiTietVe)
+            {
+                Ghe g = db.Ghes.FirstOrDefault(t => t.ID_GHE == item.VI_TRI_NGOI);
+                g.TINH_TRANG = false;
+                db.SubmitChanges();
+            }
+            return Redirect("~/DangNhap/VeCuaToi");
         }
     }
 }

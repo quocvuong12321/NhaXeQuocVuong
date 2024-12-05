@@ -1,4 +1,4 @@
-﻿@using NhaXe_QuocVuong.Models;
+﻿@using NhaXe_QuocVuong.Models
 @model List<NhaXe_QuocVuong.Models.Ghe>
 
 @{
@@ -9,12 +9,13 @@
     List<TramDungChan> lstTramDi = ViewBag.TramDungDi as List<TramDungChan>;
     List<TramDungChan> lstTramDen = ViewBag.TramDungDen as List<TramDungChan>;
     List<PHUONG_THUC_THANH_TOAN> lstPTTT = ViewBag.PTThanhToan as List<PHUONG_THUC_THANH_TOAN>;
+    userAccount userAcc = ViewBag.KH as userAccount;
 }
 
 
 <body style="background-color: #fff5f5" >
     <form action="~/LichTrinh/ThongTinVe" method="post" id="seatForm">
-        @Html.AntiForgeryToken();
+        @Html.AntiForgeryToken()
         <input type="hidden" id="giaVe" value="@ViewBag.GiaVe" />
         <input type="hidden" name="maLichTrinh" value="@Model.FirstOrDefault().MA_LICH_TRINH" />
         <div class="row">
@@ -174,11 +175,11 @@
                     <div class="col-5 " style="margin-top: 20px">
                         <p><strong>THÔNG TIN KHÁCH HÀNG</strong></p>
                         <label>Họ và tên</label><br />
-                        <input type="text" class="form-control" name="name" value="" />
+                        <input type="text" class="form-control" name="name" value="@userAcc.KhachHang.TEN_KHACH_HANG"  disabled/>
                         <label>Email</label><br />
-                        <input type="email" class="form-control" name="email" value="" />
+                        <input type="email" class="form-control" name="email" value="@userAcc.KhachHang.EMAIL" disabled/>
                         <label>Số điện thoại</label><br />
-                        <input type="number" class="form-control" name="sdt" value="" />
+                        <input type="number" class="form-control" name="sdt" value="@userAcc.KhachHang.SO_DIEN_THOAI" disabled/>
                     </div>
                     <div class="col-1"></div>
                     <div class="col-5" style="margin-top: 20px">

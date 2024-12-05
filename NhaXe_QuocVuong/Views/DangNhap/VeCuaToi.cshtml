@@ -4,64 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="profile-container">
-    <!-- Sidebar Menu -->
-    <aside class="sidebar">
-        <nav>
-            <ul>
-                <li class="menu-item">
-                    <a href="@Url.Action("ThongTinTaiKhoan", "DangNhap")">
-                        <i class="fas fa-user-circle"></i> Thông tin tài khoản
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="@Url.Action("LichSuMuaVe", "DangNhap")">
-                        <i class="fas fa-cart-shopping"></i> Lịch sử mua vé
-                    </a>
-                </li>
-                <li class="menu-item active">
-                    <a href="@Url.Action("VeCuaToi", "DangNhap")">
-                        <i class="fas fa-ticket-alt"></i> Vé của tôi
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="@Url.Action("Logout", "DangNhap")">
-                        <i class="fas fa-sign-out-alt"></i> Đăng xuất
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </aside>
-
-    <!-- Profile Content -->
-    <section class="profile-info">
-        <h2>Vé của tôi</h2>
-
-        <div class="ticket-container">
-            @if (Model != null && Model.Any())
-            {
-                foreach (var ve in Model)
-                {
-                    <div class="ticket-item">
-                        <div class="ticket-info">
-                            <div class="status-paid">@ve.TrangThai</div>
-                            <h3>@ve.NgayKhoiHanh.ToString("dddd, dd/MM/yyyy")</h3>
-                            <div class="date-time"><strong>@ve.NgayKhoiHanh.ToString("HH:mm")</strong></div>
-                            <p><strong>@ve.TenTuyen</strong></p>
-                            <p>Mã vé: <strong>@ve.IdVe</strong></p>
-                            <p>Biển số xe: <strong>@ve.BienSoXe</strong></p>
-                        </div>
-                        <div class="ticket-actions">
-                            <a href="@Url.Action("TicketDetail", "DangNhap", new { idVe = ve.IdVe })">Xem vé</a>
-                        </div>
-                    </div> }
-            }
-            else
-            {
-                <p class="no-data">Hiện tại bạn chưa đặt vé</p>}
-        </div>
-    </section>
-</div>
 <style>
     /* General Styling */
     body {
@@ -282,3 +224,86 @@
             background-color: #ff8a47;
         }
 </style>
+
+
+
+<div class="profile-container">
+    <!-- Sidebar Menu -->
+    <aside class="sidebar">
+        <nav>
+            <ul>
+                <li class="menu-item">
+                    <a href="@Url.Action("ThongTinTaiKhoan", "DangNhap")">
+                        <i class="fas fa-user-circle"></i> Thông tin tài khoản
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="@Url.Action("LichSuMuaVe", "DangNhap")">
+                        <i class="fas fa-cart-shopping"></i> Lịch sử mua vé
+                    </a>
+                </li>
+                <li class="menu-item active">
+                    <a href="@Url.Action("VeCuaToi", "DangNhap")">
+                        <i class="fas fa-ticket-alt"></i> Vé của tôi
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="@Url.Action("Logout", "DangNhap")">
+                        <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Profile Content -->
+    <section class="profile-info">
+        <h2>Vé của tôi</h2>
+
+        <div class="ticket-container">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var ve in Model)
+                {
+                    <div class="ticket-item">
+                        <div class="ticket-info">
+                            <div class="status-paid">@ve.TrangThai</div>
+                            <h3>@ve.NgayKhoiHanh.ToString("dddd, dd/MM/yyyy")</h3>
+                            <div class="date-time"><strong>@ve.NgayKhoiHanh.ToString("HH:mm")</strong></div>
+                            <p><strong>@ve.TenTuyen</strong></p>
+                            <p>Mã vé: <strong>@ve.IdVe</strong></p>
+                            <p>Biển số xe: <strong>@ve.BienSoXe</strong></p>
+                        </div>
+                        <div class="ticket-actions">
+                            <a href="@Url.Action("TicketDetail", "DangNhap", new { idVe = ve.IdVe })" class="btn btn-outline-success">Xem vé</a>
+                            <form method="post" id="huyVeForm">
+                                <input type="hidden" name="id" value="@ve.IdVe" />
+                                <input type="submit" id="huyVeBtn" class="btn btn-outline-danger" value="Huỷ vé">
+                            </form>
+                        </div>
+                    </div> }
+            }
+            else
+            {
+                <p class="no-data">Hiện tại bạn chưa đặt vé</p>}
+        </div>
+    </section>
+</div>
+
+<script>
+    document.getElementById('huyVeBtn').onclick = function (event) {
+        event.preventDefault(); // Ngừng hành động gửi form mặc định
+
+        // Hiển thị hộp thoại xác nhận
+        var confirmDelete = confirm("Bạn có chắc chắn muốn huỷ vé không?");
+
+        if (confirmDelete) {
+            // Cập nhật form action với giá trị ID
+            var idVe = document.querySelector('[name="id"]').value;
+            document.getElementById('huyVeForm').action = "/LichTrinh/HuyVe/" + idVe;
+
+            // Nếu người dùng chọn OK, gửi form
+            document.getElementById('huyVeForm').submit();
+        }
+    };
+</script>

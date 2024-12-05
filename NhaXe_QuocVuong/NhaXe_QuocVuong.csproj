@@ -2472,6 +2472,7 @@
     <Content Include="Views\DangNhap\VeCuaToi.cshtml" />
     <Content Include="Views\DangNhap\TicketDetail.cshtml" />
     <Content Include="Views\LichTrinh\DatVe.cshtml" />
+    <Content Include="Views\LichTrinh\ThongBaoDaDat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
