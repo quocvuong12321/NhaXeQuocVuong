@@ -23,7 +23,7 @@ go
 
 CREATE TRIGGER [dbo].[trgSetSoGhe]
 ON [dbo].[LichTrinh]
-AFTER INSERT, UPDATE
+AFTER INSERT
 AS
 BEGIN
 

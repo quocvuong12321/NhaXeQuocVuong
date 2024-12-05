@@ -125,7 +125,7 @@ CREATE TABLE [Ve] (
   [DIEM_DOAN] varchar(128) NOT NULL,
   [DIEM_TRA] varchar(128) NOT NULL,
   [QR_CODE] varchar(128) NOT NULL,
-  [TRANG_THAI] varchar(128) NOT NULL CHECK ([TRANG_THAI] IN ('da_xac_nhan', 'da_thanh_toan', 'huy_ve')) DEFAULT 'da_thanh_toan',
+  [TRANG_THAI] varchar(128) NOT NULL CHECK ([TRANG_THAI] IN ('da_su_dung', 'da_thanh_toan', 'huy_ve')) DEFAULT 'da_thanh_toan',
   [PHUONG_THUC_THANH_TOAN] varchar(128)NOT NULL,
   FOREIGN KEY ([PHUONG_THUC_THANH_TOAN]) REFERENCES [PHUONG_THUC_THANH_TOAN] ([ID_PTTT]),
   FOREIGN KEY ([DIEM_DOAN]) REFERENCES [TramDungChan] ([ID_TRAMDUNGCHAN]),

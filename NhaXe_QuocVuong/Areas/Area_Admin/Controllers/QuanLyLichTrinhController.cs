@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.DynamicData;
 using System.Web.Mvc;
 using System.Windows.Documents;
 using NhaXe_QuocVuong.Models;
@@ -74,7 +75,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
 
             if(user.NHANVIEN.LOAI_NV == "TAI_XE")
             {
-                result = result.Where(e => e.IDTaiXe == user.username).ToList();
+                result = result.Where(e => e.IDTaiXe == user.username && e.TrangThai== "MO_BAN").ToList();
             }
 
             return View(result);
@@ -256,12 +257,12 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
         //}
         public ActionResult UpdateLichTrinh(string id)
         {
-            var user = Session["quanly"] as userAccount;
-            if (user == null)
-            {
-                return RedirectToAction("Login_Admin", "DangNhapAdmin", new { area = "" });
-            }
+           
 
+
+            var user = Session["quanly"] as userAccount;
+          
+            /// vao trang chi tiet
             // Lấy đối tượng LichTrinh cần chỉnh sửa
             LichTrinh lt = db.LichTrinhs.FirstOrDefault(ltt => ltt.MA_LICH_TRINH == id);
 
@@ -269,7 +270,51 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
             {
                 return HttpNotFound();  // Trường hợp không tìm thấy LichTrinh
             }
+            //cap nhat trang thai ghe tai day
+            if (user.NHANVIEN.LOAI_NV == "TAI_XE")
+            {
+                // kiem tra thoi gian
+                if (lt.KET_THUC >= DateTime.Now)
+                {
+                     TempData["ThongBao"] = "Thời gian không hợp lệ!";
+                    return RedirectToAction("Index"); // hoặc action khác
+                }
 
+                if (lt.TAIXE!= user.username)
+                {
+                    TempData["ThongBao"] = "Bạn không thể cập nhật chuyến đi này.";
+                    return RedirectToAction("Index"); // hoặc action khác
+                }
+                // cap nhat trang thai 
+                lt.TRANG_THAI = "KET_THUC";
+                //db.LichTrinhs.InsertOnSubmit(lt);
+                //db.SubmitChanges();
+                //lt.CHI_PHI_PHAT_SINH = 1000;
+                // tong ket doanh thu
+                int tongve = lt.Ves.Where(ve => ve.TRANG_THAI == "da_thanh_toan").Count();
+                DoanhThu dt = new DoanhThu
+                {
+                    MA_LICH_TRINH = id,
+                    ID_DOANHTHU = "DT_" + id,
+                    SO_VE_DA_DAT = tongve,
+                    TONGTIEN = lt.GIA_VE * tongve
+                };
+                //db.DoanhThus.InsertOnSubmit(dt);
+                // cap nhat ve thanh da su dung
+
+                var vesToUpdate = db.Ves.Where(v => v.TRANG_THAI == "da_thanh_toan").ToList();
+
+                // Duyệt qua các bản ghi và cập nhật trạng thái
+                foreach (var item in vesToUpdate)
+                {
+                    item.TRANG_THAI = "da_su_dung";  // Cập nhật trạng thái
+                }
+                //db.Ves.InsertAllOnSubmit(vesToUpdate);
+                db.SubmitChanges();
+                
+                return RedirectToAction("Index"); // hoặc action khác
+
+            }
             // Gán dữ liệu vào ViewBag cho dropdown
             // tạo selectList danh sách tuyến đường
             ViewBag.ID_TUYEN_DUONG = new SelectList(db.TuyenDuongs.ToList(), "ID_TUYEN", "TEN_TUYEN", lt.ID_TUYEN_DUONG); // Gán giá trị đã chọn

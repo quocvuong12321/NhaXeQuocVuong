@@ -5,8 +5,8 @@
 }
 
 @*<div class="text-right" style="margin-top:16px">
-    @Html.ActionLink("Tạo lịch trình mới", "CreateLichTrirnh", null, new { @class = "btn btn-success btn-add" })
-</div>*@
+        @Html.ActionLink("Tạo lịch trình mới", "CreateLichTrirnh", null, new { @class = "btn btn-success btn-add" })
+    </div>*@
 
 
 <head>
@@ -140,6 +140,24 @@
     </style>
 
 </head>
+@if (TempData["ThongBao"] != null)
+{
+    <div class="alert alert-warning" id="xoa">
+        <button style="border:none;border-radius:999px " onclick="closeAlert()" class="bg-warning">X</button>
+        @TempData["ThongBao"]
+    </div>
+
+    <script>
+        // Function to close the alert
+        function closeAlert() {
+            // Lấy phần tử thông báo và ẩn nó
+            var alertBox = document.getElementById("xoa");
+            if (alertBox) {
+                alertBox.style.display = "none";  // Ẩn thông báo
+            }
+        }
+    </script>
+}
 
 <h1 class="text-center mb-5">QUẢN LÝ LỊCH TRÌNH</h1>
 
@@ -151,7 +169,7 @@
         </form>
         @Html.ActionLink("Thêm Lịch Trình Mới", "CreateLichTrirnh", null, new { @class = "btn btn-success btn-add" })
     </div>
-        @*<div class="text-right mb-4">
+    @*<div class="text-right mb-4">
         </div>
         <form method="get" class="d-flex mb-4">
             <input type="text" name="search" class="form-control search-bar" placeholder="Tìm kiếm lịch trình..." />
@@ -159,56 +177,56 @@
                 <img src="https://img.icons8.com/ios-filled/50/ffffff/search--v1.png" alt="Search icon" /> Tìm kiếm
             </button>
         </form>*@
-        <div class="table-container">
-            <table class="table table-hover table-bordered">
-                <thead class="">
+    <div class="table-container">
+        <table class="table table-hover table-bordered">
+            <thead class="">
+                <tr>
+                    <th>Thời gian khởi hành</th>
+                    <th>Thời gian kết thúc</th>
+                    <th>Giá vé</th>
+                    <th>Thời gian duy chuyển(Giờ)</th>
+                    <th>Điểm khởi hành</th>
+                    <th>Điểm kết thúc</th>
+                    <th>Loại xe</th>
+                    <th>Biên số xe</th>
+                    <th>Số ghế</th>
+                    <th>Số ghế trống</th>
+                    <th>Tên tài xế</th>
+                    <th>Trạng thái</th>
+                    <th class="text-center" style="width: 200px;">THAO TÁC</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var nv in Model)
+                {
                     <tr>
-                        <th>Thời gian khởi hành</th>
-                        <th>Thời gian kết thúc</th>
-                        <th>Giá vé</th>
-                        <th>Thời gian duy chuyển(Giờ)</th>
-                        <th>Điểm khởi hành</th>
-                        <th>Điểm kết thúc</th>
-                        <th>Loại xe</th>
-                        <th>Biên số xe</th>
-                        <th>Số ghế</th>
-                        <th>Số ghế trống</th>
-                        <th>Tên tài xế</th>
-                        <th>Trạng thái</th>
-                        <th class="text-center" style="width: 200px;">THAO TÁC</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var nv in Model)
-                    {
-                        <tr>
-                            <td>@Html.DisplayFor(modelItem => nv.TG_KhoiHanh)</td>
-                            <td>@Html.DisplayFor(modelItem => nv.TG_KetThuc)</td>
-                            <td>@Html.DisplayFor(modelItem => nv.Gia) đ</td>
-                            <td>@Html.DisplayFor(modelItem => nv.ThoiGianDuyChuyen)</td>
-                            <td>@Html.DisplayFor(modelItem => nv.DiemKhoiHanh)</td>
-                            <td>@Html.DisplayFor(modelItem => nv.DiemKetThuc)</td>
-                            <td>@Html.DisplayFor(modelItem => nv.LoaiXe)</td>
-                            <td>@Html.DisplayFor(modelItem => nv.BienSoXe)</td>
-                            <td>@Html.DisplayFor(modelItem => nv.SoGhe)</td>
-                            <td>@Html.DisplayFor(modelItem => nv.SoGheTrong)</td>
-                            <td>@Html.DisplayFor(modelItem => nv.TenNhanVien)</td>
-                            <td>@Html.DisplayFor(modelItem => nv.TrangThai)</td>
-                            <td class="text-center" style="width:200px">
-                                @Html.ActionLink("Cập nhật", "UpdateLichTrinh", new { id = nv.MaLichTrinh }, new { @class = "btn btn-warning btn-sm action-link btn-custom" })
-                                @*<button class="btn btn-danger btn-sm action-link btn-custom"
+                        <td>@Html.DisplayFor(modelItem => nv.TG_KhoiHanh)</td>
+                        <td>@Html.DisplayFor(modelItem => nv.TG_KetThuc)</td>
+                        <td>@Html.DisplayFor(modelItem => nv.Gia) đ</td>
+                        <td>@Html.DisplayFor(modelItem => nv.ThoiGianDuyChuyen)</td>
+                        <td>@Html.DisplayFor(modelItem => nv.DiemKhoiHanh)</td>
+                        <td>@Html.DisplayFor(modelItem => nv.DiemKetThuc)</td>
+                        <td>@Html.DisplayFor(modelItem => nv.LoaiXe)</td>
+                        <td>@Html.DisplayFor(modelItem => nv.BienSoXe)</td>
+                        <td>@Html.DisplayFor(modelItem => nv.SoGhe)</td>
+                        <td>@Html.DisplayFor(modelItem => nv.SoGheTrong)</td>
+                        <td>@Html.DisplayFor(modelItem => nv.TenNhanVien)</td>
+                        <td>@Html.DisplayFor(modelItem => nv.TrangThai)</td>
+                        <td class="text-center" style="width:200px">
+                            @Html.ActionLink("Cập nhật", "UpdateLichTrinh", new { id = nv.MaLichTrinh }, new { @class = "btn btn-warning btn-sm action-link btn-custom" })
+                            @*<button class="btn btn-danger btn-sm action-link btn-custom"
                                         onclick="deleteLichTrinh('@nv.MaLichTrinh')">
                                     Xóa
                                 </button>*@
-                                @Html.ActionLink("Chi tiết", "DetailLichTrinh", new { id = nv.MaLichTrinh }, new { @class = "btn btn-primary btn-sm action-link btn-custom" })   
-                                @*@Html.ActionLink("Xóa", "DeleteLichTrinh", new { id = nv.MaLichTrinh }, new { @class = "btn btn-danger btn-sm action-link btn-custom" })*@
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+                            @Html.ActionLink("Chi tiết", "DetailLichTrinh", new { id = nv.MaLichTrinh }, new { @class = "btn btn-primary btn-sm action-link btn-custom" })
+                            @*@Html.ActionLink("Xóa", "DeleteLichTrinh", new { id = nv.MaLichTrinh }, new { @class = "btn btn-danger btn-sm action-link btn-custom" })*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
+</div>
 
 <script>
 
@@ -234,67 +252,67 @@
 
 
 </script>
-    @*@foreach (var item in Model)
-        {
-            <div style="display: flex; padding:16px; flex-direction: column; width: 100%; border: 1px solid #ec7f1f; border-radius: 0.75rem; background-color: white; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); margin-top: 2rem;">
-                <div style="padding-top: 1rem; padding-left: 1rem; padding-right: 1rem;">
-                    <div style="display: flex; align-items: flex-start; gap: 2.5rem;">
-                        <div style="display: flex; flex-direction: column; width: 100%;">
-                            <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
-                                <span style="font-size: 1.5rem; font-weight: 500;">@item.TG_KhoiHanh</span>
-                                <div style="display: flex; align-items: center; width: 100%;">
-                                    <img src="~/img/diembatdau.svg" alt="pickup" style="margin-right: 0.5rem;">
-                                    <span style="flex: 1; border-bottom: 2px dotted;"></span>
-                                    <span style="color: gray; text-align: center; line-height: 1.25; padding: 0 0.5rem;">
-                                        @item.ThoiGianDuyChuyen giờ<br>
-                                        <span style="font-size: 13px;">(Asian/Ho Chi Minh)</span>
-                                    </span>
-                                    <span style="flex: 1; border-bottom: 2px dotted;"></span>
-                                    <img src="~/img/iemketrhuc.svg" alt="station" style="margin-left: 0.5rem;">
-                                </div>
-                                <span style="font-size: 1.5rem; font-weight: 500;">@item.TG_KetThuc</span>
+@*@foreach (var item in Model)
+    {
+        <div style="display: flex; padding:16px; flex-direction: column; width: 100%; border: 1px solid #ec7f1f; border-radius: 0.75rem; background-color: white; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); margin-top: 2rem;">
+            <div style="padding-top: 1rem; padding-left: 1rem; padding-right: 1rem;">
+                <div style="display: flex; align-items: flex-start; gap: 2.5rem;">
+                    <div style="display: flex; flex-direction: column; width: 100%;">
+                        <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
+                            <span style="font-size: 1.5rem; font-weight: 500;">@item.TG_KhoiHanh</span>
+                            <div style="display: flex; align-items: center; width: 100%;">
+                                <img src="~/img/diembatdau.svg" alt="pickup" style="margin-right: 0.5rem;">
+                                <span style="flex: 1; border-bottom: 2px dotted;"></span>
+                                <span style="color: gray; text-align: center; line-height: 1.25; padding: 0 0.5rem;">
+                                    @item.ThoiGianDuyChuyen giờ<br>
+                                    <span style="font-size: 13px;">(Asian/Ho Chi Minh)</span>
+                                </span>
+                                <span style="flex: 1; border-bottom: 2px dotted;"></span>
+                                <img src="~/img/iemketrhuc.svg" alt="station" style="margin-left: 0.5rem;">
                             </div>
-                            <div style="display: flex; justify-content: space-between; margin-top: 0.75rem; font-size: 13px;">
-                                <div style="flex: 1;">
-                                    <span style="font-size: 15px; font-weight: 500;">@item.DiemKhoiHanh</span><br>
-                                </div>
-                                <div style="flex: 1; text-align: right;">
-                                    <span style="font-size: 15px; font-weight: 500;">@item.DiemKetThuc</span><br>
-                                </div>
-                            </div>
+                            <span style="font-size: 1.5rem; font-weight: 500;">@item.TG_KetThuc</span>
                         </div>
-                        <div style="display: none; min-width: 200px; flex-wrap: wrap; align-items: center; gap: 0.5rem; color: gray;">
-                            <div style="width: 6px; height: 6px; border-radius: 50%; background-color: #C8CCD3;"></div><span>@item.LoaiXe</span>
-                            <div style="width: 6px; height: 6px; border-radius: 50%; background-color: #C8CCD3;"></div>
-                            <span style="color: green;">@item.SoGheTrong/@item.SoGhe chỗ trống</span>
-                            <span style="margin-top: 0.5rem; width: 100%; text-align: end; font-size: 1.125rem; font-weight: 600; color: orange;">@item.Gia đ</span>
+                        <div style="display: flex; justify-content: space-between; margin-top: 0.75rem; font-size: 13px;">
+                            <div style="flex: 1;">
+                                <span style="font-size: 15px; font-weight: 500;">@item.DiemKhoiHanh</span><br>
+                            </div>
+                            <div style="flex: 1; text-align: right;">
+                                <span style="font-size: 15px; font-weight: 500;">@item.DiemKetThuc</span><br>
+                            </div>
                         </div>
                     </div>
-                    <div style="border-top: 1px solid #DDE2E8; margin-top: 1rem; margin-bottom: 1rem;"></div>
-                </div>
-                <div width: 100%; align-items: center;">
-                    <div style="display: flex; justify-content: space-between;">
-                        <div style="display: flex; justify-content: center; gap: 1rem; font-size: 15px; font-weight: 500;">
-                            <span style="margin:0 6px;cursor:pointer">Chọn ghế</span>
-                            <span style="margin:0 6px;cursor:pointer">Lịch trình</span>
-                            <span style="margin:0 6px;cursor:pointer">Trung chuyển</span>
-                            <span style="margin:0 6px;cursor:pointer">Chính sách</span>
-                        </div>
-                        <button style="display: block; background-color: #ec7f1f; color: white; padding: 0.125rem 1rem;margin:4px 0px; border-radius: 50px; font-weight: 500; border: none;">
-                            Chọn chuyến
-                        </button>
-                    </div>
-                </div>
-                <div style="display: flex; align-items: center; justify-content: space-between; padding-left: 0.5rem; padding-right: 0.5rem; padding-bottom: 0.5rem; color: gray;">
-                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <div style="display: none; min-width: 200px; flex-wrap: wrap; align-items: center; gap: 0.5rem; color: gray;">
                         <div style="width: 6px; height: 6px; border-radius: 50%; background-color: #C8CCD3;"></div><span>@item.LoaiXe</span>
                         <div style="width: 6px; height: 6px; border-radius: 50%; background-color: #C8CCD3;"></div>
                         <span style="color: green;">@item.SoGheTrong/@item.SoGhe chỗ trống</span>
+                        <span style="margin-top: 0.5rem; width: 100%; text-align: end; font-size: 1.125rem; font-weight: 600; color: orange;">@item.Gia đ</span>
                     </div>
-                    <span style="text-align: end; font-size: 2rem; font-weight: 600; color: orange;">@item.Gia đ</span>
+                </div>
+                <div style="border-top: 1px solid #DDE2E8; margin-top: 1rem; margin-bottom: 1rem;"></div>
+            </div>
+            <div width: 100%; align-items: center;">
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="display: flex; justify-content: center; gap: 1rem; font-size: 15px; font-weight: 500;">
+                        <span style="margin:0 6px;cursor:pointer">Chọn ghế</span>
+                        <span style="margin:0 6px;cursor:pointer">Lịch trình</span>
+                        <span style="margin:0 6px;cursor:pointer">Trung chuyển</span>
+                        <span style="margin:0 6px;cursor:pointer">Chính sách</span>
+                    </div>
+                    <button style="display: block; background-color: #ec7f1f; color: white; padding: 0.125rem 1rem;margin:4px 0px; border-radius: 50px; font-weight: 500; border: none;">
+                        Chọn chuyến
+                    </button>
                 </div>
             </div>
-        }*@
+            <div style="display: flex; align-items: center; justify-content: space-between; padding-left: 0.5rem; padding-right: 0.5rem; padding-bottom: 0.5rem; color: gray;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <div style="width: 6px; height: 6px; border-radius: 50%; background-color: #C8CCD3;"></div><span>@item.LoaiXe</span>
+                    <div style="width: 6px; height: 6px; border-radius: 50%; background-color: #C8CCD3;"></div>
+                    <span style="color: green;">@item.SoGheTrong/@item.SoGhe chỗ trống</span>
+                </div>
+                <span style="text-align: end; font-size: 2rem; font-weight: 600; color: orange;">@item.Gia đ</span>
+            </div>
+        </div>
+    }*@
 
 
 
