@@ -3,12 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\nhaxe_quocvuong\\areas\\area_admin\\views\\quanlylichtrinh\\detaillichtrinh.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\views\\quanlylichtrinh\\detaillichtrinh.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|c:\\users\\admin\\desktop\\cnpm\\code cuoi\\nhaxequocvuong\\nhaxe_quocvuong\\controllers\\lichtrinhcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\controllers\\lichtrinhcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|c:\\users\\admin\\desktop\\cnpm\\code cuoi\\nhaxequocvuong\\nhaxe_quocvuong\\areas\\area_admin\\controllers\\quanlylichtrinhcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\controllers\\quanlylichtrinhcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\nhaxe_quocvuong\\areas\\area_admin\\views\\quanlylichtrinh\\updatelichtrinh.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\views\\quanlylichtrinh\\updatelichtrinh.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\nhaxe_quocvuong\\areas\\area_admin\\controllers\\thongkecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\controllers\\thongkecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\nhaxe_quocvuong\\areas\\area_admin\\views\\shared\\layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\views\\shared\\layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\nhaxe_quocvuong\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\nhaxe_quocvuong\\views\\dangnhap\\dangky_nguoidung.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\views\\dangnhap\\dangky_nguoidung.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\nhaxe_quocvuong\\views\\dangnhap\\login_nguoidung.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\views\\dangnhap\\login_nguoidung.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\nhaxe_quocvuong\\models\\nhaxe.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\models\\nhaxe.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\nhaxe_quocvuong\\areas\\area_admin\\controllers\\xecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\areas\\area_admin\\controllers\\xecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\nhaxe_quocvuong\\models\\nhaxe.dbml||{B465B5AD-8799-4507-B90A-EE29ACF36AF9}|",
+      "RelativeMoniker": "D:0:0:{7E51478B-E60A-4305-B6A5-D6C14CE5A490}|NhaXe_QuocVuong\\NhaXe_QuocVuong.csproj|solutionrelative:nhaxe_quocvuong\\models\\nhaxe.dbml||{B465B5AD-8799-4507-B90A-EE29ACF36AF9}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -39,14 +75,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "DetailLichTrinh.cshtml",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\DetailLichTrinh.cshtml",
-              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\DetailLichTrinh.cshtml",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\DetailLichTrinh.cshtml",
-              "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\DetailLichTrinh.cshtml",
-              "ViewState": "AgIAABsCAAAAAAAAAADwvykCAAAAAAAAAAAAAA==",
+              "Title": "LichTrinhController.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Controllers\\LichTrinhController.cs",
+              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Controllers\\LichTrinhController.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Controllers\\LichTrinhController.cs",
+              "RelativeToolTip": "NhaXe_QuocVuong\\Controllers\\LichTrinhController.cs",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAEwHIAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-05T13:53:10.474Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UpdateLichTrinh.cshtml",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\UpdateLichTrinh.cshtml",
+              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\UpdateLichTrinh.cshtml",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\UpdateLichTrinh.cshtml",
+              "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\QuanLyLichTrinh\\UpdateLichTrinh.cshtml",
+              "ViewState": "AgIAADkAAAAAAAAAAAAAAEEAAACiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-05T05:30:58.244Z",
+              "WhenOpened": "2024-12-05T12:51:17.738Z",
               "EditorCaption": ""
             },
             {
@@ -57,9 +106,112 @@
               "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\QuanLyLichTrinhController.cs",
               "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\QuanLyLichTrinhController.cs",
               "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\QuanLyLichTrinhController.cs",
-              "ViewState": "AgIAAE0CAAAAAAAAAAAYwE8CAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAEACAAAAAAAAAAASwEgCAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-05T05:19:22.673Z",
+              "WhenOpened": "2024-12-05T12:38:27.137Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ThongKeController.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\ThongKeController.cs",
+              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\ThongKeController.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\ThongKeController.cs",
+              "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\ThongKeController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB8AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-05T10:44:06.566Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "LayoutAdmin.cshtml",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\Shared\\LayoutAdmin.cshtml",
+              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\Shared\\LayoutAdmin.cshtml",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\Shared\\LayoutAdmin.cshtml",
+              "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Views\\Shared\\LayoutAdmin.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADcAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-05T10:38:25.25Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "NhaXe_QuocVuong\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAmwB4AAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-05T10:36:58.994Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Login_NguoiDung.cshtml",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Views\\DangNhap\\Login_NguoiDung.cshtml",
+              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Views\\DangNhap\\Login_NguoiDung.cshtml",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Views\\DangNhap\\Login_NguoiDung.cshtml",
+              "RelativeToolTip": "NhaXe_QuocVuong\\Views\\DangNhap\\Login_NguoiDung.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-05T10:35:50.636Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DangKy_NguoiDung.cshtml",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Views\\DangNhap\\DangKy_NguoiDung.cshtml",
+              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Views\\DangNhap\\DangKy_NguoiDung.cshtml",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Views\\DangNhap\\DangKy_NguoiDung.cshtml",
+              "RelativeToolTip": "NhaXe_QuocVuong\\Views\\DangNhap\\DangKy_NguoiDung.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABUAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-05T10:35:48.212Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "NhaXe.designer.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Models\\NhaXe.designer.cs",
+              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Models\\NhaXe.designer.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Models\\NhaXe.designer.cs",
+              "RelativeToolTip": "NhaXe_QuocVuong\\Models\\NhaXe.designer.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAnwFIAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-05T10:35:12.668Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "XeController.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\XeController.cs",
+              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\XeController.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\XeController.cs",
+              "RelativeToolTip": "NhaXe_QuocVuong\\Areas\\Area_Admin\\Controllers\\XeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-05T10:35:11.041Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "NhaXe.dbml",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Models\\NhaXe.dbml",
+              "RelativeDocumentMoniker": "NhaXe_QuocVuong\\Models\\NhaXe.dbml",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\cnpm\\code cuoi\\NhaXeQuocVuong\\NhaXe_QuocVuong\\Models\\NhaXe.dbml",
+              "RelativeToolTip": "NhaXe_QuocVuong\\Models\\NhaXe.dbml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001722|",
+              "WhenOpened": "2024-12-05T10:34:47.103Z",
               "EditorCaption": ""
             }
           ]

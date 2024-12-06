@@ -113,6 +113,7 @@ namespace NhaXe_QuocVuong.Controllers
                 string[] arrayGhe = vitringoi.Split(new string[] { ", " },StringSplitOptions.None);
                 foreach(string item in arrayGhe)
                 {
+                    if (item == "") return false;
                     string maGhe = db.Ghes.FirstOrDefault(t => t.MA_LICH_TRINH.Equals(maLichTrinh) && t.VI_TRI_NGOI.Equals(item)).ID_GHE;
                     ChiTietVe ct = new ChiTietVe(){
                         ID_VE = maVe,

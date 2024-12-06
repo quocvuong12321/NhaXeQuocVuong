@@ -14,7 +14,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
         NhaXeDataContext db = new NhaXeDataContext();
         public ActionResult Index()
         {
-            var ve = db.Ves.Where(v => v.TRANG_THAI == "da_thanh_toan").ToList();
+            var ve = db.Ves.Where(v => v.TRANG_THAI == "da_su_dung").ToList();
             var doanhThuTheoThang = new decimal[12];
             List<ves> tong = new List<ves>();
             foreach (var v in ve)

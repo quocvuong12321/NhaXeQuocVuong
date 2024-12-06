@@ -63,7 +63,7 @@
                     <div class="form-group">
                         <div class="col-md-6">
                             <span class="control-label col-md-12">Xe</span>
-                            @Html.DropDownList(Model.ID_XE.ToString(), (SelectList)ViewBag.ID_XE, "Chọn Xe", new { @class = "form-control", @name = "ID_XE", @id = "ID_XE" })
+                            @Html.DropDownList(Model.ID_XE.ToString(), (SelectList)ViewBag.ID_XE, "Chọn Xe", new { @class = "form-control", @disabled = "disabled", @name = "ID_XE", @id = "ID_XE" })
                             @Html.ValidationMessageFor(model => model.ID_XE, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-6">
@@ -166,7 +166,7 @@
 
 
 
-            <script>
+<script>
 
             document.querySelector('form').addEventListener('submit', function (e) {
                 e.preventDefault();
@@ -256,7 +256,7 @@
   <div class="form-group ">
       <span class="control-label col-md-12">Thời gian đến</span>
       <div class="col-md-12">
-          <input type="datetime-local" class="form-control" name="arrivalTime[]" onchange="setSecondsToZero(this)">
+         <input type="datetime-local" class="form-control" name="arrivalTime[]"  id="arrivalTime[]" onchange="setSecondsToZero(this)">
       </div>
   </div>
         `;
@@ -314,7 +314,7 @@
 <div class="form-group ">
     <span class="control-label col-md-12">Thời gian đến</span>
     <div class="col-md-12">
-        <input type="datetime-local" class="form-control" name="arrivalTime[]" onchange="setSecondsToZero(this)">
+        <input type="datetime-local" class="form-control" name="arrivalTime[]"  id="arrivalTime[]" onchange="setSecondsToZero(this)">
     </div>
 </div>
       `;
@@ -360,7 +360,7 @@
                 });
                 }
 
-            </script>
+</script>
 
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

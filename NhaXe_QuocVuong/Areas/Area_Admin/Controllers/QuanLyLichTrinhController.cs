@@ -203,6 +203,10 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                 };
 
                 var stops = request.StopsData;
+                if (stops == null)
+                {
+                    return Json(new { success = false, message = "Bạn phải nhập đầy đ trạm dừng chân" });
+                }
                 string check = "";
                 stops.ForEach(sp =>
                 {
@@ -578,17 +582,17 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                           from veItem in ctvVe.DefaultIfEmpty()
                           join kh in db.KhachHangs on veItem.ID_KHACH_HANG equals kh.USERNAME into veKh
                           from khItem in veKh.DefaultIfEmpty()
-                          where ghe.MA_LICH_TRINH == id
+                          where ghe.MA_LICH_TRINH == id 
                           select new AdminChiTietVe
                           {
                               ID_GHE = ghe.ID_GHE,
                               VI_TRI_NGOI = ghe.VI_TRI_NGOI,
-                              TINH_TRANG = ghe.TINH_TRANG ? "Đã đặt" : "Trống",
-                              TEN_KHACH_HANG = khItem.TEN_KHACH_HANG,
-                              SO_DIEN_THOAI = khItem.SO_DIEN_THOAI,
-                              EMAIL = khItem.EMAIL,
-                              DIEM_DOAN = db.TramDungChans.Where(ttdc => ttdc.ID_TRAMDUNGCHAN == veItem.DIEM_DOAN).FirstOrDefault().DIA_CHI,
-                              DIEM_TRA = db.TramDungChans.Where(ttdc => ttdc.ID_TRAMDUNGCHAN == veItem.DIEM_TRA).FirstOrDefault().DIA_CHI,
+                              TINH_TRANG = ghe.TINH_TRANG ? veItem.TRANG_THAI!= "huy_ve"?"Đã đặt":"Trống" : "Trống",
+                              TEN_KHACH_HANG = veItem.TRANG_THAI != "huy_ve" ?  khItem.TEN_KHACH_HANG:"" ,
+                              SO_DIEN_THOAI = veItem.TRANG_THAI != "huy_ve" ? khItem.SO_DIEN_THOAI:"",
+                              EMAIL = veItem.TRANG_THAI != "huy_ve" ? khItem.EMAIL : "",
+                              DIEM_DOAN = veItem.TRANG_THAI != "huy_ve" ? db.TramDungChans.Where(ttdc => ttdc.ID_TRAMDUNGCHAN == veItem.DIEM_DOAN).FirstOrDefault().DIA_CHI:"",
+                              DIEM_TRA = veItem.TRANG_THAI != "huy_ve" ? db.TramDungChans.Where(ttdc => ttdc.ID_TRAMDUNGCHAN == veItem.DIEM_TRA).FirstOrDefault().DIA_CHI : "",
                           };
 
 
