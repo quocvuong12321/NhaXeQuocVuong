@@ -187,6 +187,7 @@ namespace NhaXe_QuocVuong.Controllers
                     model = model.ToList();// Sắp xếp mặc định
                     break;
             }
+            ViewBag.DiaDiem = db.DiaDiems.ToList();
             return View("Index", model);
         }
 

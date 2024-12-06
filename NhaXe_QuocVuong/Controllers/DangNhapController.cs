@@ -225,6 +225,7 @@ namespace NhaXe_QuocVuong.Controllers
                     Qrcode = ticketDetailBase.Qrcode,
                     TongTien = (float)ticketDetailBase.TongTien,
                     TgianKhoiHanh = ticketDetailBase.TgianKhoiHanh,
+                   
                     DanhSachGhe = newGhe
                 };
 

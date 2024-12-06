@@ -15,11 +15,12 @@ namespace NhaXe_QuocVuong.Controllers
         {
             List<TuyenDuong> lst = db.TuyenDuongs.Take(3).ToList();
             var today = DateTime.Today;
-            
+
             // Lấy tất cả các lịch trình
             var allSchedules = db.LichTrinhs
                 .OrderBy(schedule => schedule.KHOI_HANH) // Sắp xếp theo thời gian khởi hành
                 .Take(3)
+                .Where(lt=>lt.TRANG_THAI== "MO_BAN")
                 .Select(l => new LichTrinh_Home
                 {
                     MaLichTrinh = l.MA_LICH_TRINH,

@@ -64,7 +64,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                 TenNhanVien = item.TaiXe.TEN_NHANVIEN,
                 TrangThai = item.TrangThai,
                 IDTaiXe = item.TaiXe.USERNAME
-            }).ToList();
+            }). ToList();
 
             if (!string.IsNullOrEmpty(search))
             {
@@ -187,6 +187,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                 {
                     MaLichTrinh += "(1)";
                 };
+                if(double.Parse(request.formData.GIA_VE) < 0) return Json(new { success = false, message = "Giá vé không hợp lý" });
                 LichTrinh newLichTrinh = new LichTrinh
                 {
                     MA_LICH_TRINH = MaLichTrinh,
@@ -205,7 +206,7 @@ namespace NhaXe_QuocVuong.Areas.Area_Admin.Controllers
                 var stops = request.StopsData;
                 if (stops == null)
                 {
-                    return Json(new { success = false, message = "Bạn phải nhập đầy đ trạm dừng chân" });
+                    return Json(new { success = false, message = "Bạn phải nhập đầy đủ trạm dừng chân" });
                 }
                 string check = "";
                 stops.ForEach(sp =>

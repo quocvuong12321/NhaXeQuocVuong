@@ -38,24 +38,32 @@
 
         @if (Model != null)
         {
-    <div class="ticket-details">
-        <p>(Ngày đặt: @Model.NgayDat)</p>
-        <p>Tên khách hàng:<strong> @Model.TenKH</strong></p>
-        <p>Tuyến đường:<strong> @Model.TuyenDuong </strong></p>
-        <p style="margin-top: 0;">Vị trí ngồi:</p>
-        @if (Model.DanhSachGhe != null && Model.DanhSachGhe.Any())
-        {
-        <ul style="list-style-type: none; display: inline-flex; gap: 10px; padding: 0; margin: 0;">
-            @foreach (var ghe in Model.DanhSachGhe)
-            {
-                <li style="font-weight: bold;; padding: 5px 10px; border: 1px solid #007bff; border-radius: 5px; background-color: #f0f8ff;">@ghe.ViTriNgoi</li>}
-        </ul> }
-         else
-          {
-                <p><strong>Không có ghế nào cho vé này.</strong></p>}
-        <p style="margin-top: 20px;">Thời gian khởi hành:<strong> @Model.TgianKhoiHanh </strong></p>
-        <p>Tổng tiền:<strong> @String.Format("{0:N0}", Model.TongTien) VNĐ </strong></p>
-    </div>
+            <div class="d-flex">
+
+
+                <div class="ticket-details">
+                    <p>(Ngày đặt: @Model.NgayDat)</p>
+                    <p>Tên khách hàng:<strong> @Model.TenKH</strong></p>
+                    <p>Tuyến đường:<strong> @Model.TuyenDuong </strong></p>
+                    <p style="margin-top: 0;">Vị trí ngồi:</p>
+                    @if (Model.DanhSachGhe != null && Model.DanhSachGhe.Any())
+                    {
+                        <ul style="list-style-type: none; display: inline-flex; gap: 10px; padding: 0; margin: 0;">
+                            @foreach (var ghe in Model.DanhSachGhe)
+                            {
+                                <li style="font-weight: bold;; padding: 5px 10px; border: 1px solid #007bff; border-radius: 5px; background-color: #f0f8ff;">@ghe.ViTriNgoi</li>
+}
+                        </ul> }
+                    else
+                    {
+                        <p><strong>Không có ghế nào cho vé này.</strong></p>}
+                    <p style="margin-top: 20px;">Thời gian khởi hành:<strong> @Model.TgianKhoiHanh </strong></p>
+                    <p>Tổng tiền:<strong> @String.Format("{0:N0}", Model.TongTien) VNĐ </strong></p>
+                </div>
+                <div >
+                    <img src="@Model.Qrcode" style="width: 325px; height: 325px"  />
+                </div>
+            </div>
         }
         else
         {
